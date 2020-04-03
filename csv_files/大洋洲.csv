@@ -1,0 +1,9 @@
+locationId,continentName,continentEnglishName,countryName,countryEnglishName,provinceName,provinceEnglishName,provinceShortName,currentConfirmedCount,confirmedCount,suspectedCount,curedCount,deadCount,comment
+990007,大洋洲,Oceania,新西兰,New Zealand,新西兰,New Zealand,新西兰,672,723,4,50,1,
+990001,大洋洲,Oceania,澳大利亚,Australia,澳大利亚,Australia,澳大利亚,4991,5133,0,119,23,
+0,大洋洲,Oceania,法属波利尼西亚,French Polynesia,法属波利尼西亚,French Polynesia,法属波利尼西亚,37,37,0,0,0,
+0,大洋洲,Oceania,北马里亚纳群岛联邦,,北马里亚纳群岛联邦,,北马里亚纳群岛联邦,5,6,0,0,1,
+0,大洋洲,Oceania,关岛,Guam,关岛,Guam,关岛,67,69,0,0,2,
+0,大洋洲,Oceania,新喀里多尼亚,,新喀里多尼亚,,新喀里多尼亚,16,16,0,0,0,
+990002,大洋洲,Oceania,斐济,Fiji,斐济,Fiji,斐济,5,5,0,0,0,
+990009,大洋洲,Oceania,巴布亚新几内亚,Papua New Guinea,巴布亚新几内亚,Papua New Guinea,巴布亚新几内亚,1,1,0,0,0,

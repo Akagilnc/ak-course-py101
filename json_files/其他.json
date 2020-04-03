@@ -1,0 +1,38 @@
+[
+    {
+        "locationId":0,
+        "continentName":"其他",
+        "continentEnglishName":"Others",
+        "countryName":"钻石公主号邮轮",
+        "countryEnglishName":"Diamond Princess Cruise Ship",
+        "provinceName":"钻石公主号邮轮",
+        "provinceEnglishName":"Diamond Princess Cruise Ship",
+        "provinceShortName":"钻石公主号邮轮",
+        "currentConfirmedCount":128,
+        "confirmedCount":712,
+        "suspectedCount":0,
+        "curedCount":574,
+        "deadCount":10,
+        "comment":"",
+        "cities":null,
+        "updateTime":1585840468087
+    },
+    {
+        "locationId":0,
+        "continentName":"其他",
+        "continentEnglishName":"Others",
+        "countryName":"至尊公主邮轮",
+        "countryEnglishName":"Grand Princess",
+        "provinceName":"至尊公主邮轮",
+        "provinceEnglishName":"Grand Princess",
+        "provinceShortName":"至尊公主邮轮",
+        "currentConfirmedCount":21,
+        "confirmedCount":21,
+        "suspectedCount":0,
+        "curedCount":0,
+        "deadCount":0,
+        "comment":"",
+        "cities":null,
+        "updateTime":1583727001577
+    }
+]

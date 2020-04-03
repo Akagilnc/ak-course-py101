@@ -1,45 +1,46 @@
-import requests
 import json
-from datetime import datetime
+import pandas as pd
 
 
-# 调用远程API来获取数据
-def call_api():
-    # 定义地址
-    address = 'https://lab.isaaclin.cn/nCoV/api/area?latest=0&province=上海市'
-    # 调用，并获取信息
-    data = requests.get(address)
-    # 保存到一个json文件
-    with open('2019_conv_shanghai_history.json', 'w') as file:
-        json.dump(data.json(), file, ensure_ascii=False, indent=4)
+def read_data_from_json(file_name):
+    with open(file_name, encoding='utf_8') as file:
+        return json.load(file)
 
 
-# call_api()
+def process_and_save():
+    data = read_data_from_json('lesson4.json').get('data').get('list')
+    result_list = []
 
-def get_infos():
-    # 获得字典格式的数据
-    with open('2019_conv_shanghai_history.json') as file:
-        data = json.load(file)
-
-    # 获得所有的历史数据
-    infos = data['results']
-
-    # 打开需要写入的文件
-    with open('l4_hw_history.txt', 'w') as file:
-        # 依次取出历史数据
-        for info in infos:
-            # 获得更新时间的时间戳，并转换为datetime时间格式
-            update_time = datetime.fromtimestamp(info.get('updateTime') / 1000)
-
-            # 写入文件
-            file.write('截止{}，{}，确诊人数为{}，治愈人数为{}，死亡人数为{}\n'.format(
-                # 把时间格式化成中文友好的格式
-                update_time.strftime('%Y年%m月%d日 %H:%M:%S'),
-                info.get('provinceName'),
-                info.get('confirmedCount'),
-                info.get('curedCount'),
-                info.get('deadCount')
-            ))
+    for info in data:
+        cities = info.get('city')
+        province_name = info.get('name')
+        for city in cities:
+            name = city.get('name')
+            confirm = city.get('conNum')
+            cure = city.get('cureNum')
+            death = city.get('deathNum')
+            result_list.append({
+                '省份': province_name,
+                '地区': name,
+                "确诊": float(confirm),
+                "治愈": int(cure),
+                "死亡": int(death)
+            })
+    return result_list
 
 
-get_infos()
+def save_to_file(input_result):
+    with open('l4_hw_report.txt', 'w', encoding='utf_8') as report:
+        report.writelines(input_result)
+
+
+pd.options.display.float_format = '{:,}'.format
+result = process_and_save()
+contents = pd.DataFrame(result)
+contents = contents.astype({'确诊': 'float', '治愈': 'int32', '死亡': 'float'})
+contents.to_csv('l4_hw.csv', index=False)
+print(contents[contents.省份 == '湖北'])
+contents.to_excel('l4_hw.xlsx', index=False)
+
+import matplotlib
+contents.plot.line()
