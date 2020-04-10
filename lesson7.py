@@ -1,53 +1,69 @@
-import json
 import pandas as pd
-from datetime import datetime
-from openpyxl.chart import LineChart, Reference, Series
-from matplotlib import pyplot
+from math import pi
+import bokeh.plotting as plt
+from bokeh.models import ColumnDataSource
+from bokeh.palettes import Category20c
+from bokeh.transform import factor_cmap
+from bokeh.transform import cumsum
+# from matplotlib import pyplot as plt
+from matplotlib.font_manager import FontProperties
+
+# 筛选国家级别的数据，生成汇总报告
+# 从多个excel/sheet读取，然后筛选数据，
+# - 重命名列的几种方法
+# - 提取、添加、删除列
+# - 把字符串转换为数值
+# - 把字符串分割为多列
 
 
-# 读取上海历史json
-def read_file(file_name):
-    with open(file_name) as file:
-        return json.load(file)['results']
+# sheet 增上改查 format 行高列高， 格式为主
+# 遍历多层级目录，
+
+# 调整格式。可以展示的文字报告
+# 如何取excel里范围数据（比如第7行到第20行）
+
+# 3. DataFrame的常用基本操作
+
+# - df.T 一键转置
+# - 反转序列
+
+# 5. DataFrame数据筛选
+# - 索引 / 选择
+# - 按数据类型选择列
+# - 根据多个类别筛选 DataFrame
 
 
-# 根据excel文件里的数据，画一个线形图
-def draw_line_chart(input_writer, max_row):
-    # 拿到我们操作的sheet
-    sheet = input_writer.sheets['shanghai']
-    # 初始化我们的line chart
-    chart = LineChart()
-    # 指定line chart 的 数据范围
-    chart_data = Reference(sheet, min_col=2, max_col=4, min_row=1, max_row=max_row)
-    # 指定x_AXIS
-    x_axis_data = Reference(sheet, min_col=1, max_col=1, min_row=2, max_row=max_row)
-    # 设置chart的样式
-    chart.height, chart.width = 15, 30
-    chart.title, chart.y_axis.title, chart.x_axis.title = '上海疫情趋势', '人数', '日期'
-    chart.y_axis.scaling.max = 500
-    # chart 添加到 sheet 里
-    chart.add_data(chart_data, titles_from_data=True)
-    chart.set_categories(x_axis_data)
-    sheet.add_chart(chart, 'F1')
+# plt.rcParams['font.sans-serif'] = ['SimHei']
+# plt.rcParams['axes.unicode_minus'] = False
 
-    # 保存writer
-    input_writer.save()
+data = pd.read_excel('./excel_files/report.xlsx', sheet_name=0, index_col='provinceName')
 
+data_china = data[(data.countryName == '中国') & (data.index != '中国')]
+data = data.drop(data_china.index)
+for i in range(1, 6):
+    other_data = pd.read_excel('./excel_files/report.xlsx', sheet_name=i, index_col='provinceName')
+    data = data.append(other_data)
+data = data.sort_values(by='confirmedCount', ascending=False)
+chart_data = data['confirmedCount'].head(10).reset_index(name='confirmedCount')
 
-data = read_file('2019_conv_shanghai_history.json')
-data = list(reversed(data))
-df = pd.DataFrame(
-    data,
-    index=[datetime.fromtimestamp(info['updateTime'] / 1000).strftime('%Y-%m-%d') for info in data],
-    columns=['confirmedCount', 'curedCount', 'deadCount', 'updateTime']
-)
+chart_data['color'] = Category20c[len(chart_data)]
 
-idx = df.groupby(level=0)['updateTime'].transform(max) == df['updateTime']
-df = df[idx]
-df = df.drop(columns='updateTime')
-# writer = pd.ExcelWriter('conv_shanghai.xlsx')
-# df.to_excel(writer, sheet_name='shanghai')
-# draw_line_chart(writer, len(df)+1)
-# writer.save()
-chart = df.plot(title='conv Shanghai')
-pyplot.show()
+chart_data['confirmedCount'] = chart_data['confirmedCount'].astype('int')
+
+chart_data['angle'] = chart_data['confirmedCount'] / chart_data['confirmedCount'].sum() * 2 * pi
+print(chart_data)
+# countries = chart_data['provinceName'].tolist()
+p = plt.figure(plot_height=500, title="Pie Chart", toolbar_location=None,
+               tools="hover", tooltips="@provinceName: @confirmedCount", x_range=(-0.5, 1.0))
+
+# color_map = factor_cmap(field_name='provinceName',
+#                         palette=Spectral10, factors=countries)
+
+p.wedge(x=0, y=1, radius=0.4,
+        start_angle=cumsum('angle', include_zero=True),
+        end_angle=cumsum('angle'), legend_field='provinceName',
+        line_color="white", fill_color='color', source=chart_data)
+p.xaxis.axis_label = 'Country'
+p.yaxis.axis_label = 'Confirmed Count'
+# p.circle(x='confirmedCount', y='currentConfirmedCount', source=source)
+plt.show(p)

@@ -3,44 +3,39 @@ import pandas as pd
 import os
 
 
-# 读取json文件的数据
-def read_json_file(file_name):
+# 读取指定路径文件的json数据
+def read_json_data(file_name):
     with open(file_name, encoding='utf_8') as file:
         return json.load(file)
 
 
-# 把数据依次的存储到excel里
-def save_to_excel():
-    # 获取文件名
-    file_names = os.listdir('./json_files')
-    # 初始化汇总的信息
+# 保存数据到excel
+def process_and_save_data_to_excel():
+    # 初始化一个汇总的空的DataFrame
     sum_df = pd.DataFrame()
-    # 生成我们最终要保存的excel
-    with pd.ExcelWriter('./excel_files/report.xlsx', engine='openpyxl') as excel_file:
+    file_names = os.listdir('./json_files/')
+    with pd.ExcelWriter('./excel_files/report.xlsx', engine='openpyxl') as writer:
         for file_name in file_names:
-            # 抓取大洲的名字
             sheet_name = file_name[:-5]
-            # 获取json的信息
-            file_name = './json_files/{}'.format(file_name)
-            data = read_json_file(file_name)
-
-            # 转换json到pandas.DataFrame
-            columns_names = ['continentName', 'countryName', 'provinceName', 'currentConfirmedCount',
-                             'confirmedCount', 'curedCount', 'deadCount']
-            df = pd.DataFrame(data, columns=columns_names, index=range(1, len(data)+1))
-            sum_columns_list = ['currentConfirmedCount', 'confirmedCount', 'curedCount', 'deadCount']
-            # 从原始的df选出四列，求和
-            sum_info = df[sum_columns_list].sum()
-            # 给sum_info 取了个名字，大洲名字+汇总
+            path_name = './json_files/{}'.format(file_name)
+            # 获取data
+            data = read_json_data(file_name=path_name)
+            # 保存到report.xlsx的文件里
+            # 转换data到pandas的DataFrame
+            contents = pd.DataFrame(data, columns=['continentName', 'countryName', 'provinceName',
+                                                   'currentConfirmedCount', 'confirmedCount', 'curedCount',
+                                                   'deadCount'])
+            # 获得汇总数据
+            sum_info = contents[['currentConfirmedCount', 'confirmedCount',
+                                 'curedCount', 'deadCount']].sum()
+            print(sum_info)
             sum_info = sum_info.rename('{}汇总'.format(sheet_name))
+            print(sum_info)
             sum_df = sum_df.append(sum_info)
-            # 保存到excel文件
-            df.to_excel(excel_file, index=True, sheet_name=sheet_name)
-
-        sum_df.to_excel(excel_file, sheet_name='汇总')
-        string_sum = sum_df.to_string()
-        with open('report.txt', 'w', encoding='utf-8') as file:
-            file.write(string_sum)
+            # 添加到汇总DF里面
+            contents.to_excel(writer, index=False, sheet_name=sheet_name)
+        # 把汇总的df写入excel
+        sum_df.to_excel(writer, sheet_name='汇总')
 
 
-save_to_excel()
+process_and_save_data_to_excel()

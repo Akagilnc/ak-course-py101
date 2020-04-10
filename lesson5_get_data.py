@@ -25,7 +25,7 @@ def process_and_save(input_df, file_name):
         input_df.to_json(file, force_ascii=False, indent=4, orient='records')
 
 
-# call_api_and_save_json('https://lab.isaaclin.cn/nCoV/api/area', '2019_conv.json')
+call_api_and_save_json('https://lab.isaaclin.cn/nCoV/api/area', '2019_conv.json')
 infos = read_file('2019_conv.json')
 data_df = pd.DataFrame(infos)
 continents = pd.DataFrame(infos, columns=['continentName']).drop_duplicates()
