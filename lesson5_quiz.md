@@ -12,7 +12,13 @@
     
         df = pd.Dataframe()
     ```
+    <details>
+    <summary>答案</summary>
     
+    答案为3. 1是因为没有pd. 
+    
+    2和4 都是大小写有错误
+    </details>
 1. 对于 `import pandas as pd` 以下说法正确的是？
     
     引入了pandas这个外部包
