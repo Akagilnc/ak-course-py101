@@ -15,6 +15,7 @@ selenium = "^3.141.0"
 akshare = "^0.4.43"
 streamlit = "^0.57.3"
 jupyterthemes = "^0.20.0"
+folium = "^0.10.1"
 
 [tool.poetry.dev-dependencies]
 
