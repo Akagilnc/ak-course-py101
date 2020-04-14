@@ -1,66 +1,57 @@
+# 数据bug
+# 中国疫情地区详情
+# 确诊排序
+# 列名
+# top10国家排名
 import pandas as pd
-import os
-from datetime import datetime
 
 
-# 读取一个excel文件
-def get_infos_from_one_file(filename):
-    print('getting info from {}'.format(filename))
-    return pd.read_excel('./files/{}'.format(filename),
-                         engine='openpyxl',
-                         usecols=['provinceName', 'confirmedCount', 'curedCount',
-                                  'deadCount', 'country', 'updateTime'])
+# 数据bug修复
+def fix_issues_from_boss():
+    # 读取excel文件的亚洲sheet
+    data = pd.read_excel('./excel_files/report.xlsx', sheet_name=None)
+    # 初始化新的报告文件
+    writer = pd.ExcelWriter('./excel_files/report_fixed.xlsx', engine='openpyxl')
+
+    # 依次拿出所有的数据
+    for key, df in data.items():
+        if key == '亚洲':
+            # 找到中国的地区信息
+            df_china_details = df[(df['countryName'] == '中国') & (df['provinceName'] != '中国')]
+            # 把它从原始数据中删除
+            df = df.drop(df_china_details.index)
+            df_china_details = df_china_details.sort_values(by='confirmedCount', ascending=False)
+            df_china_details.to_excel(writer, sheet_name='中国', index=False)
+        # 新的亚洲数据，保存到新的report
+        df = df.sort_values(by='confirmedCount', ascending=False)
+        df = df.rename(columns={'confirmedCount': '累计确诊', 'currentConfirmedCount': '现存确诊'})
+        df.to_excel(writer, sheet_name=key, index=False)
+    writer.save()
 
 
-# 获取所有最新数据
-def get_all_latest_infos():
-    # 获得该目录下所有的文件名
-    filenames = os.listdir('./files')
-    # 初始化一个总的信息变量，DataFrame
-    all_infos = pd.DataFrame()
-    # 一个一个的取出文件名
-    for filename in filenames:
-        # 根据文件名获取信息
-        data = get_infos_from_one_file(filename)
-        # 找到最新的信息
-        info = data.iloc[data['updateTime'].idxmax()]
-        # 重命名当条信息，然后把它插入的DataFrame
-        info = info.rename(datetime.fromtimestamp(info['updateTime'] / 1000).strftime('%Y-%m-%d %H:%M:%S'))
-        info = info.drop('updateTime')
-        all_infos = all_infos.append(info)
-    print('all infos done')
-    return all_infos
+def make_top10_country():
+    # 读取excel，读取多个sheet
+    all_df_dict = pd.read_excel('./excel_files/report_fixed.xlsx', sheet_name=None)
+
+    # 删除国家信息之外的数据，汇总和中国
+    del all_df_dict['汇总']
+    del all_df_dict['中国']
+    # 确保top10这个sheet是唯一的
+    if 'top10' in all_df_dict.keys():
+        del all_df_dict['top10']
+    # 整合数据
+    all_df = pd.concat(all_df_dict, ignore_index=True)
+    # 排序，找到top10的国家
+    all_df = all_df.sort_values(by='累计确诊', ascending=False)
+    top10_df = all_df.head(10)
+    top10_df = top10_df.rename(columns={'countryName': '国家',
+                                        'curedCount': '治愈',
+                                        'deadCount': '死亡'})
+    top10_df = top10_df.drop(columns=['provinceName', 'continentName'])
+    # 保存到report_fixed里面去
+    with pd.ExcelWriter('./excel_files/report_fixed.xlsx', engine='openpyxl', mode='a') as writer:
+        top10_df.to_excel(writer, sheet_name='top10', index=False)
 
 
-# 求一个df汇总信息
-def get_sum_info(input_df, sum_drop_name, df_drop_name):
-    sum_info = input_df.sum()
-    sum_info = sum_info.rename('汇总')
-    sum_info[sum_drop_name] = ""
-    input_df = input_df.append(sum_info)
-    input_df = input_df.drop(columns=[df_drop_name])
-    print('get sum info done')
-    return input_df
-
-
-# 存入一个文件的不同sheet 用pandas
-def write_to_single_file(input_chn_df, input_oversea_df, filename):
-    with pd.ExcelWriter('./files/{}.xlsx'.format(filename)) as file:
-        input_chn_df.to_excel(file, sheet_name='China')
-        print('save to China sheet done')
-        input_oversea_df.to_excel(file, sheet_name='Oversea')
-        print('save to Oversea sheet done')
-        file.save()
-
-
-infos = get_all_latest_infos()
-
-df_china = infos[infos.country == '中国']
-df_oversea = infos[infos.country != '中国']
-df_china_with_sum = get_sum_info(df_china, 'provinceName', 'country')
-df_oversea_with_sum = get_sum_info(df_oversea, 'country', 'provinceName')
-
-write_to_single_file(df_china_with_sum, df_oversea_with_sum, 'conv_latest')
-
-# df_china_with_sum.to_excel('conv_china_latest.xlsx')
-# df_oversea_with_sum.to_excel('conv_oversea_latest.xlsx')
+fix_issues_from_boss()
+make_top10_country()

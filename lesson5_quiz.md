@@ -2,16 +2,24 @@
 
 1. 如何初始化一个DataFrame, 
     ```python
-        import pandas as pd
+    import pandas as pd
     
-        df = DataFrame()
+    df = DataFrame()
     
-        df = pd.dataFrame()
+    df = pd.dataFrame()
     
-        df = pd.DataFrame()
+    df = pd.DataFrame()
     
-        df = pd.Dataframe()
+    df = pd.Dataframe()
     ```
+   
+    <details>
+    <summary>答案</summary>
+    
+    答案为3. 1是因为没有pd. 
+    
+    2和4 都是大小写有错误
+    </details>
     
 1. 对于 `import pandas as pd` 以下说法正确的是？
     
@@ -22,6 +30,17 @@
     调用需要写pandas.xxx()
     
     调用需要写pd.xxx()   
+    
+    <details>
+    <summary>答案</summary>
+    
+    答案为1和4 
+    
+    2 pd 只是一个别名
+    
+    3 定义了别名就只能用别名来调用了
+    
+    </details>
     
 1. 对于一个 DataFrame df , df['x']是在做什么？
     
