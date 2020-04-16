@@ -14,7 +14,7 @@ def call_api_and_save_to_file():
     file.close()
 
 
-# call_api_and_save_to_file()
+call_api_and_save_to_file()
 
 # 获取原始数据
 def get_data():

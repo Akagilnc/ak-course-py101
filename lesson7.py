@@ -1,47 +1,58 @@
 from openpyxl import load_workbook
-from openpyxl.styles import PatternFill, Border, Side, Alignment, Protection, Font
+from openpyxl.styles import PatternFill, Border, Side, Alignment, Font
 
-font_title = Font(name='Fira', size=14, bold=True, color='FFFFFFFF')
-font_body = Font(name='Fira', size=12, bold=False, color='404040')
-font_import = Font(name='Fira', size=12, bold=True, color='FFFFFFFF')
-fill_title = PatternFill(fill_type='solid', fgColor='8064A2')
-fill_import = PatternFill(fill_type='solid', fgColor='0070C0')
-border = Border(outline=Side(border_style=None, color='FF000000'))
-alignment = Alignment(horizontal='left', vertical='center', wrap_text=False, shrink_to_fit=False)
+font_body = Font(name='黑体', size=12, bold=False, color='404040')
+# 先调整一个cell对比一下
 
+alignment = Alignment(horizontal='left', vertical='bottom', wrap_text=False, shrink_to_fit=False)
+alignment_right = Alignment(horizontal='right', vertical='bottom', wrap_text=False, shrink_to_fit=False)
+bd1 = Side(border_style='mediumDashDot', color='000000')
+bd2 = Side(border_style='thin', color='000000')
+border = Border(left=bd1, right=bd1, top=bd1, bottom=bd1, start=bd2, end=bd2)
+
+# 定义标题相关的style
+font_title = Font(name='黑体', size=18, bold=True, color='FFFFFF')
+alignment_title = Alignment(horizontal='center', vertical='center', wrap_text=False, shrink_to_fit=False)
+fill_title = PatternFill(fill_type='solid', fgColor='0F4C81')
+
+# 设置确诊人数的font fill
+font_imp = Font(name='fira', size=16, bold=True, color='000000')
+fill_imp = PatternFill(fill_type='solid', fgColor='F3D5AD')
+
+# 读取现有文件
 wb = load_workbook('./excel_files/report_fixed.xlsx')
-
-ws_list = wb.sheetnames
-ws_list = ws_list[:-2]
-for ws_name in ws_list:
-    ws = wb[ws_name]
-    ws.column_dimensions.group('A', 'B', hidden=True)
-
-    # not worked
-    row1 = ws.row_dimensions[1]
-    row1.font = font_title
-
-    for row in ws.rows:
-        for cell in row:
+for sheet in wb.worksheets[:-2]:
+    # sheet = wb[name] # 根据名字取出sheet
+    sheet.sheet_view.zoomScale = 200
+    # 设置字体到所有的cell
+    for row in sheet.rows:
+        for index, cell in enumerate(row):
             cell.font = font_body
-            cell.alignment = alignment
+            cell.alignment = alignment if index == 0 else alignment_right
             cell.border = border
 
-    # worked
-    for cell in ws[1]:
-        cell.font = font_title
-        cell.alignment = alignment
-        cell.fill = fill_title
-        cell.border = border
+    # 设置第一行的title font alignment, fill
+    for title_cell in sheet[1]:
+        title_cell.font = font_title
+        title_cell.alignment = alignment_title
+        title_cell.fill = fill_title
 
-    for name in 'CEFG':
-        ws.column_dimensions[name].width = 20.0
-    ws.column_dimensions['D'].width = 30.0
-    ws.row_dimensions[1].height = 30
-    for row_num in range(2, ws.max_row + 1):
-        ws.row_dimensions[row_num].height = 25
-        cell_confirm = ws['E{}'.format(row_num)]
-        cell_confirm.font = font_import
-        cell_confirm.fill = fill_import
+    # 设置列宽和行高
+    sheet.column_dimensions['C'].width = 25.0
+    for column_name in 'ABDE':
+        sheet.column_dimensions[column_name].width = 15
+    sheet.row_dimensions[1].height = 30
 
+    # 设置确诊人数style
+    # 从第二行开始，拿到所有的行号
+    for row_num in range(2, sheet.max_row + 1):
+        # 设置正文的行高
+        sheet.row_dimensions[row_num].height = 20
+        # 设置确诊人数font fill
+        cell_confirmed = sheet['C{}'.format(row_num)]
+        cell_confirmed.font = font_imp
+        cell_confirmed.fill = fill_imp
+        cell_confirmed.number_format = '#,##0'
+
+# 保存到一个新的excel
 wb.save('./excel_files/report_formatted.xlsx')

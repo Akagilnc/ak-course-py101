@@ -1,5 +1,362 @@
 [
   {
+    "date": "04.13",
+    "cn_conNum": "83696",
+    "cn_deathNum": "3351",
+    "cn_cureNum": "78262",
+    "cn_susNum": "72",
+    "cn_econNum": "2083",
+    "cn_heconNum": "116",
+    "cn_deathRate": "4",
+    "cn_cureRate": "93.51",
+    "is_show": "true",
+    "wjw_susNum": "3",
+    "wuhan_conNum": "50008",
+    "wuhan_deathNum": "2579",
+    "wuhan_cureNum": "47211",
+    "wuhan_susNum": null,
+    "cn_conadd": "99",
+    "cn_jwsrNum": "1464",
+    "cn_addjwsrNum": "86",
+    "cn_asymptomNum": "1005"
+  },
+  {
+    "date": "04.12",
+    "cn_conNum": "83597",
+    "cn_deathNum": "3351",
+    "cn_cureNum": "78145",
+    "cn_susNum": "72",
+    "cn_econNum": "2101",
+    "cn_heconNum": "121",
+    "cn_deathRate": "4.01",
+    "cn_cureRate": "93.48",
+    "is_show": "true",
+    "wjw_susNum": "6",
+    "wuhan_conNum": "50008",
+    "wuhan_deathNum": "2579",
+    "wuhan_cureNum": "47186",
+    "wuhan_susNum": null,
+    "cn_conadd": "115",
+    "cn_jwsrNum": "1378",
+    "cn_addjwsrNum": "98",
+    "cn_asymptomNum": "1064"
+  },
+  {
+    "date": "04.11",
+    "cn_conNum": "83482",
+    "cn_deathNum": "3349",
+    "cn_cureNum": "78020",
+    "cn_susNum": "82",
+    "cn_econNum": "2113",
+    "cn_heconNum": "139",
+    "cn_deathRate": "4.01",
+    "cn_cureRate": "93.46",
+    "is_show": "true",
+    "wjw_susNum": "49",
+    "wuhan_conNum": "302",
+    "wuhan_deathNum": "0",
+    "wuhan_cureNum": "17",
+    "wuhan_susNum": null,
+    "cn_conadd": "113",
+    "cn_jwsrNum": "1280",
+    "cn_addjwsrNum": "97",
+    "cn_asymptomNum": "1086"
+  },
+  {
+    "date": "04.10",
+    "cn_conNum": "83369",
+    "cn_deathNum": "3349",
+    "cn_cureNum": "77935",
+    "cn_susNum": "44",
+    "cn_econNum": "2085",
+    "cn_heconNum": "141",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "93.48",
+    "is_show": "true",
+    "wjw_susNum": "8",
+    "wuhan_conNum": "319",
+    "wuhan_deathNum": "2577",
+    "wuhan_cureNum": "47112",
+    "wuhan_susNum": null,
+    "cn_conadd": "64",
+    "cn_jwsrNum": "1183",
+    "cn_addjwsrNum": "42",
+    "cn_asymptomNum": "1092"
+  },
+  {
+    "date": "04.09",
+    "cn_conNum": "83305",
+    "cn_deathNum": "3345",
+    "cn_cureNum": "77838",
+    "cn_susNum": "53",
+    "cn_econNum": "2122",
+    "cn_heconNum": "144",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "93.44",
+    "is_show": "true",
+    "wjw_susNum": "3",
+    "wuhan_conNum": "50008",
+    "wuhan_deathNum": "2575",
+    "wuhan_cureNum": "47085",
+    "wuhan_susNum": null,
+    "cn_conadd": "56",
+    "cn_jwsrNum": "1141",
+    "cn_addjwsrNum": "38",
+    "cn_asymptomNum": "1097"
+  },
+  {
+    "date": "04.08",
+    "cn_conNum": "83249",
+    "cn_deathNum": "3344",
+    "cn_cureNum": "77711",
+    "cn_susNum": "73",
+    "cn_econNum": "2194",
+    "cn_heconNum": "176",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "93.35",
+    "is_show": "true",
+    "wjw_susNum": "17",
+    "wuhan_conNum": "50008",
+    "wuhan_deathNum": "2574",
+    "wuhan_cureNum": "47036",
+    "wuhan_susNum": null,
+    "cn_conadd": "92",
+    "cn_jwsrNum": "1103",
+    "cn_addjwsrNum": "61",
+    "cn_asymptomNum": "1104"
+  },
+  {
+    "date": "04.07",
+    "cn_conNum": "83157",
+    "cn_deathNum": "3342",
+    "cn_cureNum": "77586",
+    "cn_susNum": "83",
+    "cn_econNum": "2229",
+    "cn_heconNum": "189",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "93.3",
+    "is_show": "true",
+    "wjw_susNum": "12",
+    "wuhan_conNum": "50008",
+    "wuhan_deathNum": "2572",
+    "wuhan_cureNum": "46991",
+    "wuhan_susNum": null,
+    "cn_conadd": "86",
+    "cn_jwsrNum": "1042",
+    "cn_addjwsrNum": "59",
+    "cn_asymptomNum": "1095"
+  },
+  {
+    "date": "04.06",
+    "cn_conNum": "83071",
+    "cn_deathNum": "3340",
+    "cn_cureNum": "77450",
+    "cn_susNum": "89",
+    "cn_econNum": "2281",
+    "cn_heconNum": "211",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "93.23",
+    "is_show": "true",
+    "wjw_susNum": "12",
+    "wuhan_conNum": "50008",
+    "wuhan_deathNum": "2571",
+    "wuhan_cureNum": "46922",
+    "wuhan_susNum": null,
+    "cn_conadd": "66",
+    "cn_jwsrNum": "983",
+    "cn_addjwsrNum": "32",
+    "cn_asymptomNum": "1033"
+  },
+  {
+    "date": "04.05",
+    "cn_conNum": "83005",
+    "cn_deathNum": "3340",
+    "cn_cureNum": "77348",
+    "cn_susNum": "88",
+    "cn_econNum": "2317",
+    "cn_heconNum": "265",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "93.18",
+    "is_show": "true",
+    "wjw_susNum": "10",
+    "wuhan_conNum": "50008",
+    "wuhan_deathNum": "2571",
+    "wuhan_cureNum": "46863",
+    "wuhan_susNum": null,
+    "cn_conadd": "75",
+    "cn_jwsrNum": "951",
+    "cn_addjwsrNum": "38",
+    "cn_asymptomNum": "1047"
+  },
+  {
+    "date": "04.04",
+    "cn_conNum": "82930",
+    "cn_deathNum": "3338",
+    "cn_cureNum": "77210",
+    "cn_susNum": "107",
+    "cn_econNum": "2382",
+    "cn_heconNum": "295",
+    "cn_deathRate": "4.03",
+    "cn_cureRate": "93.1",
+    "is_show": "true",
+    "wjw_susNum": "11",
+    "wuhan_conNum": "50008",
+    "wuhan_deathNum": "2570",
+    "wuhan_cureNum": "46794",
+    "wuhan_susNum": null,
+    "cn_conadd": "55",
+    "cn_jwsrNum": "913",
+    "cn_addjwsrNum": "25",
+    "cn_asymptomNum": "1024"
+  },
+  {
+    "date": "04.03",
+    "cn_conNum": "82875",
+    "cn_deathNum": "3335",
+    "cn_cureNum": "76984",
+    "cn_susNum": "114",
+    "cn_econNum": "2556",
+    "cn_heconNum": "331",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "92.89",
+    "is_show": "true",
+    "wjw_susNum": "11",
+    "wuhan_conNum": "50008",
+    "wuhan_deathNum": "2567",
+    "wuhan_cureNum": "46611",
+    "wuhan_susNum": null,
+    "cn_conadd": "73",
+    "cn_jwsrNum": "888",
+    "cn_addjwsrNum": "18",
+    "cn_asymptomNum": "1030"
+  },
+  {
+    "date": "04.02",
+    "cn_conNum": "82802",
+    "cn_deathNum": "3331",
+    "cn_cureNum": "76785",
+    "cn_susNum": "135",
+    "cn_econNum": "2686",
+    "cn_heconNum": "379",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "92.73",
+    "is_show": "true",
+    "wjw_susNum": "12",
+    "wuhan_conNum": "50007",
+    "wuhan_deathNum": "2563",
+    "wuhan_cureNum": "46461",
+    "wuhan_susNum": null,
+    "cn_conadd": "78",
+    "cn_jwsrNum": "870",
+    "cn_addjwsrNum": "28",
+    "cn_asymptomNum": "1027"
+  },
+  {
+    "date": "04.01",
+    "cn_conNum": "82724",
+    "cn_deathNum": "3327",
+    "cn_cureNum": "76610",
+    "cn_susNum": "153",
+    "cn_econNum": "2787",
+    "cn_heconNum": "429",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "92.61",
+    "is_show": "true",
+    "wjw_susNum": "20",
+    "wuhan_conNum": "50007",
+    "wuhan_deathNum": "2559",
+    "wuhan_cureNum": "46320",
+    "wuhan_susNum": null,
+    "cn_conadd": "93",
+    "cn_jwsrNum": "842",
+    "cn_addjwsrNum": "34",
+    "cn_asymptomNum": "1075"
+  },
+  {
+    "date": "03.31",
+    "cn_conNum": "82631",
+    "cn_deathNum": "3321",
+    "cn_cureNum": "76415",
+    "cn_susNum": "172",
+    "cn_econNum": "2895",
+    "cn_heconNum": "466",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "92.48",
+    "is_show": "true",
+    "wjw_susNum": "26",
+    "wuhan_conNum": "50007",
+    "wuhan_deathNum": "2553",
+    "wuhan_cureNum": "46175",
+    "wuhan_susNum": null,
+    "cn_conadd": "86",
+    "cn_jwsrNum": "808",
+    "cn_addjwsrNum": "37",
+    "cn_asymptomNum": "1367"
+  },
+  {
+    "date": "03.30",
+    "cn_conNum": "82545",
+    "cn_deathNum": "3314",
+    "cn_cureNum": "76225",
+    "cn_susNum": "183",
+    "cn_econNum": "3006",
+    "cn_heconNum": "528",
+    "cn_deathRate": "4.01",
+    "cn_cureRate": "92.34",
+    "is_show": "true",
+    "wjw_susNum": "44",
+    "wuhan_conNum": "50006",
+    "wuhan_deathNum": "2548",
+    "wuhan_cureNum": "46002",
+    "wuhan_susNum": null,
+    "cn_conadd": "98",
+    "cn_jwsrNum": "771",
+    "cn_addjwsrNum": "48",
+    "cn_asymptomNum": "1541"
+  },
+  {
+    "date": "03.29",
+    "cn_conNum": "82447",
+    "cn_deathNum": "3311",
+    "cn_cureNum": "75937",
+    "cn_susNum": "168",
+    "cn_econNum": "3199",
+    "cn_heconNum": "652",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "92.1",
+    "is_show": "true",
+    "wjw_susNum": "17",
+    "wuhan_conNum": "50006",
+    "wuhan_deathNum": "2547",
+    "wuhan_cureNum": "45733",
+    "wuhan_susNum": null,
+    "cn_conadd": "106",
+    "cn_jwsrNum": "723",
+    "cn_addjwsrNum": "30",
+    "cn_asymptomNum": null
+  },
+  {
+    "date": "03.28",
+    "cn_conNum": "82341",
+    "cn_deathNum": "3306",
+    "cn_cureNum": "75600",
+    "cn_susNum": "174",
+    "cn_econNum": "3435",
+    "cn_heconNum": "742",
+    "cn_deathRate": "4.02",
+    "cn_cureRate": "91.81",
+    "is_show": "true",
+    "wjw_susNum": "28",
+    "wuhan_conNum": "50006",
+    "wuhan_deathNum": "2543",
+    "wuhan_cureNum": "45418",
+    "wuhan_susNum": null,
+    "cn_conadd": "128",
+    "cn_jwsrNum": "693",
+    "cn_addjwsrNum": "44",
+    "cn_asymptomNum": null
+  },
+  {
     "date": "03.27",
     "cn_conNum": "82213",
     "cn_deathNum": "3301",
@@ -17,7 +374,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "135",
     "cn_jwsrNum": "649",
-    "cn_addjwsrNum": "54"
+    "cn_addjwsrNum": "54",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.26",
@@ -37,7 +395,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "118",
     "cn_jwsrNum": "595",
-    "cn_addjwsrNum": "54"
+    "cn_addjwsrNum": "54",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.25",
@@ -57,7 +416,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "114",
     "cn_jwsrNum": "541",
-    "cn_addjwsrNum": "67"
+    "cn_addjwsrNum": "67",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.24",
@@ -77,7 +437,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "99",
     "cn_jwsrNum": "474",
-    "cn_addjwsrNum": "47"
+    "cn_addjwsrNum": "47",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.23",
@@ -97,7 +458,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "147",
     "cn_jwsrNum": "427",
-    "cn_addjwsrNum": "74"
+    "cn_addjwsrNum": "74",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.22",
@@ -117,7 +479,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "102",
     "cn_jwsrNum": "353",
-    "cn_addjwsrNum": "39"
+    "cn_addjwsrNum": "39",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.21",
@@ -137,7 +500,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "82",
     "cn_jwsrNum": "314",
-    "cn_addjwsrNum": "45"
+    "cn_addjwsrNum": "45",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.20",
@@ -157,7 +521,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "116",
     "cn_jwsrNum": "269",
-    "cn_addjwsrNum": "41"
+    "cn_addjwsrNum": "41",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.19",
@@ -177,7 +542,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "65",
     "cn_jwsrNum": "228",
-    "cn_addjwsrNum": "39"
+    "cn_addjwsrNum": "39",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.18",
@@ -197,7 +563,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "84",
     "cn_jwsrNum": "189",
-    "cn_addjwsrNum": "34"
+    "cn_addjwsrNum": "34",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.17",
@@ -217,7 +584,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "35",
     "cn_jwsrNum": "155",
-    "cn_addjwsrNum": "12"
+    "cn_addjwsrNum": "12",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.16",
@@ -237,7 +605,8 @@
     "wuhan_susNum": "1",
     "cn_conadd": "39",
     "cn_jwsrNum": "143",
-    "cn_addjwsrNum": "20"
+    "cn_addjwsrNum": "20",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.15",
@@ -257,7 +626,8 @@
     "wuhan_susNum": "15",
     "cn_conadd": "29",
     "cn_jwsrNum": "123",
-    "cn_addjwsrNum": "12"
+    "cn_addjwsrNum": "12",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.14",
@@ -277,7 +647,8 @@
     "wuhan_susNum": "15",
     "cn_conadd": "27",
     "cn_jwsrNum": "111",
-    "cn_addjwsrNum": "16"
+    "cn_addjwsrNum": "16",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.13",
@@ -297,7 +668,8 @@
     "wuhan_susNum": "30",
     "cn_conadd": "18",
     "cn_jwsrNum": "95",
-    "cn_addjwsrNum": "7"
+    "cn_addjwsrNum": "7",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.12",
@@ -317,7 +689,8 @@
     "wuhan_susNum": "44",
     "cn_conadd": "23",
     "cn_jwsrNum": "88",
-    "cn_addjwsrNum": "3"
+    "cn_addjwsrNum": "3",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.11",
@@ -337,7 +710,8 @@
     "wuhan_susNum": "152",
     "cn_conadd": "25",
     "cn_jwsrNum": "85",
-    "cn_addjwsrNum": "6"
+    "cn_addjwsrNum": "6",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.10",
@@ -357,7 +731,8 @@
     "wuhan_susNum": "192",
     "cn_conadd": "31",
     "cn_jwsrNum": "79",
-    "cn_addjwsrNum": "10"
+    "cn_addjwsrNum": "10",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.09",
@@ -377,7 +752,8 @@
     "wuhan_susNum": "230",
     "cn_conadd": "20",
     "cn_jwsrNum": "69",
-    "cn_addjwsrNum": "2"
+    "cn_addjwsrNum": "2",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.08",
@@ -397,7 +773,8 @@
     "wuhan_susNum": "253",
     "cn_conadd": "45",
     "cn_jwsrNum": "67",
-    "cn_addjwsrNum": "4"
+    "cn_addjwsrNum": "4",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.07",
@@ -417,7 +794,8 @@
     "wuhan_susNum": "258",
     "cn_conadd": "46",
     "cn_jwsrNum": "63",
-    "cn_addjwsrNum": "3"
+    "cn_addjwsrNum": "3",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.06",
@@ -437,7 +815,8 @@
     "wuhan_susNum": "256",
     "cn_conadd": "103",
     "cn_jwsrNum": "60",
-    "cn_addjwsrNum": "24"
+    "cn_addjwsrNum": "24",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.05",
@@ -457,7 +836,8 @@
     "wuhan_susNum": "232",
     "cn_conadd": "145",
     "cn_jwsrNum": "36",
-    "cn_addjwsrNum": "16"
+    "cn_addjwsrNum": "16",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.04",
@@ -477,7 +857,8 @@
     "wuhan_susNum": "247",
     "cn_conadd": "143",
     "cn_jwsrNum": "20",
-    "cn_addjwsrNum": "20"
+    "cn_addjwsrNum": "20",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.03",
@@ -497,7 +878,8 @@
     "wuhan_susNum": "234",
     "cn_conadd": "120",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.02",
@@ -517,7 +899,8 @@
     "wuhan_susNum": "316",
     "cn_conadd": "128",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "03.01",
@@ -537,7 +920,8 @@
     "wuhan_susNum": "340",
     "cn_conadd": "206",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.29",
@@ -557,7 +941,8 @@
     "wuhan_susNum": "393",
     "cn_conadd": "579",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.28",
@@ -577,7 +962,8 @@
     "wuhan_susNum": "788",
     "cn_conadd": "430",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.27",
@@ -597,7 +983,8 @@
     "wuhan_susNum": "1488",
     "cn_conadd": "329",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.26",
@@ -617,7 +1004,8 @@
     "wuhan_susNum": "1459",
     "cn_conadd": "440",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.25",
@@ -637,7 +1025,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "411",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.24",
@@ -657,7 +1046,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "517",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.23",
@@ -677,7 +1067,8 @@
     "wuhan_susNum": "318",
     "cn_conadd": "416",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.22",
@@ -697,7 +1088,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "454",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.21",
@@ -717,7 +1109,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "399",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.20",
@@ -737,7 +1130,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "1318",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.19",
@@ -757,7 +1151,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "396",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.18",
@@ -777,7 +1172,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "1751",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.17",
@@ -797,7 +1193,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "1893",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.16",
@@ -817,7 +1214,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "2051",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.15",
@@ -837,7 +1235,8 @@
     "wuhan_susNum": "2168",
     "cn_conadd": "2008",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.14",
@@ -857,7 +1256,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "2644",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.13",
@@ -877,7 +1277,8 @@
     "wuhan_susNum": "2585",
     "cn_conadd": "4050",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.12",
@@ -897,7 +1298,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "15152",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.11",
@@ -917,7 +1319,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "2022",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.10",
@@ -937,7 +1340,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "2473",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.09",
@@ -957,7 +1361,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "2984",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.08",
@@ -977,7 +1382,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "2653",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.07",
@@ -997,7 +1403,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "3387",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.06",
@@ -1017,7 +1424,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "3151",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.05",
@@ -1037,7 +1445,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "3697",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.04",
@@ -1057,7 +1466,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "3892",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.03",
@@ -1077,7 +1487,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "3233",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.02",
@@ -1097,7 +1508,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "2827",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "02.01",
@@ -1117,7 +1529,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "2590",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.31",
@@ -1137,7 +1550,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "2101",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.30",
@@ -1157,7 +1571,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "1984",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.29",
@@ -1177,7 +1592,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "1762",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.28",
@@ -1197,7 +1613,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "1459",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.27",
@@ -1217,7 +1634,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "1771",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.26",
@@ -1237,7 +1655,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "769",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.25",
@@ -1257,7 +1676,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "688",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.24",
@@ -1277,7 +1697,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "457",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.23",
@@ -1297,7 +1718,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "259",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.22",
@@ -1317,7 +1739,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "131",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.21",
@@ -1337,7 +1760,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "182",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.20",
@@ -1357,7 +1781,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "60",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.19",
@@ -1377,7 +1802,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "77",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.18",
@@ -1397,7 +1823,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "59",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.17",
@@ -1417,7 +1844,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "17",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.16",
@@ -1437,7 +1865,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "4",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.15",
@@ -1457,7 +1886,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "0",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.14",
@@ -1477,7 +1907,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "0",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.13",
@@ -1497,7 +1928,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "0",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.12",
@@ -1517,7 +1949,8 @@
     "wuhan_susNum": null,
     "cn_conadd": "0",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   },
   {
     "date": "01.11",
@@ -1537,6 +1970,7 @@
     "wuhan_susNum": null,
     "cn_conadd": "41",
     "cn_jwsrNum": "0",
-    "cn_addjwsrNum": "0"
+    "cn_addjwsrNum": "0",
+    "cn_asymptomNum": null
   }
 ]
