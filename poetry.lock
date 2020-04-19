@@ -4,7 +4,7 @@ description = "A tool for downloading financial data!"
 name = "akshare"
 optional = false
 python-versions = ">=3.6"
-version = "0.4.78"
+version = "0.4.81"
 
 [package.dependencies]
 bs4 = ">=0.0.1"
@@ -163,10 +163,10 @@ description = "The AWS SDK for Python"
 name = "boto3"
 optional = false
 python-versions = "*"
-version = "1.12.39"
+version = "1.12.41"
 
 [package.dependencies]
-botocore = ">=1.15.39,<1.16.0"
+botocore = ">=1.15.41,<1.16.0"
 jmespath = ">=0.7.1,<1.0.0"
 s3transfer = ">=0.3.0,<0.4.0"
 
@@ -176,7 +176,7 @@ description = "Low-level, data-driven core of boto 3."
 name = "botocore"
 optional = false
 python-versions = "*"
-version = "1.15.39"
+version = "1.15.41"
 
 [package.dependencies]
 docutils = ">=0.10,<0.16"
@@ -357,7 +357,7 @@ description = "Tools to manipulate font files"
 name = "fonttools"
 optional = false
 python-versions = ">=3.6"
-version = "4.7.0"
+version = "4.8.1"
 
 [package.extras]
 all = ["fs (>=2.2.0,<3)", "lxml (>=4.0,<5)", "zopfli (>=0.1.4)", "lz4 (>=1.7.4.2)", "matplotlib", "sympy", "brotli (>=1.0.1)", "scipy", "brotlipy (>=0.7.0)", "munkres", "unicodedata2 (>=13.0.0)", "xattr"]
@@ -728,7 +728,7 @@ description = "The Jupyter Notebook format"
 name = "nbformat"
 optional = false
 python-versions = ">=3.5"
-version = "5.0.5"
+version = "5.0.6"
 
 [package.dependencies]
 ipython-genutils = "*"
@@ -1334,11 +1334,11 @@ description = "HTTP library with thread-safe connection pooling, file post, and 
 name = "urllib3"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
-version = "1.25.8"
+version = "1.25.9"
 
 [package.extras]
 brotli = ["brotlipy (>=0.6.0)"]
-secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
+secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "pyOpenSSL (>=0.14)", "ipaddress"]
 socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
 
 [[package]]
@@ -1454,8 +1454,8 @@ python-versions = "^3.7"
 
 [metadata.files]
 akshare = [
-    {file = "akshare-0.4.78-py3-none-any.whl", hash = "sha256:beb58d866054694b712bd8bd8f616bd4e81ccfef0e88deb3cec31e009e4c8042"},
-    {file = "akshare-0.4.78.tar.gz", hash = "sha256:16e7c32520bf946a06624e048e2e2335cf9161d6883fe3afdbed917396d1374d"},
+    {file = "akshare-0.4.81-py3-none-any.whl", hash = "sha256:7e0eb915ddd2e18234d422848ae02b903f323152a18c2f1845b3500c24915ae9"},
+    {file = "akshare-0.4.81.tar.gz", hash = "sha256:db9cfd46ffaa8c4ad904b5ef1317cf3f85cf03d3feba9c31121dcebd3af4eb3f"},
 ]
 altair = [
     {file = "altair-4.1.0-py3-none-any.whl", hash = "sha256:7748841a1bea8354173d1140bef6d3b58bea21d201f562528e9599ea384feb7f"},
@@ -1501,12 +1501,12 @@ bokeh = [
     {file = "bokeh-1.4.0.tar.gz", hash = "sha256:c60d38a41a777b8147ee4134e6142cea8026b5eebf48149e370c44689869dce7"},
 ]
 boto3 = [
-    {file = "boto3-1.12.39-py2.py3-none-any.whl", hash = "sha256:cdd79a3a7bbe1f33a365f0acfcc75c4405b482b3eb9ce3f4e6b16c418e201ac3"},
-    {file = "boto3-1.12.39.tar.gz", hash = "sha256:970bd7b332e73d7b51077ed36772c634811b38c81b0cc6ed0f910e50d7ebadf8"},
+    {file = "boto3-1.12.41-py2.py3-none-any.whl", hash = "sha256:ef16d7dc5f357faf1b081411d2faf62a01793f79a9d664c8b6b1b3ff37aa5e44"},
+    {file = "boto3-1.12.41.tar.gz", hash = "sha256:c2c1ee703cb0fa03c5df84b7f00eaa462c808be477dc9014c1e8eef269122770"},
 ]
 botocore = [
-    {file = "botocore-1.15.39-py2.py3-none-any.whl", hash = "sha256:e20ba56476b1031ce5ac8e22b59dabc75bd0e03231f124ed6b9ff99fe0b0c96b"},
-    {file = "botocore-1.15.39.tar.gz", hash = "sha256:94232b44e1540b7e043e220bd43f855400d0a243e926b26b3fb72994e971d518"},
+    {file = "botocore-1.15.41-py2.py3-none-any.whl", hash = "sha256:b12a5b642aa210a72d84204da18618276eeae052fbff58958f57d28ef3193034"},
+    {file = "botocore-1.15.41.tar.gz", hash = "sha256:a45a65ba036bc980decfc3ce6c2688a2d5fffd76e4b02ea4d59e63ff0f6896d4"},
 ]
 branca = [
     {file = "branca-0.4.0-py3-none-any.whl", hash = "sha256:5053265c8092963767ecfabd48dc524b94f4d6847beabe11f0fcb9d068fe55ba"},
@@ -1578,8 +1578,8 @@ folium = [
     {file = "folium-0.10.1.tar.gz", hash = "sha256:edbf79d04345a75f8503fe6d071179806ee7e3baf81ae4f329b9f3ce8f118c3d"},
 ]
 fonttools = [
-    {file = "fonttools-4.7.0-py3-none-any.whl", hash = "sha256:454db99e20e6cafb7ed3e30b15c9daf2d46c4370a800c1a6db11ba3eb3b43116"},
-    {file = "fonttools-4.7.0.zip", hash = "sha256:ce977f10f070752301e2d49ed822cfc860c881046d81c376fade1e6529b2046c"},
+    {file = "fonttools-4.8.1-py3-none-any.whl", hash = "sha256:6d241d319ea9eae4c4ee27cbd1db8656dbd496dd9aa884401debfab3a4c7d82b"},
+    {file = "fonttools-4.8.1.zip", hash = "sha256:596c0e8399c650dbf1048b7ca6fc7b12bd79a7db0981f3b87743de8c2b7512de"},
 ]
 future = [
     {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},
@@ -1762,8 +1762,8 @@ nbconvert = [
     {file = "nbconvert-5.6.1.tar.gz", hash = "sha256:21fb48e700b43e82ba0e3142421a659d7739b65568cc832a13976a77be16b523"},
 ]
 nbformat = [
-    {file = "nbformat-5.0.5-py3-none-any.whl", hash = "sha256:65a79936a128fd85aef392b7fea520166364037118b6fe3ed52de742d06c4558"},
-    {file = "nbformat-5.0.5.tar.gz", hash = "sha256:f0c47cf93c505cb943e2f131ef32b8ae869292b5f9f279db2bafb35867923f69"},
+    {file = "nbformat-5.0.6-py3-none-any.whl", hash = "sha256:276343c78a9660ab2a63c28cc33da5f7c58c092b3f3a40b6017ae2ce6689320d"},
+    {file = "nbformat-5.0.6.tar.gz", hash = "sha256:049af048ed76b95c3c44043620c17e56bc001329e07f83fec4f177f0e3d7b757"},
 ]
 notebook = [
     {file = "notebook-6.0.3-py3-none-any.whl", hash = "sha256:3edc616c684214292994a3af05eaea4cc043f6b4247d830f3a2f209fa7639a80"},
@@ -2160,8 +2160,8 @@ tzlocal = [
     {file = "tzlocal-2.0.0.tar.gz", hash = "sha256:949b9dd5ba4be17190a80c0268167d7e6c92c62b30026cf9764caf3e308e5590"},
 ]
 urllib3 = [
-    {file = "urllib3-1.25.8-py2.py3-none-any.whl", hash = "sha256:2f3db8b19923a873b3e5256dc9c2dedfa883e33d87c690d9c7913e1f40673cdc"},
-    {file = "urllib3-1.25.8.tar.gz", hash = "sha256:87716c2d2a7121198ebcb7ce7cccf6ce5e9ba539041cfbaeecfb641dc0bf6acc"},
+    {file = "urllib3-1.25.9-py2.py3-none-any.whl", hash = "sha256:88206b0eb87e6d677d424843ac5209e3fb9d0190d0ee169599165ec25e9d9115"},
+    {file = "urllib3-1.25.9.tar.gz", hash = "sha256:3018294ebefce6572a474f0604c2021e33b3fd8006ecd11d62107a5d2a963527"},
 ]
 validators = [
     {file = "validators-0.14.3.tar.gz", hash = "sha256:6a0d9502219aee486f1ee12d8a9635e4a56f3dbcfa204b4e0de3a038ae35f34f"},
