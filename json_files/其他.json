@@ -8,14 +8,14 @@
         "provinceName":"钻石公主号邮轮",
         "provinceEnglishName":"Diamond Princess Cruise Ship",
         "provinceShortName":"钻石公主号邮轮",
-        "currentConfirmedCount":127,
+        "currentConfirmedCount":125,
         "confirmedCount":712,
         "suspectedCount":0,
         "curedCount":574,
-        "deadCount":11,
+        "deadCount":13,
         "comment":"",
         "cities":null,
-        "updateTime":1586415106733
+        "updateTime":1587641421321
     },
     {
         "locationId":0,

@@ -16,6 +16,7 @@ akshare = "^0.4.43"
 streamlit = "^0.57.3"
 jupyterthemes = "^0.20.0"
 folium = "^0.10.1"
+seaborn = "^0.10.0"
 
 [tool.poetry.dev-dependencies]
 

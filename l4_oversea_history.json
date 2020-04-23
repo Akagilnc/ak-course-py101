@@ -1,5 +1,104 @@
 [
   {
+    "certain": "2511134",
+    "uncertain": "10356",
+    "die": "175311",
+    "recure": "629695",
+    "certain_inc": "92944",
+    "uncertain_inc": "0",
+    "die_inc": "7865",
+    "recure_inc": "46957",
+    "date": "04.22"
+  },
+  {
+    "certain": "2418190",
+    "uncertain": "10356",
+    "die": "167446",
+    "recure": "582738",
+    "certain_inc": "72324",
+    "uncertain_inc": "0",
+    "die_inc": "4934",
+    "recure_inc": "22526",
+    "date": "04.21"
+  },
+  {
+    "certain": "2345866",
+    "uncertain": "10356",
+    "die": "162512",
+    "recure": "560236",
+    "certain_inc": "72962",
+    "uncertain_inc": "0",
+    "die_inc": "4888",
+    "recure_inc": "28159",
+    "date": "04.20"
+  },
+  {
+    "certain": "2282888",
+    "uncertain": "12586",
+    "die": "157613",
+    "recure": "532077",
+    "certain_inc": "92053",
+    "uncertain_inc": "0",
+    "die_inc": "6127",
+    "recure_inc": "22892",
+    "date": "04.19"
+  },
+  {
+    "certain": "2190835",
+    "uncertain": "13581",
+    "die": "151486",
+    "recure": "509185",
+    "certain_inc": "86480",
+    "uncertain_inc": "13364",
+    "die_inc": "8494",
+    "recure_inc": "19915",
+    "date": "04.18"
+  },
+  {
+    "certain": "2104355",
+    "uncertain": "217",
+    "die": "142992",
+    "recure": "489270",
+    "certain_inc": "86414",
+    "uncertain_inc": "0",
+    "die_inc": "7009",
+    "recure_inc": "40387",
+    "date": "04.17"
+  },
+  {
+    "certain": "2017941",
+    "uncertain": "217",
+    "die": "135983",
+    "recure": "448883",
+    "certain_inc": "87366",
+    "uncertain_inc": "0",
+    "die_inc": "9885",
+    "recure_inc": "24429",
+    "date": "04.16"
+  },
+  {
+    "certain": "1930575",
+    "uncertain": "217",
+    "die": "126098",
+    "recure": "424454",
+    "certain_inc": "65094",
+    "uncertain_inc": "0",
+    "die_inc": "7584",
+    "recure_inc": "36037",
+    "date": "04.15"
+  },
+  {
+    "certain": "1865481",
+    "uncertain": "217",
+    "die": "118514",
+    "recure": "388417",
+    "certain_inc": "76816",
+    "uncertain_inc": "0",
+    "die_inc": "5772",
+    "recure_inc": "22684",
+    "date": "04.14"
+  },
+  {
     "certain": "1788665",
     "uncertain": "217",
     "die": "112742",

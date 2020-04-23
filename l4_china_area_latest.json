@@ -2,40 +2,40 @@
   {
     "name": "北京",
     "ename": "beijing",
-    "value": "589",
+    "value": "593",
     "conadd": "0",
     "hejian": "",
-    "econNum": "90",
-    "susNum": "0",
+    "econNum": "63",
+    "susNum": "1",
     "deathNum": "8",
     "asymptomNum": "",
-    "cureNum": "491",
-    "zerodays": "4",
+    "cureNum": "522",
+    "zerodays": "8",
     "jwsr": "含境外输入",
-    "jwsrNum": "173",
+    "jwsrNum": "174",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+7",
-      "econadd": "-7",
+      "cureadd": "+4",
+      "econadd": "-4",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 7
+      "cureadd_n": 4
     },
     "city": [
       {
         "name": "境外输入人员",
-        "conNum": "173",
+        "conNum": "174",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "87",
+        "cureNum": "116",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "86",
-        "zerodays": "4",
+        "econNum": "58",
+        "zerodays": "9",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -51,7 +51,7 @@
         "mapName": "东城区",
         "citycode": "CN11010100000000",
         "econNum": "13",
-        "zerodays": "39",
+        "zerodays": "48",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -67,23 +67,23 @@
         "mapName": "西城区",
         "citycode": "CN11010200000000",
         "econNum": "53",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "朝阳区",
-        "conNum": "72",
+        "conNum": "75",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
-        "susNum": "0",
+        "susNum": "1",
         "cureNum": "0",
         "deathNum": "0",
         "mapName": "朝阳区",
         "citycode": "CN11010500000000",
-        "econNum": "72",
-        "zerodays": "41",
+        "econNum": "75",
+        "zerodays": "8",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -99,7 +99,7 @@
         "mapName": "海淀区",
         "citycode": "CN11010800000000",
         "econNum": "64",
-        "zerodays": "22",
+        "zerodays": "31",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -115,7 +115,7 @@
         "mapName": "丰台区",
         "citycode": "CN11010600000000",
         "econNum": "40",
-        "zerodays": "42",
+        "zerodays": "51",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -131,7 +131,7 @@
         "mapName": "石景山区",
         "citycode": "CN11010700000000",
         "econNum": "5",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -147,7 +147,7 @@
         "mapName": "门头沟区",
         "citycode": "CN11010900000000",
         "econNum": "1",
-        "zerodays": "72",
+        "zerodays": "81",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -163,7 +163,7 @@
         "mapName": "房山区",
         "citycode": "CN11011100000000",
         "econNum": "13",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -179,7 +179,7 @@
         "mapName": "通州区",
         "citycode": "CN11011200000000",
         "econNum": "18",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -195,7 +195,7 @@
         "mapName": "顺义区",
         "citycode": "CN11011300000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -211,7 +211,7 @@
         "mapName": "昌平区",
         "citycode": "CN11011400000000",
         "econNum": "19",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -227,7 +227,7 @@
         "mapName": "大兴区",
         "citycode": "CN11011500000000",
         "econNum": "23",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -243,7 +243,7 @@
         "mapName": "怀柔区",
         "citycode": "CN11011600000000",
         "econNum": "7",
-        "zerodays": "68",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -259,7 +259,7 @@
         "mapName": "密云区",
         "citycode": "CN11011800000000",
         "econNum": "7",
-        "zerodays": "63",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -275,7 +275,7 @@
         "mapName": "延庆区",
         "citycode": "CN11011900000000",
         "econNum": "1",
-        "zerodays": "71",
+        "zerodays": "80",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -291,7 +291,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "23",
-        "zerodays": "50",
+        "zerodays": "59",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -300,40 +300,40 @@
   {
     "name": "湖北",
     "ename": "hubei",
-    "value": "67803",
+    "value": "68128",
     "conadd": "0",
     "hejian": "",
-    "econNum": "219",
+    "econNum": "69",
     "susNum": "0",
-    "deathNum": "3221",
-    "asymptomNum": "610",
-    "cureNum": "64363",
-    "zerodays": "11",
+    "deathNum": "4512",
+    "asymptomNum": "546",
+    "cureNum": "63547",
+    "zerodays": "19",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+25",
-      "econadd": "-25",
+      "cureadd": "+28",
+      "econadd": "-28",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 25
+      "cureadd_n": 28
     },
     "city": [
       {
         "name": "武汉",
-        "conNum": "50008",
+        "conNum": "50333",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "47211",
-        "deathNum": "2579",
+        "cureNum": "46395",
+        "deathNum": "3869",
         "mapName": "武汉市",
         "citycode": "CN42010000000000",
-        "econNum": "218",
-        "zerodays": "11",
+        "econNum": "69",
+        "zerodays": "19",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -349,7 +349,7 @@
         "mapName": "黄冈市",
         "citycode": "CN42110000000000",
         "econNum": "0",
-        "zerodays": "43",
+        "zerodays": "52",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -365,7 +365,7 @@
         "mapName": "孝感市",
         "citycode": "CN42090000000000",
         "econNum": "0",
-        "zerodays": "46",
+        "zerodays": "55",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -381,7 +381,7 @@
         "mapName": "荆门市",
         "citycode": "CN42080000000000",
         "econNum": "0",
-        "zerodays": "43",
+        "zerodays": "52",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -397,7 +397,7 @@
         "mapName": "咸宁市",
         "citycode": "CN42120000000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -413,7 +413,7 @@
         "mapName": "荆州市",
         "citycode": "CN42100000000000",
         "econNum": "0",
-        "zerodays": "44",
+        "zerodays": "53",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -429,7 +429,7 @@
         "mapName": "襄阳市",
         "citycode": "CN42060000000000",
         "econNum": "0",
-        "zerodays": "50",
+        "zerodays": "59",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -445,7 +445,7 @@
         "mapName": "随州市",
         "citycode": "CN42130000000000",
         "econNum": "0",
-        "zerodays": "48",
+        "zerodays": "57",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -461,7 +461,7 @@
         "mapName": "十堰市",
         "citycode": "CN42030000000000",
         "econNum": "0",
-        "zerodays": "45",
+        "zerodays": "54",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -477,7 +477,7 @@
         "mapName": "鄂州市",
         "citycode": "CN42070000000000",
         "econNum": "0",
-        "zerodays": "41",
+        "zerodays": "50",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -493,7 +493,7 @@
         "mapName": "黄石市",
         "citycode": "CN42020000000000",
         "econNum": "0",
-        "zerodays": "41",
+        "zerodays": "50",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -505,11 +505,11 @@
         "hejian": "",
         "susNum": "0",
         "cureNum": "894",
-        "deathNum": "36",
+        "deathNum": "37",
         "mapName": "宜昌市",
         "citycode": "CN42050000000000",
-        "econNum": "1",
-        "zerodays": "47",
+        "econNum": "0",
+        "zerodays": "56",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -525,7 +525,7 @@
         "mapName": "恩施土家族苗族自治州",
         "citycode": "CN42280000000000",
         "econNum": "0",
-        "zerodays": "46",
+        "zerodays": "55",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -541,7 +541,7 @@
         "mapName": "仙桃市",
         "citycode": "CN42900400000000",
         "econNum": "0",
-        "zerodays": "50",
+        "zerodays": "59",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -557,7 +557,7 @@
         "mapName": "天门市",
         "citycode": "CN42900600000000",
         "econNum": "0",
-        "zerodays": "49",
+        "zerodays": "58",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -573,7 +573,7 @@
         "mapName": "潜江市",
         "citycode": "CN42900500000000",
         "econNum": "0",
-        "zerodays": "47",
+        "zerodays": "56",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -589,7 +589,7 @@
         "mapName": "神农架林区",
         "citycode": "CN42902100000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -598,58 +598,58 @@
   {
     "name": "广东",
     "ename": "guangdong",
-    "value": "1564",
-    "conadd": "9",
+    "value": "1584",
+    "conadd": "2",
     "hejian": "",
-    "econNum": "98",
+    "econNum": "57",
     "susNum": "0",
     "deathNum": "8",
-    "asymptomNum": "182",
-    "cureNum": "1458",
+    "asymptomNum": "297",
+    "cureNum": "1519",
     "zerodays": "0",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
-      "conadd": "+9",
+      "conadd": "+2",
       "deathadd": "+0",
-      "cureadd": "+4",
-      "econadd": "+5",
-      "conadd_n": 9,
+      "cureadd": "+8",
+      "econadd": "-6",
+      "conadd_n": 2,
       "deathadd_n": 0,
-      "cureadd_n": 4
+      "cureadd_n": 8
     },
     "city": [
       {
         "name": "广州",
-        "conNum": "488",
-        "conadd": "6",
-        "conadd_str": "+6",
+        "conNum": "501",
+        "conadd": "1",
+        "conadd_str": "+1",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "442",
+        "cureNum": "477",
         "deathNum": "1",
         "mapName": "广州市",
         "citycode": "CN44010000000000",
-        "econNum": "45",
+        "econNum": "23",
         "zerodays": "0",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
       {
         "name": "深圳",
-        "conNum": "458",
-        "conadd": "2",
-        "conadd_str": "+2",
+        "conNum": "461",
+        "conadd": "0",
+        "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "424",
+        "cureNum": "440",
         "deathNum": "3",
         "mapName": "深圳市",
         "citycode": "CN44030000000000",
-        "econNum": "31",
-        "zerodays": "0",
+        "econNum": "18",
+        "zerodays": "5",
         "jwsr": "含境外输入",
-        "asymptomNum": "30"
+        "asymptomNum": "32"
       },
       {
         "name": "东莞",
@@ -663,7 +663,7 @@
         "mapName": "东莞市",
         "citycode": "CN44190000000000",
         "econNum": "0",
-        "zerodays": "36",
+        "zerodays": "44",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -674,34 +674,34 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "99",
+        "cureNum": "100",
         "deathNum": "1",
         "mapName": "珠海市",
         "citycode": "CN44040000000000",
-        "econNum": "3",
-        "zerodays": "17",
+        "econNum": "2",
+        "zerodays": "26",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
       {
         "name": "佛山",
-        "conNum": "97",
+        "conNum": "100",
         "conadd": "1",
         "conadd_str": "+1",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "85",
+        "cureNum": "91",
         "deathNum": "0",
         "mapName": "佛山市",
         "citycode": "CN44060000000000",
-        "econNum": "12",
+        "econNum": "9",
         "zerodays": "0",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
       {
         "name": "中山",
-        "conNum": "68",
+        "conNum": "69",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
@@ -710,8 +710,8 @@
         "deathNum": "0",
         "mapName": "中山市",
         "citycode": "CN44200000000000",
-        "econNum": "0",
-        "zerodays": "34",
+        "econNum": "1",
+        "zerodays": "6",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -727,7 +727,7 @@
         "mapName": "惠州市",
         "citycode": "CN44130000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -743,7 +743,7 @@
         "mapName": "汕头市",
         "citycode": "CN44050000000000",
         "econNum": "0",
-        "zerodays": "12",
+        "zerodays": "21",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -754,12 +754,12 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "23",
+        "cureNum": "24",
         "deathNum": "0",
         "mapName": "江门市",
         "citycode": "CN44070000000000",
-        "econNum": "1",
-        "zerodays": "8",
+        "econNum": "0",
+        "zerodays": "17",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -770,12 +770,12 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "23",
+        "cureNum": "24",
         "deathNum": "0",
         "mapName": "湛江市",
         "citycode": "CN44080000000000",
-        "econNum": "1",
-        "zerodays": "19",
+        "econNum": "0",
+        "zerodays": "28",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -791,7 +791,7 @@
         "mapName": "肇庆市",
         "citycode": "CN44120000000000",
         "econNum": "1",
-        "zerodays": "27",
+        "zerodays": "36",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -807,7 +807,7 @@
         "mapName": "梅州市",
         "citycode": "CN44140000000000",
         "econNum": "1",
-        "zerodays": "27",
+        "zerodays": "36",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -823,7 +823,7 @@
         "mapName": "茂名市",
         "citycode": "CN44090000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -839,7 +839,7 @@
         "mapName": "阳江市",
         "citycode": "CN44170000000000",
         "econNum": "0",
-        "zerodays": "51",
+        "zerodays": "60",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -855,7 +855,7 @@
         "mapName": "清远市",
         "citycode": "CN44180000000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -871,7 +871,7 @@
         "mapName": "韶关市",
         "citycode": "CN44020000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -887,7 +887,7 @@
         "mapName": "揭阳市",
         "citycode": "CN44520000000000",
         "econNum": "3",
-        "zerodays": "10",
+        "zerodays": "19",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -903,7 +903,7 @@
         "mapName": "汕尾市",
         "citycode": "CN44150000000000",
         "econNum": "0",
-        "zerodays": "72",
+        "zerodays": "81",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -914,12 +914,12 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "5",
+        "cureNum": "6",
         "deathNum": "0",
         "mapName": "潮州市",
         "citycode": "CN44510000000000",
-        "econNum": "1",
-        "zerodays": "23",
+        "econNum": "0",
+        "zerodays": "32",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -935,7 +935,7 @@
         "mapName": "河源市",
         "citycode": "CN44160000000000",
         "econNum": "1",
-        "zerodays": "5",
+        "zerodays": "14",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -944,25 +944,25 @@
   {
     "name": "浙江",
     "ename": "zhejiang",
-    "value": "1267",
+    "value": "1268",
     "conadd": "0",
     "hejian": "",
-    "econNum": "24",
+    "econNum": "13",
     "susNum": "0",
     "deathNum": "1",
-    "asymptomNum": "50",
-    "cureNum": "1242",
-    "zerodays": "6",
+    "asymptomNum": "55",
+    "cureNum": "1254",
+    "zerodays": "9",
     "jwsr": "含境外输入",
-    "jwsrNum": "49",
+    "jwsrNum": "50",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+3",
-      "econadd": "-3",
+      "cureadd": "+2",
+      "econadd": "-2",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 3
+      "cureadd_n": 2
     },
     "city": [
       {
@@ -977,7 +977,7 @@
         "mapName": "杭州市",
         "citycode": "CN33010000000000",
         "econNum": "0",
-        "zerodays": "25",
+        "zerodays": "34",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -993,7 +993,7 @@
         "mapName": "宁波市",
         "citycode": "CN33020000000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "63",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1009,7 +1009,7 @@
         "mapName": "温州市",
         "citycode": "CN33030000000000",
         "econNum": "0",
-        "zerodays": "25",
+        "zerodays": "34",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1025,7 +1025,7 @@
         "mapName": "湖州市",
         "citycode": "CN33050000000000",
         "econNum": "0",
-        "zerodays": "25",
+        "zerodays": "34",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1041,7 +1041,7 @@
         "mapName": "嘉兴市",
         "citycode": "CN33040000000000",
         "econNum": "0",
-        "zerodays": "19",
+        "zerodays": "28",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1057,7 +1057,7 @@
         "mapName": "绍兴市",
         "citycode": "CN33060000000000",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1073,7 +1073,7 @@
         "mapName": "金华市",
         "citycode": "CN33070000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1089,7 +1089,7 @@
         "mapName": "衢州市",
         "citycode": "CN33080000000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "63",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1105,7 +1105,7 @@
         "mapName": "舟山市",
         "citycode": "CN33090000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1121,7 +1121,7 @@
         "mapName": "台州市",
         "citycode": "CN33100000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1137,7 +1137,7 @@
         "mapName": "丽水市",
         "citycode": "CN33110000000000",
         "econNum": "0",
-        "zerodays": "25",
+        "zerodays": "34",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1153,23 +1153,23 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "49",
+        "zerodays": "58",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "境外输入",
-        "conNum": "49",
+        "conNum": "50",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "25",
+        "cureNum": "37",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "24",
-        "zerodays": "6",
+        "econNum": "13",
+        "zerodays": "9",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -1184,19 +1184,19 @@
     "econNum": "0",
     "susNum": "0",
     "deathNum": "22",
-    "asymptomNum": "7",
+    "asymptomNum": "1",
     "cureNum": "1254",
-    "zerodays": "17",
+    "zerodays": "26",
     "jwsr": "含境外输入",
     "jwsrNum": "3",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+1",
-      "econadd": "-1",
+      "cureadd": "+0",
+      "econadd": "+0",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 1
+      "cureadd_n": 0
     },
     "city": [
       {
@@ -1211,7 +1211,7 @@
         "mapName": "信阳市",
         "citycode": "CN41150000000000",
         "econNum": "0",
-        "zerodays": "52",
+        "zerodays": "61",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1227,7 +1227,7 @@
         "mapName": "南阳市",
         "citycode": "CN41130000000000",
         "econNum": "0",
-        "zerodays": "48",
+        "zerodays": "57",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1243,7 +1243,7 @@
         "mapName": "郑州市",
         "citycode": "CN41010000000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "63",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1259,7 +1259,7 @@
         "mapName": "驻马店市",
         "citycode": "CN41170000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1275,7 +1275,7 @@
         "mapName": "商丘市",
         "citycode": "CN41140000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1291,7 +1291,7 @@
         "mapName": "周口市",
         "citycode": "CN41160000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1307,7 +1307,7 @@
         "mapName": "平顶山市",
         "citycode": "CN41040000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1323,7 +1323,7 @@
         "mapName": "新乡市",
         "citycode": "CN41070000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1339,7 +1339,7 @@
         "mapName": "安阳市",
         "citycode": "CN41050000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1355,7 +1355,7 @@
         "mapName": "许昌市",
         "citycode": "CN41100000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1371,7 +1371,7 @@
         "mapName": "漯河市",
         "citycode": "CN41110000000000",
         "econNum": "0",
-        "zerodays": "17",
+        "zerodays": "26",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1387,7 +1387,7 @@
         "mapName": "焦作市",
         "citycode": "CN41080000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1403,7 +1403,7 @@
         "mapName": "洛阳市",
         "citycode": "CN41030000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1419,7 +1419,7 @@
         "mapName": "开封市",
         "citycode": "CN41020000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1435,7 +1435,7 @@
         "mapName": "鹤壁市",
         "citycode": "CN41060000000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1451,7 +1451,7 @@
         "mapName": "濮阳市",
         "citycode": "CN41090000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1467,7 +1467,7 @@
         "mapName": "三门峡市",
         "citycode": "CN41120000000000",
         "econNum": "0",
-        "zerodays": "74",
+        "zerodays": "83",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1483,7 +1483,7 @@
         "mapName": "济源市",
         "citycode": "CN41900100000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1499,7 +1499,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "20",
+        "zerodays": "29",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -1511,12 +1511,12 @@
     "value": "1019",
     "conadd": "0",
     "hejian": "",
-    "econNum": "1",
+    "econNum": "0",
     "susNum": "0",
     "deathNum": "4",
-    "asymptomNum": "1",
-    "cureNum": "1014",
-    "zerodays": "13",
+    "asymptomNum": "0",
+    "cureNum": "1015",
+    "zerodays": "22",
     "jwsr": "含境外输入",
     "jwsrNum": "1",
     "adddaily": {
@@ -1541,7 +1541,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "1",
-        "zerodays": "13",
+        "zerodays": "22",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1557,7 +1557,7 @@
         "mapName": "长沙市",
         "citycode": "CN43010000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1573,7 +1573,7 @@
         "mapName": "衡阳市",
         "citycode": "CN43040000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1589,7 +1589,7 @@
         "mapName": "株洲市",
         "citycode": "CN43020000000000",
         "econNum": "0",
-        "zerodays": "52",
+        "zerodays": "61",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1605,7 +1605,7 @@
         "mapName": "湘潭市",
         "citycode": "CN43030000000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1621,7 +1621,7 @@
         "mapName": "邵阳市",
         "citycode": "CN43050000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1637,7 +1637,7 @@
         "mapName": "岳阳市",
         "citycode": "CN43060000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1653,7 +1653,7 @@
         "mapName": "常德市",
         "citycode": "CN43070000000000",
         "econNum": "0",
-        "zerodays": "52",
+        "zerodays": "61",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1669,7 +1669,7 @@
         "mapName": "张家界市",
         "citycode": "CN43080000000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1685,7 +1685,7 @@
         "mapName": "益阳市",
         "citycode": "CN43090000000000",
         "econNum": "0",
-        "zerodays": "46",
+        "zerodays": "55",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1701,7 +1701,7 @@
         "mapName": "郴州市",
         "citycode": "CN43100000000000",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1717,7 +1717,7 @@
         "mapName": "永州市",
         "citycode": "CN43110000000000",
         "econNum": "0",
-        "zerodays": "48",
+        "zerodays": "57",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1733,7 +1733,7 @@
         "mapName": "怀化市",
         "citycode": "CN43120000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1749,7 +1749,7 @@
         "mapName": "娄底市",
         "citycode": "CN43130000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1765,7 +1765,7 @@
         "mapName": "湘西土家族苗族自治州",
         "citycode": "CN43310000000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -1780,9 +1780,9 @@
     "econNum": "3",
     "susNum": "0",
     "deathNum": "6",
-    "asymptomNum": "14",
+    "asymptomNum": "22",
     "cureNum": "570",
-    "zerodays": "17",
+    "zerodays": "25",
     "jwsr": "含境外输入",
     "jwsrNum": "3",
     "adddaily": {
@@ -1807,9 +1807,9 @@
         "mapName": "万州区",
         "citycode": "CN50010100000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "61",
         "jwsr": "",
-        "asymptomNum": ""
+        "asymptomNum": "4"
       },
       {
         "name": "境外输入",
@@ -1823,9 +1823,9 @@
         "mapName": "",
         "citycode": "",
         "econNum": "3",
-        "zerodays": "17",
+        "zerodays": "25",
         "jwsr": "",
-        "asymptomNum": ""
+        "asymptomNum": "4"
       },
       {
         "name": "黔江",
@@ -1839,7 +1839,7 @@
         "mapName": "黔江区",
         "citycode": "CN50011400000000",
         "econNum": "0",
-        "zerodays": "74",
+        "zerodays": "82",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1855,7 +1855,7 @@
         "mapName": "涪陵区",
         "citycode": "CN50010200000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1871,7 +1871,7 @@
         "mapName": "渝中区",
         "citycode": "CN50010300000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "74",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1887,7 +1887,7 @@
         "mapName": "大渡口区",
         "citycode": "CN50010400000000",
         "econNum": "0",
-        "zerodays": "70",
+        "zerodays": "78",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1903,7 +1903,7 @@
         "mapName": "江北区",
         "citycode": "CN50010500000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1919,7 +1919,7 @@
         "mapName": "沙坪坝区",
         "citycode": "CN50010600000000",
         "econNum": "0",
-        "zerodays": "51",
+        "zerodays": "59",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1935,7 +1935,7 @@
         "mapName": "九龙坡区",
         "citycode": "CN50010700000000",
         "econNum": "0",
-        "zerodays": "50",
+        "zerodays": "58",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1951,7 +1951,7 @@
         "mapName": "南岸区",
         "citycode": "CN50010800000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1967,9 +1967,9 @@
         "mapName": "渝北区",
         "citycode": "CN50011200000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "62",
         "jwsr": "",
-        "asymptomNum": ""
+        "asymptomNum": "1"
       },
       {
         "name": "巴南",
@@ -1983,7 +1983,7 @@
         "mapName": "巴南区",
         "citycode": "CN50011300000000",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -1999,9 +1999,9 @@
         "mapName": "长寿区",
         "citycode": "CN50011500000000",
         "econNum": "0",
-        "zerodays": "51",
+        "zerodays": "59",
         "jwsr": "",
-        "asymptomNum": ""
+        "asymptomNum": "8"
       },
       {
         "name": "江津",
@@ -2015,7 +2015,7 @@
         "mapName": "江津区",
         "citycode": "CN50011600000000",
         "econNum": "0",
-        "zerodays": "69",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2031,7 +2031,7 @@
         "mapName": "合川区",
         "citycode": "CN50011700000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2047,7 +2047,7 @@
         "mapName": "永川区",
         "citycode": "CN50011800000000",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2063,7 +2063,7 @@
         "mapName": "綦江区",
         "citycode": "CN50011000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2079,7 +2079,7 @@
         "mapName": "大足区",
         "citycode": "CN50011100000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2095,7 +2095,7 @@
         "mapName": "璧山区",
         "citycode": "CN50012000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2111,7 +2111,7 @@
         "mapName": "铜梁区",
         "citycode": "CN50015100000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2127,7 +2127,7 @@
         "mapName": "潼南区",
         "citycode": "CN50015200000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2143,7 +2143,7 @@
         "mapName": "荣昌区",
         "citycode": "CN50015300000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2159,7 +2159,7 @@
         "mapName": "开州区",
         "citycode": "CN50023400000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "61",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2175,7 +2175,7 @@
         "mapName": "梁平区",
         "citycode": "CN50022800000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2191,7 +2191,7 @@
         "mapName": "武隆区",
         "citycode": "CN50023200000000",
         "econNum": "0",
-        "zerodays": "75",
+        "zerodays": "83",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2207,7 +2207,7 @@
         "mapName": "城口县",
         "citycode": "CN50022900000000",
         "econNum": "0",
-        "zerodays": "71",
+        "zerodays": "79",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2223,9 +2223,9 @@
         "mapName": "丰都县",
         "citycode": "CN50023000000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "71",
         "jwsr": "",
-        "asymptomNum": ""
+        "asymptomNum": "1"
       },
       {
         "name": "垫江",
@@ -2239,7 +2239,7 @@
         "mapName": "垫江县",
         "citycode": "CN50023100000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2255,7 +2255,7 @@
         "mapName": "忠县",
         "citycode": "CN50023300000000",
         "econNum": "0",
-        "zerodays": "52",
+        "zerodays": "60",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2271,7 +2271,7 @@
         "mapName": "云阳县",
         "citycode": "CN50023500000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2287,9 +2287,9 @@
         "mapName": "奉节县",
         "citycode": "CN50023600000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "63",
         "jwsr": "",
-        "asymptomNum": ""
+        "asymptomNum": "1"
       },
       {
         "name": "巫山",
@@ -2303,7 +2303,7 @@
         "mapName": "巫山县",
         "citycode": "CN50023700000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2319,7 +2319,7 @@
         "mapName": "巫溪县",
         "citycode": "CN50023800000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "61",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2335,7 +2335,7 @@
         "mapName": "石柱土家族自治县",
         "citycode": "CN50024000000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2351,7 +2351,7 @@
         "mapName": "秀山土家族苗族自治县",
         "citycode": "CN50024100000000",
         "econNum": "0",
-        "zerodays": "77",
+        "zerodays": "85",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2367,9 +2367,9 @@
         "mapName": "酉阳土家族苗族自治县",
         "citycode": "CN50024200000000",
         "econNum": "0",
-        "zerodays": "69",
+        "zerodays": "77",
         "jwsr": "",
-        "asymptomNum": ""
+        "asymptomNum": "3"
       },
       {
         "name": "彭水",
@@ -2383,7 +2383,7 @@
         "mapName": "彭水苗族土家族自治县",
         "citycode": "CN50024300000000",
         "econNum": "0",
-        "zerodays": "70",
+        "zerodays": "78",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2399,7 +2399,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2415,7 +2415,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "69",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2431,7 +2431,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -2446,9 +2446,9 @@
     "econNum": "1",
     "susNum": "0",
     "deathNum": "6",
-    "asymptomNum": "3",
+    "asymptomNum": "2",
     "cureNum": "984",
-    "zerodays": "6",
+    "zerodays": "15",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
@@ -2473,7 +2473,7 @@
         "mapName": "阜阳市",
         "citycode": "CN34120000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2489,7 +2489,7 @@
         "mapName": "合肥市",
         "citycode": "CN34010000000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "63",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2505,7 +2505,7 @@
         "mapName": "马鞍山市",
         "citycode": "CN34050000000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2521,7 +2521,7 @@
         "mapName": "芜湖市",
         "citycode": "CN34020000000000",
         "econNum": "0",
-        "zerodays": "47",
+        "zerodays": "56",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2537,7 +2537,7 @@
         "mapName": "铜陵市",
         "citycode": "CN34070000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2553,7 +2553,7 @@
         "mapName": "安庆市",
         "citycode": "CN34080000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2569,7 +2569,7 @@
         "mapName": "亳州市",
         "citycode": "CN34160000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2585,7 +2585,7 @@
         "mapName": "黄山市",
         "citycode": "CN34100000000000",
         "econNum": "0",
-        "zerodays": "75",
+        "zerodays": "84",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2601,7 +2601,7 @@
         "mapName": "滁州市",
         "citycode": "CN34110000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2617,7 +2617,7 @@
         "mapName": "六安市",
         "citycode": "CN34150000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2633,7 +2633,7 @@
         "mapName": "宿州市",
         "citycode": "CN34130000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2649,7 +2649,7 @@
         "mapName": "蚌埠市",
         "citycode": "CN34030000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2665,7 +2665,7 @@
         "mapName": "淮南市",
         "citycode": "CN34040000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2681,7 +2681,7 @@
         "mapName": "宣城市",
         "citycode": "CN34180000000000",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "74",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2697,7 +2697,7 @@
         "mapName": "淮北市",
         "citycode": "CN34060000000000",
         "econNum": "1",
-        "zerodays": "6",
+        "zerodays": "15",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -2713,7 +2713,7 @@
         "mapName": "池州市",
         "citycode": "CN34170000000000",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -2722,40 +2722,40 @@
   {
     "name": "四川",
     "ename": "sichuan",
-    "value": "560",
+    "value": "561",
     "conadd": "0",
     "hejian": "",
-    "econNum": "9",
+    "econNum": "1",
     "susNum": "0",
     "deathNum": "3",
-    "asymptomNum": "13",
-    "cureNum": "548",
-    "zerodays": "8",
+    "asymptomNum": "9",
+    "cureNum": "557",
+    "zerodays": "6",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+0",
-      "econadd": "+0",
+      "cureadd": "+1",
+      "econadd": "-1",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 0
+      "cureadd_n": 1
     },
     "city": [
       {
         "name": "成都",
-        "conNum": "165",
+        "conNum": "166",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "153",
+        "cureNum": "162",
         "deathNum": "3",
         "mapName": "成都市",
         "citycode": "CN51010000000000",
-        "econNum": "9",
-        "zerodays": "8",
+        "econNum": "1",
+        "zerodays": "6",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -2771,7 +2771,7 @@
         "mapName": "自贡市",
         "citycode": "CN51030000000000",
         "econNum": "0",
-        "zerodays": "75",
+        "zerodays": "84",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2787,7 +2787,7 @@
         "mapName": "攀枝花市",
         "citycode": "CN51040000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2803,7 +2803,7 @@
         "mapName": "泸州市",
         "citycode": "CN51050000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2819,7 +2819,7 @@
         "mapName": "德阳市",
         "citycode": "CN51060000000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "63",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2835,7 +2835,7 @@
         "mapName": "绵阳市",
         "citycode": "CN51070000000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2851,7 +2851,7 @@
         "mapName": "广元市",
         "citycode": "CN51080000000000",
         "econNum": "0",
-        "zerodays": "71",
+        "zerodays": "80",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2867,7 +2867,7 @@
         "mapName": "遂宁市",
         "citycode": "CN51090000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2883,7 +2883,7 @@
         "mapName": "内江市",
         "citycode": "CN51100000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2899,7 +2899,7 @@
         "mapName": "乐山市",
         "citycode": "CN51110000000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2915,7 +2915,7 @@
         "mapName": "南充市",
         "citycode": "CN51130000000000",
         "econNum": "0",
-        "zerodays": "51",
+        "zerodays": "60",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2931,7 +2931,7 @@
         "mapName": "宜宾市",
         "citycode": "CN51150000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2947,7 +2947,7 @@
         "mapName": "广安市",
         "citycode": "CN51160000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2963,7 +2963,7 @@
         "mapName": "达州市",
         "citycode": "CN51170000000000",
         "econNum": "0",
-        "zerodays": "50",
+        "zerodays": "59",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2979,7 +2979,7 @@
         "mapName": "巴中市",
         "citycode": "CN51190000000000",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -2995,7 +2995,7 @@
         "mapName": "雅安市",
         "citycode": "CN51180000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3011,7 +3011,7 @@
         "mapName": "眉山市",
         "citycode": "CN51140000000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3027,7 +3027,7 @@
         "mapName": "资阳市",
         "citycode": "CN51200000000000",
         "econNum": "0",
-        "zerodays": "50",
+        "zerodays": "59",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3043,7 +3043,7 @@
         "mapName": "阿坝藏族羌族自治州",
         "citycode": "CN51320000000000",
         "econNum": "0",
-        "zerodays": "75",
+        "zerodays": "84",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3059,7 +3059,7 @@
         "mapName": "甘孜藏族自治州",
         "citycode": "CN51330000000000",
         "econNum": "0",
-        "zerodays": "47",
+        "zerodays": "56",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3075,7 +3075,7 @@
         "mapName": "凉山彝族自治州",
         "citycode": "CN51340000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -3084,25 +3084,25 @@
   {
     "name": "山东",
     "ename": "shandong",
-    "value": "784",
+    "value": "787",
     "conadd": "0",
     "hejian": "",
-    "econNum": "18",
+    "econNum": "14",
     "susNum": "0",
     "deathNum": "7",
-    "asymptomNum": "10",
-    "cureNum": "759",
-    "zerodays": "3",
+    "asymptomNum": "7",
+    "cureNum": "766",
+    "zerodays": "7",
     "jwsr": "含境外输入",
-    "jwsrNum": "23",
+    "jwsrNum": "24",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+2",
-      "econadd": "-2",
+      "cureadd": "+0",
+      "econadd": "+0",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 2
+      "cureadd_n": 0
     },
     "city": [
       {
@@ -3117,13 +3117,13 @@
         "mapName": "济南市",
         "citycode": "CN37010000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "青岛",
-        "conNum": "63",
+        "conNum": "65",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
@@ -3132,8 +3132,8 @@
         "deathNum": "1",
         "mapName": "青岛市",
         "citycode": "CN37020000000000",
-        "econNum": "2",
-        "zerodays": "6",
+        "econNum": "4",
+        "zerodays": "7",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3149,7 +3149,7 @@
         "mapName": "淄博市",
         "citycode": "CN37030000000000",
         "econNum": "0",
-        "zerodays": "52",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3165,7 +3165,7 @@
         "mapName": "枣庄市",
         "citycode": "CN37040000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3181,7 +3181,7 @@
         "mapName": "烟台市",
         "citycode": "CN37060000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3197,7 +3197,7 @@
         "mapName": "潍坊市",
         "citycode": "CN37070000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3213,7 +3213,7 @@
         "mapName": "济宁市",
         "citycode": "CN37080000000000",
         "econNum": "0",
-        "zerodays": "43",
+        "zerodays": "53",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3229,7 +3229,7 @@
         "mapName": "泰安市",
         "citycode": "CN37090000000000",
         "econNum": "0",
-        "zerodays": "52",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3245,7 +3245,7 @@
         "mapName": "威海市",
         "citycode": "CN37100000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3261,7 +3261,7 @@
         "mapName": "日照市",
         "citycode": "CN37110000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3277,7 +3277,7 @@
         "mapName": "临沂市",
         "citycode": "CN37130000000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3293,7 +3293,7 @@
         "mapName": "德州市",
         "citycode": "CN37140000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3309,7 +3309,7 @@
         "mapName": "聊城市",
         "citycode": "CN37150000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3325,7 +3325,7 @@
         "mapName": "滨州市",
         "citycode": "CN37160000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3341,23 +3341,23 @@
         "mapName": "菏泽市",
         "citycode": "CN37170000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "境外输入",
-        "conNum": "23",
+        "conNum": "24",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "7",
+        "cureNum": "14",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "16",
-        "zerodays": "3",
+        "econNum": "10",
+        "zerodays": "7",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -3366,42 +3366,42 @@
   {
     "name": "吉林",
     "ename": "jilin",
-    "value": "100",
-    "conadd": "0",
+    "value": "107",
+    "conadd": "1",
     "hejian": "",
-    "econNum": "3",
+    "econNum": "7",
     "susNum": "0",
     "deathNum": "1",
-    "asymptomNum": "1",
-    "cureNum": "96",
-    "zerodays": "1",
+    "asymptomNum": "0",
+    "cureNum": "99",
+    "zerodays": "0",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
-      "conadd": "+0",
+      "conadd": "+1",
       "deathadd": "+0",
-      "cureadd": "+0",
+      "cureadd": "+1",
       "econadd": "+0",
-      "conadd_n": 0,
+      "conadd_n": 1,
       "deathadd_n": 0,
-      "cureadd_n": 0
+      "cureadd_n": 1
     },
     "city": [
       {
         "name": "长春",
-        "conNum": "46",
+        "conNum": "48",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "46",
+        "cureNum": "47",
         "deathNum": "0",
         "mapName": "长春市",
         "citycode": "CN22010000000000",
-        "econNum": "0",
-        "zerodays": "20",
+        "econNum": "1",
+        "zerodays": "4",
         "jwsr": "含境外输入",
-        "asymptomNum": "1"
+        "asymptomNum": ""
       },
       {
         "name": "四平",
@@ -3415,23 +3415,23 @@
         "mapName": "四平市",
         "citycode": "CN22030000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "吉林",
-        "conNum": "8",
-        "conadd": "0",
-        "conadd_str": "+0",
+        "conNum": "13",
+        "conadd": "1",
+        "conadd_str": "+1",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "6",
+        "cureNum": "7",
         "deathNum": "0",
         "mapName": "吉林市",
         "citycode": "CN22020000000000",
-        "econNum": "2",
-        "zerodays": "1",
+        "econNum": "6",
+        "zerodays": "0",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -3447,7 +3447,7 @@
         "mapName": "公主岭市",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3463,7 +3463,7 @@
         "mapName": "白城市",
         "citycode": "CN22080000000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3479,7 +3479,7 @@
         "mapName": "延边朝鲜族自治州",
         "citycode": "CN22240000000000",
         "econNum": "0",
-        "zerodays": "16",
+        "zerodays": "25",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -3495,7 +3495,7 @@
         "mapName": "辽源市",
         "citycode": "CN22040000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3511,7 +3511,7 @@
         "mapName": "松原市",
         "citycode": "CN22070000000000",
         "econNum": "0",
-        "zerodays": "78",
+        "zerodays": "87",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3527,7 +3527,7 @@
         "mapName": "通化市",
         "citycode": "CN22050000000000",
         "econNum": "0",
-        "zerodays": "50",
+        "zerodays": "59",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3538,12 +3538,12 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "1",
+        "cureNum": "2",
         "deathNum": "0",
         "mapName": "梅河口市",
         "citycode": "",
-        "econNum": "1",
-        "zerodays": "19",
+        "econNum": "0",
+        "zerodays": "28",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       }
@@ -3552,25 +3552,25 @@
   {
     "name": "福建",
     "ename": "fujian",
-    "value": "353",
-    "conadd": "1",
+    "value": "355",
+    "conadd": "0",
     "hejian": "",
-    "econNum": "22",
+    "econNum": "12",
     "susNum": "0",
     "deathNum": "1",
-    "asymptomNum": "6",
-    "cureNum": "330",
-    "zerodays": "0",
+    "asymptomNum": "5",
+    "cureNum": "342",
+    "zerodays": "5",
     "jwsr": "含境外输入",
-    "jwsrNum": "57",
+    "jwsrNum": "59",
     "adddaily": {
-      "conadd": "+1",
+      "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+5",
-      "econadd": "-4",
-      "conadd_n": 1,
+      "cureadd": "+0",
+      "econadd": "+0",
+      "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 5
+      "cureadd_n": 0
     },
     "city": [
       {
@@ -3585,7 +3585,7 @@
         "mapName": "福州市",
         "citycode": "CN35010000000000",
         "econNum": "0",
-        "zerodays": "48",
+        "zerodays": "57",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3601,7 +3601,7 @@
         "mapName": "莆田市",
         "citycode": "CN35030000000000",
         "econNum": "0",
-        "zerodays": "48",
+        "zerodays": "57",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3617,7 +3617,7 @@
         "mapName": "漳州市",
         "citycode": "CN35060000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3633,7 +3633,7 @@
         "mapName": "泉州市",
         "citycode": "CN35050000000000",
         "econNum": "0",
-        "zerodays": "50",
+        "zerodays": "59",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3649,7 +3649,7 @@
         "mapName": "三明市",
         "citycode": "CN35040000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3665,7 +3665,7 @@
         "mapName": "厦门市",
         "citycode": "CN35020000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3681,7 +3681,7 @@
         "mapName": "南平市",
         "citycode": "CN35070000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3697,7 +3697,7 @@
         "mapName": "龙岩市",
         "citycode": "CN35080000000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3713,23 +3713,23 @@
         "mapName": "宁德市",
         "citycode": "CN35090000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "境外输入",
-        "conNum": "57",
-        "conadd": "1",
-        "conadd_str": "+1",
+        "conNum": "59",
+        "conadd": "0",
+        "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "35",
+        "cureNum": "47",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "22",
-        "zerodays": "0",
+        "econNum": "12",
+        "zerodays": "5",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -3744,9 +3744,9 @@
     "econNum": "0",
     "susNum": "0",
     "deathNum": "1",
-    "asymptomNum": "1",
+    "asymptomNum": "0",
     "cureNum": "936",
-    "zerodays": "17",
+    "zerodays": "26",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
@@ -3771,7 +3771,7 @@
         "mapName": "南昌市",
         "citycode": "CN36010000000000",
         "econNum": "0",
-        "zerodays": "17",
+        "zerodays": "26",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
@@ -3787,7 +3787,7 @@
         "mapName": "赣州市",
         "citycode": "CN36070000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3803,7 +3803,7 @@
         "mapName": "宜春市",
         "citycode": "CN36090000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3819,7 +3819,7 @@
         "mapName": "九江市",
         "citycode": "CN36040000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3835,7 +3835,7 @@
         "mapName": "抚州市",
         "citycode": "CN36100000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3851,7 +3851,7 @@
         "mapName": "上饶市",
         "citycode": "CN36110000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3867,7 +3867,7 @@
         "mapName": "新余市",
         "citycode": "CN36050000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3883,7 +3883,7 @@
         "mapName": "吉安市",
         "citycode": "CN36080000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3899,7 +3899,7 @@
         "mapName": "景德镇市",
         "citycode": "CN36020000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3915,7 +3915,7 @@
         "mapName": "萍乡市",
         "citycode": "CN36030000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3931,7 +3931,7 @@
         "mapName": "鹰潭市",
         "citycode": "CN36060000000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -3947,7 +3947,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "74",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -3959,22 +3959,22 @@
     "value": "653",
     "conadd": "0",
     "hejian": "",
-    "econNum": "12",
+    "econNum": "8",
     "susNum": "0",
     "deathNum": "0",
-    "asymptomNum": "7",
-    "cureNum": "641",
-    "zerodays": "3",
+    "asymptomNum": "4",
+    "cureNum": "645",
+    "zerodays": "12",
     "jwsr": "含境外输入",
     "jwsrNum": "22",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+3",
-      "econadd": "-3",
+      "cureadd": "+0",
+      "econadd": "+0",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 3
+      "cureadd_n": 0
     },
     "city": [
       {
@@ -3989,7 +3989,7 @@
         "mapName": "南京市",
         "citycode": "CN32010000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4005,7 +4005,7 @@
         "mapName": "无锡市",
         "citycode": "CN32020000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4021,7 +4021,7 @@
         "mapName": "徐州市",
         "citycode": "CN32030000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4037,7 +4037,7 @@
         "mapName": "常州市",
         "citycode": "CN32040000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4053,7 +4053,7 @@
         "mapName": "苏州市",
         "citycode": "CN32050000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4069,7 +4069,7 @@
         "mapName": "南通市",
         "citycode": "CN32060000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4085,7 +4085,7 @@
         "mapName": "连云港市",
         "citycode": "CN32070000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4101,7 +4101,7 @@
         "mapName": "淮安市",
         "citycode": "CN32080000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4117,7 +4117,7 @@
         "mapName": "盐城市",
         "citycode": "CN32090000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4133,7 +4133,7 @@
         "mapName": "扬州市",
         "citycode": "CN32100000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4149,7 +4149,7 @@
         "mapName": "镇江市",
         "citycode": "CN32110000000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4165,7 +4165,7 @@
         "mapName": "泰州市",
         "citycode": "CN32120000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4181,7 +4181,7 @@
         "mapName": "宿迁市",
         "citycode": "CN32130000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4192,54 +4192,54 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "10",
+        "cureNum": "14",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "12",
-        "zerodays": "3",
+        "econNum": "8",
+        "zerodays": "12",
         "jwsr": "",
-        "asymptomNum": ""
+        "asymptomNum": "3"
       }
     ]
   },
   {
     "name": "上海",
     "ename": "shanghai",
-    "value": "618",
-    "conadd": "0",
+    "value": "641",
+    "conadd": "1",
     "hejian": "",
-    "econNum": "143",
-    "susNum": "37",
+    "econNum": "101",
+    "susNum": "11",
     "deathNum": "7",
     "asymptomNum": "0",
-    "cureNum": "468",
-    "zerodays": "1",
+    "cureNum": "533",
+    "zerodays": "-1",
     "jwsr": "含境外输入",
-    "jwsrNum": "279",
+    "jwsrNum": "302",
     "adddaily": {
-      "conadd": "+0",
+      "conadd": "+1",
       "deathadd": "+0",
-      "cureadd": "+22",
-      "econadd": "-22",
-      "conadd_n": 0,
+      "cureadd": "+3",
+      "econadd": "-1",
+      "conadd_n": 1,
       "deathadd_n": 0,
-      "cureadd_n": 22
+      "cureadd_n": 3
     },
     "city": [
       {
         "name": "境外输入人员",
-        "conNum": "279",
-        "conadd": "0",
-        "conadd_str": "+0",
+        "conNum": "302",
+        "conadd": "2",
+        "conadd_str": "+2",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "140",
+        "cureNum": "201",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "139",
-        "zerodays": "1",
+        "econNum": "101",
+        "zerodays": "-1",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4255,7 +4255,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "5",
-        "zerodays": "51",
+        "zerodays": "60",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4271,7 +4271,7 @@
         "mapName": "浦东新区",
         "citycode": "CN31011500000000",
         "econNum": "2",
-        "zerodays": "42",
+        "zerodays": "51",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4287,7 +4287,7 @@
         "mapName": "静安区",
         "citycode": "CN31010600000000",
         "econNum": "1",
-        "zerodays": "64",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4303,7 +4303,7 @@
         "mapName": "长宁区",
         "citycode": "CN31010500000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4319,7 +4319,7 @@
         "mapName": "奉贤区",
         "citycode": "CN31012000000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4335,7 +4335,7 @@
         "mapName": "徐汇区",
         "citycode": "CN31010400000000",
         "econNum": "1",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4351,7 +4351,7 @@
         "mapName": "闵行区",
         "citycode": "CN31011200000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4367,7 +4367,7 @@
         "mapName": "青浦区",
         "citycode": "CN31011800000000",
         "econNum": "0",
-        "zerodays": "48",
+        "zerodays": "57",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4383,7 +4383,7 @@
         "mapName": "虹口区",
         "citycode": "CN31010900000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4399,7 +4399,7 @@
         "mapName": "黄浦区",
         "citycode": "CN31010100000000",
         "econNum": "1",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4415,7 +4415,7 @@
         "mapName": "宝山区",
         "citycode": "CN31011300000000",
         "econNum": "2",
-        "zerodays": "21",
+        "zerodays": "30",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4431,7 +4431,7 @@
         "mapName": "嘉定区",
         "citycode": "CN31011400000000",
         "econNum": "2",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4447,7 +4447,7 @@
         "mapName": "金山区",
         "citycode": "CN31011600000000",
         "econNum": "0",
-        "zerodays": "47",
+        "zerodays": "56",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4463,7 +4463,7 @@
         "mapName": "松江区",
         "citycode": "CN31011700000000",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "74",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4479,7 +4479,7 @@
         "mapName": "杨浦区",
         "citycode": "CN31011000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4495,7 +4495,7 @@
         "mapName": "普陀区",
         "citycode": "CN31010700000000",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4511,7 +4511,7 @@
         "mapName": "崇明区",
         "citycode": "CN31023000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -4526,9 +4526,9 @@
     "econNum": "0",
     "susNum": "0",
     "deathNum": "2",
-    "asymptomNum": "5",
+    "asymptomNum": "4",
     "cureNum": "252",
-    "zerodays": "26",
+    "zerodays": "35",
     "jwsr": "含境外输入",
     "jwsrNum": "2",
     "adddaily": {
@@ -4553,7 +4553,7 @@
         "mapName": "南宁市",
         "citycode": "CN45010000000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4569,7 +4569,7 @@
         "mapName": "柳州市",
         "citycode": "CN45020000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4585,7 +4585,7 @@
         "mapName": "桂林市",
         "citycode": "CN45030000000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4601,7 +4601,7 @@
         "mapName": "梧州市",
         "citycode": "CN45040000000000",
         "econNum": "0",
-        "zerodays": "74",
+        "zerodays": "83",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4617,7 +4617,7 @@
         "mapName": "北海市",
         "citycode": "CN45050000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4633,7 +4633,7 @@
         "mapName": "防城港市",
         "citycode": "CN45060000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4649,7 +4649,7 @@
         "mapName": "钦州市",
         "citycode": "CN45070000000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4665,7 +4665,7 @@
         "mapName": "贵港市",
         "citycode": "CN45080000000000",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "74",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4681,7 +4681,7 @@
         "mapName": "玉林市",
         "citycode": "CN45090000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4697,7 +4697,7 @@
         "mapName": "百色市",
         "citycode": "CN45100000000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4713,7 +4713,7 @@
         "mapName": "河池市",
         "citycode": "CN45120000000000",
         "econNum": "0",
-        "zerodays": "50",
+        "zerodays": "59",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4729,7 +4729,7 @@
         "mapName": "贺州市",
         "citycode": "CN45110000000000",
         "econNum": "0",
-        "zerodays": "72",
+        "zerodays": "81",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4745,7 +4745,7 @@
         "mapName": "来宾市",
         "citycode": "CN45130000000000",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "74",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4761,7 +4761,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "26",
+        "zerodays": "35",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -4778,7 +4778,7 @@
     "deathNum": "6",
     "asymptomNum": "7",
     "cureNum": "162",
-    "zerodays": "55",
+    "zerodays": "1",
     "jwsr": "",
     "jwsrNum": 0,
     "adddaily": {
@@ -4803,7 +4803,7 @@
         "mapName": "海口市",
         "citycode": "CN46010000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4819,7 +4819,7 @@
         "mapName": "三亚市",
         "citycode": "CN46020000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4835,7 +4835,7 @@
         "mapName": "儋州市",
         "citycode": "CN46040000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4851,7 +4851,7 @@
         "mapName": "万宁市",
         "citycode": "CN46900600000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4867,7 +4867,7 @@
         "mapName": "琼海市",
         "citycode": "CN46900200000000",
         "econNum": "0",
-        "zerodays": "72",
+        "zerodays": "81",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4883,7 +4883,7 @@
         "mapName": "东方市",
         "citycode": "CN46900700000000",
         "econNum": "0",
-        "zerodays": "69",
+        "zerodays": "1",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4899,7 +4899,7 @@
         "mapName": "临高县",
         "citycode": "CN46902400000000",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "74",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4915,7 +4915,7 @@
         "mapName": "定安县",
         "citycode": "CN46902100000000",
         "econNum": "0",
-        "zerodays": "71",
+        "zerodays": "80",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4931,7 +4931,7 @@
         "mapName": "昌江黎族自治县",
         "citycode": "CN46902600000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4947,7 +4947,7 @@
         "mapName": "澄迈县",
         "citycode": "CN46902300000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4963,7 +4963,7 @@
         "mapName": "陵水黎族自治县",
         "citycode": "CN46902800000000",
         "econNum": "0",
-        "zerodays": "73",
+        "zerodays": "82",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4979,7 +4979,7 @@
         "mapName": "琼中黎族苗族自治县",
         "citycode": "CN46903000000000",
         "econNum": "0",
-        "zerodays": "77",
+        "zerodays": "86",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -4995,7 +4995,7 @@
         "mapName": "乐东黎族自治县",
         "citycode": "CN46902700000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5011,7 +5011,7 @@
         "mapName": "文昌市",
         "citycode": "CN46900500000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5027,7 +5027,7 @@
         "mapName": "保亭黎族苗族自治县",
         "citycode": "CN46902900000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -5036,17 +5036,17 @@
   {
     "name": "陕西",
     "ename": "shanxis",
-    "value": "256",
+    "value": "279",
     "conadd": "0",
     "hejian": "",
-    "econNum": "5",
+    "econNum": "23",
     "susNum": "0",
     "deathNum": "3",
-    "asymptomNum": "2",
-    "cureNum": "248",
-    "zerodays": "11",
+    "asymptomNum": "7",
+    "cureNum": "253",
+    "zerodays": "2",
     "jwsr": "含境外输入",
-    "jwsrNum": "11",
+    "jwsrNum": "34",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
@@ -5069,7 +5069,7 @@
         "mapName": "西安市",
         "citycode": "CN61010000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5085,7 +5085,7 @@
         "mapName": "安康市",
         "citycode": "CN61090000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5101,7 +5101,7 @@
         "mapName": "铜川市",
         "citycode": "CN61020000000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5117,7 +5117,7 @@
         "mapName": "咸阳市",
         "citycode": "CN61040000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5133,7 +5133,7 @@
         "mapName": "汉中市",
         "citycode": "CN61070000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5149,7 +5149,7 @@
         "mapName": "渭南市",
         "citycode": "CN61050000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5165,7 +5165,7 @@
         "mapName": "宝鸡市",
         "citycode": "CN61030000000000",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "74",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5181,7 +5181,7 @@
         "mapName": "延安市",
         "citycode": "CN61060000000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5197,7 +5197,7 @@
         "mapName": "商洛市",
         "citycode": "CN61100000000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5213,7 +5213,7 @@
         "mapName": "榆林市",
         "citycode": "CN61080000000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5229,7 +5229,7 @@
         "mapName": "韩城市",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "75",
+        "zerodays": "84",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5245,23 +5245,23 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "70",
+        "zerodays": "79",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "境外输入",
-        "conNum": "11",
+        "conNum": "34",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "6",
+        "cureNum": "11",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "5",
-        "zerodays": "11",
+        "econNum": "23",
+        "zerodays": "2",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -5270,25 +5270,25 @@
   {
     "name": "河北",
     "ename": "hebei",
-    "value": "327",
+    "value": "328",
     "conadd": "0",
     "hejian": "",
-    "econNum": "7",
+    "econNum": "5",
     "susNum": "0",
     "deathNum": "6",
-    "asymptomNum": "7",
-    "cureNum": "314",
-    "zerodays": "10",
+    "asymptomNum": "2",
+    "cureNum": "317",
+    "zerodays": "8",
     "jwsr": "含境外输入",
-    "jwsrNum": "9",
+    "jwsrNum": "10",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+1",
-      "econadd": "-1",
+      "cureadd": "+0",
+      "econadd": "+0",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 1
+      "cureadd_n": 0
     },
     "city": [
       {
@@ -5303,7 +5303,7 @@
         "mapName": "石家庄市",
         "citycode": "CN13010000000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5319,7 +5319,7 @@
         "mapName": "廊坊市",
         "citycode": "CN13100000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5335,7 +5335,7 @@
         "mapName": "沧州市",
         "citycode": "CN13090000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5351,7 +5351,7 @@
         "mapName": "邯郸市",
         "citycode": "CN13040000000000",
         "econNum": "0",
-        "zerodays": "52",
+        "zerodays": "61",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5367,7 +5367,7 @@
         "mapName": "保定市",
         "citycode": "CN13060000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5383,7 +5383,7 @@
         "mapName": "邢台市",
         "citycode": "CN13050000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5399,7 +5399,7 @@
         "mapName": "衡水市",
         "citycode": "CN13110000000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5415,7 +5415,7 @@
         "mapName": "承德市",
         "citycode": "CN13080000000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5431,7 +5431,7 @@
         "mapName": "唐山市",
         "citycode": "CN13020000000000",
         "econNum": "0",
-        "zerodays": "52",
+        "zerodays": "61",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5447,7 +5447,7 @@
         "mapName": "张家口市",
         "citycode": "CN13070000000000",
         "econNum": "0",
-        "zerodays": "47",
+        "zerodays": "56",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5463,23 +5463,23 @@
         "mapName": "秦皇岛市",
         "citycode": "CN13030000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "境外输入",
-        "conNum": "9",
+        "conNum": "10",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "2",
+        "cureNum": "5",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "7",
-        "zerodays": "10",
+        "econNum": "5",
+        "zerodays": "8",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -5488,55 +5488,55 @@
   {
     "name": "黑龙江",
     "ename": "heilongjiang",
-    "value": "819",
-    "conadd": "79",
+    "value": "925",
+    "conadd": "4",
     "hejian": "",
-    "econNum": "336",
-    "susNum": "8",
+    "econNum": "427",
+    "susNum": "1",
     "deathNum": "13",
-    "asymptomNum": "61",
-    "cureNum": "470",
+    "asymptomNum": "54",
+    "cureNum": "485",
     "zerodays": "0",
     "jwsr": "含境外输入",
-    "jwsrNum": "326",
+    "jwsrNum": "385",
     "adddaily": {
-      "conadd": "+79",
+      "conadd": "+4",
       "deathadd": "+0",
-      "cureadd": "+0",
-      "econadd": "+79",
-      "conadd_n": 79,
+      "cureadd": "+8",
+      "econadd": "-4",
+      "conadd_n": 4,
       "deathadd_n": 0,
-      "cureadd_n": 0
+      "cureadd_n": 8
     },
     "city": [
       {
         "name": "哈尔滨",
-        "conNum": "209",
-        "conadd": "0",
-        "conadd_str": "+0",
+        "conNum": "254",
+        "conadd": "3",
+        "conadd_str": "+3",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "194",
+        "cureNum": "195",
         "deathNum": "4",
         "mapName": "哈尔滨市",
         "citycode": "CN23010000000000",
-        "econNum": "11",
-        "zerodays": "2",
+        "econNum": "55",
+        "zerodays": "0",
         "jwsr": "含境外输入",
         "asymptomNum": ""
       },
       {
         "name": "境外输入",
-        "conNum": "326",
-        "conadd": "79",
-        "conadd_str": "+79",
+        "conNum": "385",
+        "conadd": "1",
+        "conadd_str": "+1",
         "hejian": "",
-        "susNum": "8",
-        "cureNum": "1",
+        "susNum": "0",
+        "cureNum": "15",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "325",
+        "econNum": "370",
         "zerodays": "0",
         "jwsr": "",
         "asymptomNum": ""
@@ -5553,13 +5553,13 @@
         "mapName": "齐齐哈尔市",
         "citycode": "CN23020000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "牡丹江",
-        "conNum": "15",
+        "conNum": "17",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
@@ -5568,8 +5568,8 @@
         "deathNum": "0",
         "mapName": "牡丹江市",
         "citycode": "CN23100000000000",
-        "econNum": "0",
-        "zerodays": "41",
+        "econNum": "2",
+        "zerodays": "5",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5585,7 +5585,7 @@
         "mapName": "佳木斯市",
         "citycode": "CN23080000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5601,7 +5601,7 @@
         "mapName": "大庆市",
         "citycode": "CN23060000000000",
         "econNum": "0",
-        "zerodays": "55",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5617,7 +5617,7 @@
         "mapName": "鸡西市",
         "citycode": "CN23030000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5633,7 +5633,7 @@
         "mapName": "双鸭山市",
         "citycode": "CN23050000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5649,7 +5649,7 @@
         "mapName": "七台河市",
         "citycode": "CN23090000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5665,7 +5665,7 @@
         "mapName": "鹤岗市",
         "citycode": "CN23040000000000",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "74",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5681,7 +5681,7 @@
         "mapName": "绥化市",
         "citycode": "CN23120000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5697,7 +5697,7 @@
         "mapName": "大兴安岭",
         "citycode": "CN23270000000000",
         "econNum": "0",
-        "zerodays": "35",
+        "zerodays": "44",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5713,7 +5713,7 @@
         "mapName": "黑河市",
         "citycode": "CN23110000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5729,7 +5729,7 @@
         "mapName": "伊春市",
         "citycode": "CN23070000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -5738,25 +5738,25 @@
   {
     "name": "辽宁",
     "ename": "liaoning",
-    "value": "145",
+    "value": "146",
     "conadd": "0",
     "hejian": "",
-    "econNum": "5",
+    "econNum": "1",
     "susNum": "0",
     "deathNum": "2",
-    "asymptomNum": "16",
-    "cureNum": "138",
-    "zerodays": "3",
+    "asymptomNum": "",
+    "cureNum": "143",
+    "zerodays": "6",
     "jwsr": "含境外输入",
     "jwsrNum": "21",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+2",
-      "econadd": "-2",
+      "cureadd": "+0",
+      "econadd": "+0",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 2
+      "cureadd_n": 0
     },
     "city": [
       {
@@ -5766,12 +5766,28 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "17",
+        "cureNum": "21",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "4",
-        "zerodays": "3",
+        "econNum": "0",
+        "zerodays": "12",
+        "jwsr": "",
+        "asymptomNum": ""
+      },
+      {
+        "name": "抚顺",
+        "conNum": "1",
+        "conadd": "0",
+        "conadd_str": "+0",
+        "hejian": "",
+        "susNum": "0",
+        "cureNum": "0",
+        "deathNum": "0",
+        "mapName": "抚顺市",
+        "citycode": "CN21040000000000",
+        "econNum": "1",
+        "zerodays": "6",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5787,7 +5803,7 @@
         "mapName": "沈阳市",
         "citycode": "CN21010000000000",
         "econNum": "0",
-        "zerodays": "7",
+        "zerodays": "16",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5798,12 +5814,12 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "17",
+        "cureNum": "18",
         "deathNum": "0",
         "mapName": "大连市",
         "citycode": "CN21020000000000",
-        "econNum": "1",
-        "zerodays": "7",
+        "econNum": "0",
+        "zerodays": "16",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5819,7 +5835,7 @@
         "mapName": "鞍山市",
         "citycode": "CN21030000000000",
         "econNum": "0",
-        "zerodays": "7",
+        "zerodays": "16",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5835,7 +5851,7 @@
         "mapName": "本溪市",
         "citycode": "CN21050000000000",
         "econNum": "0",
-        "zerodays": "75",
+        "zerodays": "84",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5851,7 +5867,7 @@
         "mapName": "丹东市",
         "citycode": "CN21060000000000",
         "econNum": "0",
-        "zerodays": "42",
+        "zerodays": "51",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5867,7 +5883,7 @@
         "mapName": "锦州市",
         "citycode": "CN21070000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5883,7 +5899,7 @@
         "mapName": "营口市",
         "citycode": "CN21080000000000",
         "econNum": "0",
-        "zerodays": "79",
+        "zerodays": "88",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5899,7 +5915,7 @@
         "mapName": "阜新市",
         "citycode": "CN21090000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5915,7 +5931,7 @@
         "mapName": "辽阳市",
         "citycode": "CN21100000000000",
         "econNum": "0",
-        "zerodays": "7",
+        "zerodays": "16",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5931,7 +5947,7 @@
         "mapName": "铁岭市",
         "citycode": "CN21120000000000",
         "econNum": "0",
-        "zerodays": "7",
+        "zerodays": "16",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5947,7 +5963,7 @@
         "mapName": "朝阳市",
         "citycode": "CN21130000000000",
         "econNum": "0",
-        "zerodays": "73",
+        "zerodays": "82",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5963,7 +5979,7 @@
         "mapName": "盘锦市",
         "citycode": "CN21110000000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -5979,7 +5995,7 @@
         "mapName": "葫芦岛市",
         "citycode": "CN21140000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -5991,22 +6007,22 @@
     "value": "184",
     "conadd": "0",
     "hejian": "",
-    "econNum": "7",
+    "econNum": "4",
     "susNum": "0",
     "deathNum": "2",
     "asymptomNum": "1",
-    "cureNum": "175",
-    "zerodays": "12",
+    "cureNum": "178",
+    "zerodays": "20",
     "jwsr": "含境外输入",
     "jwsrNum": "10",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+1",
-      "econadd": "-1",
+      "cureadd": "+0",
+      "econadd": "+0",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 1
+      "cureadd_n": 0
     },
     "city": [
       {
@@ -6016,12 +6032,12 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "3",
+        "cureNum": "6",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "7",
-        "zerodays": "12",
+        "econNum": "4",
+        "zerodays": "20",
         "jwsr": "",
         "asymptomNum": "1"
       },
@@ -6037,7 +6053,7 @@
         "mapName": "昆明市",
         "citycode": "CN53010000000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6053,7 +6069,7 @@
         "mapName": "昭通市",
         "citycode": "CN53060000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6069,7 +6085,7 @@
         "mapName": "西双版纳傣族自治州",
         "citycode": "CN53280000000000",
         "econNum": "0",
-        "zerodays": "69",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6085,7 +6101,7 @@
         "mapName": "玉溪市",
         "citycode": "CN53040000000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6101,7 +6117,7 @@
         "mapName": "曲靖市",
         "citycode": "CN53030000000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6117,7 +6133,7 @@
         "mapName": "大理白族自治州",
         "citycode": "CN53290000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6133,7 +6149,7 @@
         "mapName": "保山市",
         "citycode": "CN53050000000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6149,7 +6165,7 @@
         "mapName": "红河哈尼族彝族自治州",
         "citycode": "CN53250000000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6165,7 +6181,7 @@
         "mapName": "丽江市",
         "citycode": "CN53070000000000",
         "econNum": "0",
-        "zerodays": "72",
+        "zerodays": "80",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6181,7 +6197,7 @@
         "mapName": "德宏傣族景颇族自治州",
         "citycode": "CN53310000000000",
         "econNum": "0",
-        "zerodays": "71",
+        "zerodays": "79",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6197,7 +6213,7 @@
         "mapName": "普洱市",
         "citycode": "CN53080000000000",
         "econNum": "0",
-        "zerodays": "75",
+        "zerodays": "83",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6213,7 +6229,7 @@
         "mapName": "楚雄彝族自治州",
         "citycode": "CN53230000000000",
         "econNum": "0",
-        "zerodays": "70",
+        "zerodays": "78",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6229,7 +6245,7 @@
         "mapName": "文山壮族苗族自治州",
         "citycode": "CN53260000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6245,7 +6261,7 @@
         "mapName": "临沧市",
         "citycode": "CN53090000000000",
         "econNum": "0",
-        "zerodays": "74",
+        "zerodays": "82",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -6254,25 +6270,25 @@
   {
     "name": "天津",
     "ename": "tianjin",
-    "value": "185",
-    "conadd": "1",
+    "value": "189",
+    "conadd": "0",
     "hejian": "",
-    "econNum": "18",
+    "econNum": "8",
     "susNum": "0",
     "deathNum": "3",
-    "asymptomNum": "1",
-    "cureNum": "164",
-    "zerodays": "0",
+    "asymptomNum": "3",
+    "cureNum": "178",
+    "zerodays": "6",
     "jwsr": "含境外输入",
-    "jwsrNum": "49",
+    "jwsrNum": "53",
     "adddaily": {
-      "conadd": "+1",
+      "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+3",
+      "cureadd": "+2",
       "econadd": "-2",
-      "conadd_n": 1,
+      "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 3
+      "cureadd_n": 2
     },
     "city": [
       {
@@ -6287,7 +6303,7 @@
         "mapName": "宝坻区",
         "citycode": "CN12011500000000",
         "econNum": "0",
-        "zerodays": "51",
+        "zerodays": "61",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6303,7 +6319,7 @@
         "mapName": "河北区",
         "citycode": "CN12010500000000",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6319,7 +6335,7 @@
         "mapName": "北辰区",
         "citycode": "CN12011300000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6335,7 +6351,7 @@
         "mapName": "河东区",
         "citycode": "CN12010200000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6351,7 +6367,7 @@
         "mapName": "和平区",
         "citycode": "CN12010100000000",
         "econNum": "0",
-        "zerodays": "69",
+        "zerodays": "79",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6367,9 +6383,9 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "70",
+        "zerodays": "80",
         "jwsr": "",
-        "asymptomNum": ""
+        "asymptomNum": "1"
       },
       {
         "name": "河西区",
@@ -6383,7 +6399,7 @@
         "mapName": "河西区",
         "citycode": "CN12010300000000",
         "econNum": "0",
-        "zerodays": "69",
+        "zerodays": "79",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6399,7 +6415,7 @@
         "mapName": "宁河区",
         "citycode": "CN12011700000000",
         "econNum": "0",
-        "zerodays": "70",
+        "zerodays": "80",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6415,7 +6431,7 @@
         "mapName": "南开区",
         "citycode": "CN12010400000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6431,7 +6447,7 @@
         "mapName": "西青区",
         "citycode": "CN12011100000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6447,7 +6463,7 @@
         "mapName": "东丽区",
         "citycode": "CN12011000000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6463,7 +6479,7 @@
         "mapName": "红桥区",
         "citycode": "CN12010600000000",
         "econNum": "0",
-        "zerodays": "74",
+        "zerodays": "84",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6479,7 +6495,7 @@
         "mapName": "滨海新区",
         "citycode": "CN12011600000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6495,7 +6511,7 @@
         "mapName": "津南区",
         "citycode": "CN12011200000000",
         "econNum": "0",
-        "zerodays": "46",
+        "zerodays": "56",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6511,67 +6527,67 @@
         "mapName": "武清区",
         "citycode": "CN12011400000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "境外输入",
-        "conNum": "49",
-        "conadd": "1",
-        "conadd_str": "+1",
+        "conNum": "53",
+        "conadd": "0",
+        "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "31",
+        "cureNum": "45",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "18",
-        "zerodays": "0",
+        "econNum": "8",
+        "zerodays": "6",
         "jwsr": "",
-        "asymptomNum": "1"
+        "asymptomNum": "2"
       }
     ]
   },
   {
     "name": "山西",
     "ename": "shanxi",
-    "value": "173",
+    "value": "197",
     "conadd": "0",
     "hejian": "",
-    "econNum": "38",
+    "econNum": "55",
     "susNum": "0",
     "deathNum": "0",
-    "asymptomNum": "2",
-    "cureNum": "135",
-    "zerodays": "1",
+    "asymptomNum": "4",
+    "cureNum": "142",
+    "zerodays": "6",
     "jwsr": "含境外输入",
-    "jwsrNum": "40",
+    "jwsrNum": "64",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+0",
-      "econadd": "+0",
+      "cureadd": "+2",
+      "econadd": "-2",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 0
+      "cureadd_n": 2
     },
     "city": [
       {
         "name": "境外输入人员",
-        "conNum": "40",
+        "conNum": "64",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "2",
+        "cureNum": "9",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "38",
-        "zerodays": "1",
+        "econNum": "55",
+        "zerodays": "6",
         "jwsr": "",
-        "asymptomNum": "2"
+        "asymptomNum": "3"
       },
       {
         "name": "太原",
@@ -6585,7 +6601,7 @@
         "mapName": "太原市",
         "citycode": "CN14010000000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "62",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6601,7 +6617,7 @@
         "mapName": "大同市",
         "citycode": "CN14020000000000",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6617,7 +6633,7 @@
         "mapName": "阳泉市",
         "citycode": "CN14030000000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6633,7 +6649,7 @@
         "mapName": "长治市",
         "citycode": "CN14040000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6649,7 +6665,7 @@
         "mapName": "晋城市",
         "citycode": "CN14050000000000",
         "econNum": "0",
-        "zerodays": "54",
+        "zerodays": "63",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6665,7 +6681,7 @@
         "mapName": "朔州市",
         "citycode": "CN14060000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6681,7 +6697,7 @@
         "mapName": "晋中市",
         "citycode": "CN14070000000000",
         "econNum": "0",
-        "zerodays": "49",
+        "zerodays": "58",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6697,7 +6713,7 @@
         "mapName": "忻州市",
         "citycode": "CN14090000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6713,7 +6729,7 @@
         "mapName": "运城市",
         "citycode": "CN14080000000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6729,7 +6745,7 @@
         "mapName": "临汾市",
         "citycode": "CN14100000000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6745,7 +6761,7 @@
         "mapName": "吕梁市",
         "citycode": "CN14110000000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": "2"
       }
@@ -6757,12 +6773,12 @@
     "value": "139",
     "conadd": "0",
     "hejian": "",
-    "econNum": "2",
+    "econNum": "0",
     "susNum": "0",
     "deathNum": "2",
-    "asymptomNum": "4",
-    "cureNum": "135",
-    "zerodays": "8",
+    "asymptomNum": "1",
+    "cureNum": "137",
+    "zerodays": "18",
     "jwsr": "含境外输入",
     "jwsrNum": "47",
     "adddaily": {
@@ -6782,14 +6798,14 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "45",
+        "cureNum": "47",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "2",
-        "zerodays": "8",
+        "econNum": "0",
+        "zerodays": "18",
         "jwsr": "",
-        "asymptomNum": "3"
+        "asymptomNum": "1"
       },
       {
         "name": "外省输入",
@@ -6803,9 +6819,9 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "15",
+        "zerodays": "25",
         "jwsr": "",
-        "asymptomNum": "1"
+        "asymptomNum": ""
       },
       {
         "name": "兰州",
@@ -6819,7 +6835,7 @@
         "mapName": "兰州市",
         "citycode": "CN62010000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6835,7 +6851,7 @@
         "mapName": "天水市",
         "citycode": "CN62050000000000",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6851,7 +6867,7 @@
         "mapName": "定西市",
         "citycode": "CN62110000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6867,7 +6883,7 @@
         "mapName": "平凉市",
         "citycode": "CN62080000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6883,7 +6899,7 @@
         "mapName": "甘南藏族自治州",
         "citycode": "CN62300000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6899,7 +6915,7 @@
         "mapName": "白银市",
         "citycode": "CN62040000000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6915,7 +6931,7 @@
         "mapName": "陇南市",
         "citycode": "CN62120000000000",
         "econNum": "0",
-        "zerodays": "71",
+        "zerodays": "81",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6931,7 +6947,7 @@
         "mapName": "庆阳市",
         "citycode": "CN62100000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "74",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6947,7 +6963,7 @@
         "mapName": "临夏回族自治州",
         "citycode": "CN62290000000000",
         "econNum": "0",
-        "zerodays": "53",
+        "zerodays": "63",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6963,7 +6979,7 @@
         "mapName": "张掖市",
         "citycode": "CN62070000000000",
         "econNum": "0",
-        "zerodays": "76",
+        "zerodays": "86",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -6979,7 +6995,7 @@
         "mapName": "金昌市",
         "citycode": "CN62030000000000",
         "econNum": "0",
-        "zerodays": "77",
+        "zerodays": "87",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -6988,40 +7004,40 @@
   {
     "name": "内蒙古",
     "ename": "neimenggu",
-    "value": "190",
+    "value": "194",
     "conadd": "0",
     "hejian": "",
-    "econNum": "98",
-    "susNum": "24",
+    "econNum": "85",
+    "susNum": "7",
     "deathNum": "1",
-    "asymptomNum": "0",
-    "cureNum": "91",
-    "zerodays": "2",
+    "asymptomNum": "",
+    "cureNum": "108",
+    "zerodays": "3",
     "jwsr": "含境外输入",
-    "jwsrNum": "115",
+    "jwsrNum": "118",
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+8",
-      "econadd": "-8",
+      "cureadd": "+0",
+      "econadd": "+0",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 8
+      "cureadd_n": 0
     },
     "city": [
       {
         "name": "境外输入人员",
-        "conNum": "115",
+        "conNum": "118",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
-        "susNum": "24",
-        "cureNum": "17",
+        "susNum": "5",
+        "cureNum": "34",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "98",
-        "zerodays": "2",
+        "econNum": "84",
+        "zerodays": "7",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7037,7 +7053,7 @@
         "mapName": "鄂尔多斯市",
         "citycode": "CN15060000000000",
         "econNum": "0",
-        "zerodays": "70",
+        "zerodays": "78",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7053,7 +7069,7 @@
         "mapName": "包头市",
         "citycode": "CN15020000000000",
         "econNum": "0",
-        "zerodays": "65",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7069,7 +7085,7 @@
         "mapName": "锡林郭勒盟",
         "citycode": "CN15250000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "64",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7085,7 +7101,7 @@
         "mapName": "赤峰市",
         "citycode": "CN15040000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7101,7 +7117,7 @@
         "mapName": "巴彦淖尔市",
         "citycode": "CN15080000000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7111,13 +7127,13 @@
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
-        "susNum": "0",
+        "susNum": "1",
         "cureNum": "7",
         "deathNum": "0",
         "mapName": "呼和浩特市",
         "citycode": "CN15010000000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7133,13 +7149,13 @@
         "mapName": "通辽市",
         "citycode": "CN15050000000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
       {
         "name": "呼伦贝尔",
-        "conNum": "7",
+        "conNum": "8",
         "conadd": "0",
         "conadd_str": "+0",
         "hejian": "",
@@ -7148,8 +7164,8 @@
         "deathNum": "0",
         "mapName": "呼伦贝尔市",
         "citycode": "CN15070000000000",
-        "econNum": "0",
-        "zerodays": "56",
+        "econNum": "1",
+        "zerodays": "3",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7165,7 +7181,7 @@
         "mapName": "乌兰察布市",
         "citycode": "CN15090000000000",
         "econNum": "0",
-        "zerodays": "72",
+        "zerodays": "80",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7181,7 +7197,7 @@
         "mapName": "乌海市",
         "citycode": "CN15030000000000",
         "econNum": "0",
-        "zerodays": "70",
+        "zerodays": "78",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7197,7 +7213,7 @@
         "mapName": "兴安盟",
         "citycode": "CN15220000000000",
         "econNum": "0",
-        "zerodays": "80",
+        "zerodays": "88",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -7206,25 +7222,25 @@
   {
     "name": "台湾",
     "ename": "taiwan",
-    "value": "393",
-    "conadd": "5",
+    "value": "427",
+    "conadd": "2",
     "hejian": "",
-    "econNum": "273",
+    "econNum": "168",
     "susNum": "0",
     "deathNum": "6",
     "asymptomNum": "",
-    "cureNum": "114",
+    "cureNum": "253",
     "zerodays": "",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
-      "conadd": "+5",
+      "conadd": "+2",
       "deathadd": "+0",
-      "cureadd": "+5",
-      "econadd": "+0",
-      "conadd_n": 5,
+      "cureadd": "+36",
+      "econadd": "-34",
+      "conadd_n": 2,
       "deathadd_n": 0,
-      "cureadd_n": 5
+      "cureadd_n": 36
     },
     "city": []
   },
@@ -7234,47 +7250,47 @@
     "value": "45",
     "conadd": "0",
     "hejian": "",
-    "econNum": "32",
+    "econNum": "19",
     "susNum": "0",
     "deathNum": "0",
     "asymptomNum": "",
-    "cureNum": "13",
+    "cureNum": "26",
     "zerodays": "",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
       "conadd": "+0",
       "deathadd": "+0",
-      "cureadd": "+0",
-      "econadd": "+0",
+      "cureadd": "+2",
+      "econadd": "-2",
       "conadd_n": 0,
       "deathadd_n": 0,
-      "cureadd_n": 0
+      "cureadd_n": 2
     },
     "city": []
   },
   {
     "name": "香港",
     "ename": "xianggang",
-    "value": "1012",
-    "conadd": "8",
+    "value": "1035",
+    "conadd": "6",
     "hejian": "",
-    "econNum": "574",
+    "econNum": "332",
     "susNum": "0",
     "deathNum": "4",
     "asymptomNum": "",
-    "cureNum": "434",
+    "cureNum": "699",
     "zerodays": "",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
-      "conadd": "+8",
+      "conadd": "+6",
       "deathadd": "+0",
-      "cureadd": "+74",
-      "econadd": "-66",
-      "conadd_n": 8,
+      "cureadd": "+21",
+      "econadd": "-15",
+      "conadd_n": 6,
       "deathadd_n": 0,
-      "cureadd_n": 74
+      "cureadd_n": 21
     },
     "city": []
   },
@@ -7284,12 +7300,12 @@
     "value": "147",
     "conadd": "0",
     "hejian": "",
-    "econNum": "1",
+    "econNum": "0",
     "susNum": "0",
     "deathNum": "2",
-    "asymptomNum": "1",
-    "cureNum": "144",
-    "zerodays": "17",
+    "asymptomNum": "0",
+    "cureNum": "145",
+    "zerodays": "26",
     "jwsr": "含境外输入",
     "jwsrNum": "1",
     "adddaily": {
@@ -7309,14 +7325,14 @@
         "conadd_str": "+0",
         "hejian": "",
         "susNum": "0",
-        "cureNum": "0",
+        "cureNum": "1",
         "deathNum": "0",
         "mapName": "",
         "citycode": "",
-        "econNum": "1",
-        "zerodays": "17",
+        "econNum": "0",
+        "zerodays": "26",
         "jwsr": "",
-        "asymptomNum": "1"
+        "asymptomNum": ""
       },
       {
         "name": "贵阳",
@@ -7330,7 +7346,7 @@
         "mapName": "贵阳市",
         "citycode": "CN52010000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7346,7 +7362,7 @@
         "mapName": "遵义市",
         "citycode": "CN52030000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7362,7 +7378,7 @@
         "mapName": "六盘水市",
         "citycode": "CN52020000000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7378,7 +7394,7 @@
         "mapName": "安顺市",
         "citycode": "CN52040000000000",
         "econNum": "0",
-        "zerodays": "68",
+        "zerodays": "77",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7394,7 +7410,7 @@
         "mapName": "毕节市",
         "citycode": "CN52050000000000",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7410,7 +7426,7 @@
         "mapName": "铜仁市",
         "citycode": "CN52060000000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7426,7 +7442,7 @@
         "mapName": "黔东南苗族侗族自治州",
         "citycode": "CN52260000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7442,7 +7458,7 @@
         "mapName": "黔南布依族苗族自治州",
         "citycode": "CN52270000000000",
         "econNum": "0",
-        "zerodays": "63",
+        "zerodays": "72",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7458,7 +7474,7 @@
         "mapName": "黔西南布依族苗族自治州",
         "citycode": "CN52230000000000",
         "econNum": "0",
-        "zerodays": "67",
+        "zerodays": "76",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -7473,9 +7489,9 @@
     "econNum": "0",
     "susNum": "0",
     "deathNum": "0",
-    "asymptomNum": "0",
+    "asymptomNum": "",
     "cureNum": "1",
-    "zerodays": "76",
+    "zerodays": "85",
     "jwsr": "",
     "jwsrNum": 0,
     "adddaily": {
@@ -7500,7 +7516,7 @@
         "mapName": "拉萨市",
         "citycode": "CN54010000000000",
         "econNum": "0",
-        "zerodays": "76",
+        "zerodays": "85",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -7517,7 +7533,7 @@
     "deathNum": "0",
     "asymptomNum": "1",
     "cureNum": "18",
-    "zerodays": "69",
+    "zerodays": "78",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
@@ -7542,7 +7558,7 @@
         "mapName": "西宁市",
         "citycode": "CN63010000000000",
         "econNum": "0",
-        "zerodays": "69",
+        "zerodays": "78",
         "jwsr": "",
         "asymptomNum": "1"
       },
@@ -7558,7 +7574,7 @@
         "mapName": "海北藏族自治州",
         "citycode": "CN63220000000000",
         "econNum": "0",
-        "zerodays": "71",
+        "zerodays": "80",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -7575,7 +7591,7 @@
     "deathNum": "3",
     "asymptomNum": "",
     "cureNum": "73",
-    "zerodays": "49",
+    "zerodays": "58",
     "jwsr": "",
     "jwsrNum": 0,
     "adddaily": {
@@ -7600,7 +7616,7 @@
         "mapName": "乌鲁木齐市",
         "citycode": "CN65010000000000",
         "econNum": "0",
-        "zerodays": "61",
+        "zerodays": "70",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7616,7 +7632,7 @@
         "mapName": "伊犁哈萨克自治州",
         "citycode": "CN65400000000000",
         "econNum": "0",
-        "zerodays": "58",
+        "zerodays": "67",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7632,7 +7648,7 @@
         "mapName": "昌吉回族自治州",
         "citycode": "CN65230000000000",
         "econNum": "0",
-        "zerodays": "64",
+        "zerodays": "73",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7648,7 +7664,7 @@
         "mapName": "吐鲁番市",
         "citycode": "CN65040000000000",
         "econNum": "0",
-        "zerodays": "59",
+        "zerodays": "68",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7664,7 +7680,7 @@
         "mapName": "巴音郭楞蒙古自治州",
         "citycode": "CN65280000000000",
         "econNum": "0",
-        "zerodays": "66",
+        "zerodays": "75",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7680,7 +7696,7 @@
         "mapName": "阿克苏地区",
         "citycode": "CN65290000000000",
         "econNum": "0",
-        "zerodays": "75",
+        "zerodays": "84",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7696,7 +7712,7 @@
         "mapName": "五家渠市",
         "citycode": "CN65900400000000",
         "econNum": "0",
-        "zerodays": "60",
+        "zerodays": "69",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7712,7 +7728,7 @@
         "mapName": "石河子市",
         "citycode": "CN65900100000000",
         "econNum": "0",
-        "zerodays": "57",
+        "zerodays": "66",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7728,7 +7744,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "49",
+        "zerodays": "58",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7744,7 +7760,7 @@
         "mapName": "新疆生产建设兵团第七师",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "49",
+        "zerodays": "58",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7760,7 +7776,7 @@
         "mapName": "新疆生产建设兵团第九师",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "49",
+        "zerodays": "58",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7776,7 +7792,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "49",
+        "zerodays": "58",
         "jwsr": "",
         "asymptomNum": ""
       }
@@ -7793,7 +7809,7 @@
     "deathNum": "0",
     "asymptomNum": "0",
     "cureNum": "75",
-    "zerodays": "42",
+    "zerodays": "51",
     "jwsr": "含境外输入",
     "jwsrNum": 0,
     "adddaily": {
@@ -7818,7 +7834,7 @@
         "mapName": "银川市",
         "citycode": "CN64010000000000",
         "econNum": "0",
-        "zerodays": "42",
+        "zerodays": "51",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7834,7 +7850,7 @@
         "mapName": "石嘴山市",
         "citycode": "CN64020000000000",
         "econNum": "0",
-        "zerodays": "71",
+        "zerodays": "80",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7850,7 +7866,7 @@
         "mapName": "吴忠市",
         "citycode": "CN64030000000000",
         "econNum": "0",
-        "zerodays": "56",
+        "zerodays": "65",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7866,7 +7882,7 @@
         "mapName": "固原市",
         "citycode": "CN64040000000000",
         "econNum": "0",
-        "zerodays": "62",
+        "zerodays": "71",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7882,7 +7898,7 @@
         "mapName": "中卫市",
         "citycode": "CN64050000000000",
         "econNum": "0",
-        "zerodays": "48",
+        "zerodays": "57",
         "jwsr": "",
         "asymptomNum": ""
       },
@@ -7898,7 +7914,7 @@
         "mapName": "",
         "citycode": "",
         "econNum": "0",
-        "zerodays": "49",
+        "zerodays": "58",
         "jwsr": "",
         "asymptomNum": ""
       }
