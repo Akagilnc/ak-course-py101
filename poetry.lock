@@ -921,7 +921,7 @@ six = ">=1.9"
 [[package]]
 category = "main"
 description = "Run a subprocess in a pseudo terminal"
-marker = "sys_platform != \"win32\" or os_name != \"nt\" or python_version >= \"3.3\" and sys_platform != \"win32\" or python_version >= \"3.4\" and sys_platform != \"win32\""
+marker = "python_version >= \"3.3\" and sys_platform != \"win32\" or sys_platform != \"win32\" or python_version >= \"3.4\" and sys_platform != \"win32\" or os_name != \"nt\" or python_version >= \"3.3\" and sys_platform != \"win32\" and (python_version >= \"3.3\" and sys_platform != \"win32\" or sys_platform != \"win32\" or python_version >= \"3.4\" and sys_platform != \"win32\") or python_version >= \"3.4\" and sys_platform != \"win32\" and (python_version >= \"3.3\" and sys_platform != \"win32\" or sys_platform != \"win32\" or python_version >= \"3.4\" and sys_platform != \"win32\")"
 name = "ptyprocess"
 optional = false
 python-versions = "*"
@@ -1443,6 +1443,19 @@ notebook = ">=4.4.1"
 
 [[package]]
 category = "main"
+description = "A little word cloud generator"
+name = "wordcloud"
+optional = false
+python-versions = "*"
+version = "1.6.0"
+
+[package.dependencies]
+matplotlib = "*"
+numpy = ">=1.6.1"
+pillow = "*"
+
+[[package]]
+category = "main"
 description = "Library for developers to extract data from Microsoft Excel (tm) spreadsheet files"
 name = "xlrd"
 optional = false
@@ -1463,7 +1476,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools", "func-timeout"]
 
 [metadata]
-content-hash = "8b779fd960705935f47357b0824a982cf1b35566540bf7e002a658b37fe679ee"
+content-hash = "c89a6b4e25e41691df551a35a0fd732e8eedfb6171ab07e7df3bbeb7846d1948"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -2229,6 +2242,25 @@ websockets = [
 widgetsnbextension = [
     {file = "widgetsnbextension-3.5.1-py2.py3-none-any.whl", hash = "sha256:bd314f8ceb488571a5ffea6cc5b9fc6cba0adaf88a9d2386b93a489751938bcd"},
     {file = "widgetsnbextension-3.5.1.tar.gz", hash = "sha256:079f87d87270bce047512400efd70238820751a11d2d8cb137a5a5bdbaf255c7"},
+]
+wordcloud = [
+    {file = "wordcloud-1.6.0-cp27-cp27m-macosx_10_6_x86_64.whl", hash = "sha256:b99157f068826697d93d2e5e61b1acff35591d5e534818368ccd56945b9a5f29"},
+    {file = "wordcloud-1.6.0-cp27-cp27m-manylinux1_x86_64.whl", hash = "sha256:60c9178ea11d6537f19dad7eb5387f2516737796827710c9409ab9602d9493c7"},
+    {file = "wordcloud-1.6.0-cp27-cp27m-win_amd64.whl", hash = "sha256:0baf47567bd426bf65963d53a1aaa69af35c2e096dc0ad9073efd5833cccd20a"},
+    {file = "wordcloud-1.6.0-cp27-cp27mu-manylinux1_x86_64.whl", hash = "sha256:52d0772e385e38144be2bdb58a0d7817f2c80db0640e1efad699cff8ea86533d"},
+    {file = "wordcloud-1.6.0-cp34-cp34m-macosx_10_6_x86_64.whl", hash = "sha256:61156874a21fffb46cdfb3518bbc9865fbfe9973ecc36eff20e86792687e439b"},
+    {file = "wordcloud-1.6.0-cp34-cp34m-manylinux1_x86_64.whl", hash = "sha256:358f4ead931bc8297de3dbd3a26ce8d1e3fe27c1027cce091c1b7037e4ba4904"},
+    {file = "wordcloud-1.6.0-cp34-cp34m-win_amd64.whl", hash = "sha256:473b660baee64578dad272a18253b59245a337f5dfa3a186e32cf20b0eee4110"},
+    {file = "wordcloud-1.6.0-cp35-cp35m-macosx_10_6_x86_64.whl", hash = "sha256:950882b89298c318e5f7cf10027f00b4e09402e18f719cb656aea5209a57e5a9"},
+    {file = "wordcloud-1.6.0-cp35-cp35m-manylinux1_x86_64.whl", hash = "sha256:a8d829e19431709c1310a505687fc7c0f869c48259f4a55b5bf387642ed6da46"},
+    {file = "wordcloud-1.6.0-cp35-cp35m-win_amd64.whl", hash = "sha256:e9ae81e8dbb5953f8cf94083b990c760b179b4000dae2babd14827d61230fc69"},
+    {file = "wordcloud-1.6.0-cp36-cp36m-macosx_10_6_x86_64.whl", hash = "sha256:ae6c0030a7fd09bd35713592ba005da9457f7d38f46dc807484c5e0a379d813c"},
+    {file = "wordcloud-1.6.0-cp36-cp36m-manylinux1_x86_64.whl", hash = "sha256:c59387b35af772626d4a87b986eb8ab29d3d7ffca6f94da95f4c3a0961407df3"},
+    {file = "wordcloud-1.6.0-cp36-cp36m-win_amd64.whl", hash = "sha256:b0256ca213eb52e5261307e64faaf242742ada1322bb9d5090ecdaa9b44540ee"},
+    {file = "wordcloud-1.6.0-cp37-cp37m-macosx_10_6_x86_64.whl", hash = "sha256:fc3db0cc71e4d5666f732c5b4b3c04a0d58242579cb6c6e5146ffd2890cc5d57"},
+    {file = "wordcloud-1.6.0-cp37-cp37m-manylinux1_x86_64.whl", hash = "sha256:d4b970d4d30bc9baec9e8b2d7e69fb9771576bb09d6b6f6ce6f22403ca58d6de"},
+    {file = "wordcloud-1.6.0-cp37-cp37m-win_amd64.whl", hash = "sha256:3971ca6042745169e9645b3bbce64b790f8c211ad7c7d265049992506e033212"},
+    {file = "wordcloud-1.6.0.tar.gz", hash = "sha256:4335deb87b7cd9f8a6ce12de0257d15f14f98874f326e7a839f27b2c8ac792ca"},
 ]
 xlrd = [
     {file = "xlrd-1.2.0-py2.py3-none-any.whl", hash = "sha256:e551fb498759fa3a5384a94ccd4c3c02eb7c00ea424426e212ac0c57be9dfbde"},
