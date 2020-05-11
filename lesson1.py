@@ -60,5 +60,5 @@ def guess_number():
 
 
 print_round_area()
-# odd_or_even()
+odd_or_even()
 # guess_number()
