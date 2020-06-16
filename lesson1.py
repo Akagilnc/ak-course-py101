@@ -1,31 +1,33 @@
-# 求圆的面积
 def get_round_area(input_r):
-    # 定义pi的值
+    # 定义pi
     pi = 3.14
-    # 半径转换为float
-    input_r = float(input_r)
+    # 转化半径为float
+    r = float(input_r)
     # 计算面积
-    area = pi * input_r ** 2
+    area = pi * r ** 2
+    # 输出结果
     return area
 
 
-# 定义一个判断奇偶数
 def odd_or_even(input_number):
-    # 把输入转换为int
-    input_number = int(input_number)
-    # 判断奇偶
+    # 判断奇偶叔
     # 如果是偶数
     if input_number % 2 == 0:
+        # 返回even
         return 'even'
     # 否则
     else:
+        # 返回odd
         return 'odd'
-# # 获取用户输入的半径
-# r = input('input r: ')
-# result = get_round_area(r)
-# # 打印结果
-# print(result)
+
+
+# r = input('Input r: ')
+# area = get_round_area(r)
+# print(area)
+
+# 获取用户的输入，转化为数字
 
 number = input('input a number: ')
+number = int(number)
 result = odd_or_even(number)
 print(result)
