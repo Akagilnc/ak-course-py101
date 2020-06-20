@@ -1,4 +1,4 @@
 ak, 32, it, m
 lily, 22, hr, f
-tiger, 37, it, m
-lisa, 25, hr, f
+tiger, 35, it, m
+lisa, 22, hr, f
