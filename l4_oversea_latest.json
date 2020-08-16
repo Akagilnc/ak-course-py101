@@ -1,12 +1,12 @@
 {
-  "certain": "2574216",
-  "uncertain": "10356",
-  "die": "180720",
-  "recure": "656399",
-  "certain_inc": "+63082",
-  "uncertain_inc": "+0",
-  "die_inc": "+5409",
-  "recure_inc": "+26704",
-  "ecertain": "1737097",
-  "ecertain_inc": "+30969"
+    "certain": "14179203",
+    "uncertain": "0",
+    "die": "596490",
+    "recure": "8529330",
+    "certain_inc": "+233872",
+    "uncertain_inc": "+0",
+    "die_inc": "+6497",
+    "recure_inc": "+215259",
+    "ecertain": "5053383",
+    "ecertain_inc": "+12116"
 }
