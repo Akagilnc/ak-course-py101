@@ -15,7 +15,7 @@ def create_file():
 # name, age 岁，是一个 描述语
 def read_and_process_file():
     # 打开文件
-    data = open('lesson2.txt', 'r')
+    data = open('lesson2.txt', 'r', encoding='utf_8')
     # define a list
     results = []
     # 依次读取每一条记录
