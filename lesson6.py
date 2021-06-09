@@ -13,11 +13,11 @@ def process_and_save_to_excel(file_names):
     with pd.ExcelWriter('l5_report.xlsx') as file:
         for filename in file_names:
             result = read_json_file('{}.json'.format(filename))
-            content_df = pd.DataFrame(result, columns=['name', 'cureNum', 'deathNum', 'value'])
+            content_df = pd.DataFrame(result, columns=['name', 'cureNum', 'deathNum', 'value', 'econNum'])
             content_df = content_df.rename(columns={'name': '名称', 'value': '确诊人数', 'cureNum': '治愈人数',
-                                                    'deathNum': '死亡人数'})
-            cols = ['确诊人数', '治愈人数', '死亡人数']
-            content_df = content_df.astype({'确诊人数': int, '治愈人数': int, '死亡人数': int})
+                                                    'deathNum': '死亡人数', 'econNum': '现存确诊'})
+            cols = ['确诊人数', '治愈人数', '死亡人数', '现存确诊']
+            content_df = content_df.astype({'确诊人数': int, '治愈人数': int, '死亡人数': int, '现存确诊': int})
             sum_info = content_df[cols].sum()
             sum_info = sum_info.rename('{} sum'.format(filename))
             sum_df = sum_df.append(sum_info)
@@ -39,8 +39,7 @@ def make_top10_country():
     # 整合數據
     all_df = pd.concat(data, ignore_index=True)
     # 排序，找到Top10的國家
-    print(all_df)
-    all_df = all_df.sort_values(by='确诊人数', ascending=False)
+    all_df = all_df.sort_values(by='现存确诊', ascending=False)
     top_10_df = all_df.head(10)
     # 保存到report_fixed
     with pd.ExcelWriter('l5_report.xlsx', mode='a', engine='openpyxl') as writer:
