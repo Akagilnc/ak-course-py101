@@ -14,8 +14,8 @@ def process_and_save_to_excel(file_names):
         for filename in file_names:
             result = read_json_file('{}.json'.format(filename))
             content_df = pd.DataFrame(result, columns=['name', 'cureNum', 'deathNum', 'value'])
-            content_df = content_df.rename(columns={'name': '名称', 'conNum': '确诊人数', 'cureNum': '治愈人数',
-                                                    'deathNum': '死亡人数', 'value': '确诊人数'})
+            content_df = content_df.rename(columns={'name': '名称', 'value': '确诊人数', 'cureNum': '治愈人数',
+                                                    'deathNum': '死亡人数'})
             cols = ['确诊人数', '治愈人数', '死亡人数']
             content_df = content_df.astype({'确诊人数': int, '治愈人数': int, '死亡人数': int})
             sum_info = content_df[cols].sum()
