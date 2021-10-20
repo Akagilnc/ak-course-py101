@@ -63,10 +63,6 @@
     ```
     
     ```python
-         spam.setdefault('status', 'unknown')
-    ```
-    
-    ```python
          if 'status' not in spam.keys():
              spam['status'] = 'unknown'
     ```
@@ -97,7 +93,7 @@
    
     ```python
     for temp in spam:
-        if temp.setdefault() == 8:
+        if temp == 8:
             print(8)
     ```
 

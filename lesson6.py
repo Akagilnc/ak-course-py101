@@ -2,49 +2,53 @@ import pandas as pd
 import json
 
 
-# 读取文件
+# 读取json文件
 def read_json_file(file_name):
     with open(file_name, encoding='utf-8') as file:
         return json.load(file)
 
 
 def process_and_save_to_excel(file_names):
-    sum_df = pd.DataFrame()
-    with pd.ExcelWriter('l5_report.xlsx') as file:
-        for filename in file_names:
-            result = read_json_file('{}.json'.format(filename))
-            content_df = pd.DataFrame(result, columns=['name', 'cureNum', 'deathNum', 'value', 'econNum'])
-            content_df = content_df.rename(columns={'name': '名称', 'value': '确诊人数', 'cureNum': '治愈人数',
-                                                    'deathNum': '死亡人数', 'econNum': '现存确诊'})
-            cols = ['确诊人数', '治愈人数', '死亡人数', '现存确诊']
-            content_df = content_df.astype({'确诊人数': int, '治愈人数': int, '死亡人数': int, '现存确诊': int})
-            sum_info = content_df[cols].sum()
-            sum_info = sum_info.rename('{} sum'.format(filename))
+    with pd.ExcelWriter('l6_report.xlsx') as file:
+        sum_df = pd.DataFrame()
+        for name in file_names:
+            result = read_json_file(name)
+            data = pd.DataFrame(result, columns=[
+                'name', 'value', 'econNum', 'cureNum', 'deathNum'
+            ])
+            columns = {'name': '名称', 'value': '累计确诊',
+                       'econNum': '现存确诊', 'cureNum': '治愈人数',
+                       'deathNum': '死亡人数'}
+            data = data.rename(columns=columns)
+            cols_to_sum = ['累计确诊', '现存确诊',
+                           '治愈人数', '死亡人数']
+            data = data.astype({'累计确诊': int, '现存确诊': int,
+                                '治愈人数': int, '死亡人数': int})
+            sum_info = data[cols_to_sum].sum()
+            sum_info = sum_info.rename(name[:-5])
             sum_df = sum_df.append(sum_info)
-            content_df.to_excel(file, index=False,
-                                sheet_name=filename)
+
+            data.to_excel(file, index=False, sheet_name=name[:-5])
+        print(sum_df)
         sum_df.to_excel(file, sheet_name='SUM')
 
 
-def make_top10_country():
-    top_10_sheet_name = 'top10'
-    # 讀取所有的sheet數據
-    data = pd.read_excel('l5_report.xlsx', sheet_name=None)
-
-    # 去掉不需要的sheet
-    del data['SUM']
-    # 確保我們的 top10 sheet 不存在
-    if top_10_sheet_name in data.keys():
-        del data[top_10_sheet_name]
-    # 整合數據
-    all_df = pd.concat(data, ignore_index=True)
-    # 排序，找到Top10的國家
-    all_df = all_df.sort_values(by='现存确诊', ascending=False)
-    top_10_df = all_df.head(10)
-    # 保存到report_fixed
-    with pd.ExcelWriter('l5_report.xlsx', mode='a', engine='openpyxl') as writer:
-        top_10_df.to_excel(writer, sheet_name=top_10_sheet_name, index=False)
+def make_sp_area():
+    all_df_dict = pd.read_excel(
+        'l6_report.xlsx', sheet_name=None)
+    del all_df_dict['SUM']
+    print(all_df_dict.keys())
+    if 'top10' in all_df_dict.keys():
+        del all_df_dict['top10']
+    all_df = pd.concat(all_df_dict, ignore_index=True)
+    better_df = all_df[
+        (all_df['累计确诊'] > 20000) & (all_df['现存确诊'] < 5000)]
+    all_df = all_df.sort_values(by='累计确诊', ascending=False)
+    top10_df = all_df.head(10)
+    with pd.ExcelWriter('l6_report.xlsx', engine='openpyxl',
+                        mode='a') as file:
+        better_df.to_excel(file, sheet_name='缓解区',
+                          index=False)
 
 
-process_and_save_to_excel(['l5_oversea_area_latest', 'l5_china_area_latest'])
-make_top10_country()
+make_sp_area()

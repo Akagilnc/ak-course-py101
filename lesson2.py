@@ -1,68 +1,41 @@
-# 创建文件。并且写入内容
-def create_file():
-    # 打开文件
-    file = open('hr.txt', 'w', encoding='utf-8')
-    # 操作：写入内容
+def write_to_file(file_name):
+    # open
+    file = open(file_name, 'w', encoding='utf-8')
+    # write
     file.write('ak, 32, m, it\n')
     file.write('elsa, 22, f, hr\n')
     file.write('tiger, 35, m, it\n')
-    file.write('lisa, 27, f, hr\n')
-    # 关闭文件
+    file.write('lisa, 24, f, hr\n')
+    # close
     file.close()
 
 
-# create_file()
+# write_to_file('l2.txt')
 
 
-# 读取文件，生成欢迎语句
-def read_and_process():
-    # 打开文件
-    file = open('hr.txt', encoding='utf-8')
-    # 操作文件
-    # 初始化结果集
+def read_and_process(file_name):
+    file = open(file_name, encoding='utf-8')
+    lines = file.readlines()
+    file.close()
+    template = '大家好，我叫{}，今年{}岁, 是个{}\n'
     results = []
-    # 依次读取每一行记录
-    for line in file.readlines():
-        name, age, sex, depart = line.split(', ')
-        temp = '大家好，我叫{}，今年{}岁，新加入{}部门，是个{}\n'
+    for line in lines:
+        line = line.strip()
+        name, age, sex, dpart = line.split(', ')
         if sex == 'm':
             content = '活泼可爱的大男孩'
         else:
             content = '美丽冻人的小姐姐'
-        result = temp.format(name, age, depart.strip(), content)
-        results.append(result)
-    file.close()
+        intro = template.format(name, age, content)
+        results.append(intro)
     return results
 
 
-def write_results_to_file(content_list):
-    file = open('report.txt', 'w')
-    file.writelines(content_list)
+def write_results(file_name, data):
+    file = open(file_name, 'w', encoding='utf-8')
+    file.writelines(data)
     file.close()
 
 
-# results = read_and_process()
-# write_results_to_file(results)
-write_results_to_file(read_and_process())
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# # 把问候语结果集，保存到一个新的文件，lesson2_report.txt
-# def save_to_file(input_list):
-#     # 打开
-#     # 操作：写入
-#     # 关闭
-
-
+contents = read_and_process('hr.txt')
+write_results('l2_report.txt', contents)

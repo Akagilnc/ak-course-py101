@@ -38,7 +38,7 @@
         a = input('input anything')
     ```
    
-7. 请说出下列代码哪一句是错误的
+7. 请说出下列代码哪一句一定是错误的
 
     `sum = num1 + num2`
     

@@ -1,34 +1,22 @@
-import json
 import pandas as pd
 
 
-# 读取文件
-def read_json_file(file_name):
-    with open(file_name, encoding='utf-8') as file:
-        return json.load(file)
+def read_excel_from_file(file_name):
+    data = pd.read_excel(file_name)
+    return data
 
 
-def process_and_save_to_excel(filename):
-    sum_df = pd.DataFrame()
-    with pd.ExcelWriter('l5_report.xlsx') as file:
-        result = read_json_file('{}.json'.format(filename))
-        content_df = pd.DataFrame(result, columns=['name', 'conNum', 'cureNum', 'deathNum'])
-        content_df = content_df.rename(columns={'name': '名称', 'conNum': '确诊人数', 'cureNum': '治愈人数',
-                                        'deathNum': '死亡人数'})
-        cols = ['确诊人数', '治愈人数', '死亡人数']
-        print(content_df)
-        content_df = content_df.astype({'确诊人数': int, '治愈人数': int, '死亡人数': int})
-        sum_df = sum_df.append(content_df[cols].sum(), ignore_index=True)
-        content_df.to_excel(file, index=False,
-                            sheet_name=filename)
-        sum_df.to_excel(file, index=False, sheet_name='SUM')
+def process_data(infos):
+    provinces = infos['直辖市省份'].unique()
+    useful_col_names = ['直辖市省份', '城市地区', '现存确诊', '累计确诊', '治愈', '死亡', '无病例天数']
+    with pd.ExcelWriter('l5_data.xlsx') as writer:
+        for province in provinces:
+            p_info = infos[infos.直辖市省份 == province]
+            p_info[useful_col_names].to_excel(writer, sheet_name=province, index=False)
 
 
-file_names = [
-    'l5_china_area_latest',
-    'l5_oversea_history',
-    'l5_oversea_area_latest',
-    'l5_china_history',
-    'l5_world_area_latest'
-]
-process_and_save_to_excel(file_names[2])
+# data = read_excel_from_file('l4_report.xlsx')
+# process_data(data)
+
+data = pd.read_excel('l5_data.xlsx', sheet_name=None)
+print(data)

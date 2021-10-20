@@ -31,6 +31,6 @@ def process_data():
 
 result = process_data()
 contents = pd.DataFrame(result)
-contents = contents.astype({'确诊': 'float', '治愈': 'float'})
-# print(contents[contents.省份 == '湖北'])
-contents.to_excel('l4_hw.xlsx', index=False)
+contents = contents.astype({'确诊': 'int', '治愈': 'int', '死亡': 'int'})
+print(contents[contents.省份 == '湖北'])
+# contents.to_excel('l4_hw.xlsx', index=False)
