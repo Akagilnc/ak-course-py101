@@ -21,7 +21,7 @@
     2和4 都是大小写有错误
     </details>
     
-1. 对于 `import pandas as pd` 以下说法正确的是？
+2. 对于 `import pandas as pd` 以下说法正确的是？
     
     引入了pandas这个外部包
     
@@ -42,7 +42,7 @@
     
     </details>
     
-1. 对于一个 DataFrame df , df['x']是在做什么？
+3. 对于一个 DataFrame df , df['x']是在做什么？
     
     取得key为'x'的value
     
@@ -52,7 +52,7 @@
     
     取列名为'x'的列
 
-1. 对于DataFrame.append()的描述正确的为：
+4. 对于DataFrame.append()的描述正确的为：
     
     df.append(x)即可把x添加到df里面去
     
@@ -62,7 +62,7 @@
     
     df.append()和list.append()的工作方式不同
 
-1. 对于初始化 DataFrame df 时， `df = pd.DataFrame(data, columns=['1', '2', '3'])` 是在做什么
+5. 对于初始化 DataFrame df 时， `df = pd.DataFrame(data, columns=['1', '2', '3'])` 是在做什么
 
     新建3列，列名分别为1, 2, 3
     
@@ -70,9 +70,9 @@
     
     从原始数据中，只拿行名为'1', '2', '3'的
     
-    从原始数据中，找到列名为'1', '2', '3'的
+    从原始数据中，只拿列名为'1', '2', '3'的
     
-1. 对于已知的`DataFrame df，df.sum()` 的描述正确的是？
+6. 对于已知的`DataFrame df，df.sum()` 的描述正确的是？
     
     只能对一列数字(整数或浮点数或其它数据类型)求和
     
@@ -84,7 +84,7 @@
     
     最终返回的是一个Series
 
-1. `df.to_excel()` 的描述正确的是？
+7. `df.to_excel()` 的描述正确的是？
 
     第一个参数可以传文件名，但是必须要是'xlsx'结尾的
     
@@ -94,7 +94,7 @@
     
     第一个参数可以用`'{}.json'.format(x)`的方式传入
 
-1. 对于`writer = pd.ExcelWriter('x.xlsx', engine='openpyxl')`，以下描述正确的是：
+8. 对于`writer = pd.ExcelWriter('x.xlsx', engine='openpyxl')`，以下描述正确的是：
 
     之后我可能会把数据存入到x.xlsx的默认sheet里面
     
