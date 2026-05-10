@@ -1,3 +1,22 @@
-.idea
-.venv
-__pycache__
+.DS_Store
+.idea/
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+
+# Jupyter local autosaves
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+
+# Local/downloaded dependencies and partial downloads
+*.whl
+*.part
+*.zip
+*.ttf
+get-pip.py
+chromedriver
+
+# Office temporary lock files
+~$*
