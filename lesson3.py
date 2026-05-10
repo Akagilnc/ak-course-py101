@@ -1,37 +1,70 @@
-import __hello__
-import requests
-import json
+def print_list():
+    temp = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    print(temp[2])
+    print(temp[3:8])
+    print(temp[-4:-1])
+    print(temp[0:5:2])
 
 
-# 调用API获得最新的疫情数据，并保存到一个json文件
-def call_api_and_save_to_file():
-    # 调用API
-    data = requests.get('https://interface.sina.cn/news/wap/fymap2020_data.d.json')
-    # 打开文件
-    file = open('lesson3.json', 'w', encoding='utf_8')
-    # 保存文件
-    json.dump(data.json(), file, ensure_ascii=False, indent=4)
-    # 关闭文件
-    file.close()
+# print_list()
 
 
-# 读取文件，并且获得海外疫情汇总数据，并打印到屏幕
-def read_and_process():
-    # 读取json文件
-    file = open('lesson3.json', encoding='utf_8')
-    contents = json.load(file)
-
-    # 找到我们的海外疫情数据
-    infos = contents.get('data').get('othertotal')
-
-    # 打印数据 模板“截止今日，海外疫情 确诊 较昨日， 死亡 较昨日， 治愈 较昨日”
-    template = '截止今日，海外疫情 确诊{} 较昨日{}， 死亡{} 较昨日{}， 治愈{} 较昨日{}'
-    print(template.format(
-        infos.get('certain'), infos.get('certain_inc'),
-        infos.get('die'), infos.get('die_inc'),
-        infos.get('recure'), infos.get('recure_inc')
-    ))
+def read_and_print():
+    # 读取文件的数据
+    with open('hr.txt') as file:
+        # 读取每行的数据
+        data = file.readlines()
+    for line in data:
+        # 切分数据
+        infos = line.split(', ')
+        # 打印需要的数据
+        print(infos[0], infos[1], infos[2])
 
 
-call_api_and_save_to_file()
-read_and_process()
+# read_and_print()
+
+
+def make_dict_data():
+    results = []
+    # 读取文件的数据
+    with open('hr.txt') as file:
+        # 读取每行数据
+        infos = file.readlines()
+    # 切分数据
+    for info in infos:
+        data = info.split(', ')
+        # 生成字典
+        temp = {'姓名': data[0], '信息': data[1:]}
+        # 将字典存到list里
+        results.append(temp)
+    # 打印所有男性员工
+    for result in results:
+        if result.get('信息')[1] == 'm':
+            print(result.get('姓名'))
+
+
+# make_dict_data()
+
+
+def big_than_30():
+    results = []
+    # 读取文件数据
+    with open('hr.txt') as file:
+        data = file.readlines()
+    # 读取每一行数据
+    for info in data:
+        # 拆数据
+        info = info.split(', ')
+        # 生成字典
+        temp = {'姓名': info[0], '年龄': int(info[1]),
+                '性别': info[2], '部门': info[-1].strip()}
+        # 保存到结果list里
+        results.append(temp)
+    # 读取每一条字典
+    for result in results:
+        # 打印三十岁以上的员工
+        if result.get('年龄') > 30:
+            print(result.get('姓名'))
+
+
+big_than_30()

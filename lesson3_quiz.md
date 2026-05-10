@@ -49,7 +49,7 @@
 5. 写一段代码，如果一个字典对象 spam 的 key 'status' 不存在，则设置为 'unknown'
     
     ```python
-         spam['status] = 'unknown'
+         spam['status'] = 'unknown'
     ```
     
     ```python
@@ -60,10 +60,6 @@
     ```python
          if 'status' not in spam:
              spam['status'] = 'unknown'
-    ```
-    
-    ```python
-         spam.setdefault('status', 'unknown')
     ```
     
     ```python
@@ -97,7 +93,7 @@
    
     ```python
     for temp in spam:
-        if temp.setdefault() == 8:
+        if temp == 8:
             print(8)
     ```
 

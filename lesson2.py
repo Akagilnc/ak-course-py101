@@ -1,54 +1,82 @@
-# 创建文件
-def create_file():
-    # 打开文件
-    file = open('lesson2.txt', 'w')
-    # 操作：写入数据
-    file.write('ak, 32, it, m\n')
-    file.write('lily, 22, hr, f\n')
-    file.write('tiger, 37, it, m\n')
-    file.write('lisa, 25, hr, f\n')
+# 定义函数，写入特定信息到hr.txt
+def write_to_file(file_name):
+    # 打开文件，写入模式
+    file = open('{}.txt'.format(file_name), 'w')
+    # 写入特定信息
+    file.write('ak, 32, m, it\n')
+    file.write('elsa, 22, f, hr\n')
+    file.write('tiger, 35, m, it\n')
+    file.write('lisa, 24, f, hr\n')
     # 关闭文件
     file.close()
+#
+#
+# # 调用函数
+# write_to_file('hr')
 
 
-# 读取文件，生成每个人的欢迎语句
-# name, age 岁，是一个 描述语
-def read_and_process_file():
-    # 打开文件
-    data = open('lesson2.txt', 'r', encoding='utf_8')
-    # define a list
+# 定义一个函数，读取hr.tx，生成 欢迎语
+def read_and_make():
+
+    # 定义我们的欢迎语模版
+    template = '大家好！我是{}，今年{}岁，{}\n'
+    # 读取数据
+    file = open('hr.txt')
+    infos = file.readlines()
+    file.close()
+    # 依次取出数据
     results = []
-    # 依次读取每一条记录
-    for line in data:
-        name, age, depart, sex = line.split(', ')
-        sex = sex.strip()
+    for info in infos:
+        # 拿到 姓名，年龄，性别
+        name, age, sex, dpart = info.split(', ')
+        # 根据性别，决定一句欢迎语
         if sex == 'm':
-            desc = '阳光男孩'
-        elif sex == 'f' and age < 45:
-            desc = '美丽冻人的小姐姐'
+            intro = '是个活泼可爱的大男孩'
         else:
-            desc = '和蔼可亲的婶婶'
-        # 生成问候语
-        results.append('{}, {}岁, 是一个{}\n'.format(name, age, desc))
-
-    # 关闭文件
-    data.close()
-
+            intro = '是个美丽冻人的小姐姐'
+        # format模版
+        result = template.format(name, age, intro)
+        results.append(result)
     return results
 
 
-# 把问候语的结果，保存到文件
-def save_results_to_file(input_list):
-    # 打开文件
-    report = open('lesson2_report.txt', 'w', encoding='utf_8_sig')
-    # 保存文件
-    report.writelines(input_list)
-    # 关闭文件
-    report.close()
+def write_lines_to_file(file_name, infos):
+    file = open('{}.txt'.format(file_name), 'w', encoding='utf-8')
+    file.writelines(infos)
+    file.close()
 
 
-# create_file()
+# 定义函数
+def read_and_print():
+    # 读取数据
+    file = open('hr.txt')
+    data = file.readlines()
+    # 定义模版
+    template = '{} {}, 就职于{}部门\n'
+    # 依次拿出每一条数据
+    hr_results = []
+    it_results = []
+    for line in data:
+        # 切分数据
+        name, age, sex, dpart = line.split(', ')
+        # 数据处理
+        dpart = dpart.rstrip()
+        if sex == 'm':
+            title = '先生'
+        else:
+            title = '小姐'
+        # 根据模版生成数据
+        result = template.format(name, title, dpart)
+        if dpart == 'hr':
+            hr_results.append(result)
+        if dpart == 'it':
+            it_results.append(result)
+    return hr_results, it_results
 
 
-contents = read_and_process_file()
-save_results_to_file(contents)
+# data = read_and_make()
+# write_lines_to_file('report', data)
+# 调用函数
+hr_data, it_data = read_and_print()
+write_lines_to_file('hr_dpart', hr_data)
+write_lines_to_file('it_dpart', it_data)

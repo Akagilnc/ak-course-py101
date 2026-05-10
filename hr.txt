@@ -1,0 +1,4 @@
+ak, 32, m, it
+elsa, 29, f, hr
+tiger, 33, m, it
+lisa, 28, f, hr

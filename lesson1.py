@@ -1,64 +1,134 @@
-# 求圆的面积
-def print_round_area():
-    # 定义pi = 3.14
+# 定义一个求圆的面积的函数
+def get_round_area(r):
+    # 定义pi，获得半径
     pi = 3.14
-    # 获取用户输入的r
-    r = input('please input r: ')
-    r = float(r)
-    # pi * r 的平方
-    area = pi * r ** 2
-    print(area)
+    # 计算面积
+    area = pi*r**2
+    # 输出结果
+    return area
 
 
-# 判断奇偶数
-def odd_or_even():
-    # 获取用户输入的数字
-    number = int(input('please input a number: '))
-    # 判断奇偶
-    # 如果是偶数
-    if number % 2 == 0:
-        # 打印 even
-        print('even')
+# r = input("please input r: ")
+# r = int(r)
+# result = get_round_area(r)
+# print(result)
+
+
+# 定义一个获得全名的函数
+def get_full_name(f_name, l_name):
+    # 姓+名 为全名
+    full_name = l_name + f_name
+    # 输出全名
+    return full_name
+
+
+# # 获得姓，名
+# f_n = input('plz input first name: ')
+# l_n = input('plz input last name: ')
+# # 调用函数并打印在屏幕上
+# full_name = get_full_name(f_n, l_n)
+# print(full_name)
+
+
+# 定义函数
+def get_answer(number):
+    # 计算平方
+    # 计算立方
+    result1 = number ** 2
+    result2 = number ** 3
+    # 输出结果
+    return result1, result2
+
+
+# # 获取用户的输入，并转换为数字
+# number = int(input('input a number: '))
+# # 调用函数并且打印结果
+# r1, r2 = get_answer(number)
+# print(r1, r2)
+
+
+# 定义函数、
+def odd_or_even(number):
+    # 对2求模，如果为1
+    if number % 2 == 1:
+        # 输出奇数
+        return 'odd'
     # 否则
     else:
-        # 打印 odd
-        print('odd')
+        # 输出偶数
+        return 'even'
 
 
-# 猜数字游戏：计算机每次随机生成一个答案1-10，然后接受用户输入的数字
-# 没猜对，计算机会提示你，是猜大了还是猜小了，并且让你继续输入，继续猜
-# 猜对了，第一次猜对的，会有特别的祝贺语。不是第一次，提示他你在第几次猜对了
+# # 获取用户输入
+# number = int(input('input a number: '))
+# # 调用函数，打印结果
+# print(odd_or_even(number))
+
+
+def is_divisible_3(num):
+    # 如果对3求模，结果为0
+    if num % 3 == 0:
+        # 输出被3整除
+        return 'is divisible by 3'
+    # 否则
+    else:
+        # 输出提示
+        return 'sorry but no'
+
+
+# # 获取用户输入
+# number = int(input('input a number: '))
+# # 调用函数，打印结果
+# print(is_divisible_3(number))
+
+
+def check_pass():
+    # 获取用户的输入
+    noun = input('plz input your password: ')
+    # 如果是yes
+    if noun == 'yes':
+        return 'you are wrong'
+    # 如果是no
+    if noun == 'no':
+        return 'no, not you'
+    # 如果是chengfei
+    if noun == 'chengfei':
+        return 'yes you are'
+    # 否则
+    else:
+        return "???"
+
+#
+# # 调用并打印
+# print(check_pass())
+
+
+import random
 def guess_number():
-    # 随机生成一个1-10答案
-    import random
-    answer = random.randint(1, 10)
-    # 获取用户输入的数字
-    number = int(input('please guess a number: '))
-    # 定义一个次数
+    # 生成答案1-10随机数字，次数 1
     n = 1
-    # 没猜对，提示用户猜大了或者猜小了，并且继续猜
-    while answer != number:
-        # 如果猜大了
+    answer = random.randint(1, 10)
+    # 获得用户的猜测
+    number = int(input('plz input a number: '))
+    # 如果 猜测不等于答案
+    while number != answer:
+        # 如果猜测大于答案
         if number > answer:
-            # 提示猜大了，继续输入
-            number = int(input('too big, please guess again: '))
+            # 输出猜大了，并且继续猜
+            number = int(input('too big, guess again: '))
         # 否则
         else:
-            # 提示猜小了，继续输入
-            number = int(input('too small, please guess again: '))
-        # 次数也要+1
+            # 输出猜小了，并且继续猜
+            number = int(input('too small, guess again: '))
         n += 1
 
-    # 非第一次猜对
-    if n != 1:
-        # 打印你是第几次猜对的
-        print('你是在第{}次猜对的'.format(n))
-    # 第一次猜对
+    # 如果是第一次猜对
+    if n == 1:
+        # 提示特别 棒
+        print('棒！')
+    # 输出 第几次猜对的
     else:
-        # 打印特别祝贺语
-        print('欧吃矛')
+        print('你在第{}次猜对的'.format(n))
 
 
-print_round_area()
-odd_or_even()
-# guess_number()
+guess_number()
