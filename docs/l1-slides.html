@@ -1,0 +1,1030 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python 101 L1</title>
+  <style>
+    :root {
+      --paper: #f4efdf;
+      --paper-deep: #eadfbe;
+      --ink: #162117;
+      --muted: #66705e;
+      --green: #1d6f4d;
+      --green-dark: #0f3d2d;
+      --gold: #d9972f;
+      --red: #c65343;
+      --code-bg: #10251d;
+      --code-ink: #eff8e8;
+      --shadow: rgba(22, 33, 23, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #1a211b;
+      color: var(--ink);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 12% 14%, rgba(217, 151, 47, 0.28), transparent 28%),
+        radial-gradient(circle at 88% 78%, rgba(29, 111, 77, 0.22), transparent 28%),
+        linear-gradient(135deg, #efe2bd, #f8f4e9 38%, #e2e9d0);
+      z-index: -2;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 96px 86px 64px;
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.24)),
+        var(--paper);
+      overflow: hidden;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      animation: rise 260ms ease-out;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      right: -210px;
+      bottom: -250px;
+      width: 560px;
+      height: 560px;
+      border-radius: 46% 54% 49% 51%;
+      background: rgba(29, 111, 77, 0.12);
+      z-index: 0;
+    }
+
+    .slide > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--green);
+      font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+      font-size: 38px;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 1500px;
+      font-size: 124px;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      max-width: 1500px;
+      font-size: 92px;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin-top: 10px;
+      color: var(--green-dark);
+      font-size: 60px;
+    }
+
+    .lead {
+      max-width: 1300px;
+      margin: 34px 0 0;
+      color: #293527;
+      font-size: 52px;
+      line-height: 1.35;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 48px;
+      align-items: stretch;
+      margin-top: 48px;
+      min-height: 0;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 86px;
+    }
+
+    .card {
+      padding: 34px 38px;
+      border: 3px solid rgba(22, 33, 23, 0.12);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+
+    .card.dark {
+      background: var(--green-dark);
+      color: #f5f0da;
+      border-color: transparent;
+    }
+
+    .card h3 {
+      margin: 0 0 18px;
+      font-size: 52px;
+    }
+
+    .card.dark h3 {
+      color: #f5f0da;
+    }
+
+    .card.dark .lead {
+      color: #f5f0da;
+      opacity: 0.9;
+    }
+
+    ul {
+      margin: 32px 0 0;
+      padding-left: 52px;
+      font-size: 48px;
+      line-height: 1.34;
+    }
+
+    li {
+      margin: 18px 0;
+    }
+
+    .compact li {
+      margin: 10px 0;
+    }
+
+    .question-list {
+      margin-top: 46px;
+      padding-left: 0;
+      list-style: none;
+      font-size: 58px;
+      line-height: 1.25;
+    }
+
+    .question-list li {
+      margin: 28px 0;
+      padding-left: 70px;
+      position: relative;
+    }
+
+    .question-list li::before {
+      content: "?";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #fff8dd;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-size: 34px;
+      font-weight: 900;
+    }
+
+    pre {
+      margin: 34px 0 0;
+      padding: 34px 40px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+        var(--code-bg);
+      color: var(--code-ink);
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+      font-size: 38px;
+      line-height: 1.24;
+      white-space: pre;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    .code-large pre {
+      font-size: 42px;
+      line-height: 1.22;
+    }
+
+    .code-fit pre {
+      font-size: 40px;
+      line-height: 1.16;
+    }
+
+    .code-small pre {
+      margin-top: 22px;
+      padding: 30px 36px;
+      font-size: 28px;
+      line-height: 1.02;
+    }
+
+    .code-tiny pre {
+      margin-top: 20px;
+      padding: 26px 34px;
+      font-size: 27px;
+      line-height: 1.02;
+    }
+
+    code {
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+    }
+
+    .code-annotated {
+      margin-top: 52px;
+      font-size: 60px;
+      line-height: 1.25;
+      white-space: pre;
+    }
+
+    .code-annotated .kw {
+      color: #ffcf6a;
+    }
+
+    .code-annotated .fn {
+      color: #74d28b;
+    }
+
+    .code-annotated .param {
+      color: #8ec7ff;
+    }
+
+    .code-annotated .punct {
+      color: #f6f1d8;
+    }
+
+    .annotation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin-top: 42px;
+    }
+
+    .annotation-card {
+      padding: 28px 30px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 3px solid rgba(29, 111, 77, 0.16);
+      font-size: 42px;
+      line-height: 1.28;
+    }
+
+    .annotation-card strong {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--green-dark);
+      font-size: 46px;
+    }
+
+    .flowchart {
+      width: min(1380px, 100%);
+      height: 560px;
+      margin-top: 38px;
+      overflow: visible;
+    }
+
+    .flow-box,
+    .flow-diamond {
+      fill: rgba(255, 255, 255, 0.78);
+      stroke: rgba(29, 111, 77, 0.45);
+      stroke-width: 5;
+    }
+
+    .flow-diamond {
+      fill: rgba(217, 151, 47, 0.2);
+    }
+
+    .flow-line {
+      fill: none;
+      stroke: var(--green-dark);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .flow-text {
+      fill: var(--ink);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 46px;
+      font-weight: 800;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    .flow-label {
+      fill: var(--green);
+      font-family: "SF Mono", "Menlo", monospace;
+      font-size: 36px;
+      font-weight: 900;
+      text-anchor: middle;
+      dominant-baseline: middle;
+    }
+
+    .output {
+      margin-top: 92px;
+      background: #2d2417;
+      color: #fff1ca;
+      font-size: 56px;
+      line-height: 1.22;
+    }
+
+    .output.compact {
+      margin-top: 30px;
+      padding: 30px 38px;
+      font-size: 34px;
+      line-height: 1.12;
+    }
+
+    .formula {
+      margin-top: 42px;
+      padding: 38px 46px;
+      border-radius: 34px;
+      background: var(--green-dark);
+      color: #f8f2d9;
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+      font-size: 54px;
+      line-height: 1.3;
+      box-shadow: 0 24px 70px rgba(15, 61, 45, 0.28);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 72px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: rgba(29, 111, 77, 0.12);
+      color: var(--green-dark);
+      font-size: 40px;
+      font-weight: 800;
+    }
+
+    .big-number {
+      display: block;
+      color: var(--red);
+      font-family: Georgia, serif;
+      font-size: 150px;
+      line-height: 0.9;
+      font-weight: 900;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 56px;
+      align-items: center;
+    }
+
+    .flow .step {
+      min-height: 170px;
+      padding: 24px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 3px solid rgba(29, 111, 77, 0.18);
+      text-align: center;
+      display: grid;
+      align-content: center;
+      gap: 12px;
+      font-size: 36px;
+    }
+
+    .flow .arrow {
+      color: var(--green);
+      font-size: 64px;
+      text-align: center;
+    }
+
+    .callout {
+      margin-top: 42px;
+      padding: 38px 44px;
+      border-left: 18px solid var(--gold);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 52px;
+      line-height: 1.28;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 34px;
+      line-height: 1.35;
+    }
+
+    .divider {
+      margin: auto 0;
+      display: grid;
+      gap: 30px;
+      place-items: start;
+    }
+
+    .timer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 38px;
+    }
+
+    .hint {
+      position: fixed;
+      left: 36px;
+      bottom: 30px;
+      z-index: 20;
+      color: rgba(22, 33, 23, 0.44);
+      font-size: 22px;
+      user-select: none;
+    }
+
+    .accent {
+      color: var(--red);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .center {
+      justify-content: center;
+    }
+
+    .slide.code-small,
+    .slide.code-tiny {
+      padding: 66px 58px 34px;
+    }
+
+    .slide.code-small .eyebrow,
+    .slide.code-tiny .eyebrow {
+      margin-bottom: 12px;
+      font-size: 30px;
+    }
+
+    .split-code {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      margin-top: 32px;
+    }
+
+    .split-code pre {
+      margin: 0;
+      font-size: 30px;
+    }
+
+    @media print {
+      html,
+      body {
+        overflow: visible;
+        background: white;
+      }
+
+      .deck {
+        height: auto;
+      }
+
+      .slide,
+      .slide.active {
+        display: flex;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        page-break-after: always;
+        animation: none;
+      }
+
+      .hint {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-live="polite">
+    <section class="slide active center">
+      <p class="eyebrow">Python 101 · Lesson 1</p>
+      <h1>打造自己的第一段 Python 程序</h1>
+      <p class="lead">从一个圆开始，摸到函数、输入、判断，再看一点真正有用的数据分析。</p>
+      <div class="badge-row">
+        <span class="badge">函数</span>
+        <span class="badge">参数</span>
+        <span class="badge">if</span>
+        <span class="badge">股票小例子</span>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">今晚路线</p>
+      <h2>先跑起来，再看懂一点</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>1. 圆面积</h3>
+          <p class="lead">函数、参数、输入、返回值。</p>
+        </div>
+        <div class="card">
+          <h3>2. 奇偶数</h3>
+          <p class="lead">if / else，电脑怎么做判断。</p>
+        </div>
+        <div class="card dark">
+          <h3>3. 股票数据</h3>
+          <p class="lead">涨跌额、涨跌幅、收益、回本。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">#1 求圆面积</p>
+      <h2>How to define a function?</h2>
+      <p class="lead">先把一个数学公式，翻译成一段 Python。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">函数结构</p>
+      <h2>什么是函数？</h2>
+      <p class="lead">函数就是一段有名字的计算：给它输入，它完成工作，再把结果交回来。</p>
+      <pre class="code-annotated"><code><span class="kw">def</span> <span class="fn">get_round_area</span><span class="punct">(</span><span class="param">input_r</span><span class="punct">):</span></code></pre>
+      <div class="annotation-grid">
+        <div class="annotation-card"><strong><code>def</code></strong>定义一个函数</div>
+        <div class="annotation-card"><strong><code>get_round_area</code></strong>函数的名字</div>
+        <div class="annotation-card"><strong><code>input_r</code></strong>传进来的半径</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Recap</p>
+      <h2>敲黑板，记重点</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>变量</h3>
+          <ul class="compact">
+            <li><code>r</code></li>
+            <li><code>pi</code></li>
+            <li><code>area</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>数据类型</h3>
+          <ul class="compact">
+            <li>整数 <code>int</code></li>
+            <li>小数 <code>float</code></li>
+            <li>字符串 <code>string</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>函数</h3>
+          <ul class="compact">
+            <li><code>def</code></li>
+            <li>参数</li>
+            <li><code>return</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">变量命名</p>
+      <h2>名字要让电脑看得懂</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>可以</h3>
+          <ul>
+            <li><code>my_word</code></li>
+            <li><code>my_word2</code></li>
+            <li><code>round_area</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>不行</h3>
+          <ul>
+            <li><code>2nd_number</code></li>
+            <li><code>test-123</code></li>
+            <li><code>print</code></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">#2 判断奇偶数</p>
+      <h2>How to use if statements?</h2>
+      <p class="lead">让电脑根据条件走不同的路。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Flow Control</p>
+      <h2>什么是流程控制？</h2>
+      <svg class="flowchart" viewBox="0 0 1400 560" role="img" aria-label="奇偶数判断流程图">
+        <defs>
+          <marker id="arrowhead" markerWidth="16" markerHeight="12" refX="15" refY="6" orient="auto">
+            <path d="M0,0 L16,6 L0,12 Z" fill="#0f3d2d"></path>
+          </marker>
+        </defs>
+        <rect class="flow-box" x="520" y="20" width="360" height="92" rx="28"></rect>
+        <text class="flow-text" x="700" y="66">输入 number</text>
+
+        <path class="flow-line" marker-end="url(#arrowhead)" d="M700 112 L700 178"></path>
+
+        <polygon class="flow-diamond" points="700,180 940,300 700,420 460,300"></polygon>
+        <text class="flow-text" x="700" y="282">number % 2</text>
+        <text class="flow-text" x="700" y="330">等于 0 ?</text>
+
+        <path class="flow-line" marker-end="url(#arrowhead)" d="M460 300 L260 300 L260 438"></path>
+        <path class="flow-line" marker-end="url(#arrowhead)" d="M940 300 L1140 300 L1140 438"></path>
+        <text class="flow-label" x="350" y="270">Yes</text>
+        <text class="flow-label" x="1050" y="270">No</text>
+
+        <rect class="flow-box" x="90" y="438" width="340" height="92" rx="28"></rect>
+        <rect class="flow-box" x="970" y="438" width="340" height="92" rx="28"></rect>
+        <text class="flow-text" x="260" y="484">输出 even</text>
+        <text class="flow-text" x="1140" y="484">输出 odd</text>
+      </svg>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Recap</p>
+      <h2>if 语句的几个关键词</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>条件</h3>
+          <ul>
+            <li><code>==</code></li>
+            <li><code>!=</code></li>
+            <li><code>&lt; &gt;</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>分支</h3>
+          <ul>
+            <li><code>if</code></li>
+            <li><code>else</code></li>
+            <li><code>elif</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>求余</h3>
+          <ul>
+            <li><code>%</code></li>
+            <li>被 2 整除</li>
+            <li>余数为 0</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">数据分析小例子</p>
+      <h2>从代码走到现实问题</h2>
+      <div class="badge-row">
+        <span class="badge">涨跌额</span>
+        <span class="badge">涨跌幅</span>
+        <span class="badge">收益</span>
+        <span class="badge">回本</span>
+      </div>
+    </section>
+
+    <section class="slide code-large">
+      <p class="eyebrow">例子 1 · 代码</p>
+      <pre><code>stock_name = "贵州茅台"
+
+yesterday = 1709.00
+today = 1705.00
+
+price_change = today - yesterday
+percent_change = price_change / yesterday * 100
+
+print(stock_name)
+print("涨跌金额：", price_change)
+print("涨跌幅：", percent_change, "%")</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 1 · 输出</p>
+      <pre class="output"><code>贵州茅台
+涨跌金额： -4.0
+涨跌幅： -0.23405500292568755 %</code></pre>
+      <div class="callout">先看懂意思，小数格式后面再处理。</div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 1 · 先猜一下</p>
+      <h2>跌了 4 元，到底严重吗？</h2>
+      <ul class="question-list">
+        <li>先别算，凭感觉：这算跌得多吗？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 1 · 加一个条件</p>
+      <h2>如果原价不一样呢？</h2>
+      <ul class="question-list">
+        <li>40 元股票跌 4 元，严重吗？</li>
+        <li>1709 元股票跌 4 元，严重吗？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 1 · 答案</p>
+      <h2>同样跌 4 元，基数不同，含义不同</h2>
+      <ul>
+        <li>40 元股票跌 4 元，是跌 10%。</li>
+        <li>1709 元股票跌 4 元，大约跌 0.23%。</li>
+        <li>白菜 2 元涨 5 毛，比排骨 30 元涨 1 元更“厉害”。</li>
+      </ul>
+      <div class="formula">涨跌幅 = 涨跌金额 / 昨日价格 × 100%</div>
+    </section>
+
+    <section class="slide code-small">
+      <p class="eyebrow">例子 2 · 代码</p>
+      <pre><code>stock_a = "股票A"
+a_buy = 10
+stock_b = "股票B"
+b_buy = 40
+money = 10000
+price_change = 1
+a_shares = int(money / a_buy / 100) * 100
+b_shares = int(money / b_buy / 100) * 100
+a_percent = price_change / a_buy * 100
+b_percent = price_change / b_buy * 100
+a_profit = price_change * a_shares
+b_profit = price_change * b_shares
+if a_profit > b_profit:
+    better_stock = stock_a
+else:
+    better_stock = stock_b
+print(stock_a, "涨幅", a_percent, "%", "赚了", a_profit, "元")
+print(stock_b, "涨幅", b_percent, "%", "赚了", b_profit, "元")
+print("赚得更多的是：", better_stock)</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 输出</p>
+      <pre class="output"><code>股票A 涨幅 10.0 % 赚了 1000 元
+股票B 涨幅 2.5 % 赚了 200 元
+赚得更多的是： 股票A</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 加一个规则</p>
+      <h2>A 股通常 100 股一手</h2>
+      <ul>
+        <li>10 元股票：10000 元可以买多少股？</li>
+        <li>40 元股票：理论可以买 250 股，但实际按 200 股算。</li>
+        <li>业务规则会改变计算结果。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 答案</p>
+      <h2>同样涨 1 元，收益能差 5 倍</h2>
+      <ul>
+        <li>10 元股票可以买 1000 股，涨 1 元赚 1000 元。</li>
+        <li>40 元股票理论可以买 250 股，按整手买 200 股。</li>
+        <li>价格、股数、业务规则一起影响最终收益。</li>
+        <li>数据分析要先确认业务规则，再写公式。</li>
+      </ul>
+      <div class="formula">真实 A 股买入股数 = 能买到的整手数量 × 100</div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 改参数</p>
+      <h2>换个数字，再猜一次</h2>
+      <ul class="question-list">
+        <li>如果股票 B 是 25 元，10000 元能买多少股？</li>
+        <li>如果投入变成 20000 元，谁赚得更多？</li>
+        <li>如果两只股票都是涨 10%，谁赚得更多？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 改参数答案</p>
+      <h2>换了条件，结果也会变</h2>
+      <ul>
+        <li>B 是 25 元时，10000 元可以买 400 股。</li>
+        <li>投入 20000 元时，A 买 2000 股赚 2000 元，B 买 500 股赚 500 元。</li>
+        <li>如果两只股票都涨 10%，同样投入 10000 元，收益接近投入的 10%。</li>
+      </ul>
+    </section>
+
+    <section class="slide code-large code-fit">
+      <p class="eyebrow">例子 3 · 代码</p>
+      <pre><code>stock_name = "练习股票"
+
+start_price = 100
+after_drop = start_price * 0.5
+after_rise = after_drop * 1.5
+
+if after_rise >= start_price:
+    result = "回本了"
+else:
+    result = "还没回本"
+
+print(stock_name)
+print("一开始价格：", start_price)
+print("下跌50%后：", after_drop)
+print("再上涨50%后：", after_rise)
+print(result)</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 3 · 输出</p>
+      <pre class="output"><code>练习股票
+一开始价格： 100
+下跌50%后： 50.0
+再上涨50%后： 75.0
+还没回本</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 3 · 追问</p>
+      <h2>输出已经有了，问题是为什么</h2>
+      <ul class="question-list">
+        <li>为什么 50 再涨 50%，只到 75？</li>
+        <li>从 50 回到 100，要涨多少？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 3 · 答案</p>
+      <h2>每一步的基数都变了</h2>
+      <ul>
+        <li>第一次下跌：100 × 0.5 = 50。</li>
+        <li>第二次上涨：50 × 1.5 = 75。</li>
+        <li>75 小于 100，所以程序输出“还没回本”。</li>
+        <li>跌 50% 要涨 100% 才回本。</li>
+      </ul>
+      <div class="formula">从 50 回到 100 的涨幅 = (100 - 50) / 50 × 100%</div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 3 · 回本小表</p>
+      <h2>亏得越多，回本越难</h2>
+      <ul>
+        <li>跌 10%，需要涨约 11.1% 回本。</li>
+        <li>跌 20%，需要涨 25% 回本。</li>
+        <li>跌 50%，需要涨 100% 回本。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 3 · 生活里也一样</p>
+      <h2>百分比每次都看当下的基数</h2>
+      <ul>
+        <li>商品先五折再涨价五折，不会回到原价。</li>
+        <li>工资从 10000 降到 8000，再回到 10000 要涨 25%。</li>
+        <li>公司业绩今年跌 30%，明年涨 30%，也还没回到原规模。</li>
+      </ul>
+    </section>
+
+    <section class="slide code-tiny">
+      <p class="eyebrow">额外演示</p>
+      <pre><code>import akshare as ak
+
+df = ak.stock_zh_a_hist(
+    "600519",
+    start_date="20240101",
+    end_date="20240601"
+)
+
+df = df[["日期", "收盘"]].tail(10).copy()
+df["昨日"] = df["收盘"].shift(1)
+df["涨跌幅"] = (df["收盘"] / df["昨日"] - 1) * 100
+df["涨跌幅"] = df["涨跌幅"].round(2)
+
+print(df[["日期", "收盘", "涨跌幅"]].dropna())
+
+worst = df.loc[df["涨跌幅"].idxmin()]
+print(worst["日期"], worst["涨跌幅"], "%")</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">额外演示 · 标准答案</p>
+      <h2>AI 说的结果，要回到数据核对</h2>
+      <pre class="output compact"><code>日期          收盘      涨跌幅
+2024-05-21  1705.00  -0.23%
+2024-05-22  1697.71  -0.43%
+2024-05-23  1692.01  -0.34%
+2024-05-24  1677.08  -0.88%
+2024-05-27  1670.12  -0.42%
+2024-05-28  1664.64  -0.33%
+2024-05-29  1674.00   0.56%
+2024-05-30  1649.00  -1.49%
+2024-05-31  1648.45  -0.03%
+
+跌得最厉害的一天：2024-05-30  -1.49%</code></pre>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">今晚记住这几句</p>
+      <h2>Python 不神秘，数据也不只是数字</h2>
+      <ul>
+        <li>变量是给数据起名字。</li>
+        <li>函数是给一段计算起名字。</li>
+        <li><code>if</code> 让电脑根据条件做判断。</li>
+        <li>数据分析要看比例、基数和业务规则。</li>
+      </ul>
+    </section>
+  </main>
+
+  <div class="hint">← / → 翻页 · F 全屏 · P 打印</div>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    let index = 0;
+
+    function show(next) {
+      index = Math.max(0, Math.min(slides.length - 1, next));
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+      window.location.hash = `slide-${index + 1}`;
+    }
+
+    function fromHash() {
+      const match = window.location.hash.match(/slide-(\d+)/);
+      if (match) {
+        show(Number(match[1]) - 1);
+      } else {
+        show(0);
+      }
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        show(index + 1);
+      }
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        show(index - 1);
+      }
+      if (event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.();
+        } else {
+          document.exitFullscreen?.();
+        }
+      }
+      if (event.key.toLowerCase() === "p") {
+        window.print();
+      }
+      if (event.key === "Home") {
+        show(0);
+      }
+      if (event.key === "End") {
+        show(slides.length - 1);
+      }
+    });
+
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
+  </script>
+</body>
+</html>

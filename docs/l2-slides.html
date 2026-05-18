@@ -1,0 +1,1363 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python 101 L2</title>
+  <style>
+    :root {
+      --paper: #f4efdf;
+      --ink: #162117;
+      --muted: #66705e;
+      --green: #1d6f4d;
+      --green-dark: #0f3d2d;
+      --gold: #d9972f;
+      --code-bg: #10251d;
+      --code-ink: #eff8e8;
+      --output-bg: #2d2417;
+      --output-ink: #fff1ca;
+      --shadow: rgba(22, 33, 23, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #1a211b;
+      color: var(--ink);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(217, 151, 47, 0.25), transparent 28%),
+        radial-gradient(circle at 86% 82%, rgba(29, 111, 77, 0.22), transparent 28%),
+        linear-gradient(135deg, #efe2bd, #f8f4e9 38%, #e2e9d0);
+      z-index: -2;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 96px 86px 64px;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.24)),
+        var(--paper);
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      animation: rise 260ms ease-out;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      right: -210px;
+      bottom: -250px;
+      width: 560px;
+      height: 560px;
+      border-radius: 46% 54% 49% 51%;
+      background: rgba(29, 111, 77, 0.12);
+      z-index: 0;
+    }
+
+    .slide > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--green);
+      font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+      font-size: 34px;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 1500px;
+      font-size: 112px;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      max-width: 1500px;
+      font-size: 82px;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin: 0 0 18px;
+      color: var(--green-dark);
+      font-size: 46px;
+    }
+
+    .lead {
+      max-width: 1300px;
+      margin: 34px 0 0;
+      color: #293527;
+      font-size: 46px;
+      line-height: 1.35;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 86px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 46px;
+      margin-top: 54px;
+      align-items: stretch;
+    }
+
+    .card {
+      padding: 34px 38px;
+      border: 3px solid rgba(22, 33, 23, 0.12);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+
+    .card.dark {
+      background: var(--green-dark);
+      color: #f5f0da;
+      border-color: transparent;
+    }
+
+    .card.dark h3,
+    .card.dark .lead {
+      color: #f5f0da;
+    }
+
+    .card.dark .mini-note {
+      color: var(--output-ink);
+    }
+
+    .card .lead {
+      margin-top: 18px;
+      font-size: 44px;
+    }
+
+    ul {
+      margin: 32px 0 0;
+      padding-left: 52px;
+      font-size: 42px;
+      line-height: 1.34;
+    }
+
+    li {
+      margin: 18px 0;
+    }
+
+    .question-list {
+      margin-top: 46px;
+      padding-left: 0;
+      list-style: none;
+      font-size: 52px;
+      line-height: 1.25;
+    }
+
+    .question-list li {
+      margin: 28px 0;
+      padding-left: 70px;
+      position: relative;
+    }
+
+    .question-list li::before {
+      content: "?";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #fff8dd;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-size: 34px;
+      font-weight: 900;
+    }
+
+    pre {
+      margin: 34px 0 0;
+      padding: 34px 40px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+        var(--code-bg);
+      color: var(--code-ink);
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+      font-size: 38px;
+      line-height: 1.22;
+      white-space: pre;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    code {
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+    }
+
+    .code-annotated {
+      margin-top: 42px;
+      font-size: 54px;
+      line-height: 1.25;
+      white-space: pre-wrap;
+    }
+
+    .code-annotated .name {
+      color: #8ec7ff;
+    }
+
+    .code-annotated .punct {
+      color: #f6f1d8;
+    }
+
+    .code-annotated .str {
+      color: #7ee787;
+    }
+
+    .code-annotated .num {
+      color: #d2a8ff;
+    }
+
+    .code-annotated .bool {
+      color: #ffcf6a;
+    }
+
+    .annotation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 38px;
+    }
+
+    .annotation-grid.four {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .annotation-card {
+      padding: 26px 28px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 3px solid rgba(29, 111, 77, 0.16);
+      font-size: 36px;
+      line-height: 1.24;
+    }
+
+    .annotation-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--green-dark);
+      font-size: 40px;
+    }
+
+    .code-small,
+    .code-tiny {
+      padding: 66px 58px 34px;
+    }
+
+    .code-small .eyebrow,
+    .code-tiny .eyebrow {
+      margin-bottom: 12px;
+      font-size: 30px;
+    }
+
+    .code-small pre {
+      margin-top: 22px;
+      padding: 30px 36px;
+      font-size: 28px;
+      line-height: 1.02;
+    }
+
+    .code-tiny pre {
+      margin-top: 20px;
+      padding: 26px 34px;
+      font-size: 27px;
+      line-height: 1.02;
+    }
+
+    .output {
+      margin-top: 92px;
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-size: 50px;
+      line-height: 1.22;
+    }
+
+    .output.compact {
+      margin-top: 34px;
+      font-size: 34px;
+      line-height: 1.18;
+    }
+
+    .output.stock-data {
+      margin-top: 30px;
+      font-size: 30px;
+      line-height: 1.12;
+    }
+
+    .output.report-output {
+      margin-top: 40px;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 30px;
+      line-height: 1.24;
+      white-space: pre-wrap;
+    }
+
+    .output.report-output.single {
+      margin-top: 20px;
+      padding: 34px 40px;
+      font-size: 27px;
+      line-height: 1.18;
+    }
+
+    .output.ai-stock-data {
+      margin-top: 22px;
+      padding: 24px 34px;
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .output.answer-output {
+      margin-top: 58px;
+      font-size: 46px;
+      line-height: 1.26;
+    }
+
+    .prompt-box {
+      margin-top: 42px;
+      padding: 38px 46px;
+      border-radius: 30px;
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 40px;
+      line-height: 1.34;
+      white-space: pre-wrap;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .prompt-box.small {
+      margin-top: 24px;
+      padding: 28px 36px;
+      font-size: 31px;
+      line-height: 1.22;
+    }
+
+    .code-output-pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 34px;
+    }
+
+    .code-output-pair pre {
+      margin-top: 0;
+    }
+
+    .code-output-pair .output {
+      margin-top: 0;
+      font-size: 40px;
+      line-height: 1.18;
+    }
+
+    .ai-photo-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 30px;
+      margin-top: 28px;
+      align-items: start;
+    }
+
+    .ai-photo-grid .output,
+    .ai-photo-grid .prompt-box {
+      margin-top: 0;
+    }
+
+    .code-readable pre {
+      font-size: 34px;
+      line-height: 1.12;
+    }
+
+    .mini-note {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 34px;
+      line-height: 1.25;
+    }
+
+    .formula {
+      margin-top: 42px;
+      padding: 38px 46px;
+      border-radius: 34px;
+      background: var(--green-dark);
+      color: #f8f2d9;
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+      font-size: 48px;
+      line-height: 1.3;
+      box-shadow: 0 24px 70px rgba(15, 61, 45, 0.28);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 72px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: rgba(29, 111, 77, 0.12);
+      color: var(--green-dark);
+      font-size: 36px;
+      font-weight: 800;
+    }
+
+    .center {
+      justify-content: center;
+    }
+
+    .step-ladder {
+      display: grid;
+      gap: 22px;
+      margin-top: 54px;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      align-items: center;
+      gap: 28px;
+      padding: 28px 36px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 3px solid rgba(29, 111, 77, 0.18);
+      font-size: 42px;
+      line-height: 1.24;
+    }
+
+    .step-row strong {
+      color: var(--green-dark);
+      font-size: 44px;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 34px;
+    }
+
+    .quiz-card {
+      padding: 28px 30px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 3px solid rgba(29, 111, 77, 0.16);
+      box-shadow: 0 22px 56px var(--shadow);
+    }
+
+    .quiz-card h3 {
+      margin-bottom: 16px;
+      font-size: 40px;
+      line-height: 1.15;
+    }
+
+    .quiz-card pre {
+      margin-top: 12px;
+      padding: 18px 22px;
+      border-radius: 20px;
+      font-size: 30px;
+      line-height: 1.14;
+      box-shadow: none;
+    }
+
+    .quiz-card ul {
+      margin-top: 14px;
+      padding-left: 28px;
+      font-size: 32px;
+      line-height: 1.22;
+    }
+
+    .quiz-card li {
+      margin: 8px 0;
+    }
+
+    .quiz-full-code {
+      margin-top: 24px;
+      padding: 26px 34px;
+      font-size: 38px;
+      line-height: 1.16;
+    }
+
+    .quiz-grid.after-code {
+      margin-top: 26px;
+    }
+
+    .quiz-grid.after-code .quiz-card {
+      padding: 24px 28px;
+    }
+
+    @media print {
+      html,
+      body {
+        overflow: visible;
+        background: white;
+      }
+
+      .deck {
+        height: auto;
+      }
+
+      .slide,
+      .slide.active {
+        display: flex;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        page-break-after: always;
+        animation: none;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-live="polite">
+    <section class="slide active center">
+      <p class="eyebrow">Python 101 · Lesson 2</p>
+      <h1>猜数字：让程序重复判断</h1>
+      <p class="lead">先用小游戏理解 while，再看循环怎样帮我们处理一批股票数据。</p>
+      <div class="badge-row">
+        <span class="badge">while</span>
+        <span class="badge">random</span>
+        <span class="badge">计数器</span>
+        <span class="badge">股票数据</span>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">课前热身</p>
+      <h2>先把 L1 叫醒</h2>
+      <p class="lead">不是考试。先用几道小题，把函数、变量、判断和股票涨跌幅捡回来。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 1 / 4</p>
+      <h2>函数和返回值</h2>
+      <pre class="quiz-full-code"><code>def get_round_area(r):
+    return 3.14 * r ** 2
+
+result = get_round_area(5)
+print(result)</code></pre>
+      <div class="quiz-grid after-code">
+        <div class="quiz-card">
+          <h3>1. 函数什么时候真正运行？</h3>
+          <ul>
+            <li>A. 写下 def 的时候</li>
+            <li>B. 写完以后自动运行</li>
+            <li>C. 调用 get_round_area(5) 的时候</li>
+            <li>D. 写下 return 的时候</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>2. 哪一行把结果保存到变量里？</h3>
+          <ul>
+            <li>A. def get_round_area(r):</li>
+            <li>B. return 3.14 * r ** 2</li>
+            <li>C. result = get_round_area(5)</li>
+            <li>D. print(result)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 2 / 4</p>
+      <h2>赋值、判断、打印</h2>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>3. <code>=</code> 和 <code>==</code> 分别在做什么？</h3>
+          <pre><code>number = 6
+number == 6</code></pre>
+          <ul>
+            <li>A. 两个都是赋值</li>
+            <li>B. 两个都是判断相等</li>
+            <li>C. = 是赋值，== 是判断相等</li>
+            <li>D. = 是判断，== 是赋值</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>4. 哪句代码能打印变量里的内容？</h3>
+          <pre><code>stock_name = "贵州茅台"</code></pre>
+          <ul>
+            <li>A. print(stock_name)</li>
+            <li>B. print("stock_name")</li>
+            <li>C. stock_name(print)</li>
+            <li>D. "贵州茅台" = stock_name</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 3 / 4</p>
+      <h2>输入和 if 条件</h2>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>5. <code>input()</code> 拿到的内容通常是什么类型？</h3>
+          <pre><code>r = input("input r pls: ")</code></pre>
+          <ul>
+            <li>A. 整数</li>
+            <li>B. 小数</li>
+            <li>C. 字符串</li>
+            <li>D. 布尔值</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>6. 哪一句是在判断偶数？</h3>
+          <ul>
+            <li>A. number / 2 == 0</li>
+            <li>B. number % 2 == 0</li>
+            <li>C. number = 2 == 0</li>
+            <li>D. number ** 2 == 0</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 4 / 4</p>
+      <h2>股票涨跌</h2>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>7. 这段代码会输出什么？</h3>
+          <pre><code>yesterday = 1709
+today = 1705
+change = today - yesterday
+print(change)</code></pre>
+          <ul>
+            <li>A. 4</li>
+            <li>B. -4</li>
+            <li>C. 1705</li>
+            <li>D. 1709</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>8. 同样跌 4 元，为什么还要看涨跌幅？</h3>
+          <ul>
+            <li>A. 因为涨跌幅看起来更高级</li>
+            <li>B. 因为不同价格的股票，严重程度可能不同</li>
+            <li>C. 因为涨跌金额没有意义</li>
+            <li>D. 因为股票只能看百分比</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">今晚路线</p>
+      <h2>前半写游戏，后半看数据</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>1. 猜数字</h3>
+          <p class="lead">电脑出答案，人来猜。</p>
+        </div>
+        <div class="card">
+          <h3>2. while 循环</h3>
+          <p class="lead">没猜中，就继续。</p>
+        </div>
+        <div class="card dark">
+          <h3>3. 股票数据</h3>
+          <p class="lead">一批数据，同一套计算。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">#1 猜数字游戏</p>
+      <h2>How to repeat until correct?</h2>
+      <p class="lead">L1 里电脑已经会判断；L2 让电脑重复判断。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">游戏规则</p>
+      <h2>猜数字怎么玩？</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>电脑</strong>随机想一个 1 到 10 的整数。</div>
+        <div class="step-row"><strong>你来猜</strong>每次输入一个数字。</div>
+        <div class="step-row"><strong>没猜中</strong>电脑提示 too big 或 too small，然后继续猜。</div>
+        <div class="step-row"><strong>猜中了</strong>游戏结束；如果第一次就猜中，会有特殊提示。</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">while</p>
+      <h2>只要没猜对，就继续猜</h2>
+      <pre><code>while guess != answer:</code></pre>
+      <div class="step-ladder">
+        <div class="step-row"><strong>while</strong>只要条件成立，就重复执行。</div>
+        <div class="step-row"><strong>!=</strong>表示“不等于”。</div>
+        <div class="step-row"><strong>结束</strong>猜中以后，条件不成立，循环停止。</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">random</p>
+      <h2>让电脑生成一个秘密答案</h2>
+      <pre><code>import random
+
+answer = random.randint(1, 10)</code></pre>
+      <ul>
+        <li><code>import random</code>：先把随机数工具拿进来。</li>
+        <li><code>random</code> 是 Python 自带的随机工具。</li>
+        <li><code>randint(1, 10)</code> 生成 1 到 10 之间的整数。</li>
+        <li>答案每次运行都可能不一样。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Recap</p>
+      <h2>这段游戏代码里有什么？</h2>
+      <ul>
+        <li><code>answer</code> 和 <code>guess</code> 都是变量，一个存答案，一个存本次输入。</li>
+        <li><code>import random</code>：使用随机工具前，先把工具导入。</li>
+        <li><code>int(input(...))</code>：复用 L1 的知识，输入文字要先转成整数。</li>
+        <li><code>if / else</code>：老知识，用来判断猜大了还是猜小了。</li>
+        <li><code>while guess != answer</code>：只要还没猜中，就继续执行缩进里的代码。</li>
+        <li><code>count += 1</code>：每多猜一次，次数就加一次。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">后半</p>
+      <h2>循环有什么用？</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>游戏</strong>猜错一次，就再问一次，直到猜中。</div>
+        <div class="step-row"><strong>股票</strong>一只股票会算涨跌幅，13 只股票也用同一套算法。</div>
+        <div class="step-row"><strong>现实</strong>工资表、商品价格表、销售记录，本质上都是一批相似数据。</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">while / for</p>
+      <h2>两种循环，适合两种场景</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>while</h3>
+          <p class="lead">不知道要重复几次。</p>
+          <p class="mini-note">猜数字：不知道几次能猜中。</p>
+        </div>
+        <div class="card dark">
+          <h3>for</h3>
+          <p class="lead">有一批东西，每个处理一次。</p>
+          <p class="mini-note">股票数据：每一行都算一遍。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">list</p>
+      <h2>什么是 list？</h2>
+      <p class="lead">list 是一组数据。它最明显的样子，是用 <code>[]</code> 把多个元素装在一起。</p>
+      <pre class="code-annotated"><code><span class="name">x</span> <span class="punct">= [</span><span class="str">"贵州茅台"</span><span class="punct">, </span><span class="num">1705</span><span class="punct">, </span><span class="num">-0.23</span><span class="punct">, </span><span class="bool">True</span><span class="punct">]</span></code></pre>
+      <div class="annotation-grid four">
+        <div class="annotation-card"><strong><code>[]</code></strong>list 的外壳</div>
+        <div class="annotation-card"><strong><code>,</code></strong>元素之间用逗号隔开</div>
+        <div class="annotation-card"><strong>顺序</strong>第一个、第二个、第三个</div>
+        <div class="annotation-card"><strong>类型</strong>字符串、整数、小数、布尔值都能放</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">list</p>
+      <h2>list：一组按顺序排好的东西</h2>
+      <pre><code>x = ["表头", "贵州茅台", "招商银行", "五粮液", "泸州老窖", "平安银行"]
+
+print(x[0])
+print(x[1])
+print(x[-1])</code></pre>
+      <pre class="output compact"><code>表头
+贵州茅台
+平安银行</code></pre>
+      <p class="mini-note">Python 从 0 开始数。<code>x[-1]</code> 是最后一个，东西很多时不用先数总共有几个。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">slice</p>
+      <h2>切片：从一组东西里截一段</h2>
+      <pre><code>x = ["表头", "贵州茅台", "招商银行", "五粮液", "泸州老窖", "平安银行"]
+
+x[1:5]    # 从 1 到 5 前面：贵州茅台 到 泸州老窖
+x[:5]     # 开头不写：从最前面开始
+x[1:]     # 结尾不写：一直到最后
+x[1:5:2]  # 每隔 2 个拿一次</code></pre>
+      <p class="mini-note"><code>lines[1:]</code> 的意思就是：跳过第 0 行表头，从第 1 行股票数据开始。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">step</p>
+      <h2>第三个数字，是步伐</h2>
+      <pre><code>x = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+print(x[1:7:2])
+print(x[1:10:3])</code></pre>
+      <pre class="output compact"><code>["1", "3", "5"]
+["1", "4", "7"]</code></pre>
+      <p class="mini-note">切片的格式是：<code>x[开始:结束:步伐]</code>。结束位置本身不包含进去。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 1 · 目标</p>
+      <h2>把原始价格变成涨跌信息</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>原始数据</strong>只有开盘价、收盘价、行业、成交额。</div>
+        <div class="step-row"><strong>程序加工</strong>算出涨跌额和涨跌幅。</div>
+        <div class="step-row"><strong>先跑通</strong>不用急着写漂亮，先确认每只股票都能算出来。</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 1 · 前置知识</p>
+      <h2>一行文字，拆成几个字段</h2>
+      <pre><code>line = "贵州茅台, 白酒, 1709, 1705, 86.4"
+
+name, industry, open_text, close_text, amount_text = (
+    line.split(", ")
+)</code></pre>
+      <p class="lead">逗号左边到右边，刚好对应：名称、行业、开盘价、收盘价、成交额。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 1 · 前置数据</p>
+      <h2>先看这次要处理的数据</h2>
+      <pre class="output stock-data"><code>股票名称, 行业, 开盘价格, 收盘价格, 成交额(亿元)
+贵州茅台, 白酒, 1709, 1705, 86.4
+招商银行, 银行, 35.00, 36.00, 42.8
+五粮液, 白酒, 150.00, 153.00, 44.1
+泸州老窖, 白酒, 140.00, 137.20, 31.6
+平安银行, 银行, 10.00, 10.30, 18.9
+兴业银行, 银行, 18.00, 17.80, 21.4
+宁德时代, 新能源, 180.00, 174.00, 91.2
+比亚迪, 新能源, 210.00, 214.00, 76.5
+隆基绿能, 新能源, 18.00, 17.20, 33.6
+工业富联, 科技, 25.00, 27.00, 58.9
+京东方A, 科技, 4.00, 4.20, 25.4
+中芯国际, 科技, 80.00, 78.00, 54.2
+科大讯飞, 科技, 50.00, 51.50, 29.7</code></pre>
+    </section>
+
+    <section class="slide code-small code-readable">
+      <p class="eyebrow">例子 1 · 代码</p>
+      <pre><code>file = open("stocks.txt", encoding="utf-8")
+lines = file.readlines()
+file.close()
+
+data_lines = lines[1:]  # 跳过第一行表头
+
+for line in data_lines:
+    name, industry, open_text, close_text, amount_text = (
+        line.strip().split(", ")
+    )
+
+    open_price = float(open_text)
+    close_price = float(close_text)
+    change = round(close_price - open_price, 2)
+    percent = round(change / open_price * 100, 2)
+
+    print(name, change, percent, "%")</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 1 · 输出</p>
+      <h2>先把计算跑通</h2>
+      <pre class="output"><code>贵州茅台 -4.0 -0.23 %
+招商银行 1.0 2.86 %
+五粮液 3.0 2.0 %</code></pre>
+      <p class="lead">这一版输出够直接，但还不像一段给人看的报告。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 1 · 问题</p>
+      <h2>这段程序做了什么加工？</h2>
+      <ul class="question-list">
+        <li>原始数据里没有哪两个结果？</li>
+        <li>现在的输出适合自己检查，还是适合发给别人看？</li>
+        <li>如果想找“跌得最严重”的股票，还缺哪一步？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 1 · 所以呢</p>
+      <h2>代码不只是搬运，它在加工信息</h2>
+      <ul>
+        <li>原始数据没有涨跌额，也没有涨跌幅。</li>
+        <li>程序用开盘价和收盘价算出了新的指标。</li>
+        <li>简单输出适合先确认代码跑通；正式一点的结果，需要组织成报告句子。</li>
+        <li>找“最严重”不能靠眼睛扫，要让程序把每只股票比较一遍。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 目标</p>
+      <h2>让程序找出“最差”的股票</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>上一例</strong>每只股票都算出了涨跌额和涨跌幅。</div>
+        <div class="step-row"><strong>这一例</strong>不靠眼睛扫，让程序自己比较。</div>
+        <div class="step-row"><strong>关键</strong>先说清楚“最差”到底按什么标准判断。</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 前置知识</p>
+      <h2>同一份结果，换一种输出方式</h2>
+      <div class="code-output-pair">
+        <pre><code>print(name, "（", industry, "）今日涨跌额是",
+      change, "元，涨跌幅是", percent, "%。")
+
+template = "{}（{}）今日涨跌额是 {} 元，涨跌幅是 {}%。"
+print(template.format(name, industry, change, percent))</code></pre>
+        <pre class="output"><code>贵州茅台 （ 白酒 ）今日涨跌额是 -4.0 元，涨跌幅是 -0.23 %。
+贵州茅台（白酒）今日涨跌额是 -4.0 元，涨跌幅是 -0.23%。</code></pre>
+      </div>
+      <p class="mini-note">两种写法都能输出报告句子，但模板更工整，也更容易批量复用。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 前置知识</p>
+      <h2>从文件拿到一组行</h2>
+      <pre><code>file = open("stocks.txt", encoding="utf-8")
+lines = file.readlines()
+file.close()</code></pre>
+      <div class="step-ladder">
+        <div class="step-row"><strong>open</strong>打开文件。</div>
+        <div class="step-row"><strong>readlines</strong>把文件读成一组行。</div>
+        <div class="step-row"><strong>close</strong>用完以后关掉文件。</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 前置知识</p>
+      <h2>读文件，不止一种读法</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>read()</strong>一次读完整个文件，得到一大段文字。</div>
+        <div class="step-row"><strong>readline()</strong>一次只读一行。</div>
+        <div class="step-row"><strong>readlines()</strong>一次读出所有行，得到一个 list。</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 前置知识</p>
+      <h2>一次读完整个文件</h2>
+      <div class="code-output-pair">
+        <pre><code>file = open("stocks.txt", encoding="utf-8")
+text = file.read()
+file.close()
+
+print(text)</code></pre>
+        <pre class="output compact"><code>股票名称, 行业, 开盘价格, 收盘价格, 成交额(亿元)
+贵州茅台, 白酒, 1709, 1705, 86.4
+招商银行, 银行, 35.00, 36.00, 42.8</code></pre>
+      </div>
+      <p class="mini-note">文件里每一行结尾都有一个看不见的 <code>\n</code>，<code>print()</code> 遇到它就换行。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 前置知识</p>
+      <h2>反斜杠：给文字加特殊含义</h2>
+      <div class="code-output-pair">
+        <pre><code>print("贵州茅台\n招商银行")
+print("名称\t收盘价")
+print("他说：\"今天涨了\"")
+print("文件位置：C:\\stocks.txt")</code></pre>
+        <pre class="output compact"><code>贵州茅台
+招商银行
+名称    收盘价
+他说："今天涨了"
+文件位置：C:\stocks.txt</code></pre>
+      </div>
+      <p class="mini-note"><code>\n</code> 换行，<code>\t</code> 空一段距离，<code>\"</code> 写双引号，<code>\\</code> 写反斜杠本身。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 解题思路</p>
+      <h2>让程序记住“目前最差”</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>先准备</strong>两个空位置：跌的钱最多、跌幅最大。</div>
+        <div class="step-row"><strong>每一行</strong>都算出涨跌额和涨跌幅。</div>
+        <div class="step-row"><strong>更差时</strong>更新记录。最后留下来的就是答案。</div>
+      </div>
+    </section>
+
+    <section class="slide code-tiny">
+      <p class="eyebrow">例子 2 · 代码</p>
+      <pre><code>file = open("stocks.txt", encoding="utf-8")
+lines = file.readlines()
+file.close()
+
+data_lines = lines[1:]  # 跳过表头，只处理股票数据
+
+worst_money_name, worst_percent_name = "", ""
+worst_money_change, worst_percent = 0, 0
+
+for line in data_lines:
+    parts = line.strip().split(", ")
+    name = parts[0]
+    open_price = float(parts[2])
+    close_price = float(parts[3])
+
+    change = round(close_price - open_price, 2)
+    percent = round(change / open_price * 100, 2)
+
+    if change < worst_money_change:
+        worst_money_name = name
+        worst_money_change = change
+
+    if percent < worst_percent:
+        worst_percent_name = name
+        worst_percent = percent
+
+print("跌的钱最多： {} {}".format(worst_money_name, worst_money_change))
+print("跌幅最大： {} {}%".format(worst_percent_name, worst_percent))</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 输出</p>
+      <pre class="output"><code>跌的钱最多： 宁德时代 -6.0
+跌幅最大： 隆基绿能 -4.44%</code></pre>
+      <p class="lead">这两个结论是程序在循环里比出来的，不是靠人眼从表里找出来的。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 数据分析</p>
+      <h2>两个“最差”，回答的是两个问题</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>跌的钱最多</h3>
+          <p class="lead">看的是绝对金额。</p>
+          <p class="mini-note">宁德时代从 180 跌到 174，跌了 6 元，跌幅是 3.33%。</p>
+        </div>
+        <div class="card dark">
+          <h3>跌幅最大</h3>
+          <p class="lead">看的是相对严重程度。</p>
+          <p class="mini-note">隆基绿能从 18 跌到 17.2，只跌 0.8 元，但跌幅是 4.44%。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 2 · 数据分析</p>
+      <h2>先问清楚问题，再决定怎么算</h2>
+      <ul>
+        <li>如果关心“账户少了多少钱”，要看涨跌额乘以持有股数。</li>
+        <li>如果关心“这只股票今天波动严不严重”，重点看涨跌幅。</li>
+        <li>如果要比较不同行业，还要把行业、成交额一起放进来。</li>
+        <li>数据分析不是把数字都算出来，而是选对能回答问题的数字。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 3 · 目标</p>
+      <h2>不只找第一名，还要看整体</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>例子 2</strong>找出最差的一只股票。</div>
+        <div class="step-row"><strong>例子 3</strong>统计上涨和下跌数量，看整体分布。</div>
+        <div class="step-row"><strong>提醒</strong>总数有用，但总数不是全部答案。</div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 3 · 前置知识</p>
+      <h2>encoding="utf-8" 是在说什么？</h2>
+      <ul>
+        <li>电脑保存文字时，底层其实保存的是数字。</li>
+        <li>编码就是“数字”和“文字”之间的对照表。</li>
+        <li><code>utf-8</code> 是最常用的编码之一，中文、英文、符号都能处理。</li>
+        <li>摩斯编码也是一种编码：不同的点和横，对应不同字母。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 3 · 前置知识</p>
+      <h2>打开文件时，可以指定模式</h2>
+      <pre><code>open("stocks.txt", mode="r")
+open("stocks.txt", mode="w")
+open("stocks.txt", mode="a")
+open("stocks.txt", mode="x")</code></pre>
+      <ul>
+        <li><code>r</code> 是 read：读取文件。默认就是 <code>r</code>，所以平时可以不写。</li>
+        <li><code>w</code> 是 write：写入文件；如果文件已经存在，会先清空原内容。</li>
+        <li><code>a</code> 是 append：追加到文件最后，不清空原内容。</li>
+        <li><code>x</code> 是 create：只创建新文件，文件已存在就报错。</li>
+      </ul>
+    </section>
+
+    <section class="slide code-small">
+      <p class="eyebrow">例子 3 · 代码</p>
+      <pre><code>file = open("stocks.txt", encoding="utf-8")
+lines = file.readlines()
+file.close()
+
+data_lines = lines[1:]  # 跳过表头
+up_count, down_count = 0, 0
+
+for line in data_lines:
+    parts = line.strip().split(", ")
+    open_price = float(parts[2])
+    close_price = float(parts[3])
+    change = round(close_price - open_price, 2)
+
+    if change > 0:
+        up_count += 1
+    if change < 0:
+        down_count += 1
+
+print("上涨数量： {}".format(up_count))
+print("下跌数量： {}".format(down_count))</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 3 · 输出</p>
+      <pre class="output"><code>上涨数量： 7
+下跌数量： 6</code></pre>
+      <p class="lead">从“逐条看”变成“看整体”。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">例子 3 · 所以呢</p>
+      <h2>上涨 7、下跌 6，能说明什么？</h2>
+      <ul>
+        <li>它说明这批股票里，上涨数量略多于下跌数量。</li>
+        <li>但它不能直接说明“市场很好”，因为每只股票的影响不一样。</li>
+        <li>成交额大的股票、行业集中的股票，可能比小股票更影响整体感觉。</li>
+        <li>下一步才是分行业、看成交额、看涨跌幅，而不是只看数量。</li>
+      </ul>
+    </section>
+
+    <section class="slide photo-slide">
+      <div class="ai-photo-grid">
+        <pre class="output ai-stock-data"><code>股票名称, 行业, 开盘价格, 收盘价格, 成交额(亿元)
+贵州茅台, 白酒, 1709, 1705, 86.4
+招商银行, 银行, 35.00, 36.00, 42.8
+五粮液, 白酒, 150.00, 153.00, 44.1
+泸州老窖, 白酒, 140.00, 137.20, 31.6
+平安银行, 银行, 10.00, 10.30, 18.9
+兴业银行, 银行, 18.00, 17.80, 21.4
+宁德时代, 新能源, 180.00, 174.00, 91.2
+比亚迪, 新能源, 210.00, 214.00, 76.5
+隆基绿能, 新能源, 18.00, 17.20, 33.6
+工业富联, 科技, 25.00, 27.00, 58.9
+京东方A, 科技, 4.00, 4.20, 25.4
+中芯国际, 科技, 80.00, 78.00, 54.2
+科大讯飞, 科技, 50.00, 51.50, 29.7</code></pre>
+        <pre class="prompt-box small"><code>请根据左边数据统计：
+1. 哪只股票跌的钱最多
+2. 哪只股票跌幅最大
+3. 上涨数量和下跌数量
+
+只给结论，不要投资建议。</code></pre>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 演示 1 · 标准答案</p>
+      <h2>先有标准答案，AI 才能被检查</h2>
+      <pre class="output answer-output"><code>跌的钱最多：宁德时代，跌 6.0 元
+跌幅最大：隆基绿能，跌 4.44%
+上涨数量：7
+下跌数量：6</code></pre>
+    </section>
+
+    <section class="slide photo-slide">
+      <div class="ai-photo-grid">
+        <pre class="output ai-stock-data"><code>股票名称, 行业, 开盘价格, 收盘价格, 成交额(亿元)
+贵州茅台, 白酒, 1709, 1705, 86.4
+招商银行, 银行, 35.00, 36.00, 42.8
+五粮液, 白酒, 150.00, 153.00, 44.1
+泸州老窖, 白酒, 140.00, 137.20, 31.6
+平安银行, 银行, 10.00, 10.30, 18.9
+兴业银行, 银行, 18.00, 17.80, 21.4
+宁德时代, 新能源, 180.00, 174.00, 91.2
+比亚迪, 新能源, 210.00, 214.00, 76.5
+隆基绿能, 新能源, 18.00, 17.20, 33.6
+工业富联, 科技, 25.00, 27.00, 58.9
+京东方A, 科技, 4.00, 4.20, 25.4
+中芯国际, 科技, 80.00, 78.00, 54.2
+科大讯飞, 科技, 50.00, 51.50, 29.7</code></pre>
+        <pre class="prompt-box small"><code>请按行业统计上涨和下跌：
+1. 一共有多少个行业
+2. 每个行业有几只股票
+3. 每个行业上涨几只、下跌几只
+4. 哪个行业整体更强，哪个行业整体更弱
+
+最后用两句话说明：
+为什么只看总上涨数量还不够？</code></pre>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 演示 2 · 标准答案</p>
+      <h2>行业维度，比总数更细</h2>
+      <pre class="output answer-output"><code>一共有 4 个行业。
+
+白酒：3 只，1 涨 2 跌
+银行：3 只，2 涨 1 跌
+新能源：3 只，1 涨 2 跌
+科技：4 只，3 涨 1 跌
+
+科技整体更强，白酒和新能源整体偏弱。
+银行也有分化，不是所有银行股都上涨。
+
+总数告诉我们整体温度；
+分行业能看到结构差异。</code></pre>
+    </section>
+
+    <section class="slide photo-slide">
+      <pre class="prompt-box"><code>下面这段代码能运行，但结果逻辑可能有问题。
+请找出问题，并给出修改后的代码。
+
+stock_name = "隆基绿能"
+open_price = 18.00
+close_price = 17.20
+
+change = close_price - open_price
+percent = change / close_price * 100
+
+print(stock_name, "涨跌幅：", percent, "%")</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 演示 3 · 标准答案</p>
+      <h2>能运行，不代表算得对</h2>
+      <div class="code-output-pair">
+        <pre><code>stock_name = "隆基绿能"
+open_price = 18.00
+close_price = 17.20
+
+change = close_price - open_price
+percent = change / open_price * 100
+
+print(stock_name, "涨跌幅：", percent, "%")</code></pre>
+        <pre class="output compact"><code>隆基绿能 涨跌幅： -4.444444444444446 %</code></pre>
+      </div>
+      <p class="mini-note">涨跌幅要除以变化前的价格，也就是开盘价；原代码除以收盘价，程序能跑，但逻辑错了。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">今晚记住这几句</p>
+      <h2>从重复步骤，到批量分析</h2>
+      <ul>
+        <li><code>while</code> 适合“不知道要重复几次”的流程。</li>
+        <li><code>for</code> 适合“一批结构相同的数据”。</li>
+        <li><code>if</code> 让程序根据情况走不同路线。</li>
+        <li><code>readlines()</code> 把文件读成一行一行的 list。</li>
+        <li>程序的价值不是复制原始数据，而是计算、比较、生成可读结论。</li>
+        <li>AI 可以辅助总结，但标准答案要能回到程序和数据。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    let index = 0;
+
+    function show(next) {
+      index = Math.max(0, Math.min(slides.length - 1, next));
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+      window.location.hash = `slide-${index + 1}`;
+    }
+
+    function fromHash() {
+      const match = window.location.hash.match(/slide-(\d+)/);
+      if (match) {
+        show(Number(match[1]) - 1);
+      } else {
+        show(0);
+      }
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        show(index + 1);
+      }
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        show(index - 1);
+      }
+      if (event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.();
+        } else {
+          document.exitFullscreen?.();
+        }
+      }
+      if (event.key.toLowerCase() === "p") {
+        window.print();
+      }
+      if (event.key === "Home") {
+        show(0);
+      }
+      if (event.key === "End") {
+        show(slides.length - 1);
+      }
+    });
+
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
+  </script>
+</body>
+</html>

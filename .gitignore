@@ -11,6 +11,8 @@ __pycache__/
 **/.ipynb_checkpoints/
 
 # Local/downloaded dependencies and partial downloads
+node_modules/
+tmp/
 *.whl
 *.part
 *.zip

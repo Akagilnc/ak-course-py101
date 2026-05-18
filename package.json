@@ -1,0 +1,28 @@
+{
+  "name": "python-course-101",
+  "version": "1.0.0",
+  "description": "",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "check:l1-slides": "node scripts/check-slides.js docs/l1-slides.html",
+    "check:l2-slides": "node scripts/check-slides.js docs/l2-slides.html",
+    "check:l3-slides": "node scripts/check-slides.js docs/l3-slides.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akagilnc/ak-course-py101.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Akagilnc/ak-course-py101/issues"
+  },
+  "homepage": "https://github.com/Akagilnc/ak-course-py101#readme",
+  "devDependencies": {
+    "playwright": "^1.59.1"
+  }
+}
