@@ -43,11 +43,11 @@ L3 已经看过 API 返回的 JSON，也讲过 dict / list 的取值。L4 把这
 
 ## 课前热身：L1 + L2 + L3 Quiz
 
-目标不是考试，是把 L4 会继续用到的基础能力叫醒。前半先复习变量、判断、循环、报告 list 和写文件；后半再少量复习 dict / list 结构。
+目标不是考试，是把 L4 会继续用到的基础能力叫醒。少量复习 L1 / L2 的基础表达，重点复习 L3 刚接触的“小表、报告 list、写文件、dict 取值”，最后自然过渡到 L4 的 JSON 路径。
 
 展示时仍然参考 L2 / L3：每页一个完整代码块，下面放两道题。
 
-### Quiz 1 / 7：变量和模板
+### Quiz 1 / 7：模板和数据类型
 
 ```python
 name = "海外疫情"
@@ -71,60 +71,35 @@ print(text)
 - C. 字符串
 - D. list
 
-### Quiz 2 / 7：判断和报告文字
+### Quiz 2 / 7：list 里放 list
 
 ```python
-change = -4
+rows = [
+    ["累计确诊", "35270206"],
+    ["累计死亡", "1036359"],
+    ["累计治愈", "26340847"],
+]
 
-if change < 0:
-    direction = "下跌"
-else:
-    direction = "上涨"
-
-text = "今日{} {} 元".format(direction, 0 - change)
-print(text)
+first_row = rows[0]
+print(first_row[0])
+print(first_row[1])
 ```
 
-3. 最后 `direction` 是什么？
+3. `rows[0]` 取到的是什么？
 
-- A. `上涨`
-- B. `下跌`
-- C. `-4`
-- D. `4`
+- A. `"累计确诊"`
+- B. `"35270206"`
+- C. `["累计确诊", "35270206"]`
+- D. `rows`
 
-4. 最后一行会输出什么？
+4. 最后两行会输出什么？
 
-- A. `今日下跌 -4 元`
-- B. `今日上涨 4 元`
-- C. `今日下跌 4 元`
-- D. `今日上涨 -4 元`
+- A. `累计确诊` 和 `35270206`
+- B. `35270206` 和 `累计确诊`
+- C. `累计死亡` 和 `1036359`
+- D. `first_row[0]` 和 `first_row[1]`
 
-### Quiz 3 / 7：list 和下标
-
-```python
-row = ["累计确诊", "35270206"]
-
-name = row[0]
-value = row[1]
-
-print(name, value)
-```
-
-5. `row[0]` 取到什么？
-
-- A. `累计确诊`
-- B. `35270206`
-- C. `name`
-- D. `value`
-
-6. 这段代码最后会打印什么？
-
-- A. `累计确诊 35270206`
-- B. `35270206 累计确诊`
-- C. `row[0] row[1]`
-- D. `name value`
-
-### Quiz 4 / 7：for 循环和报告列表
+### Quiz 3 / 7：for 循环和 append
 
 ```python
 rows = [
@@ -134,31 +109,32 @@ rows = [
 ]
 
 reports = []
+
 for row in rows:
     text = "{} {} 例\n".format(row[0], row[1])
     reports.append(text)
 ```
 
-7. 这段循环会执行几次？
+5. 这段循环会执行几次？
 
 - A. 1 次
 - B. 2 次
 - C. 3 次
 - D. 不确定
 
-8. 最后 `reports` 里有几条文字？
+6. 最后 `reports` 里有几条文字？
 
 - A. 0 条
 - B. 1 条
 - C. 2 条
 - D. 3 条
 
-### Quiz 5 / 7：写入 txt 文件
+### Quiz 4 / 7：写入 txt 文件
 
 ```python
 reports = [
-    "累计确诊 35270206 例\\n",
-    "累计死亡 1036359 例\\n",
+    "累计确诊 35270206 例\n",
+    "累计死亡 1036359 例\n",
 ]
 
 file = open("report.txt", "w", encoding="utf-8")
@@ -166,21 +142,21 @@ file.writelines(reports)
 file.close()
 ```
 
-9. `writelines(reports)` 会做什么？
+7. `writelines(reports)` 会做什么？
 
 - A. 把 list 里的文字写入文件
 - B. 只写入第一条文字
 - C. 读取文件内容
 - D. 删除 `reports`
 
-10. `"w"` 模式对旧文件有什么影响？
+8. 每条文字最后的 `\n` 主要作用是什么？
 
-- A. 只会在旧内容后面追加
-- B. 如果文件已存在，会覆盖旧内容
-- C. 只能读取，不能写入
-- D. 会自动生成 Excel
+- A. 让每条报告换行
+- B. 把文字变成数字
+- C. 删除空格
+- D. 自动生成 Excel
 
-### Quiz 6 / 7：dict 取值
+### Quiz 5 / 7：dict 取值
 
 ```python
 summary = {
@@ -190,52 +166,88 @@ summary = {
 }
 
 print(summary["die"])
+print(summary.get("ecertain", "没有这个字段"))
 ```
 
-11. `summary["die"]` 会取到什么？
+9. `summary["die"]` 会取到什么？
 
 - A. `35270206`
 - B. `1036359`
 - C. `26340847`
 - D. `die`
 
-12. 如果要取治愈人数，应该写哪一句？
+10. 第二个 `print()` 会输出什么？
 
-- A. `summary["recure"]`
-- B. `summary["cure"]`
-- C. `summary[2]`
-- D. `summary.recure`
+- A. `ecertain`
+- B. `None`
+- C. `没有这个字段`
+- D. 程序一定报错
 
-### Quiz 7 / 7：两层 dict
+### Quiz 6 / 7：两层 dict
 
 ```python
-data = {
-    "mtime": "2020-10-05 21:01:00",
-    "othertotal": {
-        "certain": "35270206",
-        "die": "1036359",
+raw_data = {
+    "data_title": "fymap",
+    "data": {
+        "mtime": "2020-10-05 21:01:00",
+        "othertotal": {
+            "certain": "35270206",
+            "die": "1036359",
+        }
     }
 }
 
+data = raw_data["data"]
 total = data["othertotal"]
+
 print(total["certain"])
 ```
 
-13. `data["othertotal"]` 取到的是什么？
+11. `raw_data["data"]` 取到的是什么？
 
 - A. 一个 dict
 - B. 一个 list
-- C. 字符串 `"othertotal"`
-- D. `1036359`
+- C. 字符串 `"data"`
+- D. `35270206`
 
-14. 最后一行会输出什么？
+12. 最后一行会输出什么？
 
 - A. `othertotal`
 - B. `certain`
 - C. `35270206`
 - D. `1036359`
 
-答案：`1.A 2.C 3.B 4.C 5.A 6.A 7.C 8.D 9.A 10.B 11.B 12.A 13.A 14.C`
+### Quiz 7 / 7：dict + list 混合结构
+
+```python
+weather = {
+    "city": "成都",
+    "forecast": [
+        {"time": "09:00", "rain_probability": 20},
+        {"time": "21:00", "rain_probability": 80},
+    ]
+}
+
+first = weather["forecast"][0]
+print(first["time"])
+print(weather["forecast"][1]["rain_probability"])
+```
+
+13. `weather["forecast"]` 取到的是什么？
+
+- A. 一个 dict
+- B. 一个 list
+- C. 字符串 `"成都"`
+- D. 数字 `20`
+
+14. 最后两行会输出什么？
+
+- A. `09:00` 和 `80`
+- B. `21:00` 和 `20`
+- C. `forecast` 和 `rain_probability`
+- D. `成都` 和 `80`
+
+答案：`1.A 2.C 3.C 4.A 5.C 6.D 7.A 8.A 9.B 10.C 11.A 12.C 13.B 14.A`
 
 ## 章节页
 
