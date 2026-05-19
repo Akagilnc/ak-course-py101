@@ -8,7 +8,8 @@
   "scripts": {
     "check:l1-slides": "node scripts/check-slides.js docs/l1-slides.html",
     "check:l2-slides": "node scripts/check-slides.js docs/l2-slides.html",
-    "check:l3-slides": "node scripts/check-slides.js docs/l3-slides.html"
+    "check:l3-slides": "node scripts/check-slides.js docs/l3-slides.html",
+    "check:l4-slides": "node scripts/check-slides.js docs/l4-slides.html"
   },
   "repository": {
     "type": "git",

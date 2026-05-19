@@ -1,0 +1,1296 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python 101 L4</title>
+  <style>
+    :root {
+      --paper: #f4efdf;
+      --ink: #162117;
+      --muted: #66705e;
+      --green: #1d6f4d;
+      --green-dark: #0f3d2d;
+      --gold: #d9972f;
+      --code-bg: #10251d;
+      --code-ink: #eff8e8;
+      --output-bg: #2d2417;
+      --output-ink: #fff1ca;
+      --shadow: rgba(22, 33, 23, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #1a211b;
+      color: var(--ink);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(217, 151, 47, 0.25), transparent 28%),
+        radial-gradient(circle at 86% 82%, rgba(29, 111, 77, 0.22), transparent 28%),
+        linear-gradient(135deg, #efe2bd, #f8f4e9 38%, #e2e9d0);
+      z-index: -2;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 96px 86px 64px;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.24)),
+        var(--paper);
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      animation: rise 260ms ease-out;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      right: -210px;
+      bottom: -250px;
+      width: 560px;
+      height: 560px;
+      border-radius: 46% 54% 49% 51%;
+      background: rgba(29, 111, 77, 0.12);
+      z-index: 0;
+    }
+
+    .slide > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--green);
+      font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+      font-size: 34px;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 1500px;
+      font-size: 112px;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      max-width: 1500px;
+      font-size: 82px;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin: 0 0 18px;
+      color: var(--green-dark);
+      font-size: 46px;
+    }
+
+    .lead {
+      max-width: 1300px;
+      margin: 34px 0 0;
+      color: #293527;
+      font-size: 46px;
+      line-height: 1.35;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 86px;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 46px;
+      margin-top: 54px;
+      align-items: stretch;
+    }
+
+    .card {
+      padding: 34px 38px;
+      border: 3px solid rgba(22, 33, 23, 0.12);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+
+    .card.dark {
+      background: var(--green-dark);
+      color: #f5f0da;
+      border-color: transparent;
+    }
+
+    .card.dark h3,
+    .card.dark .lead {
+      color: #f5f0da;
+    }
+
+    .card.dark .mini-note {
+      color: var(--output-ink);
+    }
+
+    .card .lead {
+      margin-top: 18px;
+      font-size: 44px;
+    }
+
+    ul {
+      margin: 32px 0 0;
+      padding-left: 52px;
+      font-size: 42px;
+      line-height: 1.34;
+    }
+
+    li {
+      margin: 18px 0;
+    }
+
+    .question-list {
+      margin-top: 46px;
+      padding-left: 0;
+      list-style: none;
+      font-size: 52px;
+      line-height: 1.25;
+    }
+
+    .question-list li {
+      margin: 28px 0;
+      padding-left: 70px;
+      position: relative;
+    }
+
+    .question-list li::before {
+      content: "?";
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: #fff8dd;
+      display: grid;
+      place-items: center;
+      font-family: Georgia, serif;
+      font-size: 34px;
+      font-weight: 900;
+    }
+
+    .question-list.tight {
+      font-size: 46px;
+      line-height: 1.22;
+    }
+
+    .question-list.tight li {
+      margin: 22px 0;
+    }
+
+    pre {
+      margin: 34px 0 0;
+      padding: 34px 40px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+        var(--code-bg);
+      color: var(--code-ink);
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+      font-size: 38px;
+      line-height: 1.22;
+      white-space: pre;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    code {
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+    }
+
+    .code-annotated {
+      margin-top: 42px;
+      font-size: 54px;
+      line-height: 1.25;
+      white-space: pre-wrap;
+    }
+
+    .code-annotated .name {
+      color: #8ec7ff;
+    }
+
+    .code-annotated .key {
+      color: #8ec7ff;
+    }
+
+    .code-annotated .punct {
+      color: #f6f1d8;
+    }
+
+    .code-annotated .str {
+      color: #7ee787;
+    }
+
+    .code-annotated .num {
+      color: #d2a8ff;
+    }
+
+    .code-annotated .bool {
+      color: #ffcf6a;
+    }
+
+    .annotation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 38px;
+    }
+
+    .annotation-grid.four {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .annotation-card {
+      padding: 26px 28px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 3px solid rgba(29, 111, 77, 0.16);
+      font-size: 36px;
+      line-height: 1.24;
+    }
+
+    .annotation-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--green-dark);
+      font-size: 40px;
+    }
+
+    .code-small,
+    .code-tiny {
+      padding: 66px 58px 34px;
+    }
+
+    .code-small .eyebrow,
+    .code-tiny .eyebrow {
+      margin-bottom: 12px;
+      font-size: 30px;
+    }
+
+    .code-small pre {
+      margin-top: 22px;
+      padding: 30px 36px;
+      font-size: 28px;
+      line-height: 1.02;
+    }
+
+    .code-tiny pre {
+      margin-top: 20px;
+      padding: 26px 34px;
+      font-size: 27px;
+      line-height: 1.02;
+    }
+
+    .output {
+      margin-top: 92px;
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-size: 50px;
+      line-height: 1.22;
+    }
+
+    .output.compact {
+      margin-top: 34px;
+      font-size: 34px;
+      line-height: 1.18;
+    }
+
+    .output.stock-data {
+      margin-top: 30px;
+      font-size: 30px;
+      line-height: 1.12;
+    }
+
+    .output.report-output {
+      margin-top: 40px;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 30px;
+      line-height: 1.24;
+      white-space: pre-wrap;
+    }
+
+    .output.report-output.single {
+      margin-top: 20px;
+      padding: 34px 40px;
+      font-size: 27px;
+      line-height: 1.18;
+    }
+
+    .output.ai-stock-data {
+      margin-top: 22px;
+      padding: 24px 34px;
+      font-size: 25px;
+      line-height: 1.1;
+    }
+
+    .output.ai-answer {
+      margin-top: 28px;
+      padding: 64px 68px;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 52px;
+      line-height: 1.34;
+      white-space: pre-wrap;
+    }
+
+    .output.answer-output {
+      margin-top: 58px;
+      font-size: 46px;
+      line-height: 1.26;
+    }
+
+    .output.report-example {
+      margin-top: 44px;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 38px;
+      line-height: 1.28;
+      white-space: pre-wrap;
+    }
+
+    .prompt-box {
+      margin-top: 42px;
+      padding: 38px 46px;
+      border-radius: 30px;
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 40px;
+      line-height: 1.34;
+      white-space: pre-wrap;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .prompt-box.small {
+      margin-top: 24px;
+      padding: 28px 36px;
+      font-size: 31px;
+      line-height: 1.22;
+    }
+
+    .code-output-pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 34px;
+    }
+
+    .code-output-pair pre {
+      margin-top: 0;
+    }
+
+    .code-output-pair .output {
+      margin-top: 0;
+      font-size: 40px;
+      line-height: 1.18;
+    }
+
+    .ai-photo-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 30px;
+      margin-top: 28px;
+      align-items: start;
+    }
+
+    .ai-photo-grid .output,
+    .ai-photo-grid .prompt-box {
+      margin-top: 0;
+    }
+
+    .code-readable pre {
+      font-size: 34px;
+      line-height: 1.12;
+    }
+
+    .mini-note {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: 34px;
+      line-height: 1.25;
+    }
+
+    .formula {
+      margin-top: 42px;
+      padding: 38px 46px;
+      border-radius: 34px;
+      background: var(--green-dark);
+      color: #f8f2d9;
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+      font-size: 48px;
+      line-height: 1.3;
+      box-shadow: 0 24px 70px rgba(15, 61, 45, 0.28);
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 72px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: rgba(29, 111, 77, 0.12);
+      color: var(--green-dark);
+      font-size: 36px;
+      font-weight: 800;
+    }
+
+    .center {
+      justify-content: center;
+    }
+
+    .step-ladder {
+      display: grid;
+      gap: 22px;
+      margin-top: 54px;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      align-items: center;
+      gap: 28px;
+      padding: 28px 36px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 3px solid rgba(29, 111, 77, 0.18);
+      font-size: 42px;
+      line-height: 1.24;
+    }
+
+    .step-row strong {
+      color: var(--green-dark);
+      font-size: 44px;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 34px;
+    }
+
+    .quiz-card {
+      padding: 28px 30px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 3px solid rgba(29, 111, 77, 0.16);
+      box-shadow: 0 22px 56px var(--shadow);
+    }
+
+    .quiz-card h3 {
+      margin-bottom: 16px;
+      font-size: 40px;
+      line-height: 1.15;
+    }
+
+    .quiz-card pre {
+      margin-top: 12px;
+      padding: 18px 22px;
+      border-radius: 20px;
+      font-size: 30px;
+      line-height: 1.14;
+      box-shadow: none;
+    }
+
+    .quiz-card ul {
+      margin-top: 14px;
+      padding-left: 28px;
+      font-size: 32px;
+      line-height: 1.22;
+    }
+
+    .quiz-card li {
+      margin: 8px 0;
+    }
+
+    .quiz-full-code {
+      margin-top: 24px;
+      padding: 26px 34px;
+      font-size: 38px;
+      line-height: 1.16;
+    }
+
+    .quiz-full-code.quiz-compact-code {
+      margin-top: 18px;
+      padding: 20px 30px;
+      font-size: 33px;
+      line-height: 1.08;
+    }
+
+    .quiz-grid.after-code {
+      margin-top: 26px;
+    }
+
+    .quiz-grid.after-code .quiz-card {
+      padding: 24px 28px;
+    }
+
+    @media print {
+      html,
+      body {
+        overflow: visible;
+        background: white;
+      }
+
+      .deck {
+        height: auto;
+      }
+
+      .slide,
+      .slide.active {
+        display: flex;
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        page-break-after: always;
+        animation: none;
+      }
+
+    }
+  
+    .wide-pre pre { font-size: 30px; line-height: 1.08; }
+    .dense-list ul { font-size: 38px; line-height: 1.26; }
+    .dict-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; margin-top: 34px; align-items: start; }
+    .dict-grid pre { margin-top: 0; font-size: 31px; line-height: 1.12; }
+    .api-code pre { font-size: 27px; line-height: 1.02; padding: 28px 34px; }
+    .small-output { font-size: 34px; line-height: 1.18; }
+    .time-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 42px; margin-top: 54px; }
+    .time-grid .card ul { font-size: 34px; line-height: 1.25; padding-left: 38px; }
+    .quiz-card pre { font-size: 28px; line-height: 1.06; margin-top: 18px; }
+    .quiz-card ul { font-size: 33px; line-height: 1.22; margin-top: 18px; padding-left: 36px; }
+    .quiz-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 34px; }
+    .quiz-grid .card { padding: 26px 30px; }
+    .quiz-grid h3 { font-size: 34px; margin-bottom: 12px; }
+    .task-plan .step-row {
+      grid-template-columns: 170px 1fr;
+      font-size: 40px;
+      gap: 22px;
+    }
+    .manual-data pre {
+      font-size: 40px;
+      line-height: 1.14;
+      padding: 30px 38px;
+    }
+    .dict-example {
+      margin-top: 28px;
+      font-size: 47px;
+      line-height: 1.16;
+    }
+  
+    .slide { padding-top: 92px; }
+    .l4 h2 { font-size: 76px; }
+    .l4 h1 { font-size: 108px; }
+    .l4 .lead { font-size: 44px; }
+    .compact-list ul { font-size: 38px; line-height: 1.24; }
+    .l4 .quiz-full-code { font-size: 34px; line-height: 1.08; }
+    .l4 .quiz-full-code.quiz-compact-code { font-size: 30px; line-height: 1.03; }
+    .l4 .quiz-grid.after-code { margin-top: 22px; }
+    .l4 .quiz-card h3 { font-size: 34px; }
+    .l4 .quiz-card ul { font-size: 31px; line-height: 1.18; }
+    .l4 .code-small pre { font-size: 29px; line-height: 1.04; }
+    .l4 .code-tiny pre { font-size: 25px; line-height: 1.0; }
+    .l4 .table-card { margin-top: 32px; overflow: hidden; border-radius: 28px; box-shadow: 0 22px 56px var(--shadow); }
+    .l4 table { width: 100%; border-collapse: collapse; background: rgba(255,255,255,0.76); font-size: 36px; line-height: 1.18; }
+    .l4 th, .l4 td { padding: 18px 24px; border-bottom: 2px solid rgba(29,111,77,0.14); text-align: left; }
+    .l4 th { color: var(--green-dark); font-weight: 900; background: rgba(29,111,77,0.09); }
+    .l4 td.num, .l4 th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .l4 .small-table table { font-size: 31px; }
+    .l4 .small-table th, .l4 .small-table td { padding: 12px 18px; }
+    .l4 .output { font-size: 44px; line-height: 1.22; }
+    .l4 .output.compact { font-size: 34px; line-height: 1.16; }
+    .l4 .output.report-example { font-size: 35px; line-height: 1.24; }
+    .l4 .prompt-box.small { font-size: 28px; line-height: 1.18; }
+    .l4 .photo-slide { padding-top: 66px; }
+    .l4 .photo-slide .ai-photo-grid { grid-template-columns: 1fr 1fr; }
+    .l4 .two-col.tight { gap: 30px; margin-top: 34px; }
+    .l4 .two-col.tight .card { padding: 26px 30px; }
+    .l4 .two-col.tight .card .lead { font-size: 36px; }
+    .l4 .step-row { font-size: 38px; }
+    .l4 .step-row strong { font-size: 40px; }
+    .l4 .question-list { font-size: 46px; }
+    .l4 .question-list.tight { font-size: 40px; }
+    .l4 .mini-note { font-size: 32px; }
+  </style>
+</head>
+<body class="l4">
+  <main class="deck">
+    <section class="slide active center" data-first="true">
+<p class="eyebrow">L4</p>
+      <h1>从 JSON 到 Excel</h1>
+      <p class="lead">读本地 JSON 文件，把结构化数据变成 txt 报告和 Excel 表格。</p>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">今晚路线</p>
+      <h2>先落地，再打开视野</h2>
+      <div class="three-col">
+        <div class="card"><h3>1. JSON</h3><p class="lead">读懂文件结构，找到目标字段。</p></div>
+        <div class="card"><h3>2. 输出</h3><p class="lead">同一份数据，保存成 txt 和 xlsx。</p></div>
+        <div class="card dark"><h3>3. 真实场景</h3><p class="lead">接龙、订单、流水、天气 API。</p></div>
+      </div>
+    </section>
+
+    <section class="slide center">
+<p class="eyebrow">课前热身</p>
+      <h2>先把旧工具叫醒</h2>
+      <p class="lead">变量、判断、循环、list、dict、写文件，今天都会继续用。</p>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">Quiz 1 / 7</p>
+      <h2>模板和数据类型</h2>
+      <pre class="quiz-full-code"><code>name = "海外疫情"
+certain = "35270206"
+
+text = "{} 累计确诊 {} 例".format(name, certain)
+print(text)</code></pre>
+      <div class="quiz-grid after-code">
+        <div class="quiz-card"><h3>1. <code>text</code> 里会保存哪句话？</h3><ul><li>A. 海外疫情 累计确诊 35270206 例</li><li>B. {} 累计确诊 {} 例</li><li>C. name 累计确诊 certain 例</li><li>D. 35270206 累计确诊 海外疫情 例</li></ul></div>
+        <div class="quiz-card"><h3>2. 这里的 <code>certain</code> 是什么类型？</h3><ul><li>A. 整数</li><li>B. 小数</li><li>C. 字符串</li><li>D. list</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">Quiz 2 / 7</p>
+      <h2>list 里放 list</h2>
+      <pre class="quiz-full-code quiz-compact-code"><code>rows = [
+    ["累计确诊", "35270206"],
+    ["累计死亡", "1036359"],
+    ["累计治愈", "26340847"],
+]
+
+first_row = rows[0]
+print(first_row[0])
+print(first_row[1])</code></pre>
+      <div class="quiz-grid after-code">
+        <div class="quiz-card"><h3>3. <code>rows[0]</code> 取到的是什么？</h3><ul><li>A. "累计确诊"</li><li>B. "35270206"</li><li>C. ["累计确诊", "35270206"]</li><li>D. rows</li></ul></div>
+        <div class="quiz-card"><h3>4. 最后两行会输出什么？</h3><ul><li>A. 累计确诊 和 35270206</li><li>B. 35270206 和 累计确诊</li><li>C. 累计死亡 和 1036359</li><li>D. first_row[0] 和 first_row[1]</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">Quiz 3 / 7</p>
+      <h2>for 循环和报告列表</h2>
+      <pre class="quiz-full-code quiz-compact-code"><code>rows = [
+    ["累计确诊", "35270206"],
+    ["累计死亡", "1036359"],
+    ["累计治愈", "26340847"],
+]
+
+reports = []
+
+for row in rows:
+    text = "{} {} 例\n".format(row[0], row[1])
+    reports.append(text)</code></pre>
+      <div class="quiz-grid after-code">
+        <div class="quiz-card"><h3>5. 这段循环会执行几次？</h3><ul><li>A. 1 次</li><li>B. 2 次</li><li>C. 3 次</li><li>D. 不确定</li></ul></div>
+        <div class="quiz-card"><h3>6. 最后 <code>reports</code> 里有几条文字？</h3><ul><li>A. 0 条</li><li>B. 1 条</li><li>C. 2 条</li><li>D. 3 条</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">Quiz 4 / 7</p>
+      <h2>写入 txt 文件</h2>
+      <pre class="quiz-full-code quiz-compact-code"><code>reports = [
+    "累计确诊 35270206 例\n",
+    "累计死亡 1036359 例\n",
+]
+
+file = open("report.txt", "w", encoding="utf-8")
+file.writelines(reports)
+file.close()</code></pre>
+      <div class="quiz-grid after-code">
+        <div class="quiz-card"><h3>7. <code>writelines(reports)</code> 会做什么？</h3><ul><li>A. 把 list 里的文字写入文件</li><li>B. 只写入第一条文字</li><li>C. 读取文件内容</li><li>D. 删除 reports</li></ul></div>
+        <div class="quiz-card"><h3>8. 每条文字最后的 <code>\n</code> 主要作用是什么？</h3><ul><li>A. 让每条报告换行</li><li>B. 把文字变成数字</li><li>C. 删除空格</li><li>D. 自动生成 Excel</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">Quiz 5 / 7</p>
+      <h2>dict 取值</h2>
+      <pre class="quiz-full-code"><code>summary = {
+    "certain": "35270206",
+    "die": "1036359",
+    "recure": "26340847",
+}
+
+print(summary["die"])
+print(summary.get("ecertain", "没有这个字段"))</code></pre>
+      <div class="quiz-grid after-code">
+        <div class="quiz-card"><h3>9. <code>summary["die"]</code> 会取到什么？</h3><ul><li>A. 35270206</li><li>B. 1036359</li><li>C. 26340847</li><li>D. die</li></ul></div>
+        <div class="quiz-card"><h3>10. 第二个 <code>print()</code> 会输出什么？</h3><ul><li>A. ecertain</li><li>B. None</li><li>C. 没有这个字段</li><li>D. 程序一定报错</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">Quiz 6 / 7</p>
+      <h2>两层 dict</h2>
+      <pre class="quiz-full-code quiz-compact-code"><code>raw_data = {
+    "data_title": "fymap",
+    "data": {
+        "mtime": "2020-10-05 21:01:00",
+        "othertotal": {
+            "certain": "35270206",
+            "die": "1036359",
+        }
+    }
+}
+
+data = raw_data["data"]
+total = data["othertotal"]
+print(total["certain"])</code></pre>
+      <div class="quiz-grid after-code">
+        <div class="quiz-card"><h3>11. <code>raw_data["data"]</code> 取到的是什么？</h3><ul><li>A. 一个 dict</li><li>B. 一个 list</li><li>C. 字符串 data</li><li>D. 35270206</li></ul></div>
+        <div class="quiz-card"><h3>12. 最后一行会输出什么？</h3><ul><li>A. othertotal</li><li>B. certain</li><li>C. 35270206</li><li>D. 1036359</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">Quiz 7 / 7</p>
+      <h2>dict + list 混合结构</h2>
+      <pre class="quiz-full-code quiz-compact-code"><code>weather = {
+    "city": "成都",
+    "forecast": [
+        {"time": "09:00", "rain_probability": 20},
+        {"time": "21:00", "rain_probability": 80},
+    ]
+}
+
+first = weather["forecast"][0]
+print(first["time"])
+print(weather["forecast"][1]["rain_probability"])</code></pre>
+      <div class="quiz-grid after-code">
+        <div class="quiz-card"><h3>13. <code>weather["forecast"]</code> 取到的是什么？</h3><ul><li>A. 一个 dict</li><li>B. 一个 list</li><li>C. 字符串 "成都"</li><li>D. 数字 20</li></ul></div>
+        <div class="quiz-card"><h3>14. 最后两行会输出什么？</h3><ul><li>A. 09:00 和 80</li><li>B. 21:00 和 20</li><li>C. forecast 和 rain_probability</li><li>D. 成都 和 80</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide center">
+<p class="eyebrow">#1 从 JSON 到文件</p>
+      <h2>How to save structured data?</h2>
+      <p class="lead">L3 看过接口返回的 JSON；L4 直接读取本地 JSON 文件。</p>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">认识 lesson4.json</p>
+      <h2>先看结构，不急着写代码</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>文件</strong><span><code>lesson4.json</code> 是已经整理好的疫情数据文件。</span></div>
+        <div class="step-row"><strong>目标</strong><span>今天不处理全部内容，只找海外疫情汇总。</span></div>
+        <div class="step-row"><strong>结果</strong><span>先生成一份文字报告，再生成一份 Excel 表。</span></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">这次只走一条路径</p>
+      <h2>目标数据藏在 data 里面</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>raw_data</strong><span>整个 JSON 文件读进来以后得到的大 dict。</span></div>
+        <div class="step-row"><strong>data</strong><span>业务数据主体，里面还有更新时间和很多列表。</span></div>
+        <div class="step-row"><strong>othertotal</strong><span>海外疫情汇总，本节课第一次只处理它。</span></div>
+      </div>
+      <pre class="output compact"><code>raw_data["data"]["othertotal"]</code></pre>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">第一步</p>
+      <h2>保存海外疫情汇总到 txt</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>拿数据</strong><span>从文件里找到海外疫情汇总。</span></div>
+        <div class="step-row"><strong>挑指标</strong><span>选择累计确诊、现存确诊、累计死亡、累计治愈。</span></div>
+        <div class="step-row"><strong>写成话</strong><span>把数字变成可以直接读的一段报告。</span></div>
+        <div class="step-row"><strong>存下来</strong><span>生成 <code>l4_oversea_report.txt</code>，让结果离开屏幕。</span></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">第一步 Recap</p>
+      <h2>旧方法继续有用</h2>
+      <ul>
+        <li><code>json.load(file)</code> 负责把 JSON 文件读成 Python 数据。</li>
+        <li><code>raw_data["data"]["othertotal"]</code> 是这次最关键的路径。</li>
+        <li><code>reports</code> 仍然是 L3 的办法：先收集文字，再一次性写入文件。</li>
+        <li><code>txt</code> 适合给人读，但不适合继续排序、筛选、做表格处理。</li>
+      </ul>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">第二步</p>
+      <h2>保存海外疫情汇总到 Excel</h2>
+      <p class="lead">同样的数据，换成表格输出。</p>
+      <div class="table-card">
+        <table><tr><th>指标</th><th class="num">数值</th></tr><tr><td>累计确诊</td><td class="num">35270206</td></tr><tr><td>现存确诊</td><td class="num">7893000</td></tr><tr><td>累计死亡</td><td class="num">1036359</td></tr><tr><td>累计治愈</td><td class="num">26340847</td></tr></table>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">pandas 是什么</p>
+      <h2>把数据装进一张表，再交给 Excel</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>原始数据</strong><span>JSON 里取出来的是一个个字段：确诊、死亡、治愈。</span></div>
+        <div class="step-row"><strong>整理成行</strong><span>先变成 <code>["累计确诊", "35270206"]</code> 这种一行数据。</span></div>
+        <div class="step-row"><strong>变成表</strong><span>pandas 把很多行加上列名，变成 <code>DataFrame</code>。</span></div>
+        <div class="step-row"><strong>导出文件</strong><span><code>to_excel()</code> 把这张表保存成真正的 Excel。</span></div>
+      </div>
+      <p class="mini-note">今天只用 pandas 做一件事：把 Python 里的数据变成可交付的 Excel 表。</p>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">前置知识：DataFrame</p>
+      <h2>先把它理解成 Python 里的表格</h2>
+      <pre class="quiz-full-code"><code>import pandas as pd
+
+rows = [
+    ["累计确诊", "35270206"],
+    ["累计死亡", "1036359"],
+]
+
+df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
+      <p class="mini-note"><code>rows</code> 是原材料，<code>df</code> 是已经有行和列的表。</p>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">to_excel()</p>
+      <h2>把表保存成 Excel 文件</h2>
+      <pre class="quiz-full-code"><code>df.to_excel(
+    "l4_oversea_report.xlsx",
+    index=False,
+    sheet_name="汇总"
+)</code></pre>
+      <div class="annotation-grid">
+        <div class="annotation-card"><strong>文件名</strong>保存成哪个 xlsx</div>
+        <div class="annotation-card"><strong>index=False</strong>不保存自动行号</div>
+        <div class="annotation-card"><strong>sheet_name</strong>工作表名称</div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">第二步 Recap</p>
+      <h2>同一份数据，两种交付物</h2>
+      <ul>
+        <li><code>txt</code> 是文字报告，适合直接阅读。</li>
+        <li><code>xlsx</code> 是表格报告，适合继续加工。</li>
+        <li>代码前半段没有变：还是读取 JSON，找到 <code>total</code>。</li>
+        <li>输出方式变了：从 <code>writelines()</code> 换成 <code>DataFrame</code> 和 <code>to_excel()</code>。</li>
+      </ul>
+    </section>
+
+    <section class="slide center">
+<p class="eyebrow">后半</p>
+      <h1>现实信息怎样变成表格？</h1>
+      <p class="lead">前半处理的是已经规整的 JSON；后半看现实里的乱文本、订单、流水和 API。</p>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">后半路线</p>
+      <h2>贴住今天的主线，不继续堆代码</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>接龙</strong><span>乱文本怎么变成字段。</span></div>
+        <div class="step-row"><strong>订单</strong><span>一张小表可以回答哪些问题。</span></div>
+        <div class="step-row"><strong>流水</strong><span>分类规则不是天然的。</span></div>
+        <div class="step-row"><strong>天气 API</strong><span>结构化数据如何变成生活提醒。</span></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">微信群报名接龙</p>
+      <h2>人能看懂，不等于程序能处理</h2>
+      <pre class="output report-example"><code>张三 成都 13800001111
+李四-成都市-13900002222
+王五，成都高新区，13700003333
+赵六 重庆 13600004444
+张三 成都 13800001111
+小王 13500005555</code></pre>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">先观察问题</p>
+      <h2>这一段数据为什么麻烦？</h2>
+      <ul>
+        <li>分隔符不统一：空格、短横线、中文逗号混在一起。</li>
+        <li>城市写法不统一：<code>成都</code>、<code>成都市</code>、<code>成都高新区</code>。</li>
+        <li>有重复报名：张三出现两次。</li>
+        <li>有信息缺失：小王没有城市。</li>
+      </ul>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">课堂讨论</p>
+      <h2>规则要先说清楚</h2>
+      <ul class="question-list tight">
+        <li>小王没有城市，这条要不要保留？</li>
+        <li>成都高新区算成都，还是单独算一个区域？</li>
+        <li>张三重复报名，是删掉后一个，还是标记出来人工确认？</li>
+        <li>如果手机号重复但姓名不同，应该自动合并吗？</li>
+      </ul>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">结构化以后</p>
+      <h2>乱文本变成可处理的表</h2>
+      <div class="table-card small-table">
+        <table><tr><th>姓名</th><th>原始城市</th><th>标准城市</th><th>手机号</th><th>备注</th></tr><tr><td>张三</td><td>成都</td><td>成都</td><td>13800001111</td><td>重复报名</td></tr><tr><td>李四</td><td>成都市</td><td>成都</td><td>13900002222</td><td>已标准化</td></tr><tr><td>王五</td><td>成都高新区</td><td>成都</td><td>13700003333</td><td>口径待定</td></tr><tr><td>赵六</td><td>重庆</td><td>重庆</td><td>13600004444</td><td>-</td></tr><tr><td>小王</td><td>缺失</td><td>缺失</td><td>13500005555</td><td>不能自动补全</td></tr></table>
+      </div>
+    </section>
+
+    <section class="slide photo-slide">
+<p class="eyebrow">拍给 AI</p>
+      <div class="ai-photo-grid">
+        <pre class="output ai-stock-data"><code>张三 成都 13800001111
+李四-成都市-13900002222
+王五，成都高新区，13700003333
+赵六 重庆 13600004444
+张三 成都 13800001111
+小王 13500005555</code></pre>
+        <pre class="prompt-box small"><code>请整理成表格：姓名、城市、手机号、标准城市、备注。
+
+要求：
+1. 不自行补全缺失信息
+2. 重复报名标记出来
+3. 城市保留原文，再给标准城市
+4. 无法判断写在备注里</code></pre>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">所以呢</p>
+      <h2>现实数据进入程序前，常常先要结构化</h2>
+      <ul>
+        <li>JSON 好处理，是因为它已经有字段。</li>
+        <li>微信接龙难处理，是因为字段藏在乱文本里。</li>
+        <li>AI 可以帮忙整理，但要明确保留缺失、重复和不确定。</li>
+      </ul>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">奶茶店订单</p>
+      <h2>一张小表可以回答哪些问题</h2>
+      <div class="table-card">
+        <table><tr><th>商品</th><th class="num">单价</th><th class="num">销量</th></tr><tr><td>珍珠奶茶</td><td class="num">12</td><td class="num">3</td></tr><tr><td>柠檬茶</td><td class="num">10</td><td class="num">4</td></tr><tr><td>拿铁</td><td class="num">18</td><td class="num">2</td></tr></table>
+      </div>
+      <ul class="question-list tight"><li>哪个产品销量最高？</li><li>哪个产品单价最高？</li><li>哪个产品销售额最高？</li></ul>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">加一列销售额</p>
+      <h2>答案开始变得不一样</h2>
+      <div class="table-card">
+        <table><tr><th>商品</th><th class="num">单价</th><th class="num">销量</th><th class="num">销售额</th></tr><tr><td>珍珠奶茶</td><td class="num">12</td><td class="num">3</td><td class="num">36</td></tr><tr><td>柠檬茶</td><td class="num">10</td><td class="num">4</td><td class="num">40</td></tr><tr><td>拿铁</td><td class="num">18</td><td class="num">2</td><td class="num">36</td></tr></table>
+      </div>
+      <p class="mini-note">卖得最多、单价最高、销售额最高，不一定是同一个商品。</p>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">店长真正关心什么</p>
+      <h2>问题不同，看字段就不同</h2>
+      <ul class="question-list tight">
+        <li>如果要备货，销量是不是最重要？</li>
+        <li>如果要看收入，销售额是不是更重要？</li>
+        <li>如果想知道哪个产品最赚钱，还缺什么数据？</li>
+      </ul>
+    </section>
+
+    <section class="slide photo-slide">
+<p class="eyebrow">让 AI 帮你提出问题</p>
+      <pre class="prompt-box small"><code>请根据下面这份奶茶店订单数据，提出 5 个值得分析的问题。
+
+要求：
+1. 区分“可以直接回答”和“需要更多数据才能回答”
+2. 每个问题说明为什么值得问
+
+数据：
+珍珠奶茶，单价12，销量3
+柠檬茶，单价10，销量4
+拿铁，单价18，销量2</code></pre>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">可能得到的方向</p>
+      <h2>AI 不只是回答，也能帮忙提问题</h2>
+      <pre class="output report-example"><code>可以直接回答：
+- 哪个产品销量最高？
+- 哪个产品销售额最高？
+- 总销售额是多少？
+
+需要更多数据：
+- 哪个产品利润最高？因为目前没有成本数据。
+- 明天应该多备什么？因为还需要历史销量和库存数据。</code></pre>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">所以呢</p>
+      <h2>数据分析不是先把所有数字算出来</h2>
+      <ul>
+        <li>先问对问题，再决定看哪些字段。</li>
+        <li>同一张表，不同问题会得到不同重点。</li>
+        <li>下一节 pandas 做的很多事，本质上是更快地筛选、计算、统计和导出。</li>
+      </ul>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">备用：消费流水分类</p>
+      <h2>分类不是天然的，是按目的定规则</h2>
+      <pre class="output report-example"><code>2026-05-18 星巴克 32
+2026-05-18 地铁 5
+2026-05-18 罗森便利店 18
+2026-05-19 京东图书 89
+2026-05-19 美团外卖 42
+2026-05-20 盒马鲜生 76
+2026-05-20 滴滴出行 23
+2026-05-21 网易云音乐会员 15</code></pre>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">分类争议点</p>
+      <h2>没有天然唯一答案</h2>
+      <ul>
+        <li>星巴克算餐饮、饮品，还是休闲？</li>
+        <li>盒马鲜生算生鲜、生活用品，还是餐饮？</li>
+        <li>京东图书算购物，还是学习？</li>
+        <li>网易云音乐会员算娱乐，还是订阅服务？</li>
+      </ul>
+    </section>
+
+    <section class="slide photo-slide">
+<p class="eyebrow">让 AI 帮忙分类</p>
+      <pre class="prompt-box small"><code>请把消费流水整理成表格：日期、商户、金额、建议分类、备注。
+
+要求：
+1. 不编造原始数据里没有的信息
+2. 分类不确定的地方，在备注里说明
+3. 可能有多种分类的记录，给两个候选分类
+4. 最后列出一套建议采用的分类规则</code></pre>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">所以呢</p>
+      <h2>分类规则服务于目的</h2>
+      <ul>
+        <li>为了记账、控制餐饮支出、统计学习投入，分类会不一样。</li>
+        <li>AI 可以帮忙快速分类，但分类规则不是客观真理。</li>
+        <li>数据分类，本质上是把现实世界按某种目的重新切一遍。</li>
+      </ul>
+      <pre class="output compact"><code>df.groupby("分类")["金额"].sum()</code></pre>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">天气 API</p>
+      <h2>结构化数据变成生活提醒</h2>
+      <p class="lead">明天晚上有户外活动，要不要提醒大家带伞？</p>
+      <pre class="quiz-full-code"><code>{
+  "city": "成都",
+  "date": "2026-05-20",
+  "forecast": [
+    {"time": "09:00", "rain_probability": 20},
+    {"time": "15:00", "rain_probability": 65},
+    {"time": "21:00", "rain_probability": 80}
+  ]
+}</code></pre>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">先看结构</p>
+      <h2>路径仍然是 dict 和 list</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>city</strong><span>城市：成都。</span></div>
+        <div class="step-row"><strong>date</strong><span>日期：2026-05-20。</span></div>
+        <div class="step-row"><strong>forecast</strong><span>一个 list，里面每条是一个时间点。</span></div>
+        <div class="step-row"><strong>路径</strong><span><code>weather["forecast"][0]["rain_probability"]</code></span></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">课堂问题</p>
+      <h2>同一天，不同时间段结论可能不同</h2>
+      <ul class="question-list tight">
+        <li>上午出门，要不要带伞？</li>
+        <li>下午出门，要不要带伞？</li>
+        <li>晚上 8 点有户外活动，要不要提前提醒大家？</li>
+        <li>如果只看上午天气，会不会误判？</li>
+      </ul>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">数据判断</p>
+      <h2>看哪个字段，取决于问题</h2>
+      <pre class="output report-example"><code>09:00 降雨概率 20%，风险不高。
+15:00 降雨概率 65%，风险明显升高。
+21:00 降雨概率 80%，晚上户外活动风险较高。</code></pre>
+    </section>
+
+    <section class="slide photo-slide">
+<p class="eyebrow">拍给 AI：天气数据</p>
+      <pre class="output report-example"><code>{
+  "city": "成都",
+  "date": "2026-05-20",
+  "forecast": [
+    {"time": "09:00", "temperature": 22, "rain_probability": 20},
+    {"time": "15:00", "temperature": 27, "rain_probability": 65},
+    {"time": "21:00", "temperature": 23, "rain_probability": 80}
+  ]
+}</code></pre>
+    </section>
+
+    <section class="slide photo-slide">
+<p class="eyebrow">拍给 AI：任务</p>
+      <pre class="prompt-box"><code>请写一段活动提醒：明天晚上 8 点有户外活动。
+
+要求：
+1. 只根据给定数据
+2. 说明主要参考哪个时间点
+3. 数据不足就说明缺什么
+4. 输出：结论、依据、提醒</code></pre>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">参考输出</p>
+      <h2>把数据变成可以发给人的话</h2>
+      <pre class="output report-example"><code>结论：
+明晚户外活动有较高下雨风险，建议提前准备雨具。
+
+依据：
+活动时间接近 21:00，该时间点降雨概率为 80%。
+
+提醒：
+目前只有三个时间点，没有更精细的小时预报，也没有降雨量信息，所以只能判断风险偏高。</code></pre>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">后半 Recap</p>
+      <h2>现实信息进入程序前，需要先变成结构</h2>
+      <ul>
+        <li>接龙、流水、订单这些现实数据，常常要先整理成字段。</li>
+        <li>同一张表可以回答很多问题，但先要问清楚想知道什么。</li>
+        <li>分类不是天然存在的，是按目的定规则。</li>
+        <li>API 返回的数据通常是给程序读的，要先找到关键字段。</li>
+        <li>AI 可以帮忙结构化、提问题、分类、改写提醒，但边界仍然由人决定。</li>
+      </ul>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">L5 铺垫</p>
+      <h2>pandas 会正式登场</h2>
+      <ul>
+        <li>多行数据，不用手写很多 <code>for</code>。</li>
+        <li>多个字段，可以快速筛选和计算。</li>
+        <li>可以按分类汇总，比如商品、城市、消费类别。</li>
+        <li>可以导出 Excel，让结果变成可交付文件。</li>
+      </ul>
+      <pre class="output compact"><code>df.groupby("分类")["金额"].sum()</code></pre>
+    </section>
+  </main>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    let index = 0;
+
+    function show(next) {
+      index = Math.max(0, Math.min(slides.length - 1, next));
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+      window.location.hash = `slide-${index + 1}`;
+    }
+
+    function fromHash() {
+      const match = window.location.hash.match(/slide-(\d+)/);
+      if (match) {
+        show(Number(match[1]) - 1);
+      } else {
+        show(0);
+      }
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        show(index + 1);
+      }
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        show(index - 1);
+      }
+      if (event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.();
+        } else {
+          document.exitFullscreen?.();
+        }
+      }
+      if (event.key.toLowerCase() === "p") {
+        window.print();
+      }
+      if (event.key === "Home") {
+        show(0);
+      }
+      if (event.key === "End") {
+        show(slides.length - 1);
+      }
+    });
+
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
+  </script>
+</body>
+</html>
