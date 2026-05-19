@@ -678,6 +678,65 @@
     .l4 td.num, .l4 th.num { text-align: right; font-variant-numeric: tabular-nums; }
     .l4 .small-table table { font-size: 31px; }
     .l4 .small-table th, .l4 .small-table td { padding: 12px 18px; }
+    .l4 .fixed-table table {
+      table-layout: fixed;
+      font-size: 34px;
+    }
+    .l4 .fixed-table th,
+    .l4 .fixed-table td {
+      padding: 16px 22px;
+    }
+    .l4 .fixed-table th:first-child,
+    .l4 .fixed-table td:first-child {
+      width: 48%;
+    }
+    .l4 .fixed-table th.num,
+    .l4 .fixed-table td.num {
+      width: 26%;
+    }
+    .l4 .fixed-table.four-col th:first-child,
+    .l4 .fixed-table.four-col td:first-child {
+      width: 40%;
+    }
+    .l4 .fixed-table.four-col th.num,
+    .l4 .fixed-table.four-col td.num {
+      width: 20%;
+    }
+    .l4 .summary-grid {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 28px;
+      margin-top: 30px;
+      align-items: stretch;
+    }
+    .l4 .summary-grid .table-card,
+    .l4 .summary-grid .output {
+      margin-top: 0;
+    }
+    .l4 .summary-grid .output {
+      padding: 28px 34px;
+      font-size: 31px;
+      line-height: 1.14;
+      white-space: pre-wrap;
+    }
+    .l4 .summary-grid .output.left-data {
+      font-size: 29px;
+      line-height: 1.16;
+    }
+    .l4 .next-preview {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 34px;
+    }
+    .l4 .next-preview .output {
+      margin-top: 0;
+      padding: 26px 28px;
+      min-height: 330px;
+      font-size: 28px;
+      line-height: 1.18;
+      white-space: pre-wrap;
+    }
     .l4 .output { font-size: 44px; line-height: 1.22; }
     .l4 .output.compact { font-size: 34px; line-height: 1.16; }
     .l4 .output.report-example { font-size: 35px; line-height: 1.24; }
@@ -977,7 +1036,7 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
 
     <section class="slide ">
 <p class="eyebrow">后半路线</p>
-      <h2>贴住今天的主线，不继续堆代码</h2>
+      <h2>不继续堆代码，继续看数据</h2>
       <div class="step-ladder">
         <div class="step-row"><strong>接龙</strong><span>乱文本怎么变成字段。</span></div>
         <div class="step-row"><strong>订单</strong><span>一张小表可以回答哪些问题。</span></div>
@@ -987,8 +1046,18 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
     </section>
 
     <section class="slide ">
-<p class="eyebrow">微信群报名接龙</p>
+<p class="eyebrow">案例 1 · 微信群报名接龙</p>
       <h2>人能看懂，不等于程序能处理</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>现实信息</strong><span>群里接龙通常是一行一行的自然语言。</span></div>
+        <div class="step-row"><strong>程序视角</strong><span>程序需要字段，比如姓名、城市、手机号。</span></div>
+        <div class="step-row"><strong>本例目标</strong><span>把乱文本整理成一张可处理的表。</span></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">原始数据</p>
+      <h2>先看这段接龙哪里乱</h2>
       <pre class="output report-example"><code>张三 成都 13800001111
 李四-成都市-13900002222
 王五，成都高新区，13700003333
@@ -998,19 +1067,8 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
     </section>
 
     <section class="slide ">
-<p class="eyebrow">先观察问题</p>
-      <h2>这一段数据为什么麻烦？</h2>
-      <ul>
-        <li>分隔符不统一：空格、短横线、中文逗号混在一起。</li>
-        <li>城市写法不统一：<code>成都</code>、<code>成都市</code>、<code>成都高新区</code>。</li>
-        <li>有重复报名：张三出现两次。</li>
-        <li>有信息缺失：小王没有城市。</li>
-      </ul>
-    </section>
-
-    <section class="slide ">
 <p class="eyebrow">课堂讨论</p>
-      <h2>规则要先说清楚</h2>
+      <h2>哪些地方需要先定规则？</h2>
       <ul class="question-list tight">
         <li>小王没有城市，这条要不要保留？</li>
         <li>成都高新区算成都，还是单独算一个区域？</li>
@@ -1028,7 +1086,8 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
     </section>
 
     <section class="slide photo-slide">
-<p class="eyebrow">拍给 AI</p>
+<p class="eyebrow">AI 可以帮哪一步？</p>
+      <h2>帮你先整理成表，但不要替你猜</h2>
       <div class="ai-photo-grid">
         <pre class="output ai-stock-data"><code>张三 成都 13800001111
 李四-成都市-13900002222
@@ -1036,13 +1095,13 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
 赵六 重庆 13600004444
 张三 成都 13800001111
 小王 13500005555</code></pre>
-        <pre class="prompt-box small"><code>请整理成表格：姓名、城市、手机号、标准城市、备注。
+        <pre class="prompt-box small"><code>请把下面的报名信息整理成表格，字段包括：姓名、城市、手机号、标准城市、备注。
 
 要求：
-1. 不自行补全缺失信息
-2. 重复报名标记出来
-3. 城市保留原文，再给标准城市
-4. 无法判断写在备注里</code></pre>
+1. 不要自行补全缺失信息
+2. 重复报名请标记出来，不要直接删除
+3. 城市名称先保留原文，再给出标准城市
+4. 无法判断的地方写在备注里</code></pre>
       </div>
     </section>
 
@@ -1053,13 +1112,24 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
         <li>JSON 好处理，是因为它已经有字段。</li>
         <li>微信接龙难处理，是因为字段藏在乱文本里。</li>
         <li>AI 可以帮忙整理，但要明确保留缺失、重复和不确定。</li>
+        <li>第一步不是计算，而是把现实信息变成字段和记录。</li>
       </ul>
     </section>
 
     <section class="slide ">
-<p class="eyebrow">奶茶店订单</p>
-      <h2>一张小表可以回答哪些问题</h2>
-      <div class="table-card">
+<p class="eyebrow">案例 2 · 奶茶店订单</p>
+      <h2>一张小表，可以回答很多问题</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>数据</strong><span>商品、单价、销量。</span></div>
+        <div class="step-row"><strong>问题</strong><span>销量、单价、销售额，分别回答不同事情。</span></div>
+        <div class="step-row"><strong>目标</strong><span>看懂指标不同，结论可能不同。</span></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">原始数据</p>
+      <h2>先别急着算，先看问题</h2>
+      <div class="table-card fixed-table">
         <table><tr><th>商品</th><th class="num">单价</th><th class="num">销量</th></tr><tr><td>珍珠奶茶</td><td class="num">12</td><td class="num">3</td></tr><tr><td>柠檬茶</td><td class="num">10</td><td class="num">4</td></tr><tr><td>拿铁</td><td class="num">18</td><td class="num">2</td></tr></table>
       </div>
       <ul class="question-list tight"><li>哪个产品销量最高？</li><li>哪个产品单价最高？</li><li>哪个产品销售额最高？</li></ul>
@@ -1068,7 +1138,7 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
     <section class="slide ">
 <p class="eyebrow">加一列销售额</p>
       <h2>答案开始变得不一样</h2>
-      <div class="table-card">
+      <div class="table-card fixed-table four-col">
         <table><tr><th>商品</th><th class="num">单价</th><th class="num">销量</th><th class="num">销售额</th></tr><tr><td>珍珠奶茶</td><td class="num">12</td><td class="num">3</td><td class="num">36</td></tr><tr><td>柠檬茶</td><td class="num">10</td><td class="num">4</td><td class="num">40</td></tr><tr><td>拿铁</td><td class="num">18</td><td class="num">2</td><td class="num">36</td></tr></table>
       </div>
       <p class="mini-note">卖得最多、单价最高、销售额最高，不一定是同一个商品。</p>
@@ -1081,16 +1151,19 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
         <li>如果要备货，销量是不是最重要？</li>
         <li>如果要看收入，销售额是不是更重要？</li>
         <li>如果想知道哪个产品最赚钱，还缺什么数据？</li>
+        <li>如果只看一天数据，能不能判断明天卖什么？</li>
       </ul>
     </section>
 
     <section class="slide photo-slide">
-<p class="eyebrow">让 AI 帮你提出问题</p>
+<p class="eyebrow">AI 可以帮哪一步？</p>
+      <h2>帮你提出问题，而不只是回答问题</h2>
       <pre class="prompt-box small"><code>请根据下面这份奶茶店订单数据，提出 5 个值得分析的问题。
 
 要求：
 1. 区分“可以直接回答”和“需要更多数据才能回答”
 2. 每个问题说明为什么值得问
+3. 不要直接给经营建议
 
 数据：
 珍珠奶茶，单价12，销量3
@@ -1117,13 +1190,24 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
       <ul>
         <li>先问对问题，再决定看哪些字段。</li>
         <li>同一张表，不同问题会得到不同重点。</li>
-        <li>下一节 pandas 做的很多事，本质上是更快地筛选、计算、统计和导出。</li>
+        <li>AI 可以帮忙提出问题，区分“能回答”和“缺数据”。</li>
+        <li>pandas 后面会帮我们更快地筛选、计算、统计和导出。</li>
       </ul>
     </section>
 
     <section class="slide ">
-<p class="eyebrow">备用：消费流水分类</p>
+<p class="eyebrow">案例 3 · 消费流水分类</p>
       <h2>分类不是天然的，是按目的定规则</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>数据</strong><span>日期、商户、金额。</span></div>
+        <div class="step-row"><strong>问题</strong><span>这些钱花在哪些类别？</span></div>
+        <div class="step-row"><strong>目标</strong><span>看懂分类规则会影响最后统计。</span></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">原始数据</p>
+      <h2>这些消费应该怎么分类？</h2>
       <pre class="output report-example"><code>2026-05-18 星巴克 32
 2026-05-18 地铁 5
 2026-05-18 罗森便利店 18
@@ -1135,9 +1219,9 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
     </section>
 
     <section class="slide ">
-<p class="eyebrow">分类争议点</p>
+<p class="eyebrow">课堂讨论</p>
       <h2>没有天然唯一答案</h2>
-      <ul>
+      <ul class="question-list tight">
         <li>星巴克算餐饮、饮品，还是休闲？</li>
         <li>盒马鲜生算生鲜、生活用品，还是餐饮？</li>
         <li>京东图书算购物，还是学习？</li>
@@ -1146,14 +1230,25 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
     </section>
 
     <section class="slide photo-slide">
-<p class="eyebrow">让 AI 帮忙分类</p>
-      <pre class="prompt-box small"><code>请把消费流水整理成表格：日期、商户、金额、建议分类、备注。
+<p class="eyebrow">AI 可以帮哪一步？</p>
+      <h2>帮忙分类，但要标记不确定</h2>
+      <div class="ai-photo-grid">
+        <pre class="output ai-stock-data"><code>2026-05-18 星巴克 32
+2026-05-18 地铁 5
+2026-05-18 罗森便利店 18
+2026-05-19 京东图书 89
+2026-05-19 美团外卖 42
+2026-05-20 盒马鲜生 76
+2026-05-20 滴滴出行 23
+2026-05-21 网易云音乐会员 15</code></pre>
+        <pre class="prompt-box small"><code>请把消费流水整理成表格：日期、商户、金额、建议分类、备注。
 
 要求：
 1. 不编造原始数据里没有的信息
 2. 分类不确定的地方，在备注里说明
 3. 可能有多种分类的记录，给两个候选分类
 4. 最后列出一套建议采用的分类规则</code></pre>
+      </div>
     </section>
 
     <section class="slide ">
@@ -1161,23 +1256,55 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
       <h2>分类规则服务于目的</h2>
       <ul>
         <li>为了记账、控制餐饮支出、统计学习投入，分类会不一样。</li>
-        <li>AI 可以帮忙快速分类，但分类规则不是客观真理。</li>
+        <li>AI 可以快速分类，但分类规则不是客观真理。</li>
         <li>数据分类，本质上是把现实世界按某种目的重新切一遍。</li>
       </ul>
       <pre class="output compact"><code>df.groupby("分类")["金额"].sum()</code></pre>
     </section>
 
     <section class="slide ">
-<p class="eyebrow">天气 API</p>
+<p class="eyebrow">先看一眼结果</p>
+      <h2>先有分类列，才能按分类汇总</h2>
+      <div class="summary-grid">
+        <pre class="output compact left-data"><code>已分类数据
+
+商户              分类   金额
+星巴克            餐饮    32
+地铁              交通     5
+罗森便利店        购物    18
+京东图书          学习    89
+美团外卖          餐饮    42
+盒马鲜生          购物    76
+滴滴出行          交通    23
+网易云音乐会员    娱乐    15</code></pre>
+        <pre class="output compact"><code>交通       28
+餐饮       74
+购物       94
+学习       89
+娱乐       15</code></pre>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">案例 4 · 天气 API</p>
       <h2>结构化数据变成生活提醒</h2>
-      <p class="lead">明天晚上有户外活动，要不要提醒大家带伞？</p>
+      <div class="step-ladder">
+        <div class="step-row"><strong>场景</strong><span>明天晚上有户外活动，要不要提醒大家带伞？</span></div>
+        <div class="step-row"><strong>数据</strong><span>API 返回一段 JSON，不是网页。</span></div>
+        <div class="step-row"><strong>目标</strong><span>找到关键字段，做不过度的判断。</span></div>
+      </div>
+    </section>
+
+    <section class="slide ">
+<p class="eyebrow">API 返回的数据</p>
+      <h2>程序拿到的是 JSON</h2>
       <pre class="quiz-full-code"><code>{
   "city": "成都",
   "date": "2026-05-20",
   "forecast": [
-    {"time": "09:00", "rain_probability": 20},
-    {"time": "15:00", "rain_probability": 65},
-    {"time": "21:00", "rain_probability": 80}
+    {"time": "09:00", "temperature": 22, "rain_probability": 20},
+    {"time": "15:00", "temperature": 27, "rain_probability": 65},
+    {"time": "21:00", "temperature": 23, "rain_probability": 80}
   ]
 }</code></pre>
     </section>
@@ -1186,8 +1313,8 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
 <p class="eyebrow">先看结构</p>
       <h2>路径仍然是 dict 和 list</h2>
       <div class="step-ladder">
-        <div class="step-row"><strong>city</strong><span>城市：成都。</span></div>
-        <div class="step-row"><strong>date</strong><span>日期：2026-05-20。</span></div>
+        <div class="step-row"><strong>city</strong><span>城市，成都。</span></div>
+        <div class="step-row"><strong>date</strong><span>日期，2026-05-20。</span></div>
         <div class="step-row"><strong>forecast</strong><span>一个 list，里面每条是一个时间点。</span></div>
         <div class="step-row"><strong>路径</strong><span><code>weather["forecast"][0]["rain_probability"]</code></span></div>
       </div>
@@ -1213,20 +1340,8 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
     </section>
 
     <section class="slide photo-slide">
-<p class="eyebrow">拍给 AI：天气数据</p>
-      <pre class="output report-example"><code>{
-  "city": "成都",
-  "date": "2026-05-20",
-  "forecast": [
-    {"time": "09:00", "temperature": 22, "rain_probability": 20},
-    {"time": "15:00", "temperature": 27, "rain_probability": 65},
-    {"time": "21:00", "temperature": 23, "rain_probability": 80}
-  ]
-}</code></pre>
-    </section>
-
-    <section class="slide photo-slide">
-<p class="eyebrow">拍给 AI：任务</p>
+<p class="eyebrow">AI 可以帮哪一步？</p>
+      <h2>把结构化数据改写成活动提醒</h2>
       <pre class="prompt-box"><code>请写一段活动提醒：明天晚上 8 点有户外活动。
 
 要求：
@@ -1250,6 +1365,17 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
     </section>
 
     <section class="slide ">
+<p class="eyebrow">所以呢</p>
+      <h2>API 数据能支持提醒，但不能支持过度结论</h2>
+      <ul>
+        <li>API 数据通常是给程序读的，不是直接给人读的。</li>
+        <li>人要先问：我要解决什么问题？看哪个字段？看哪个时间点？</li>
+        <li>AI 可以帮忙把数据变成提醒，但不能把 80% 降雨概率说成“一定下雨”。</li>
+        <li>数据不足时，提醒里要说清楚还缺什么。</li>
+      </ul>
+    </section>
+
+    <section class="slide ">
 <p class="eyebrow">后半 Recap</p>
       <h2>现实信息进入程序前，需要先变成结构</h2>
       <ul>
@@ -1264,13 +1390,28 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
     <section class="slide ">
 <p class="eyebrow">L5 铺垫</p>
       <h2>pandas 会正式登场</h2>
-      <ul>
-        <li>多行数据，不用手写很多 <code>for</code>。</li>
-        <li>多个字段，可以快速筛选和计算。</li>
-        <li>可以按分类汇总，比如商品、城市、消费类别。</li>
-        <li>可以导出 Excel，让结果变成可交付文件。</li>
-      </ul>
-      <pre class="output compact"><code>df.groupby("分类")["金额"].sum()</code></pre>
+      <p class="lead">下节课开始，我们会让 Python 直接处理真正的表格。</p>
+      <div class="next-preview">
+        <pre class="output compact"><code>找出最贵的商品
+
+商品      单价
+拿铁       18
+珍珠奶茶   12
+柠檬茶     10</code></pre>
+        <pre class="output compact"><code>按分类汇总金额
+
+餐饮      74
+购物      94
+交通      28
+学习      89
+娱乐      15</code></pre>
+        <pre class="output compact"><code>导出一份 Excel
+
+文件名：
+monthly_report.xlsx
+
+可以发给别人看</code></pre>
+      </div>
     </section>
   </main>
 
