@@ -183,6 +183,28 @@
       font-size: 44px;
     }
 
+    .card p {
+      margin: 0;
+      color: #293527;
+      font-size: 38px;
+      line-height: 1.28;
+    }
+
+    .card.dark p {
+      color: #f5f0da;
+      opacity: 0.94;
+    }
+
+    .callout {
+      margin-top: 46px;
+      padding: 36px 44px;
+      border-left: 18px solid var(--gold);
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 48px;
+      line-height: 1.25;
+    }
+
     ul {
       margin: 32px 0 0;
       padding-left: 52px;
@@ -885,14 +907,26 @@ print(weather["forecast"][1]["rain_probability"])</code></pre>
 
     <section class="slide ">
 <p class="eyebrow">pandas 是什么</p>
-      <h2>把数据装进一张表，再交给 Excel</h2>
-      <div class="step-ladder">
-        <div class="step-row"><strong>原始数据</strong><span>JSON 里取出来的是一个个字段：确诊、死亡、治愈。</span></div>
-        <div class="step-row"><strong>整理成行</strong><span>先变成 <code>["累计确诊", "35270206"]</code> 这种一行数据。</span></div>
-        <div class="step-row"><strong>变成表</strong><span>pandas 把很多行加上列名，变成 <code>DataFrame</code>。</span></div>
-        <div class="step-row"><strong>导出文件</strong><span><code>to_excel()</code> 把这张表保存成真正的 Excel。</span></div>
+      <h2>Python 里的表格处理工具</h2>
+      <p class="lead">前面我们已经会让 Python 读 JSON、写 txt。接下来，如果数据开始像“一张表”，就该 pandas 登场了。</p>
+
+      <div class="three-col">
+        <div class="card">
+          <h3>Excel 表</h3>
+          <p>一行一行、一列一列的数据。</p>
+        </div>
+        <div class="card">
+          <h3>订单 / 报名 / 流水</h3>
+          <p>现实工作里最常见的数据形态。</p>
+        </div>
+        <div class="card dark">
+          <h3>pandas</h3>
+          <p>帮 Python 更方便地处理这些表格数据。</p>
+        </div>
       </div>
-      <p class="mini-note">今天只用 pandas 做一件事：把 Python 里的数据变成可交付的 Excel 表。</p>
+
+      <div class="callout">今天先知道一件事：当数据开始像表格，pandas 就该登场。</div>
+      <p class="mini-note">下一页再认识它最常见的对象：DataFrame。</p>
     </section>
 
     <section class="slide ">
