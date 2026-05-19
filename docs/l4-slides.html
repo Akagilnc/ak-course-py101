@@ -723,6 +723,99 @@
       font-size: 29px;
       line-height: 1.16;
     }
+    .l4 .final-preview-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 34px;
+      margin-top: 34px;
+      align-items: stretch;
+    }
+    .l4 .chart-card,
+    .l4 .mini-excel-table,
+    .l4 .result-checklist {
+      border-radius: 34px;
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+    .l4 .chart-card {
+      padding: 30px 36px 24px;
+      background: rgba(255, 255, 255, 0.82);
+      border: 3px solid rgba(29, 111, 77, 0.14);
+    }
+    .l4 .chart-card h3 {
+      margin-bottom: 18px;
+      font-size: 38px;
+    }
+    .l4 .trend-svg {
+      width: 100%;
+      height: 390px;
+      display: block;
+      overflow: visible;
+    }
+    .l4 .trend-grid {
+      stroke: rgba(22, 33, 23, 0.14);
+      stroke-width: 2;
+    }
+    .l4 .trend-axis {
+      stroke: rgba(22, 33, 23, 0.62);
+      stroke-width: 3;
+      stroke-linecap: square;
+    }
+    .l4 .trend-line {
+      fill: none;
+      stroke: #1f77b4;
+      stroke-width: 6;
+      stroke-linecap: square;
+      stroke-linejoin: round;
+    }
+    .l4 .trend-label {
+      fill: #333;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 24px;
+    }
+    .l4 .trend-value {
+      fill: #333;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 26px;
+      font-weight: 600;
+    }
+    .l4 .final-side {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 24px;
+    }
+    .l4 .mini-excel-table {
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.78);
+      border: 3px solid rgba(29, 111, 77, 0.12);
+    }
+    .l4 .mini-excel-table table {
+      font-size: 28px;
+      line-height: 1.1;
+      background: transparent;
+    }
+    .l4 .mini-excel-table th,
+    .l4 .mini-excel-table td {
+      padding: 14px 18px;
+    }
+    .l4 .result-checklist {
+      padding: 26px 30px;
+      background: var(--green-dark);
+      color: var(--output-ink);
+    }
+    .l4 .result-checklist h3 {
+      color: var(--output-ink);
+      font-size: 34px;
+      margin-bottom: 16px;
+    }
+    .l4 .result-checklist ul {
+      margin-top: 0;
+      padding-left: 34px;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+    .l4 .result-checklist li {
+      margin: 12px 0;
+    }
     .l4 .next-preview {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1389,28 +1482,52 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
 
     <section class="slide ">
 <p class="eyebrow">L5 铺垫</p>
-      <h2>pandas 会正式登场</h2>
-      <p class="lead">下节课开始，我们会让 Python 直接处理真正的表格。</p>
-      <div class="next-preview">
-        <pre class="output compact"><code>找出最贵的商品
-
-商品      单价
-拿铁       18
-珍珠奶茶   12
-柠檬茶     10</code></pre>
-        <pre class="output compact"><code>按分类汇总金额
-
-餐饮      74
-购物      94
-交通      28
-学习      89
-娱乐      15</code></pre>
-        <pre class="output compact"><code>导出一份 Excel
-
-文件名：
-monthly_report.xlsx
-
-可以发给别人看</code></pre>
+      <h2>下周一：用 JSON 画出一段真实数据走势</h2>
+      <div class="final-preview-grid">
+        <div class="chart-card">
+          <h3>海外累计确诊趋势图</h3>
+          <svg class="trend-svg" viewBox="0 0 820 420" role="img" aria-label="海外疫情累计确诊趋势图示例">
+            <rect x="84" y="46" width="676" height="294" fill="#ffffff"></rect>
+            <line class="trend-grid" x1="84" y1="70" x2="760" y2="70"></line>
+            <line class="trend-grid" x1="84" y1="150" x2="760" y2="150"></line>
+            <line class="trend-grid" x1="84" y1="230" x2="760" y2="230"></line>
+            <line class="trend-grid" x1="84" y1="310" x2="760" y2="310"></line>
+            <line class="trend-axis" x1="84" y1="340" x2="760" y2="340"></line>
+            <line class="trend-axis" x1="84" y1="46" x2="84" y2="340"></line>
+            <polyline class="trend-line" points="108,300 222,275 336,240 450,205 564,170 678,125 760,92"></polyline>
+            <text class="trend-value" x="352" y="30">certain</text>
+            <text class="trend-label" x="24" y="76">3500万</text>
+            <text class="trend-label" x="24" y="236">3200万</text>
+            <text class="trend-label" x="88" y="382">09.28</text>
+            <text class="trend-label" x="310" y="382">09.30</text>
+            <text class="trend-label" x="538" y="382">10.02</text>
+            <text class="trend-label" x="708" y="382">10.04</text>
+          </svg>
+        </div>
+        <div class="final-side">
+          <div class="mini-excel-table">
+            <table>
+              <thead>
+                <tr><th>日期</th><th class="num">累计确诊</th><th class="num">增长率</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>10.01</td><td class="num">3420 万</td><td class="num">0.93%</td></tr>
+                <tr><td>10.02</td><td class="num">3450 万</td><td class="num">0.87%</td></tr>
+                <tr><td>10.03</td><td class="num">3485 万</td><td class="num">1.03%</td></tr>
+                <tr><td>10.04</td><td class="num">3515 万</td><td class="num">0.85%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="result-checklist">
+            <h3>下节课会做出的东西</h3>
+            <ul>
+              <li>读取疫情历史数据</li>
+              <li>处理日期字段</li>
+              <li>计算昨日累计、每日新增、增长率</li>
+              <li>画累计确诊趋势图</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   </main>
