@@ -854,16 +854,6 @@
       <p class="lead">读本地 JSON 文件，把结构化数据变成 txt 报告和 Excel 表格。</p>
     </section>
 
-    <section class="slide ">
-<p class="eyebrow">今晚路线</p>
-      <h2>先落地，再打开视野</h2>
-      <div class="three-col">
-        <div class="card"><h3>1. JSON</h3><p class="lead">读懂文件结构，找到目标字段。</p></div>
-        <div class="card"><h3>2. 输出</h3><p class="lead">同一份数据，保存成 txt 和 xlsx。</p></div>
-        <div class="card dark"><h3>3. 真实场景</h3><p class="lead">接龙、订单、流水、天气 API。</p></div>
-      </div>
-    </section>
-
     <section class="slide center">
 <p class="eyebrow">课前热身</p>
       <h2>先把旧工具叫醒</h2>
@@ -999,6 +989,16 @@ print(weather["forecast"][1]["rain_probability"])</code></pre>
       </div>
     </section>
 
+    <section class="slide ">
+<p class="eyebrow">今晚路线</p>
+      <h2>先落地，再打开视野</h2>
+      <div class="three-col">
+        <div class="card"><h3>1. JSON</h3><p class="lead">读懂文件结构，找到目标字段。</p></div>
+        <div class="card"><h3>2. 输出</h3><p class="lead">同一份数据，保存成 txt 和 xlsx。</p></div>
+        <div class="card dark"><h3>3. 真实场景</h3><p class="lead">接龙、订单、流水、天气 API。</p></div>
+      </div>
+    </section>
+
     <section class="slide center">
 <p class="eyebrow">#1 从 JSON 到文件</p>
       <h2>How to save structured data?</h2>
@@ -1053,7 +1053,7 @@ print(weather["forecast"][1]["rain_probability"])</code></pre>
       <h2>保存海外疫情汇总到 Excel</h2>
       <p class="lead">同样的数据，换成表格输出。</p>
       <div class="table-card">
-        <table><tr><th>指标</th><th class="num">数值</th></tr><tr><td>累计确诊</td><td class="num">35270206</td></tr><tr><td>现存确诊</td><td class="num">7893000</td></tr><tr><td>累计死亡</td><td class="num">1036359</td></tr><tr><td>累计治愈</td><td class="num">26340847</td></tr></table>
+        <table><tr><th class="num">certain</th><th class="num">ecertain</th><th class="num">die</th><th class="num">recure</th></tr><tr><td class="num">35270206</td><td class="num">7893000</td><td class="num">1036359</td><td class="num">26340847</td></tr></table>
       </div>
     </section>
 
@@ -1086,13 +1086,15 @@ print(weather["forecast"][1]["rain_probability"])</code></pre>
       <h2>先把它理解成 Python 里的表格</h2>
       <pre class="quiz-full-code"><code>import pandas as pd
 
-rows = [
-    ["累计确诊", "35270206"],
-    ["累计死亡", "1036359"],
-]
+total = {
+    "certain": "35270206",
+    "ecertain": "7893000",
+    "die": "1036359",
+    "recure": "26340847",
+}
 
-df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
-      <p class="mini-note"><code>rows</code> 是原材料，<code>df</code> 是已经有行和列的表。</p>
+df = pd.DataFrame([total])</code></pre>
+      <p class="mini-note"><code>[total]</code> 是一行数据，<code>df</code> 是已经变成行和列的表。</p>
     </section>
 
     <section class="slide ">
@@ -1117,7 +1119,8 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
         <li><code>txt</code> 是文字报告，适合直接阅读。</li>
         <li><code>xlsx</code> 是表格报告，适合继续加工。</li>
         <li>代码前半段没有变：还是读取 JSON，找到 <code>total</code>。</li>
-        <li>输出方式变了：从 <code>writelines()</code> 换成 <code>DataFrame</code> 和 <code>to_excel()</code>。</li>
+        <li><code>DataFrame([total])</code> 把 dict 变成一行表格。</li>
+        <li>输出方式变了：从 <code>writelines()</code> 换成 <code>to_excel()</code>。</li>
       </ul>
     </section>
 
@@ -1170,14 +1173,6 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
       </ul>
     </section>
 
-    <section class="slide ">
-<p class="eyebrow">结构化以后</p>
-      <h2>乱文本变成可处理的表</h2>
-      <div class="table-card small-table">
-        <table><tr><th>姓名</th><th>原始城市</th><th>标准城市</th><th>手机号</th><th>备注</th></tr><tr><td>张三</td><td>成都</td><td>成都</td><td>13800001111</td><td>重复报名</td></tr><tr><td>李四</td><td>成都市</td><td>成都</td><td>13900002222</td><td>已标准化</td></tr><tr><td>王五</td><td>成都高新区</td><td>成都</td><td>13700003333</td><td>口径待定</td></tr><tr><td>赵六</td><td>重庆</td><td>重庆</td><td>13600004444</td><td>-</td></tr><tr><td>小王</td><td>缺失</td><td>缺失</td><td>13500005555</td><td>不能自动补全</td></tr></table>
-      </div>
-    </section>
-
     <section class="slide photo-slide">
 <p class="eyebrow">AI 可以帮哪一步？</p>
       <h2>帮你先整理成表，但不要替你猜</h2>
@@ -1199,6 +1194,14 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
     </section>
 
     <section class="slide ">
+<p class="eyebrow">结构化以后</p>
+      <h2>乱文本变成可处理的表</h2>
+      <div class="table-card small-table">
+        <table><tr><th>姓名</th><th>原始城市</th><th>标准城市</th><th>手机号</th><th>备注</th></tr><tr><td>张三</td><td>成都</td><td>成都</td><td>13800001111</td><td>重复报名</td></tr><tr><td>李四</td><td>成都市</td><td>成都</td><td>13900002222</td><td>已标准化</td></tr><tr><td>王五</td><td>成都高新区</td><td>成都</td><td>13700003333</td><td>口径待定</td></tr><tr><td>赵六</td><td>重庆</td><td>重庆</td><td>13600004444</td><td>-</td></tr><tr><td>小王</td><td>缺失</td><td>缺失</td><td>13500005555</td><td>不能自动补全</td></tr></table>
+      </div>
+    </section>
+
+    <section class="slide ">
 <p class="eyebrow">所以呢</p>
       <h2>现实数据进入程序前，常常先要结构化</h2>
       <ul>
@@ -1211,79 +1214,81 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
 
     <section class="slide ">
 <p class="eyebrow">案例 2 · 奶茶店订单</p>
-      <h2>一张小表，可以回答很多问题</h2>
+      <h2>明天主推哪一款？</h2>
       <div class="step-ladder">
-        <div class="step-row"><strong>数据</strong><span>商品、单价、销量。</span></div>
-        <div class="step-row"><strong>问题</strong><span>销量、单价、销售额，分别回答不同事情。</span></div>
-        <div class="step-row"><strong>目标</strong><span>看懂指标不同，结论可能不同。</span></div>
+        <div class="step-row"><strong>场景</strong><span>明天只能重点推一款饮品，海报、备货、店员话术都要围绕它。</span></div>
+        <div class="step-row"><strong>问题</strong><span>老板到底会看哪几个数字？</span></div>
+        <div class="step-row"><strong></strong><span>销量第一，会不会就是最佳选择？</span></div>
       </div>
     </section>
 
     <section class="slide ">
 <p class="eyebrow">原始数据</p>
-      <h2>先别急着算，先看问题</h2>
-      <div class="table-card fixed-table">
-        <table><tr><th>商品</th><th class="num">单价</th><th class="num">销量</th></tr><tr><td>珍珠奶茶</td><td class="num">12</td><td class="num">3</td></tr><tr><td>柠檬茶</td><td class="num">10</td><td class="num">4</td></tr><tr><td>拿铁</td><td class="num">18</td><td class="num">2</td></tr></table>
+      <h2>先看今天卖了什么</h2>
+      <div class="table-card small-table">
+        <table><tr><th>商品</th><th class="num">单价</th><th class="num">成本</th><th class="num">销量</th><th class="num">制作分钟</th></tr><tr><td>珍珠奶茶</td><td class="num">12</td><td class="num">5</td><td class="num">38</td><td class="num">3</td></tr><tr><td>柠檬茶</td><td class="num">10</td><td class="num">3</td><td class="num">52</td><td class="num">2</td></tr><tr><td>拿铁</td><td class="num">18</td><td class="num">9</td><td class="num">21</td><td class="num">5</td></tr><tr><td>芋泥波波</td><td class="num">16</td><td class="num">8</td><td class="num">30</td><td class="num">4</td></tr></table>
       </div>
-      <ul class="question-list tight"><li>哪个产品销量最高？</li><li>哪个产品单价最高？</li><li>哪个产品销售额最高？</li></ul>
+      <ul class="question-list tight"><li>哪个产品销量最高？</li><li>哪个产品单杯最赚钱？</li><li>哪个产品总共赚得最多？</li><li>如果明天要主推，只看利润够不够？</li></ul>
     </section>
 
     <section class="slide ">
-<p class="eyebrow">加一列销售额</p>
-      <h2>答案开始变得不一样</h2>
-      <div class="table-card fixed-table four-col">
-        <table><tr><th>商品</th><th class="num">单价</th><th class="num">销量</th><th class="num">销售额</th></tr><tr><td>珍珠奶茶</td><td class="num">12</td><td class="num">3</td><td class="num">36</td></tr><tr><td>柠檬茶</td><td class="num">10</td><td class="num">4</td><td class="num">40</td></tr><tr><td>拿铁</td><td class="num">18</td><td class="num">2</td><td class="num">36</td></tr></table>
+<p class="eyebrow">看赚钱能力</p>
+      <h2>再看每款大概赚了多少</h2>
+      <div class="table-card small-table">
+        <table><tr><th>商品</th><th class="num">单杯毛利</th><th class="num">销量</th><th class="num">总毛利</th><th class="num">制作分钟</th><th>原料状态</th></tr><tr><td>珍珠奶茶</td><td class="num">7</td><td class="num">38</td><td class="num">266</td><td class="num">3</td><td>偏紧</td></tr><tr><td>柠檬茶</td><td class="num">7</td><td class="num">52</td><td class="num">364</td><td class="num">2</td><td>正常</td></tr><tr><td>拿铁</td><td class="num">9</td><td class="num">21</td><td class="num">189</td><td class="num">5</td><td>充足</td></tr><tr><td>芋泥波波</td><td class="num">8</td><td class="num">30</td><td class="num">240</td><td class="num">4</td><td>偏紧</td></tr></table>
       </div>
-      <p class="mini-note">卖得最多、单价最高、销售额最高，不一定是同一个商品。</p>
+      <p class="mini-note">单杯毛利 = 单价 - 成本；总毛利 = 单杯毛利 × 销量。</p>
     </section>
 
     <section class="slide ">
 <p class="eyebrow">店长真正关心什么</p>
-      <h2>问题不同，看字段就不同</h2>
+      <h2>主推不是简单看最大值</h2>
       <ul class="question-list tight">
-        <li>如果要备货，销量是不是最重要？</li>
-        <li>如果要看收入，销售额是不是更重要？</li>
-        <li>如果想知道哪个产品最赚钱，还缺什么数据？</li>
-        <li>如果只看一天数据，能不能判断明天卖什么？</li>
+        <li>柠檬茶总毛利最高，是不是就一定主推它？</li>
+        <li>珍珠奶茶总毛利也不错，但原料偏紧，意味着什么？</li>
+        <li>拿铁单杯毛利最高，为什么总毛利反而不高？</li>
+        <li>如果明天下雨或降温，这份判断会不会变？</li>
       </ul>
     </section>
 
     <section class="slide photo-slide">
 <p class="eyebrow">AI 可以帮哪一步？</p>
-      <h2>帮你提出问题，而不只是回答问题</h2>
-      <pre class="prompt-box small"><code>请根据下面这份奶茶店订单数据，提出 5 个值得分析的问题。
+      <h2>帮老板做一版主推建议</h2>
+      <pre class="prompt-box small"><code>请根据下面这份奶茶店数据，帮老板分析明天主推哪一款。
 
 要求：
-1. 区分“可以直接回答”和“需要更多数据才能回答”
-2. 每个问题说明为什么值得问
-3. 不要直接给经营建议
+1. 先比较单杯毛利和总毛利
+2. 不只看销量，也要考虑制作时间和原料状态
+3. 给出一个主推建议和一个备选
+4. 说明这个建议还缺哪些数据
 
 数据：
-珍珠奶茶，单价12，销量3
-柠檬茶，单价10，销量4
-拿铁，单价18，销量2</code></pre>
+珍珠奶茶，单价12，成本5，销量38，制作3分钟，原料偏紧
+柠檬茶，单价10，成本3，销量52，制作2分钟，原料正常
+拿铁，单价18，成本9，销量21，制作5分钟，原料充足
+芋泥波波，单价16，成本8，销量30，制作4分钟，原料偏紧</code></pre>
     </section>
 
     <section class="slide ">
 <p class="eyebrow">可能得到的方向</p>
-      <h2>AI 不只是回答，也能帮忙提问题</h2>
-      <pre class="output report-example"><code>可以直接回答：
-- 哪个产品销量最高？
-- 哪个产品销售额最高？
-- 总销售额是多少？
+      <h2>AI 的价值是把多个指标合在一起看</h2>
+      <pre class="output report-example"><code>从总毛利看，柠檬茶最高：单杯毛利 7 元，销量 52 杯，总毛利 364 元。
+从执行难度看，柠檬茶制作时间短，原料状态正常，比原料偏紧的珍珠奶茶和芋泥波波更适合主推。
 
-需要更多数据：
-- 哪个产品利润最高？因为目前没有成本数据。
-- 明天应该多备什么？因为还需要历史销量和库存数据。</code></pre>
+建议主推：柠檬茶。
+备选：珍珠奶茶，但要先确认原料是否够。
+
+还缺的数据：历史销量、天气、客流时间段、库存数量。</code></pre>
     </section>
 
     <section class="slide ">
 <p class="eyebrow">所以呢</p>
-      <h2>数据分析不是先把所有数字算出来</h2>
+      <h2>这张表帮我们看清了什么？</h2>
       <ul>
-        <li>先问对问题，再决定看哪些字段。</li>
-        <li>同一张表，不同问题会得到不同重点。</li>
-        <li>AI 可以帮忙提出问题，区分“能回答”和“缺数据”。</li>
+        <li>原始表只能看到单价、成本、销量这些分散信息。</li>
+        <li>算出毛利以后，才能比较“卖得多”和“赚得多”是不是同一回事。</li>
+        <li>加入制作时间以后，问题从“哪个数字最大”变成“怎么综合判断”。</li>
+        <li>AI 可以帮忙整理比较思路，但前提是数据字段足够清楚。</li>
         <li>pandas 后面会帮我们更快地筛选、计算、统计和导出。</li>
       </ul>
     </section>
@@ -1478,57 +1483,6 @@ df = pd.DataFrame(rows, columns=["指标", "数值"])</code></pre>
         <li>API 返回的数据通常是给程序读的，要先找到关键字段。</li>
         <li>AI 可以帮忙结构化、提问题、分类、改写提醒，但边界仍然由人决定。</li>
       </ul>
-    </section>
-
-    <section class="slide ">
-<p class="eyebrow">L5 铺垫</p>
-      <h2>下周一：用 JSON 画出一段真实数据走势</h2>
-      <div class="final-preview-grid">
-        <div class="chart-card">
-          <h3>海外累计确诊趋势图</h3>
-          <svg class="trend-svg" viewBox="0 0 820 420" role="img" aria-label="海外疫情累计确诊趋势图示例">
-            <rect x="84" y="46" width="676" height="294" fill="#ffffff"></rect>
-            <line class="trend-grid" x1="84" y1="70" x2="760" y2="70"></line>
-            <line class="trend-grid" x1="84" y1="150" x2="760" y2="150"></line>
-            <line class="trend-grid" x1="84" y1="230" x2="760" y2="230"></line>
-            <line class="trend-grid" x1="84" y1="310" x2="760" y2="310"></line>
-            <line class="trend-axis" x1="84" y1="340" x2="760" y2="340"></line>
-            <line class="trend-axis" x1="84" y1="46" x2="84" y2="340"></line>
-            <polyline class="trend-line" points="108,300 222,275 336,240 450,205 564,170 678,125 760,92"></polyline>
-            <text class="trend-value" x="352" y="30">certain</text>
-            <text class="trend-label" x="24" y="76">3500万</text>
-            <text class="trend-label" x="24" y="236">3200万</text>
-            <text class="trend-label" x="88" y="382">09.28</text>
-            <text class="trend-label" x="310" y="382">09.30</text>
-            <text class="trend-label" x="538" y="382">10.02</text>
-            <text class="trend-label" x="708" y="382">10.04</text>
-          </svg>
-        </div>
-        <div class="final-side">
-          <div class="mini-excel-table">
-            <table>
-              <thead>
-                <tr><th>日期</th><th class="num">累计确诊</th><th class="num">增长率</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>10.01</td><td class="num">3420 万</td><td class="num">0.93%</td></tr>
-                <tr><td>10.02</td><td class="num">3450 万</td><td class="num">0.87%</td></tr>
-                <tr><td>10.03</td><td class="num">3485 万</td><td class="num">1.03%</td></tr>
-                <tr><td>10.04</td><td class="num">3515 万</td><td class="num">0.85%</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="result-checklist">
-            <h3>下节课会做出的东西</h3>
-            <ul>
-              <li>读取疫情历史数据</li>
-              <li>处理日期字段</li>
-              <li>计算昨日累计、每日新增、增长率</li>
-              <li>画累计确诊趋势图</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </section>
   </main>
 
