@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python 101 L7</title>
+  <style>
+    :root {
+      --paper: #f4efdf;
+      --ink: #162117;
+      --muted: #66705e;
+      --green: #1d6f4d;
+      --green-dark: #0f3d2d;
+      --gold: #d9972f;
+      --code-bg: #10251d;
+      --code-ink: #eff8e8;
+      --output-bg: #2d2417;
+      --output-ink: #fff1ca;
+      --shadow: rgba(22, 33, 23, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #1a211b;
+      color: var(--ink);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(217, 151, 47, 0.25), transparent 28%),
+        radial-gradient(circle at 86% 82%, rgba(29, 111, 77, 0.22), transparent 28%),
+        linear-gradient(135deg, #efe2bd, #f8f4e9 38%, #e2e9d0);
+      z-index: -2;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 96px 86px 64px;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.24)),
+        var(--paper);
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      animation: rise 260ms ease-out;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      right: -210px;
+      bottom: -250px;
+      width: 560px;
+      height: 560px;
+      border-radius: 46% 54% 49% 51%;
+      background: rgba(29, 111, 77, 0.12);
+      z-index: 0;
+    }
+
+    .slide > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .center { justify-content: center; }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--green);
+      font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+      font-size: 34px;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 1500px;
+      font-size: 112px;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      max-width: 1500px;
+      font-size: 82px;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin: 0 0 18px;
+      color: var(--green-dark);
+      font-size: 44px;
+    }
+
+    .lead {
+      max-width: 1320px;
+      margin: 34px 0 0;
+      color: #293527;
+      font-size: 46px;
+      line-height: 1.35;
+    }
+
+    .mini-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 32px;
+      line-height: 1.28;
+    }
+
+    .three-col,
+    .two-col {
+      display: grid;
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .three-col { grid-template-columns: repeat(3, 1fr); }
+    .two-col { grid-template-columns: 1fr 1fr; align-items: stretch; }
+
+    .card {
+      padding: 34px 38px;
+      border: 3px solid rgba(22, 33, 23, 0.12);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+
+    .card.dark {
+      background: var(--green-dark);
+      color: #f5f0da;
+      border-color: transparent;
+    }
+
+    .card.dark h3,
+    .card.dark p,
+    .card.dark .lead { color: #f5f0da; }
+
+    .card p {
+      margin: 0;
+      color: #293527;
+      font-size: 38px;
+      line-height: 1.28;
+    }
+
+    .card .lead {
+      margin-top: 16px;
+      font-size: 40px;
+    }
+
+    ul {
+      margin: 30px 0 0;
+      padding-left: 50px;
+      font-size: 42px;
+      line-height: 1.32;
+    }
+
+    li { margin: 16px 0; }
+
+    pre {
+      margin: 30px 0 0;
+      padding: 30px 36px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+        var(--code-bg);
+      color: var(--code-ink);
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+      font-size: 34px;
+      line-height: 1.15;
+      white-space: pre;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    code { font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace; }
+
+    .quiz-code {
+      margin-top: 22px;
+      font-size: 28px;
+      line-height: 1.08;
+      padding: 26px 32px;
+    }
+
+    .quiz-code.compact {
+      font-size: 25px;
+      line-height: 1.02;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .quiz-card {
+      padding: 24px 28px;
+      border-radius: 28px;
+      border: 3px solid rgba(29, 111, 77, 0.14);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 46px rgba(22, 33, 23, 0.12);
+    }
+
+    .quiz-card h3 {
+      margin-bottom: 12px;
+      font-size: 32px;
+      line-height: 1.18;
+    }
+
+    .quiz-card ul {
+      margin-top: 8px;
+      padding-left: 34px;
+      font-size: 27px;
+      line-height: 1.22;
+    }
+
+    .quiz-card li { margin: 8px 0; }
+
+    .step-ladder {
+      display: grid;
+      gap: 22px;
+      margin-top: 52px;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      align-items: center;
+      gap: 30px;
+      padding: 28px 34px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 3px solid rgba(29, 111, 77, 0.14);
+      box-shadow: 0 18px 48px rgba(22, 33, 23, 0.12);
+      font-size: 38px;
+      line-height: 1.22;
+    }
+
+    .step-row strong {
+      color: var(--green-dark);
+      font-size: 42px;
+    }
+
+    .output {
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-size: 44px;
+      line-height: 1.22;
+    }
+
+    .output.small {
+      font-size: 30px;
+      line-height: 1.16;
+      white-space: pre-wrap;
+    }
+
+    .output.compact {
+      margin-top: 24px;
+      font-size: 34px;
+      line-height: 1.18;
+    }
+
+    .output.answer-output {
+      margin-top: 58px;
+      font-size: 46px;
+      line-height: 1.26;
+      white-space: pre-wrap;
+      padding: 34px 40px;
+      border-radius: 28px;
+    }
+
+    .prompt-box {
+      margin-top: 42px;
+      padding: 38px 46px;
+      border-radius: 30px;
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 40px;
+      line-height: 1.34;
+      white-space: pre-wrap;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .prompt-box.small {
+      margin-top: 24px;
+      padding: 28px 36px;
+      font-size: 31px;
+      line-height: 1.22;
+    }
+
+    .table-card {
+      margin-top: 44px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 24px 60px rgba(22, 33, 23, 0.14);
+    }
+
+    .table-card.small-table {
+      margin-top: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 36px;
+      line-height: 1.16;
+    }
+
+    th,
+    td {
+      padding: 22px 28px;
+      border-bottom: 3px solid rgba(29, 111, 77, 0.12);
+      text-align: left;
+    }
+
+    th {
+      background: rgba(29, 111, 77, 0.1);
+      color: var(--green-dark);
+      font-weight: 900;
+    }
+
+    .num { text-align: right; font-family: "SF Mono", "Menlo", monospace; }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 72px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: rgba(29, 111, 77, 0.12);
+      color: var(--green-dark);
+      font-size: 36px;
+      font-weight: 800;
+    }
+
+    .chart-card {
+      margin-top: 34px;
+      padding: 34px 38px;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 24px 64px rgba(22, 33, 23, 0.16);
+    }
+
+    .trend-svg {
+      width: 100%;
+      height: 360px;
+      display: block;
+    }
+
+    .axis {
+      stroke: rgba(22, 33, 23, 0.4);
+      stroke-width: 3;
+    }
+
+    .grid-line {
+      stroke: rgba(22, 33, 23, 0.12);
+      stroke-width: 2;
+    }
+
+    .trend-line {
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dot {
+      fill: var(--gold);
+      stroke: #fff8dd;
+      stroke-width: 4;
+    }
+
+    .caption {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body class="l7">
+  <main class="deck">
+    <section class="slide active center" data-first="true">
+      <p class="eyebrow">L7</p>
+      <h1>今天和昨天差多少</h1>
+      <p class="lead">掌握时间序列的昨日对比 shift(1)，学会分析数据变化的敏感速度。</p>
+      <div class="badge-row">
+        <span class="badge">shift(1)</span>
+        <span class="badge">昨日对比</span>
+        <span class="badge">每日新增</span>
+        <span class="badge">最大回撤</span>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">课前热身</p>
+      <h2>唤醒 L6 与大表过滤</h2>
+      <p class="lead">复习 DataFrame 列重命名、类型转型、排序 values 以及条件筛选。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 1 / 4</p>
+      <h2>排序与取首行</h2>
+      <pre class="quiz-code"><code>import pandas as pd
+df = pd.DataFrame({"国家": ["A", "B"], "conNum": [100000, 10000]})
+top_one = df.sort_values(by="conNum", ascending=False).head(1)
+print(top_one["国家"])</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>1. <code>ascending=False</code> 作用是？</h3>
+          <ul>
+            <li>A. 从小到大升序重排</li>
+            <li>B. 从大到小降序重排</li>
+            <li>C. 只保留前 10 行</li>
+            <li>D. 将列名重命名</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>2. 最后一行 <code>print</code> 输出的国家是？</h3>
+          <ul>
+            <li>A. A</li>
+            <li>B. B</li>
+            <li>C. 国家</li>
+            <li>D. conNum</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 2 / 4</p>
+      <h2>布尔条件筛选</h2>
+      <pre class="quiz-code"><code>high_risk = df[df["deathRate"] > 4.0]
+high_risk.to_excel("high_risk.xlsx", index=False)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>3. <code>df[df["deathRate"] > 4.0]</code> 作用是？</h3>
+          <ul>
+            <li>A. 统计所有大于 4.0 的行数</li>
+            <li>B. 删掉 deathRate 大于 4.0 的行</li>
+            <li>C. 条件筛选出 deathRate 列数值大于 4.0 的行</li>
+            <li>D. 把 deathRate 列的值全部改为 4.0</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>4. 筛选后的 <code>high_risk</code> 表格行数？</h3>
+          <ul>
+            <li>A. 和原始 df 的行数一模一样</li>
+            <li>B. 取决于原表中有多少行的值满足条件</li>
+            <li>C. 永远只有 1 行</li>
+            <li>D. 一定是 0 行</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 3 / 4</p>
+      <h2>新增计算列与精度</h2>
+      <pre class="quiz-code"><code>df["CureRate"] = (df["Cure"] / df["Certain"] * 100).round(2)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>5. 这一行代表的运算含义是？</h3>
+          <ul>
+            <li>A. 累计治愈除以累计确诊并转百分比保留两位小数</li>
+            <li>B. 累计确诊除以累计治愈保留两位小数</li>
+            <li>C. 将治愈率一列清空</li>
+            <li>D. 绘制治愈人数的百分比柱状图</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>6. 如果 <code>Certain</code> 有 0，除法会？</h3>
+          <ul>
+            <li>A. 自动跳过输出 0</li>
+            <li>B. 将 0 变成 1 计算</li>
+            <li>C. 报错 ZeroDivisionError</li>
+            <li>D. 直接跳出函数</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 4 / 4</p>
+      <h2>函数定义与局部变量</h2>
+      <pre class="quiz-code"><code>def adjust_price(price):
+    new_price = price * 1.1
+    return round(new_price, 1)
+ans = adjust_price(10.0)
+print(ans)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>7. 最后一行 <code>print(ans)</code> 会打印？</h3>
+          <ul>
+            <li>A. 10.0</li>
+            <li>B. 11.0</li>
+            <li>C. 1.1</li>
+            <li>D. new_price</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>8. 若在函数外直接 <code>print(new_price)</code> 会？</h3>
+          <ul>
+            <li>A. 成功打印出 11.0</li>
+            <li>B. 报错 NameError，因为是局部变量</li>
+            <li>C. 打印出 None</li>
+            <li>D. 自动调用该函数</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">今晚路线</p>
+      <h2>挂上昨日红外警报器</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>1. 整理历史表</h3>
+          <p class="lead">读入疫情历史 JSON，整理出日期和确诊大表。</p>
+        </div>
+        <div class="card">
+          <h3>2. 对齐昨天</h3>
+          <p class="lead">用 <code>shift(1)</code> 产生昨日确诊，与今天对齐于同行。</p>
+        </div>
+        <div class="card dark">
+          <h3>3. 计算新增</h3>
+          <p class="lead">用今天累计减昨天，计算出敏感度最高的新增量并导出。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">#1 今天和昨天差多少</p>
+      <h2>Use yesterday to understand today</h2>
+      <p class="lead">累计大数具有欺骗性，我们要计算速率，先学会把今天与昨天放同行。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">数据对齐</p>
+      <h2>如何让昨天的数据，出现在今天同行？</h2>
+      <pre><code>df["昨日确诊"] = df["累计确诊"].shift(1)</code></pre>
+      <div class="two-col">
+        <div class="card">
+          <h3>shift(1) 原理</h3>
+          <p>把一列数据整体往下挪动一格，原第 0 行往下跑，头部产生空值 <code>NaN</code>。</p>
+        </div>
+        <div class="card dark">
+          <h3>行对齐</h3>
+          <p>挪动一格后，原本属于昨天的数字，刚好对齐在今天的 `昨日确诊` 列同行。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">阶段 2 Recap</p>
+      <h2>新增确诊 = 今天累计 - 昨天累计</h2>
+      <ul>
+        <li><code>df["昨日确诊"] = df["累计确诊"].shift(1)</code> 负责完成时间序列的物理重构对齐。</li>
+        <li>第一天没有昨天的数据，对齐产生的昨日确诊列会显示为 <code>NaN</code>（空值）。</li>
+        <li><code>df["新增确诊"] = df["累计确诊"] - df["昨日确诊"]</code> 获得当日精确增量变化。</li>
+        <li><code>to_excel("l7_change_report.xlsx", index=False)</code> 交付增量变化明细。</li>
+      </ul>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">后半</p>
+      <h1>不是只看总数</h1>
+      <p class="lead">有了 shift，我们能算速度了。接下来我们揭开“总量庞大”和“增长速率”之间的商业博弈密码。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">后半路线</p>
+      <h2>看懂变化速度的三个实战秘密</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>1. 警报器敏感度</h3>
+          <p>累计大数永远是上升的。要看刹车皮和危机爆发，盯死新增。</p>
+        </div>
+        <div class="card">
+          <h3>2. 异常线索</h3>
+          <p>新增最高的一天往往藏着统计噪音、延迟补录或口径更迭。</p>
+        </div>
+        <div class="card dark">
+          <h3>3. 中途回撤</h3>
+          <p>最终赚 35% 却中途跌掉 40%，你的理财账户能否扛到终点？</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 1</p>
+      <h1>累计数还在涨，情况变糟了吗？</h1>
+      <p class="lead">别被“永远攀升的存钱罐”蒙蔽：用新增确诊抓住刹车信号。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 原理</p>
+      <h2>存钱罐的丢钱游戏</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>累计总量 (存钱罐)</h3>
+          <p>第一天丢 10 元，总额 10 元；第二天丢 1 元，总额 11 元。**累计金额一直在爬升**，似乎形势一片大好。</p>
+        </div>
+        <div class="card dark">
+          <h3>新增速度 (增量速度)</h3>
+          <p>但从速度看：投币速度从 10 元暴跌到了 1 元，**速度事实上崩塌了 90%**！</p>
+        </div>
+      </div>
+      <p class="lead">如果你的公关或业务出现危机，你只看累计客户投诉，就会被永远上升的数字累死。看新增，才能知道你的危机治理是否见效。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 讨论</p>
+      <h2>速度与体量的博弈</h2>
+      <ul>
+        <li>如果新增销售额连续半个月腰斩，但累计总销售额依然在上升，能说明公司业务极其健康吗？</li>
+        <li>如果本周新增客诉掉头向下接近零，但累计客诉总量极高，此时紧急公关警报解除了吗？</li>
+        <li>看累计大数和看新增变化速率，分别在指导哪一层面的经营？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 所以呢</p>
+      <h2>新增数更接近变化速度</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>累计大数看规模</h3>
+          <p>累计数适合看规模。只要还有新增，它通常就会继续上升。</p>
+        </div>
+        <div class="card dark">
+          <h3>新增数看速度</h3>
+          <p><strong>每日新增（今天累计 - 昨天累计）</strong> 更适合观察变化是在加快还是放慢。</p>
+        </div>
+      </div>
+      <p class="lead">常识落脚点：累计数看规模，新增数看速度。两个指标回答的是不同问题。</p>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 2</p>
+      <h1>找新增最高的一天</h1>
+      <p class="lead">新增最高的一天很值得看，但它首先是线索，不是结论。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 讨论</p>
+      <h2>异常日期，先查口径和噪音</h2>
+      <ul>
+        <li>如果新增最高的一天刚好是周一，能不能直接说那天疫情最严重？</li>
+        <li>有没有可能是周末延迟上报，集中补录到周一？</li>
+        <li>如果当天统计口径变化，数字会不会突然变大？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 所以呢</p>
+      <h2>异常值是线索，不是铁证</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>先排除数据噪音</h3>
+          <p>看到异常大数，不要立刻推导原因。延迟上报、集中补录都可能让某一天突然变高。</p>
+        </div>
+        <div class="card dark">
+          <h3>口径变更常有发生</h3>
+          <p>统计口径变化也会让数据突然变大。异常日值得追问，但需要更多材料解释。</p>
+        </div>
+      </div>
+      <p class="lead">常识落脚点：异常只是线索，不是铁证。先查补录、延迟、口径变化，再谈原因。</p>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 3</p>
+      <h1>最大回撤：收益之外的痛感</h1>
+      <p class="lead">只看“最终赚了多少”不够。中途跌多深，决定很多人能不能拿得住。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 数据</p>
+      <h2>两只理财产品，怎么选？</h2>
+      <div class="table-card">
+        <table>
+          <tr><th>理财产品</th><th class="num">最终年化收益率</th><th class="num">中途最惨本金缩水 (最大回撤)</th><th>真实持仓体验</th></tr>
+          <tr><td>产品 A</td><td class="num">20%</td><td class="num">-5%</td><td>稳健前行，基本不慌</td></tr>
+          <tr><td>产品 B</td><td class="num">35%</td><td class="num">-40%</td><td>收益更高，但过程波动更大</td></tr>
+        </table>
+      </div>
+      <p class="lead">从最终收益看，B 赚得最多。但如果中途 100 万缩水到 60 万，你能不能拿得住？</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 讨论</p>
+      <h2>最后赚多少 vs 中途跌多深</h2>
+      <ul>
+        <li>如果中途账户跌了 40%，你真的能坚持到最后吗？</li>
+        <li>如果中途已经卖出，最后收益再高，对你还有意义吗？</li>
+        <li>为什么回测结果要同时看收益率和最大回撤？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 所以呢</p>
+      <h2>收益率看终点，回撤看过程</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>收益率看结果</h3>
+          <p>收益率回答“最后赚了多少”。但它不告诉你中途经历了多大的下跌。</p>
+        </div>
+        <div class="card dark">
+          <h3>最大回撤是安全红线</h3>
+          <p>最大回撤回答“从最高点往下，最深跌过多少”。这个指标能提醒过程风险。</p>
+        </div>
+      </div>
+      <p class="lead">常识落脚点：评估真实投资风险时，收益率和最大回撤要一起看。终点重要，过程也重要。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">今晚记住这几句</p>
+      <h2>从时间挪格，到速度觉察</h2>
+      <ul>
+        <li><code>shift(1)</code> 把数据下挪一格，把“今天”和“昨天”奇妙地对齐在同行，为增量计算打下地基。</li>
+        <li>累计总量看财富规模；新增确诊变化速率（今天累计 - 昨天累计）才代表实时的“油门与刹车”。</li>
+        <li>异常高增长日不一定代表真实爆发，先查补录、延迟和统计口径。</li>
+        <li>收益率看终点；最大回撤看中途最难熬的那段。</li>
+        <li>AI 能帮你把趋势图说成人话，但要防止它把“时间相关”写成“必然因果”。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    let index = 0;
+
+    function show(next) {
+      index = Math.max(0, Math.min(slides.length - 1, next));
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+      window.location.hash = `slide-${index + 1}`;
+    }
+
+    function fromHash() {
+      const match = window.location.hash.match(/slide-(\d+)/);
+      if (match) {
+        show(Number(match[1]) - 1);
+      } else {
+        show(0);
+      }
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        show(index + 1);
+      }
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        show(index - 1);
+      }
+      if (event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.();
+        } else {
+          document.exitFullscreen?.();
+        }
+      }
+      if (event.key.toLowerCase() === "p") {
+        window.print();
+      }
+      if (event.key === "Home") {
+        show(0);
+      }
+      if (event.key === "End") {
+        show(slides.length - 1);
+      }
+    });
+
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
+  </script>
+</body>
+</html>

@@ -1,0 +1,925 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python 101 L6</title>
+  <style>
+    :root {
+      --paper: #f4efdf;
+      --ink: #162117;
+      --muted: #66705e;
+      --green: #1d6f4d;
+      --green-dark: #0f3d2d;
+      --gold: #d9972f;
+      --code-bg: #10251d;
+      --code-ink: #eff8e8;
+      --output-bg: #2d2417;
+      --output-ink: #fff1ca;
+      --shadow: rgba(22, 33, 23, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #1a211b;
+      color: var(--ink);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(217, 151, 47, 0.25), transparent 28%),
+        radial-gradient(circle at 86% 82%, rgba(29, 111, 77, 0.22), transparent 28%),
+        linear-gradient(135deg, #efe2bd, #f8f4e9 38%, #e2e9d0);
+      z-index: -2;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 96px 86px 64px;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.24)),
+        var(--paper);
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      animation: rise 260ms ease-out;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      right: -210px;
+      bottom: -250px;
+      width: 560px;
+      height: 560px;
+      border-radius: 46% 54% 49% 51%;
+      background: rgba(29, 111, 77, 0.12);
+      z-index: 0;
+    }
+
+    .slide > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .center { justify-content: center; }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--green);
+      font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+      font-size: 34px;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 1500px;
+      font-size: 112px;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      max-width: 1500px;
+      font-size: 82px;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin: 0 0 18px;
+      color: var(--green-dark);
+      font-size: 44px;
+    }
+
+    .lead {
+      max-width: 1320px;
+      margin: 34px 0 0;
+      color: #293527;
+      font-size: 46px;
+      line-height: 1.35;
+    }
+
+    .mini-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 32px;
+      line-height: 1.28;
+    }
+
+    .three-col,
+    .two-col {
+      display: grid;
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .three-col { grid-template-columns: repeat(3, 1fr); }
+    .two-col { grid-template-columns: 1fr 1fr; align-items: stretch; }
+
+    .card {
+      padding: 34px 38px;
+      border: 3px solid rgba(22, 33, 23, 0.12);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+
+    .card.dark {
+      background: var(--green-dark);
+      color: #f5f0da;
+      border-color: transparent;
+    }
+
+    .card.dark h3,
+    .card.dark p,
+    .card.dark .lead { color: #f5f0da; }
+
+    .card p {
+      margin: 0;
+      color: #293527;
+      font-size: 38px;
+      line-height: 1.28;
+    }
+
+    .card .lead {
+      margin-top: 16px;
+      font-size: 40px;
+    }
+
+    ul {
+      margin: 30px 0 0;
+      padding-left: 50px;
+      font-size: 42px;
+      line-height: 1.32;
+    }
+
+    li { margin: 16px 0; }
+
+    pre {
+      margin: 30px 0 0;
+      padding: 30px 36px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+        var(--code-bg);
+      color: var(--code-ink);
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+      font-size: 34px;
+      line-height: 1.15;
+      white-space: pre;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    code { font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace; }
+
+    .quiz-code {
+      margin-top: 22px;
+      font-size: 28px;
+      line-height: 1.08;
+      padding: 26px 32px;
+    }
+
+    .quiz-code.compact {
+      font-size: 25px;
+      line-height: 1.02;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .quiz-card {
+      padding: 24px 28px;
+      border-radius: 28px;
+      border: 3px solid rgba(29, 111, 77, 0.14);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 46px rgba(22, 33, 23, 0.12);
+    }
+
+    .quiz-card h3 {
+      margin-bottom: 12px;
+      font-size: 32px;
+      line-height: 1.18;
+    }
+
+    .quiz-card ul {
+      margin-top: 8px;
+      padding-left: 34px;
+      font-size: 27px;
+      line-height: 1.22;
+    }
+
+    .quiz-card li { margin: 8px 0; }
+
+    .step-ladder {
+      display: grid;
+      gap: 22px;
+      margin-top: 52px;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      align-items: center;
+      gap: 30px;
+      padding: 28px 34px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 3px solid rgba(29, 111, 77, 0.14);
+      box-shadow: 0 18px 48px rgba(22, 33, 23, 0.12);
+      font-size: 38px;
+      line-height: 1.22;
+    }
+
+    .step-row strong {
+      color: var(--green-dark);
+      font-size: 42px;
+    }
+
+    .output {
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-size: 44px;
+      line-height: 1.22;
+    }
+
+    .output.small {
+      font-size: 30px;
+      line-height: 1.16;
+      white-space: pre-wrap;
+    }
+
+    .output.compact {
+      margin-top: 24px;
+      font-size: 34px;
+      line-height: 1.18;
+    }
+
+    .output.answer-output {
+      margin-top: 58px;
+      font-size: 46px;
+      line-height: 1.26;
+      white-space: pre-wrap;
+      padding: 34px 40px;
+      border-radius: 28px;
+    }
+
+    .prompt-box {
+      margin-top: 42px;
+      padding: 38px 46px;
+      border-radius: 30px;
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 40px;
+      line-height: 1.34;
+      white-space: pre-wrap;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .prompt-box.small {
+      margin-top: 24px;
+      padding: 28px 36px;
+      font-size: 31px;
+      line-height: 1.22;
+    }
+
+    .table-card {
+      margin-top: 44px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 24px 60px rgba(22, 33, 23, 0.14);
+    }
+
+    .table-card.small-table {
+      margin-top: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 36px;
+      line-height: 1.16;
+    }
+
+    th,
+    td {
+      padding: 22px 28px;
+      border-bottom: 3px solid rgba(29, 111, 77, 0.12);
+      text-align: left;
+    }
+
+    th {
+      background: rgba(29, 111, 77, 0.1);
+      color: var(--green-dark);
+      font-weight: 900;
+    }
+
+    .num { text-align: right; font-family: "SF Mono", "Menlo", monospace; }
+
+    .ai-photo-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 30px;
+      margin-top: 28px;
+      align-items: start;
+    }
+
+    .ai-photo-grid .output,
+    .ai-photo-grid .prompt-box {
+      margin-top: 0;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 72px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: rgba(29, 111, 77, 0.12);
+      color: var(--green-dark);
+      font-size: 36px;
+      font-weight: 800;
+    }
+
+    .code-output-pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 34px;
+    }
+
+    .code-output-pair pre {
+      margin-top: 0;
+    }
+
+    .code-output-pair .output {
+      margin-top: 0;
+      font-size: 40px;
+      line-height: 1.18;
+    }
+  </style>
+</head>
+<body class="l6">
+  <main class="deck">
+    <section class="slide active center" data-first="true">
+      <p class="eyebrow">L6</p>
+      <h1>从大表里找重点</h1>
+      <p class="lead">用 pandas 对数据进行排序与条件筛选，快速提取核心信息。</p>
+      <div class="badge-row">
+        <span class="badge">sort_values</span>
+        <span class="badge">head(20)</span>
+        <span class="badge">条件筛选</span>
+        <span class="badge">数据口径</span>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">课前热身</p>
+      <h2>唤醒 L5 与基本表达</h2>
+      <p class="lead">复习 DataFrame 列提取、重命名、类型转换、新增列及基本函数。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 1 / 6</p>
+      <h2>取列与重命名</h2>
+      <pre class="quiz-code"><code>import pandas as pd
+df = pd.DataFrame({"conNum": [7602935], "deathNum": [212500]})
+df = df.rename(columns={"conNum": "累计确诊"})
+print(df["累计确诊"])</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>1. <code>df.rename(columns={...})</code> 作用是？</h3>
+          <ul>
+            <li>A. 删除这几列数据</li>
+            <li>B. 把英文字段名改为直观中文</li>
+            <li>C. 把字符串转换成数字</li>
+            <li>D. 保存为本地 Excel</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>2. 重命名后，若仍使用 <code>df["conNum"]</code> 会？</h3>
+          <ul>
+            <li>A. 继续正常打印</li>
+            <li>B. 自动匹配到"累计确诊"</li>
+            <li>C. 程序直接报错 KeyError</li>
+            <li>D. 返回一个空表</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 2 / 6</p>
+      <h2>数据类型转换</h2>
+      <pre class="quiz-code"><code>df = df.astype({"累计确诊": int, "累计死亡": int})
+rate = df["累计死亡"] / df["累计确诊"] * 100</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>3. 为什么做计算前要用 <code>astype</code>？</h3>
+          <ul>
+            <li>A. 因为 pandas 不能保存字符串</li>
+            <li>B. JSON 读出来的数字常常还是文本类型</li>
+            <li>C. 转换后表格才能保存为 Excel</li>
+            <li>D. 防止列名变成中文</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>4. 若累计确诊仍为字符串，除法计算会？</h3>
+          <ul>
+            <li>A. 自动完成类型转换并输出</li>
+            <li>B. 忽略这行数据</li>
+            <li>C. 报错 TypeError</li>
+            <li>D. 所有结果变成 NaN</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 3 / 6</p>
+      <h2>新增列与四舍五入</h2>
+      <pre class="quiz-code"><code>df["死亡率"] = (df["累计死亡"] / df["累计确诊"] * 100).round(2)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>5. <code>df["死亡率"] = ...</code> 在做什么？</h3>
+          <ul>
+            <li>A. 修改现有列 "累计死亡"</li>
+            <li>B. 删掉旧数据并重做表格</li>
+            <li>C. 为 DataFrame 新增一个计算列</li>
+            <li>D. 画一张饼图</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>6. <code>.round(2)</code> 的主要作用是？</h3>
+          <ul>
+            <li>A. 强制保留两位整数</li>
+            <li>B. 计算结果四舍五入保留两位小数</li>
+            <li>C. 将计算结果转为字符串</li>
+            <li>D. 去除表格行号</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 4 / 6</p>
+      <h2>Excel 导出</h2>
+      <pre class="quiz-code"><code>df.to_excel("l6_rank_report.xlsx", index=False)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>7. <code>to_excel</code> 的核心功能是？</h3>
+          <ul>
+            <li>A. 在 Python 内部展示 Excel 表格</li>
+            <li>B. 把 DataFrame 里的表格保存为本地文件</li>
+            <li>C. 创建一个包含公式的工作表</li>
+            <li>D. 打开本地的 Excel 软件</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>8. <code>index=False</code> 参数的作用是？</h3>
+          <ul>
+            <li>A. 不保存第一行的列名</li>
+            <li>B. 忽略表格中所有的空值</li>
+            <li>C. 导出时不带 pandas 自动生成的行号</li>
+            <li>D. 只保存第一列数据</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 5 / 6</p>
+      <h2>函数与 if 条件</h2>
+      <pre class="quiz-code"><code>def get_level(rate):
+    if rate > 5.0:
+        return "高风险"
+    else:
+        return "正常"
+print(get_level(4.44))</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>9. <code>print(get_level(4.44))</code> 输出是什么？</h3>
+          <ul>
+            <li>A. 高风险</li>
+            <li>B. 正常</li>
+            <li>C. 4.44</li>
+            <li>D. rate</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>10. 这里的 <code>get_level</code> 属于？</h3>
+          <ul>
+            <li>A. pandas 内置函数</li>
+            <li>B. 用户自定义的带有参数和返回值的函数</li>
+            <li>C. 系统的判断语句</li>
+            <li>D. 导入的第三方库</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 6 / 6</p>
+      <h2>多级 JSON 解析</h2>
+      <pre class="quiz-code compact"><code>raw_data = {"data": {"otherlist": [{"name": "美国", "conNum": "7602935"}]}}
+countries = raw_data["data"]["otherlist"]
+print(countries[0]["name"])</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>11. <code>countries</code> 的变量类型是什么？</h3>
+          <ul>
+            <li>A. 字典 (dict)</li>
+            <li>B. 列表 (list)</li>
+            <li>C. 字符串 (str)</li>
+            <li>D. 整数 (int)</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>12. 最后一行 <code>print</code> 输出什么？</h3>
+          <ul>
+            <li>A. 美国</li>
+            <li>B. 7602935</li>
+            <li>C. otherlist</li>
+            <li>D. name</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">今晚路线</p>
+      <h2>从大表里抓取出重点</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>1. 整理大表</h3>
+          <p class="lead">从 JSON 中取出国家列表，转为规范 DataFrame 并重命名。</p>
+        </div>
+        <div class="card">
+          <h3>2. 计算与排序</h3>
+          <p class="lead">新增死亡/治愈率，按累计确诊排序并用 <code>head(20)</code> 截取。</p>
+        </div>
+        <div class="card dark">
+          <h3>3. 筛选导出</h3>
+          <p class="lead">按现存压力条件筛选，生成并导出 Excel 报告。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">#1 排序与条件过滤</p>
+      <h2>How to sort and filter a DataFrame?</h2>
+      <p class="lead">当数据行数破百时，人眼查阅会失效，需要程序自动定位重点。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">数据结构</p>
+      <h2>国家/地区数据长什么样？</h2>
+      <pre><code>{
+    "name": "美国",
+    "conNum": "7602935",
+    "econNum": "2550339",
+    "cureNum": "4840096",
+    "deathNum": "212500"
+}</code></pre>
+      <div class="two-col">
+        <div class="card">
+          <h3>字段定义</h3>
+          <p><code>name</code> 国家/地区名称，<code>conNum</code> 累计确诊，<code>econNum</code> 现存确诊，<code>cureNum</code> 累计治愈，<code>deathNum</code> 累计死亡。</p>
+        </div>
+        <div class="card dark">
+          <h3>挑战</h3>
+          <p>JSON 读出的数字依然是带引号的字符串，必须在 Python 里批量转型以供计算。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">阶段 1 Recap</p>
+      <h2>重组大表的三个积木</h2>
+      <ul>
+        <li><code>pd.DataFrame(countries, columns=[...])</code> 把多层嵌套列表变成格式化行列表格。</li>
+        <li><code>df.rename(columns={...})</code> 把乱糟糟的原文字段一次性重命名为规范中文。</li>
+        <li><code>df.astype({...})</code> 把确诊、死亡、治愈等数字列一键强制转为 <code>int</code> 以供公式运算。</li>
+        <li><code>df.head()</code> 默认打印大表的前 5 行，适合现场确认表格有没有整理对。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">阶段 2 Recap</p>
+      <h2>计算、排序并截取</h2>
+      <ul>
+        <li><code>df["死亡率"] = ...</code> 新增死亡率计算列。</li>
+        <li><code>df.sort_values(by="累计确诊", ascending=False)</code> 按确诊数从大到小对大表进行行重排。</li>
+        <li><code>.head(20)</code> 过滤丢弃长尾行，只截取前 20 行高热度数据。</li>
+        <li><code>to_excel(..., index=False)</code> 交付最核心前 20 名报告。</li>
+      </ul>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">后半</p>
+      <h1>排名不是答案，只是入口</h1>
+      <p class="lead">大表整理完了，Top 20 也导出了。后半重点看：排名、指标和筛选条件分别能回答什么问题。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">后半路线</p>
+      <h2>大表背后的三个数据分析常识</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>1. 排名</h3>
+          <p>Top N 很适合抓大数，但它通常只是下一步调查的入口。</p>
+        </div>
+        <div class="card">
+          <h3>2. 指标</h3>
+          <p>累计、现存、死亡率、治愈率，回答的是不同问题。</p>
+        </div>
+        <div class="card dark">
+          <h3>3. 筛选</h3>
+          <p>筛选条件会决定你看到哪一批重点对象。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 1</p>
+      <h1>第一名真的最严重吗？</h1>
+      <p class="lead">按累计确诊排序，能看到大数；但排名第一不等于所有问题的答案。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 代码与结果</p>
+      <h2>按累计确诊排序并取前列</h2>
+      <pre><code>top20 = df.sort_values(by="累计确诊", ascending=False).head(20)</code></pre>
+      <div class="table-card small-table">
+        <table>
+          <tr><th>排名</th><th>国家/地区</th><th class="num">累计确诊</th><th class="num">死亡率</th><th>原版判断</th></tr>
+          <tr><td>1</td><td>美国</td><td class="num">7602935</td><td class="num">2.79%</td><td>累计确诊最高</td></tr>
+          <tr><td>...</td><td>...</td><td class="num">...</td><td class="num">...</td><td>...</td></tr>
+          <tr><td>[未上榜]</td><td>梵蒂冈</td><td class="num">500</td><td class="num">4.50%</td><td>数量小，但比例不低</td></tr>
+        </table>
+      </div>
+      <p class="mini-note">美国霸榜第一，梵蒂冈根本排不进前一百。但这样比较真的反映了真实情况吗？</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 讨论</p>
+      <h2>打破大块头霸榜错觉</h2>
+      <ul>
+        <li>如果大国因为人口多、检测多而天然排在第一，这能直接说明它“病情最重”吗？</li>
+        <li>如果人口总共只有 1000 人的梵蒂冈确诊了 500 人，它的累计数极低，但严重性是否胜过大国？</li>
+        <li>排名更像一个句号，还是更像你展开下一步数据调查的入口？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 所以呢</p>
+      <h2>排名第一，只说明这个指标排第一</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>Top N 是粗筛</h3>
+          <p>排行榜会先把数量最大的对象推到前面，但它不能自动解释原因和严重程度。</p>
+        </div>
+        <div class="card dark">
+          <h3>还要看比例</h3>
+          <p>如果人口规模不同，只看累计数就容易忽略“比例压力”。排名之后，要继续看人口、检测口径和时间范围。</p>
+        </div>
+      </div>
+      <p class="lead">常识落脚点：排名只是粗筛工具。看到第一名之后，下一步是追问这个指标有没有被规模影响。</p>
+    </section>
+
+    <section class="slide photo-slide">
+      <div class="ai-photo-grid">
+        <pre class="output ai-stock-data" style="font-size:20px; line-height: 1.05;"><code>Top 20 累计确诊国家/地区数据片段：
+美国, conNum: 7602935, deathNum: 212500
+印度, conNum: 6623815, deathNum: 102685
+巴西, conNum: 4915289, deathNum: 146352
+...
+梵蒂冈, conNum: 500, deathNum: 22</code></pre>
+        <pre class="prompt-box small"><code>请用普通话解释这张累计确诊排名表。
+要求：
+1. 只描述表中能看出的绝对信息。
+2. 不要把累计数高直接等同于“治理更差”或“病情最重”。
+3. 提示样本背后可能存在的初始人口规模差异。</code></pre>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 参考输出 · 案例 1</p>
+      <h2>可以接受的回答，大概长这样</h2>
+      <pre class="output small"><code>这张表按累计确诊人数从高到低排列。
+从表中可以看到，美国、印度、巴西等国家累计确诊数量靠前。
+
+但这张表只能说明“按累计确诊这个指标，它们排在前面”。
+它不能直接说明治理好坏，也不能预测未来变化。
+如果要进一步比较，还需要人口规模、检测口径、时间范围等材料。</code></pre>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 2</p>
+      <h1>指标没有绝对的好坏</h1>
+      <p class="lead">总量、现存、死亡率、治愈率：先问问题，再选指标。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 数据</p>
+      <h2>同一张表上的四个维度</h2>
+      <div class="table-card">
+        <table>
+          <tr><th>国家/地区</th><th class="num">累计确诊 (规模)</th><th class="num">现存确诊 (压力)</th><th class="num">死亡率 (致命度)</th><th class="num">治愈率 (希望度)</th></tr>
+          <tr><td>美国</td><td class="num">7602935</td><td class="num">2550339</td><td class="num">2.79%</td><td class="num">63.66%</td></tr>
+          <tr><td>巴西</td><td class="num">4915289</td><td class="num">503289</td><td class="num">2.98%</td><td class="num">86.74%</td></tr>
+        </table>
+      </div>
+      <p class="lead">你关心哪个指标，完全取决于你的实际职业场景与决策立场。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 讨论</p>
+      <h2>指标服务于具体问题</h2>
+      <ul>
+        <li>如果你是医疗总指挥，今晚需要紧急加盖多少病床、调多少医生，你应该看哪个字段？</li>
+        <li>如果你是新药开发科学家，要向世人证明你的药真能救命，你应该看哪个字段？</li>
+        <li>如果你是外交舆论发言人，旨在树立国家信心，你更倾向于展示哪一列？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 所以呢</p>
+      <h2>不同问题，选不同指标</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>总指挥盯“现存”</h3>
+          <p>现存确诊是还没结束的病例，更适合看当前医疗压力。</p>
+        </div>
+        <div class="card">
+          <h3>研发科学家盯“变化”</h3>
+          <p>死亡率适合比较不同规模地区的死亡比例，但原因还需要更多材料。</p>
+        </div>
+        <div class="card dark">
+          <h3>发言人讲“治愈率”</h3>
+          <p>治愈率适合看恢复情况，但也要结合统计口径和时间范围。</p>
+        </div>
+      </div>
+      <p class="lead">常识落脚点：同一张表没有万能指标。先把问题说清楚，才知道该拿哪一列说话。</p>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 3</p>
+      <h1>筛选条件决定了你的世界</h1>
+      <p class="lead">条件过滤很有用，但筛选线画在哪里，会影响你看到的结果。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 代码与结果</p>
+      <h2>筛选出仍处于高承载压力的国家</h2>
+      <pre><code>high_pressure = df[df["现存确诊"] > 100000]</code></pre>
+      <div class="table-card small-table">
+        <table>
+          <tr><th>国家/地区</th><th class="num">现存确诊 (床位压力)</th><th>筛选阈值</th><th>结果数</th></tr>
+          <tr><td>美国</td><td class="num">2550339</td><td>> 100,000</td><td>筛出 12 个国家/地区</td></tr>
+          <tr><td>巴西</td><td class="num">503289</td><td>改为 > 500,000</td><td>只剩 3 个国家/地区</td></tr>
+        </table>
+      </div>
+      <p class="mini-note">代码只是把阈值改了一下，但留下来的对象会明显变化。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 讨论</p>
+      <h2>阈值线划在哪里？</h2>
+      <ul>
+        <li>如果阈值从 10 万改到 50 万，筛出对象大量变少，这仅仅是数学数字的变化吗？</li>
+        <li>如果支援医疗队只有 5 支，你的代码阈值应该怎么划定？</li>
+        <li>在公司制定考核指标时，“优秀”的合格线划在哪里，是如何左右员工行为的？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 所以呢</p>
+      <h2>阈值决定你先看哪一批对象</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>资源有限时</h3>
+          <p>如果人手、床位、预算有限，阈值通常会拉高，先看压力最大的对象。</p>
+        </div>
+        <div class="card dark">
+          <h3>覆盖面更重要时</h3>
+          <p>如果目标是覆盖更多对象，阈值就会降低，留下来的地区也会更多。</p>
+        </div>
+      </div>
+      <p class="lead">常识落脚点：筛选真正难的不是代码，而是解释清楚为什么把线画在这里。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">今晚记住这几句</p>
+      <h2>从排序，到筛选</h2>
+      <ul>
+        <li><code>sort_values()</code> 帮我们快速看排名，但排名只是调查入口。</li>
+        <li><code>head()</code> 帮我们锁定极少数关键大数，但这只是下一步调查的开始。</li>
+        <li>总量看规模，比例看严重程度，现存看当前压力。</li>
+        <li>条件筛选语法很简单，但阈值线划在哪里，需要现实理由。</li>
+        <li>AI 可以帮你把表格翻译成人话，但要防止它把“过去排名”说成“未来预测”。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    let index = 0;
+
+    function show(next) {
+      index = Math.max(0, Math.min(slides.length - 1, next));
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+      window.location.hash = `slide-${index + 1}`;
+    }
+
+    function fromHash() {
+      const match = window.location.hash.match(/slide-(\d+)/);
+      if (match) {
+        show(Number(match[1]) - 1);
+      } else {
+        show(0);
+      }
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        show(index + 1);
+      }
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        show(index - 1);
+      }
+      if (event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.();
+        } else {
+          document.exitFullscreen?.();
+        }
+      }
+      if (event.key.toLowerCase() === "p") {
+        window.print();
+      }
+      if (event.key === "Home") {
+        show(0);
+      }
+      if (event.key === "End") {
+        show(slides.length - 1);
+      }
+    });
+
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
+  </script>
+</body>
+</html>

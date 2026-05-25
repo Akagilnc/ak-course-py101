@@ -1,0 +1,922 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python 101 L5</title>
+  <style>
+    :root {
+      --paper: #f4efdf;
+      --ink: #162117;
+      --muted: #66705e;
+      --green: #1d6f4d;
+      --green-dark: #0f3d2d;
+      --gold: #d9972f;
+      --code-bg: #10251d;
+      --code-ink: #eff8e8;
+      --output-bg: #2d2417;
+      --output-ink: #fff1ca;
+      --shadow: rgba(22, 33, 23, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #1a211b;
+      color: var(--ink);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(217, 151, 47, 0.25), transparent 28%),
+        radial-gradient(circle at 86% 82%, rgba(29, 111, 77, 0.22), transparent 28%),
+        linear-gradient(135deg, #efe2bd, #f8f4e9 38%, #e2e9d0);
+      z-index: -2;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 96px 86px 64px;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.24)),
+        var(--paper);
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      animation: rise 260ms ease-out;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      right: -210px;
+      bottom: -250px;
+      width: 560px;
+      height: 560px;
+      border-radius: 46% 54% 49% 51%;
+      background: rgba(29, 111, 77, 0.12);
+      z-index: 0;
+    }
+
+    .slide > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .center { justify-content: center; }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--green);
+      font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+      font-size: 34px;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 1500px;
+      font-size: 112px;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      max-width: 1500px;
+      font-size: 82px;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin: 0 0 18px;
+      color: var(--green-dark);
+      font-size: 44px;
+    }
+
+    .lead {
+      max-width: 1320px;
+      margin: 34px 0 0;
+      color: #293527;
+      font-size: 46px;
+      line-height: 1.35;
+    }
+
+    .mini-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 32px;
+      line-height: 1.28;
+    }
+
+    .three-col,
+    .two-col {
+      display: grid;
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .three-col { grid-template-columns: repeat(3, 1fr); }
+    .two-col { grid-template-columns: 1fr 1fr; align-items: stretch; }
+
+    .card {
+      padding: 34px 38px;
+      border: 3px solid rgba(22, 33, 23, 0.12);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+
+    .card.dark {
+      background: var(--green-dark);
+      color: #f5f0da;
+      border-color: transparent;
+    }
+
+    .card.dark h3,
+    .card.dark p,
+    .card.dark .lead { color: #f5f0da; }
+
+    .card p {
+      margin: 0;
+      color: #293527;
+      font-size: 38px;
+      line-height: 1.28;
+    }
+
+    .card .lead {
+      margin-top: 16px;
+      font-size: 40px;
+    }
+
+    ul {
+      margin: 30px 0 0;
+      padding-left: 50px;
+      font-size: 42px;
+      line-height: 1.32;
+    }
+
+    li { margin: 16px 0; }
+
+    pre {
+      margin: 30px 0 0;
+      padding: 30px 36px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+        var(--code-bg);
+      color: var(--code-ink);
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+      font-size: 34px;
+      line-height: 1.15;
+      white-space: pre;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    code { font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace; }
+
+    .quiz-code {
+      margin-top: 22px;
+      font-size: 28px;
+      line-height: 1.08;
+      padding: 26px 32px;
+    }
+
+    .quiz-code.compact {
+      font-size: 25px;
+      line-height: 1.02;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .quiz-card {
+      padding: 24px 28px;
+      border-radius: 28px;
+      border: 3px solid rgba(29, 111, 77, 0.14);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 46px rgba(22, 33, 23, 0.12);
+    }
+
+    .quiz-card h3 {
+      margin-bottom: 12px;
+      font-size: 32px;
+      line-height: 1.18;
+    }
+
+    .quiz-card ul {
+      margin-top: 8px;
+      padding-left: 34px;
+      font-size: 27px;
+      line-height: 1.22;
+    }
+
+    .quiz-card li { margin: 8px 0; }
+
+    .step-ladder {
+      display: grid;
+      gap: 22px;
+      margin-top: 52px;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      align-items: center;
+      gap: 30px;
+      padding: 28px 34px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 3px solid rgba(29, 111, 77, 0.14);
+      box-shadow: 0 18px 48px rgba(22, 33, 23, 0.12);
+      font-size: 38px;
+      line-height: 1.22;
+    }
+
+    .step-row strong {
+      color: var(--green-dark);
+      font-size: 42px;
+    }
+
+    .output {
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-size: 44px;
+      line-height: 1.22;
+    }
+
+    .output.small {
+      font-size: 30px;
+      line-height: 1.16;
+      white-space: pre-wrap;
+    }
+
+    .table-card {
+      margin-top: 44px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 24px 60px rgba(22, 33, 23, 0.14);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 36px;
+      line-height: 1.16;
+    }
+
+    th,
+    td {
+      padding: 22px 28px;
+      border-bottom: 3px solid rgba(29, 111, 77, 0.12);
+      text-align: left;
+    }
+
+    th {
+      background: rgba(29, 111, 77, 0.1);
+      color: var(--green-dark);
+      font-weight: 900;
+    }
+
+    .num { text-align: right; font-family: "SF Mono", "Menlo", monospace; }
+
+    .chart-card {
+      margin-top: 34px;
+      padding: 34px 38px;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.78);
+      box-shadow: 0 24px 64px rgba(22, 33, 23, 0.16);
+    }
+
+    .trend-svg {
+      width: 100%;
+      height: 360px;
+      display: block;
+    }
+
+    .axis {
+      stroke: rgba(22, 33, 23, 0.4);
+      stroke-width: 3;
+    }
+
+    .grid-line {
+      stroke: rgba(22, 33, 23, 0.12);
+      stroke-width: 2;
+    }
+
+    .trend-line {
+      fill: none;
+      stroke: var(--green);
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .dot {
+      fill: var(--gold);
+      stroke: #fff8dd;
+      stroke-width: 4;
+    }
+
+    .caption {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 30px;
+    }
+
+    .quiet {
+      color: var(--muted);
+      font-size: 38px;
+      line-height: 1.35;
+    }
+  </style>
+</head>
+<body class="l5">
+  <main class="deck">
+    <section class="slide active center" data-first="true">
+      <p class="eyebrow">L5</p>
+      <h1>用 pandas 做一份报告</h1>
+      <p class="lead">读取一整段历史数据，生成 Excel，并画出趋势图。</p>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">课前热身</p>
+      <h2>先把旧工具叫醒</h2>
+      <p class="lead">函数、判断、list、dict、JSON、DataFrame，今天会串成一条完整工作流。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 1 / 8</p>
+      <h2>函数、参数、返回值</h2>
+      <pre class="quiz-code"><code>def get_rate(death, certain):
+    rate = death / certain * 100
+    return round(rate, 2)
+
+result = get_rate(1036359, 35270206)
+print(result)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card"><h3>1. <code>1036359</code> 会传给哪个参数？</h3><ul><li>A. death</li><li>B. certain</li><li>C. rate</li><li>D. result</li></ul></div>
+        <div class="quiz-card"><h3>2. <code>return round(rate, 2)</code> 的作用是什么？</h3><ul><li>A. 直接写入 Excel</li><li>B. 把数字变成字符串</li><li>C. 交回函数外面，并保留两位小数</li><li>D. 让函数循环运行</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 2 / 8</p>
+      <h2>if 和业务判断</h2>
+      <pre class="quiz-code"><code>death_rate = 2.94
+
+if death_rate > 5:
+    level = "偏高"
+else:
+    level = "正常观察"
+
+print(level)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card"><h3>3. 最后 <code>level</code> 会是什么？</h3><ul><li>A. "偏高"</li><li>B. "正常观察"</li><li>C. 2.94</li><li>D. 5</li></ul></div>
+        <div class="quiz-card"><h3>4. 这段代码里 <code>&gt;</code> 的作用是什么？</h3><ul><li>A. 把右边保存到左边</li><li>B. 把两个数字相加</li><li>C. 打印变量</li><li>D. 判断左边是否大于右边</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 3 / 8</p>
+      <h2>list 里的 dict</h2>
+      <pre class="quiz-code"><code>history = [
+    {"date": "10.04", "certain": "35151050"},
+    {"date": "10.05", "certain": "35270206"},
+]
+
+first = history[0]
+print(first["date"])
+print(history[1]["certain"])</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card"><h3>5. <code>history[0]</code> 取到的是什么？</h3><ul><li>A. 第一个日期字符串</li><li>B. 整个 list 的长度</li><li>C. 第一个 dict</li><li>D. 第二个 dict</li></ul></div>
+        <div class="quiz-card"><h3>6. 最后两行会输出什么？</h3><ul><li>A. date 和 certain</li><li>B. 10.04 和 35270206</li><li>C. 10.05 和 35151050</li><li>D. history 和 first</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 4 / 8</p>
+      <h2>JSON 路径</h2>
+      <pre class="quiz-code compact"><code>raw_data = {
+    "data": {
+        "otherhistorylist": [
+            {"date": "10.04", "certain": "35151050"},
+            {"date": "10.05", "certain": "35270206"},
+        ]
+    }
+}
+
+data = raw_data["data"]
+history = data["otherhistorylist"]
+print(history[0]["date"])</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card"><h3>7. <code>data = raw_data["data"]</code> 后，<code>data</code> 是什么？</h3><ul><li>A. 第一天的日期</li><li>B. 一个 list</li><li>C. 一个 dict</li><li>D. 字符串 "data"</li></ul></div>
+        <div class="quiz-card"><h3>8. 最后一行会输出什么？</h3><ul><li>A. otherhistorylist</li><li>B. 10.05</li><li>C. certain</li><li>D. 10.04</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 5 / 8</p>
+      <h2>DataFrame 是一张表</h2>
+      <pre class="quiz-code compact"><code>import pandas as pd
+
+history = [
+    {"date": "10.04", "certain": "35151050", "die": "1034410"},
+    {"date": "10.05", "certain": "35270206", "die": "1036359"},
+]
+
+df = pd.DataFrame(history, columns=["date", "certain", "die"])
+print(df)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card"><h3>9. <code>pd.DataFrame(...)</code> 主要是在做什么？</h3><ul><li>A. 把 Excel 文件读进来</li><li>B. 把历史记录整理成表，并指定列</li><li>C. 把图片画出来</li><li>D. 把所有数字相加</li></ul></div>
+        <div class="quiz-card"><h3>10. <code>columns=[...]</code> 的作用是什么？</h3><ul><li>A. 指定文件名</li><li>B. 指定图片大小</li><li>C. 指定循环次数</li><li>D. 指定保留哪些列和顺序</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 6 / 8</p>
+      <h2>重命名列</h2>
+      <pre class="quiz-code"><code>df = df.rename(columns={
+    "date": "日期",
+    "certain": "累计确诊",
+    "die": "累计死亡",
+})</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card"><h3>11. 这段代码主要解决什么问题？</h3><ul><li>A. 删除所有数据</li><li>B. 把字符串转成数字</li><li>C. 把英文字段名改成中文列名</li><li>D. 把表格保存成 Excel</li></ul></div>
+        <div class="quiz-card"><h3>12. 改名后，取累计确诊列应该写哪一个？</h3><ul><li>A. df["certain"]</li><li>B. df["累计确诊"]</li><li>C. df[累计确诊]</li><li>D. df.certain()</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 7 / 8</p>
+      <h2>转换数据类型</h2>
+      <pre class="quiz-code"><code>df = df.astype({
+    "累计确诊": int,
+    "累计死亡": int,
+    "累计治愈": int,
+})</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card"><h3>13. 这段代码为什么重要？</h3><ul><li>A. 因为 Excel 只能保存整数</li><li>B. 因为 DataFrame 不能保存字符串</li><li>C. 因为中文列名不能计算</li><li>D. JSON 读出来的数字可能还是文字</li></ul></div>
+        <div class="quiz-card"><h3>14. 如果还是字符串，哪个计算最容易出问题？</h3><ul><li>A. df["累计死亡"] / df["累计确诊"]</li><li>B. df["日期"]</li><li>C. print(df)</li><li>D. df.to_excel("report.xlsx")</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 8 / 8</p>
+      <h2>新增列和导出</h2>
+      <pre class="quiz-code"><code>df["死亡率"] = (df["累计死亡"] / df["累计确诊"] * 100).round(2)
+
+df.to_excel("l5_report.xlsx", index=False)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card"><h3>15. 第一行代码在做什么？</h3><ul><li>A. 删除累计死亡</li><li>B. 读取 JSON 文件</li><li>C. 计算新数据，并保存到死亡率列</li><li>D. 打开图片</li></ul></div>
+        <div class="quiz-card"><h3>16. <code>index=False</code> 的作用是什么？</h3><ul><li>A. 不保存任何列名</li><li>B. 不把自动行号写进 Excel</li><li>C. 导出后只能用 Python 打开</li><li>D. 只保存第一行</li></ul></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">今晚路线</p>
+      <h2>一个函数，三步走</h2>
+      <div class="three-col">
+        <div class="card"><h3>1. 读数据</h3><p class="lead">JSON 里的历史列表，变成 DataFrame。</p></div>
+        <div class="card"><h3>2. 整理表</h3><p class="lead">重命名列，把数字文字转成数字。</p></div>
+        <div class="card dark"><h3>3. 出报告</h3><p class="lead">新增死亡率，保存 Excel，画趋势图。</p></div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">#1 从历史数据到报告</p>
+      <h2>Use pandas to make a report</h2>
+      <p class="lead">L4 只保存了一行汇总；L5 开始处理一整段历史数据。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">目标</p>
+      <h2>这节课只围绕一个函数</h2>
+      <pre class="output"><code>def make_history_excel(file_name):
+    ...</code></pre>
+      <div class="step-ladder">
+        <div class="step-row"><strong>输入</strong><span>一份疫情 JSON 数据。</span></div>
+        <div class="step-row"><strong>输出</strong><span><code>l5_report.xlsx</code> 和 <code>l5_trend.png</code>。</span></div>
+        <div class="step-row"><strong>主线</strong><span>读数据，整理表格，生成报告。</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">历史数据</p>
+      <h2>每一行，是一天的记录</h2>
+      <pre><code>{
+    "date": "10.05",
+    "certain": "35270206",
+    "die": "1036359",
+    "recure": "26340847"
+}</code></pre>
+      <div class="two-col">
+        <div class="card"><h3>字段</h3><p><code>date</code> 日期，<code>certain</code> 累计确诊，<code>die</code> 累计死亡，<code>recure</code> 累计治愈。</p></div>
+        <div class="card dark"><h3>注意</h3><p>数字外面有引号，刚读出来时很可能还是字符串。</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">第一步</p>
+      <h2>读 JSON，变成 DataFrame</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>打开文件</strong><span>读取本地疫情 JSON。</span></div>
+        <div class="step-row"><strong>找到列表</strong><span><code>data -> otherhistorylist</code>。</span></div>
+        <div class="step-row"><strong>变成表</strong><span>只保留日期、累计确诊、死亡、治愈。</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">第一步 Recap</p>
+      <h2>DataFrame 看起来像 Excel</h2>
+      <ul>
+        <li><code>json.load(file)</code> 把 JSON 文件读成 Python 里的 dict / list。</li>
+        <li><code>otherhistorylist</code> 是一批历史记录。</li>
+        <li><code>pd.DataFrame(...)</code> 把一批记录变成一张表。</li>
+        <li><code>columns=[...]</code> 只保留本节课要用的列。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">第二步</p>
+      <h2>重命名，转换类型</h2>
+      <div class="two-col">
+        <div class="card"><h3>重命名</h3><p><code>date</code>、<code>certain</code> 这些字段来自数据源，不适合直接给人看。</p></div>
+        <div class="card dark"><h3>转数字</h3><p>从 JSON 读出来的数字，很多时候先是文字；计算前要确认类型。</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">第二步 Recap</p>
+      <h2>真实数据不能急着算</h2>
+      <ul>
+        <li><code>rename()</code> 让表头更适合人读。</li>
+        <li><code>astype()</code> 把列转换成指定类型。</li>
+        <li>字段名清楚，后面的代码才不容易写错。</li>
+        <li>类型正确，除法、求和、画图才稳定。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">第三步</p>
+      <h2>新增指标，导出报告</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>新增列</strong><span><code>死亡率 = 累计死亡 / 累计确诊 * 100</code>。</span></div>
+        <div class="step-row"><strong>Excel</strong><span>保存整理后的明细表。</span></div>
+        <div class="step-row"><strong>趋势图</strong><span>画累计确诊随日期变化的曲线。</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">结果预览</p>
+      <h2>Excel 看明细，图看趋势</h2>
+      <div class="two-col">
+        <div class="table-card">
+          <table>
+            <tr><th>日期</th><th class="num">累计确诊</th><th class="num">累计死亡</th><th class="num">死亡率</th></tr>
+            <tr><td>10.04</td><td class="num">35151050</td><td class="num">1034410</td><td class="num">2.94</td></tr>
+            <tr><td>10.05</td><td class="num">35270206</td><td class="num">1036359</td><td class="num">2.94</td></tr>
+            <tr><td>...</td><td class="num">...</td><td class="num">...</td><td class="num">...</td></tr>
+          </table>
+        </div>
+        <div class="chart-card">
+          <svg class="trend-svg" viewBox="0 0 760 360" role="img" aria-label="累计确诊趋势图示意">
+            <line class="grid-line" x1="70" y1="70" x2="720" y2="70"></line>
+            <line class="grid-line" x1="70" y1="150" x2="720" y2="150"></line>
+            <line class="grid-line" x1="70" y1="230" x2="720" y2="230"></line>
+            <line class="axis" x1="70" y1="300" x2="720" y2="300"></line>
+            <line class="axis" x1="70" y1="44" x2="70" y2="300"></line>
+            <path class="trend-line" d="M 75 288 C 170 260, 220 238, 300 214 S 470 142, 560 108 S 660 72, 715 58"></path>
+            <circle class="dot" cx="75" cy="288" r="10"></circle>
+            <circle class="dot" cx="300" cy="214" r="10"></circle>
+            <circle class="dot" cx="560" cy="108" r="10"></circle>
+            <circle class="dot" cx="715" cy="58" r="10"></circle>
+          </svg>
+          <p class="caption">真实图由 pandas / matplotlib 生成，这里只看成果形态。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">第三步 Recap</p>
+      <h2>生成的是一份报告</h2>
+      <ul>
+        <li><code>df["死亡率"] = ...</code> 给表新增一列。</li>
+        <li><code>to_excel(...)</code> 把整理后的表交付出去。</li>
+        <li><code>df.plot(...)</code> 把表里的数字变成趋势图。</li>
+        <li>Excel 适合查具体数字，图适合看变化。</li>
+      </ul>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">前半收束</p>
+      <h1>一条完整的数据工作流</h1>
+      <p class="lead">JSON 文件里是一批历史记录；pandas 把它整理成表；类型正确后才能稳定计算；Excel 和趋势图负责交付结果。</p>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">后半</p>
+      <h1>看懂第一份 pandas 报告</h1>
+      <p class="lead">前半生成了 Excel 和趋势图。后半换个角度：这两个结果能帮我们判断什么？</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">后半路线</p>
+      <h2>三个判断，来自同一份报告</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>1. 表和图</h3>
+          <p>Excel 适合查细节，趋势图适合看一段时间的形状。</p>
+        </div>
+        <div class="card">
+          <h3>2. 数和率</h3>
+          <p>死亡人数看总量，死亡率把确诊规模也放进来。</p>
+        </div>
+        <div class="card dark">
+          <h3>3. 累计和新增</h3>
+          <p>累计数看现在一共多少，新增数更接近变化速度。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 1</p>
+      <h1>Excel 和图，不是同一种答案</h1>
+      <p class="lead">同一份疫情数据，换一种展示方式，适合回答的问题就变了。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 输出</p>
+      <h2>表格看数字，图表看形状</h2>
+      <div class="two-col">
+        <div class="table-card">
+          <table>
+            <tr><th>日期</th><th class="num">累计确诊</th><th class="num">死亡率</th></tr>
+            <tr><td>10.04</td><td class="num">35151050</td><td class="num">2.94</td></tr>
+            <tr><td>10.05</td><td class="num">35270206</td><td class="num">2.94</td></tr>
+            <tr><td>10.06</td><td class="num">35382140</td><td class="num">2.94</td></tr>
+            <tr><td>...</td><td class="num">...</td><td class="num">...</td></tr>
+          </table>
+        </div>
+        <div class="chart-card">
+          <svg class="trend-svg" viewBox="0 0 760 360" role="img" aria-label="累计确诊趋势图示意">
+            <line class="grid-line" x1="70" y1="70" x2="720" y2="70"></line>
+            <line class="grid-line" x1="70" y1="150" x2="720" y2="150"></line>
+            <line class="grid-line" x1="70" y1="230" x2="720" y2="230"></line>
+            <line class="axis" x1="70" y1="300" x2="720" y2="300"></line>
+            <line class="axis" x1="70" y1="44" x2="70" y2="300"></line>
+            <path class="trend-line" d="M 75 288 C 170 260, 220 238, 300 214 S 470 142, 560 108 S 660 72, 715 58"></path>
+            <circle class="dot" cx="75" cy="288" r="10"></circle>
+            <circle class="dot" cx="300" cy="214" r="10"></circle>
+            <circle class="dot" cx="560" cy="108" r="10"></circle>
+            <circle class="dot" cx="715" cy="58" r="10"></circle>
+          </svg>
+          <p class="caption">图不擅长查某一天的精确值，但很擅长看整体走势。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 问题</p>
+      <h2>先选工具，再看答案</h2>
+      <ul>
+        <li>如果想查 <code>10.05</code> 的死亡率，看 Excel 还是看图？</li>
+        <li>如果想判断这段时间整体趋势，看 Excel 还是看图？</li>
+        <li>如果这张图发到群里，别人最容易误读什么？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 所以呢</p>
+      <h2>展示方式会改变问题</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>Excel 像放大镜</h3>
+          <p>适合查某一天、某一列、某一个具体数字，比如 <code>10.05</code> 的死亡率。</p>
+        </div>
+        <div class="card dark">
+          <h3>趋势图像望远镜</h3>
+          <p>适合看一段时间整体是在变快、变慢，还是基本平稳。</p>
+        </div>
+      </div>
+      <p class="lead">交付结果之前，先判断对方是想查一个数字，还是想看整体变化。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 可选 · 案例 1</p>
+      <h2>拍这页，让 AI 解释趋势图</h2>
+      <div class="two-col">
+        <div class="chart-card">
+          <svg class="trend-svg" viewBox="0 0 760 360" role="img" aria-label="累计确诊趋势图示意">
+            <line class="grid-line" x1="70" y1="70" x2="720" y2="70"></line>
+            <line class="grid-line" x1="70" y1="150" x2="720" y2="150"></line>
+            <line class="grid-line" x1="70" y1="230" x2="720" y2="230"></line>
+            <line class="axis" x1="70" y1="300" x2="720" y2="300"></line>
+            <line class="axis" x1="70" y1="44" x2="70" y2="300"></line>
+            <path class="trend-line" d="M 75 288 C 170 260, 220 238, 300 214 S 470 142, 560 108 S 660 72, 715 58"></path>
+            <circle class="dot" cx="75" cy="288" r="10"></circle>
+            <circle class="dot" cx="300" cy="214" r="10"></circle>
+            <circle class="dot" cx="560" cy="108" r="10"></circle>
+            <circle class="dot" cx="715" cy="58" r="10"></circle>
+          </svg>
+          <p class="caption">累计确诊趋势图</p>
+        </div>
+        <div class="card dark">
+          <h3>给 AI 的问题</h3>
+          <p>请用普通人听得懂的话解释这张累计确诊趋势图。只描述图里能看出的变化，原因部分先留空。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 参考输出 · 案例 1</p>
+      <h2>可以接受的回答，大概长这样</h2>
+      <pre class="output small"><code>这张图显示：累计确诊人数整体在持续上升。
+
+从曲线形状看，前半段上升比较平缓，
+后半段上升更明显，说明累计数量增加得更快。
+
+不过，这张图只能说明“数量变化的形状”。
+至于为什么变快，还需要更多背景信息，不能只靠这张图判断。</code></pre>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 2</p>
+      <h1>人数更多，风险就一定更高吗？</h1>
+      <p class="lead">同一组数据，用“人数”看一次，再用“比例”看一次，结论可能会变。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 数据</p>
+      <h2>两个地区，规模不一样</h2>
+      <div class="table-card">
+        <table>
+          <tr><th>地区</th><th class="num">累计确诊</th><th class="num">累计死亡</th><th class="num">死亡率</th></tr>
+          <tr><td>地区 A</td><td class="num">100000</td><td class="num">3000</td><td class="num">3%</td></tr>
+          <tr><td>地区 B</td><td class="num">10000</td><td class="num">500</td><td class="num">5%</td></tr>
+        </table>
+      </div>
+      <p class="lead">A 的总量更大，B 的比例更高。先别急着说谁“更严重”，要看你在问哪一种严重。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 问题</p>
+      <h2>这两个判断，分别在问什么？</h2>
+      <ul>
+        <li>如果医院要准备床位和物资，更应该先看死亡人数，还是死亡率？</li>
+        <li>如果想比较两个地区的严重程度，更应该先看死亡人数，还是死亡率？</li>
+        <li>为什么“总量”和“比例”都对，但不能混在一起说？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 所以呢</p>
+      <h2>绝对数看总量，比例看压力</h2>
+      <ul>
+        <li>只看死亡人数，注意力会自然落到大地区，因为它的确诊基数本来就大。</li>
+        <li>死亡率把确诊规模也算进去，能提醒我们：总人数不大，不代表压力一定小。</li>
+        <li>这和 L1 的股票例子是同一件事：跌了多少钱看损失金额，跌了百分之多少才方便比较严重程度。</li>
+      </ul>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 3</p>
+      <h1>累计一直上升，不等于速度一直变快</h1>
+      <p class="lead">累计图很重要，但它不是全部答案。要看速度，就要引入“新增”。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 概念</p>
+      <h2>累计数像总收入，新增数像今天收入</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>今天</strong><span>收入 10 万，累计收入上升。</span></div>
+        <div class="step-row"><strong>明天</strong><span>只收入 2 万，累计收入还是上升。</span></div>
+        <div class="step-row"><strong>变化</strong><span>总收入继续增加，但增长速度已经变慢。</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 问题</p>
+      <h2>看累计图时，容易错过什么？</h2>
+      <ul>
+        <li>如果累计确诊还在上升，新增速度可能已经变慢吗？</li>
+        <li>如果每日新增开始下降，累计确诊会不会马上下降？</li>
+        <li>为什么只看累计图，可能错过变化速度？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 所以呢</p>
+      <h2>总量和速度，要分开看</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>累计数</h3>
+          <p>告诉你现在一共累积到多少。只要还有新增，它通常就会继续往上。</p>
+        </div>
+        <div class="card dark">
+          <h3>新增数</h3>
+          <p>告诉你变化速度是在加快还是放慢。它比累计数更敏感。</p>
+        </div>
+      </div>
+      <p class="lead">L7 会正式解决：怎么把今天和昨天放到一起比较。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 可选 · 案例 3</p>
+      <h2>拍这页，让 AI 解释一句话</h2>
+      <pre class="output small"><code>“累计确诊还在上升，但每日新增下降了”
+这句话怎么用普通人能听懂的方式解释？</code></pre>
+      <p class="lead">要求：不要解释原因，只解释“累计”和“新增”的区别。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 参考输出 · 案例 3</p>
+      <h2>可以接受的回答，大概长这样</h2>
+      <pre class="output small"><code>这句话的意思是：
+总量还在增加，但增加速度变慢了。
+
+比如累计收入还在上涨，
+但今天新增收入比昨天少，
+说明业务还在增长，只是增长没那么快了。
+
+所以“累计上升”和“新增下降”并不矛盾。</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">全晚总结 · Recap</p>
+      <h2>今晚记住这四句</h2>
+      <ul>
+        <li><code>DataFrame</code> 可以把一批 JSON 记录整理成一张表。</li>
+        <li><code>rename()</code> 改表头，<code>astype()</code> 确认类型，计算才稳定。</li>
+        <li>Excel、图、比例、累计数、新增数，回答的是不同问题。</li>
+        <li>L5 先做出第一份报告；后面再继续学排序、筛选、合并和更复杂的图表。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    let index = 0;
+
+    function showSlide(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === index));
+      history.replaceState(null, "", `#slide-${index + 1}`);
+    }
+
+    function syncFromHash() {
+      const match = location.hash.match(/slide-(\d+)/);
+      if (match) {
+        showSlide(Number(match[1]) - 1);
+      }
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) showSlide(index + 1);
+      if (["ArrowLeft", "PageUp"].includes(event.key)) showSlide(index - 1);
+      if (event.key.toLowerCase() === "f") document.documentElement.requestFullscreen?.();
+      if (event.key.toLowerCase() === "p") window.print();
+    });
+
+    window.addEventListener("hashchange", syncFromHash);
+    syncFromHash();
+  </script>
+</body>
+</html>

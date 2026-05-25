@@ -1,0 +1,792 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python 101 L8</title>
+  <style>
+    :root {
+      --paper: #f4efdf;
+      --ink: #162117;
+      --muted: #66705e;
+      --green: #1d6f4d;
+      --green-dark: #0f3d2d;
+      --gold: #d9972f;
+      --code-bg: #10251d;
+      --code-ink: #eff8e8;
+      --output-bg: #2d2417;
+      --output-ink: #fff1ca;
+      --shadow: rgba(22, 33, 23, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #1a211b;
+      color: var(--ink);
+      font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(217, 151, 47, 0.25), transparent 28%),
+        radial-gradient(circle at 86% 82%, rgba(29, 111, 77, 0.22), transparent 28%),
+        linear-gradient(135deg, #efe2bd, #f8f4e9 38%, #e2e9d0);
+      z-index: -2;
+    }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      padding: 96px 86px 64px;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background:
+        linear-gradient(120deg, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.24)),
+        var(--paper);
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      animation: rise 260ms ease-out;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide::after {
+      content: "";
+      position: absolute;
+      right: -210px;
+      bottom: -250px;
+      width: 560px;
+      height: 560px;
+      border-radius: 46% 54% 49% 51%;
+      background: rgba(29, 111, 77, 0.12);
+      z-index: 0;
+    }
+
+    .slide > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .center { justify-content: center; }
+
+    .eyebrow {
+      margin: 0 0 20px;
+      color: var(--green);
+      font-family: "Kaiti SC", "STKaiti", "Songti SC", serif;
+      font-size: 34px;
+      letter-spacing: 0.08em;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+      line-height: 1.05;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 1500px;
+      font-size: 112px;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      max-width: 1500px;
+      font-size: 82px;
+      letter-spacing: -0.03em;
+    }
+
+    h3 {
+      margin: 0 0 18px;
+      color: var(--green-dark);
+      font-size: 44px;
+    }
+
+    .lead {
+      max-width: 1320px;
+      margin: 34px 0 0;
+      color: #293527;
+      font-size: 46px;
+      line-height: 1.35;
+    }
+
+    .mini-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 32px;
+      line-height: 1.28;
+    }
+
+    .three-col,
+    .two-col {
+      display: grid;
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .three-col { grid-template-columns: repeat(3, 1fr); }
+    .two-col { grid-template-columns: 1fr 1fr; align-items: stretch; }
+
+    .card {
+      padding: 34px 38px;
+      border: 3px solid rgba(22, 33, 23, 0.12);
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.58);
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+
+    .card.dark {
+      background: var(--green-dark);
+      color: #f5f0da;
+      border-color: transparent;
+    }
+
+    .card.dark h3,
+    .card.dark p,
+    .card.dark .lead { color: #f5f0da; }
+
+    .card p {
+      margin: 0;
+      color: #293527;
+      font-size: 38px;
+      line-height: 1.28;
+    }
+
+    .card .lead {
+      margin-top: 16px;
+      font-size: 40px;
+    }
+
+    ul {
+      margin: 30px 0 0;
+      padding-left: 50px;
+      font-size: 42px;
+      line-height: 1.32;
+    }
+
+    li { margin: 16px 0; }
+
+    pre {
+      margin: 30px 0 0;
+      padding: 30px 36px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+        var(--code-bg);
+      color: var(--code-ink);
+      font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace;
+      font-size: 34px;
+      line-height: 1.15;
+      white-space: pre;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.24);
+    }
+
+    code { font-family: "SF Mono", "Menlo", "Cascadia Mono", monospace; }
+
+    .quiz-code {
+      margin-top: 22px;
+      font-size: 28px;
+      line-height: 1.08;
+      padding: 26px 32px;
+    }
+
+    .quiz-code.compact {
+      font-size: 25px;
+      line-height: 1.02;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin-top: 28px;
+    }
+
+    .quiz-card {
+      padding: 24px 28px;
+      border-radius: 28px;
+      border: 3px solid rgba(29, 111, 77, 0.14);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 46px rgba(22, 33, 23, 0.12);
+    }
+
+    .quiz-card h3 {
+      margin-bottom: 12px;
+      font-size: 32px;
+      line-height: 1.18;
+    }
+
+    .quiz-card ul {
+      margin-top: 8px;
+      padding-left: 34px;
+      font-size: 27px;
+      line-height: 1.22;
+    }
+
+    .quiz-card li { margin: 8px 0; }
+
+    .step-ladder {
+      display: grid;
+      gap: 22px;
+      margin-top: 52px;
+    }
+
+    .step-row {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      align-items: center;
+      gap: 30px;
+      padding: 28px 34px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 3px solid rgba(29, 111, 77, 0.14);
+      box-shadow: 0 18px 48px rgba(22, 33, 23, 0.12);
+      font-size: 38px;
+      line-height: 1.22;
+    }
+
+    .step-row strong {
+      color: var(--green-dark);
+      font-size: 42px;
+    }
+
+    .output {
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-size: 44px;
+      line-height: 1.22;
+    }
+
+    .output.small {
+      font-size: 30px;
+      line-height: 1.16;
+      white-space: pre-wrap;
+    }
+
+    .output.compact {
+      margin-top: 24px;
+      font-size: 34px;
+      line-height: 1.18;
+    }
+
+    .output.answer-output {
+      margin-top: 58px;
+      font-size: 46px;
+      line-height: 1.26;
+      white-space: pre-wrap;
+      padding: 34px 40px;
+      border-radius: 28px;
+    }
+
+    .prompt-box {
+      margin-top: 42px;
+      padding: 38px 46px;
+      border-radius: 30px;
+      background: var(--output-bg);
+      color: var(--output-ink);
+      font-family: "Songti SC", "STSong", serif;
+      font-size: 40px;
+      line-height: 1.34;
+      white-space: pre-wrap;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.22);
+    }
+
+    .prompt-box.small {
+      margin-top: 24px;
+      padding: 28px 36px;
+      font-size: 31px;
+      line-height: 1.22;
+    }
+
+    .table-card {
+      margin-top: 44px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.84);
+      box-shadow: 0 24px 60px rgba(22, 33, 23, 0.14);
+    }
+
+    .table-card.small-table {
+      margin-top: 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 36px;
+      line-height: 1.16;
+    }
+
+    th,
+    td {
+      padding: 22px 28px;
+      border-bottom: 3px solid rgba(29, 111, 77, 0.12);
+      text-align: left;
+    }
+
+    th {
+      background: rgba(29, 111, 77, 0.1);
+      color: var(--green-dark);
+      font-weight: 900;
+    }
+
+    .num { text-align: right; font-family: "SF Mono", "Menlo", monospace; }
+
+    .ai-photo-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 30px;
+      margin-top: 28px;
+      align-items: start;
+    }
+
+    .ai-photo-grid .output,
+    .ai-photo-grid .prompt-box {
+      margin-top: 0;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 36px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 72px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: rgba(29, 111, 77, 0.12);
+      color: var(--green-dark);
+      font-size: 36px;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body class="l8">
+  <main class="deck">
+    <section class="slide active center" data-first="true">
+      <p class="eyebrow">L8 · 收官课</p>
+      <h1>把结果说清楚</h1>
+      <p class="lead">综合运用 pandas 进行日内振幅波动分析，并合并事件生成一份可交付的专业数据报告。</p>
+      <div class="badge-row">
+        <span class="badge">日内振幅</span>
+        <span class="badge">pd.merge</span>
+        <span class="badge">因果边界</span>
+        <span class="badge">AI 审查</span>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">课前热身</p>
+      <h2>最后一次热身，拉出全部能力</h2>
+      <p class="lead">复习 shift 错格对齐、重排 sort、截取 head 与条件筛选过滤。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 1 / 4</p>
+      <h2>错格对齐与新增确诊</h2>
+      <pre class="quiz-code"><code>df["昨日确诊"] = df["累计确诊"].shift(1)
+df["新增确诊"] = df["累计确诊"] - df["昨日确诊"]</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>1. <code>shift(1)</code> 对数据做了何种物理调整？</h3>
+          <ul>
+            <li>A. 删掉最后一行，原位往上平移</li>
+            <li>B. 整体往下挪动一格，头部产生 NaN</li>
+            <li>C. 随机抽取一行数据进行对齐</li>
+            <li>D. 将列的数据格式改为字符串</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>2. 重组后计算新增确诊，第一行结果是？</h3>
+          <ul>
+            <li>A. 0</li>
+            <li>B. 正常的今日新增数字</li>
+            <li>C. <code>NaN</code>（因为第一天没有昨日确诊）</li>
+            <li>D. 报错跳出</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 2 / 4</p>
+      <h2>重排与 head 过滤</h2>
+      <pre class="quiz-code"><code>top10 = df.sort_values(by="新增确诊", ascending=False).head(10)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>3. <code>sort_values</code> 执行的是哪种策略？</h3>
+          <ul>
+            <li>A. 按列名英文字母排序</li>
+            <li>B. 按指定列的数据大小进行降序或升序重排</li>
+            <li>C. 只挑选大于 0 的行</li>
+            <li>D. 清空除新增确诊外的其他列</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>4. <code>head(10)</code> 的过滤机制是？</h3>
+          <ul>
+            <li>A. 随机拿走 10 行</li>
+            <li>B. 只保留倒数 10 行</li>
+            <li>C. 截取并保留重排后的前 10 行高优先级数据</li>
+            <li>D. 对前 10 行再次求和</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 3 / 4</p>
+      <h2>表格导出与索引配置</h2>
+      <pre class="quiz-code"><code>top10.to_excel("report.xlsx", index=False)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>5. <code>index=False</code> 在导出时会？</h3>
+          <ul>
+            <li>A. 删掉第一行的列名</li>
+            <li>B. 剔除 pandas 自动生成并附带的隐藏数字行号</li>
+            <li>C. 禁止任何人打开该 Excel</li>
+            <li>D. 把 Excel 的列号隐藏</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>6. 如果未加该参数，导出的 Excel 会多出？</h3>
+          <ul>
+            <li>A. 一个隐藏的空工作表</li>
+            <li>B. 最左侧多出一列无实质含义的 0, 1, 2... 数字行号</li>
+            <li>C. 最后一列多出求和值</li>
+            <li>D. 多出一个空白的行</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 4 / 4</p>
+      <h2>绝对指标 vs 相对比例</h2>
+      <pre class="quiz-code"><code># A 地区：100000 确诊，3000 死亡
+# B 地区：10000 确诊，500 死亡
+rate_a = 3000 / 100000 * 100
+rate_b = 500 / 10000 * 100</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>7. 从死亡率（相对比例）看，哪里形势更严峻？</h3>
+          <ul>
+            <li>A. A 地区 (3%)</li>
+            <li>B. B 地区 (5%)</li>
+            <li>C. 两个地区严重程度一模一样</li>
+            <li>D. 无法判断</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>8. 只调配物资看总量，应该优先支援哪里？</h3>
+          <ul>
+            <li>A. A 地区 (死亡 3000 人)</li>
+            <li>B. B 地区 (死亡 500 人)</li>
+            <li>C. 平均分配</li>
+            <li>D. 梵蒂冈</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">今晚路线</p>
+      <h2>打通最后一公里的完整交付</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>1. 算日内振幅</h3>
+          <p class="lead">用 <code>最高 - 最低</code> 差值，除以昨日收盘对齐，计算振幅。</p>
+        </div>
+        <div class="card">
+          <h3>2. 抓 Top 10</h3>
+          <p class="lead">对大表依振幅重排，截取前 10 名波动最剧烈的交易日。</p>
+        </div>
+        <div class="card dark">
+          <h3>3. 关联事件报告</h3>
+          <p class="lead">使用 <code>pd.merge</code> 将波动日与大事记对齐，生成图文终板报告。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">#1 找出最值得看的几天</p>
+      <h2>Find the days that deserve attention</h2>
+      <p class="lead">波动是商机与危机的结合点。我们用程序把海量交易日自动重排，定位重点。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">振幅公式</p>
+      <h2>振幅：摆动的能量比例</h2>
+      <div class="formula">
+        日内振幅 = (最高价 - 最低价) / 昨日收盘价 × 100%
+      </div>
+      <ul>
+        <li><code>最高 - 最低</code>：当天价格上下震荡摆动的最大空间。</li>
+        <li>除以昨日收盘：把摆动空间折算为相对昨日基数的百分比，消除身价高低的影响。</li>
+        <li>此处复用了 L7 的 <code>shift(1)</code> 错格昨日对齐技术。</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">阶段 2 Recap</p>
+      <h2>排序、截取并导出 Excel 终板</h2>
+      <ul>
+        <li><code>df.sort_values(by="日内振幅", ascending=False)</code> 把最值得看的高震荡交易日排到前面。</li>
+        <li><code>.head(10)</code> 过滤丢弃大部分常态交易日，只截取前 10 行极端日。</li>
+        <li><code>to_excel("l8_final_report.xlsx", index=False)</code> 交付最终报告。</li>
+      </ul>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">后半</p>
+      <h1>把结果说清楚</h1>
+      <p class="lead">代码写完了，Top 10 Excel 也导出了。结课最后一程，我们把结果讲清楚。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">后半路线</p>
+      <h2>数据交付的三个常见问题</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>1. 平均值</h3>
+          <p>平均值看整体，Top 10 帮我们找异常入口。</p>
+        </div>
+        <div class="card">
+          <h3>2. 因果边界</h3>
+          <p><code>pd.merge</code> 帮你对齐现实事件，但关联不等于因果。</p>
+        </div>
+        <div class="card dark">
+          <h3>3. AI 总结</h3>
+          <p>AI 可以写初稿，但人要检查数据边界。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 1</p>
+      <h1>为什么 Top 10 比平均值更能讲故事？</h1>
+      <p class="lead">平均值能看整体，但容易把极端日期压平。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 讨论</p>
+      <h2>平均值可能会漏掉什么？</h2>
+      <ul>
+        <li>如果某家连锁店铺全年平均日流水 10 万元，你觉得这生意稳健吗？</li>
+        <li>如果流水排名前 10 的高峰日（双11和店庆）总共赚走了几百万，而剩下 350 天每天流水仅有 3 万亏本线徘徊，这生意健康吗？</li>
+        <li>为什么只盯平均值，可能会漏掉最值得解释的日期？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 所以呢</p>
+      <h2>平均值看整体，Top 10 找异常</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>均值适合算总账</h3>
+          <p>均值适合看常态，但它会把极端日期压平。</p>
+        </div>
+        <div class="card dark">
+          <h3>Top 10 找异常</h3>
+          <p><strong>Top 10 波动日</strong>适合作为故事入口：哪些日子明显不同？它们是否集中在某类事件附近？</p>
+        </div>
+      </div>
+      <p class="lead">常识落脚点：平均值看整体，Top N 找异常。两者放在一起，报告才不会只剩一个平淡数字。</p>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 2</p>
+      <h1>把数字和现实连起来</h1>
+      <p class="lead"><code>pd.merge</code> 可以把日期和事件对齐，但对齐不等于证明原因。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 数据</p>
+      <h2>用 pd.merge 合并日期与大事记</h2>
+      <div class="table-card">
+        <table>
+          <tr><th>日期</th><th class="num">日内振幅</th><th>大事记</th><th>稳妥写法</th></tr>
+          <tr><td>2024-03-15</td><td class="num">8.22%</td><td>某行业利好政策发布日</td><td>当日波动较大，同时有政策事件，值得继续查看。</td></tr>
+          <tr><td>2024-09-24</td><td class="num">9.54%</td><td>市场成交额明显放大</td><td>振幅和成交额同时较高，可能相关，但还需更多证据。</td></tr>
+        </table>
+      </div>
+      <p class="lead">日期是两张表之间的桥梁。合并以后，数字旁边多了现实背景。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 讨论</p>
+      <h2>关联不等于因果</h2>
+      <ul>
+        <li>如果某只股票在发布利好政策的当天大涨，能不能直接说“就是政策导致的”？</li>
+        <li>如果不看成交量、行业表现和更多资料，直接写因果，会有什么风险？</li>
+        <li>“可能相关”和“就是因为它”有什么区别？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 所以呢</p>
+      <h2>把数据和现实连起来，但守住边界</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>时间重合</h3>
+          <p>同一天出现，只能说明时间上重合。它是线索，不是因果证明。</p>
+        </div>
+        <div class="card dark">
+          <h3>稳妥表达</h3>
+          <p><strong>“可能相关”“值得继续查看”</strong> 比直接写成原因更稳。</p>
+        </div>
+      </div>
+      <p class="lead">常识落脚点：关联看重合，因果需要更多证据。报告可以提出线索，但不要替证据下结论。</p>
+    </section>
+
+    <section class="slide photo-slide">
+      <div class="ai-photo-grid">
+        <pre class="output ai-stock-data" style="font-size:22px; line-height: 1.1;"><code>波动 Top 10 日期与大事记合并表：
+2024-03-15, 振幅 8.22%, 利好政策出台
+2024-09-24, 振幅 9.54%, 成交额集中放大
+...</code></pre>
+        <pre class="prompt-box small"><code>请根据这张波动 Top 10 合并表写一段 120 字以内的总结报告。
+要求：
+1. 文字大方通顺，可直接发群。
+2. 守住因果边界，使用“可能相关”等客观措辞，不脑补主观结论。
+3. 不写买卖建议，不预测未来。</code></pre>
+      </div>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">案例 3</p>
+      <h1>AI 可以写总结，但人要看边界</h1>
+      <p class="lead">AI 很适合把表格变成文字，但流畅不等于正确。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 讨论</p>
+      <h2>AI 总结最容易出哪些问题？</h2>
+      <ul>
+        <li>AI 写得流畅，是否代表它说得对？</li>
+        <li>哪些词听起来很专业，但其实可能过度断言？</li>
+        <li>如果要发到群里，哪一句最需要删掉或改弱？</li>
+      </ul>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 所以呢</p>
+      <h2>AI 写初稿，人检查边界</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>雷区 1：脑补因果</h3>
+          <p>AI 为了让文章顺畅，可能把时间重合写成必然原因。</p>
+        </div>
+        <div class="card">
+          <h3>雷区 2：幻觉编造</h3>
+          <p>AI 可能补出表格里没有的新闻、字段或背景。</p>
+        </div>
+        <div class="card dark">
+          <h3>雷区 3：过度自信预测</h3>
+          <p>AI 可能把过去数据写成未来判断。</p>
+        </div>
+      </div>
+      <p class="lead">常识落脚点：AI 适合写初稿，人负责检查有没有编原因、预测过头、把小样本说成大结论。</p>
+    </section>
+
+    <section class="slide center">
+      <p class="eyebrow">课程收官</p>
+      <h1>一条主线，从代码走向商业大局</h1>
+      <p class="lead">学完这门课，你不需要马上成为程序员。能看懂基础逻辑，能提出更好的数据问题，知道什么时候让 AI 帮忙，已经很值。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">收官 Recap</p>
+      <h2>我们这 8 晚真正学会了什么？</h2>
+      <ul>
+        <li>让 Python 帮我们重复计算。</li>
+        <li>让 pandas 帮我们把数据整理成表。</li>
+        <li>用 <code>shift(1)</code> 把今天和昨天放在一起比较。</li>
+        <li>根据问题选择指标：总量、增量、比例、回撤。</li>
+        <li>让 AI 帮忙解释、检查、改写，但标准答案仍然要回到数据。</li>
+      </ul>
+    </section>
+  </main>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    let index = 0;
+
+    function show(next) {
+      index = Math.max(0, Math.min(slides.length - 1, next));
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === index);
+      });
+      window.location.hash = `slide-${index + 1}`;
+    }
+
+    function fromHash() {
+      const match = window.location.hash.match(/slide-(\d+)/);
+      if (match) {
+        show(Number(match[1]) - 1);
+      } else {
+        show(0);
+      }
+    }
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+        event.preventDefault();
+        show(index + 1);
+      }
+      if (event.key === "ArrowLeft" || event.key === "PageUp") {
+        event.preventDefault();
+        show(index - 1);
+      }
+      if (event.key.toLowerCase() === "f") {
+        event.preventDefault();
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen?.();
+        } else {
+          document.exitFullscreen?.();
+        }
+      }
+      if (event.key.toLowerCase() === "p") {
+        window.print();
+      }
+      if (event.key === "Home") {
+        show(0);
+      }
+      if (event.key === "End") {
+        show(slides.length - 1);
+      }
+    });
+
+    window.addEventListener("hashchange", fromHash);
+    fromHash();
+  </script>
+</body>
+</html>
