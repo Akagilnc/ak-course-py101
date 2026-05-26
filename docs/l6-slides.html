@@ -422,12 +422,12 @@
 
     <section class="slide center">
       <p class="eyebrow">课前热身</p>
-      <h2>唤醒 L5 与基本表达</h2>
-      <p class="lead">复习 DataFrame 列提取、重命名、类型转换、新增列及基本函数。</p>
+      <h2>先来热身一下</h2>
+      <p class="lead">复习 DataFrame、JSON、函数和条件判断。今天只多加两个动作：排序和筛选。</p>
     </section>
 
     <section class="slide">
-      <p class="eyebrow">Quiz 1 / 6</p>
+      <p class="eyebrow">Quiz 1 / 8</p>
       <h2>取列与重命名</h2>
       <pre class="quiz-code"><code>import pandas as pd
 df = pd.DataFrame({"conNum": [7602935], "deathNum": [212500]})
@@ -456,7 +456,7 @@ print(df["累计确诊"])</code></pre>
     </section>
 
     <section class="slide">
-      <p class="eyebrow">Quiz 2 / 6</p>
+      <p class="eyebrow">Quiz 2 / 8</p>
       <h2>数据类型转换</h2>
       <pre class="quiz-code"><code>df = df.astype({"累计确诊": int, "累计死亡": int})
 rate = df["累计死亡"] / df["累计确诊"] * 100</code></pre>
@@ -483,7 +483,7 @@ rate = df["累计死亡"] / df["累计确诊"] * 100</code></pre>
     </section>
 
     <section class="slide">
-      <p class="eyebrow">Quiz 3 / 6</p>
+      <p class="eyebrow">Quiz 3 / 8</p>
       <h2>新增列与四舍五入</h2>
       <pre class="quiz-code"><code>df["死亡率"] = (df["累计死亡"] / df["累计确诊"] * 100).round(2)</code></pre>
       <div class="quiz-grid">
@@ -509,7 +509,7 @@ rate = df["累计死亡"] / df["累计确诊"] * 100</code></pre>
     </section>
 
     <section class="slide">
-      <p class="eyebrow">Quiz 4 / 6</p>
+      <p class="eyebrow">Quiz 4 / 8</p>
       <h2>Excel 导出</h2>
       <pre class="quiz-code"><code>df.to_excel("l6_rank_report.xlsx", index=False)</code></pre>
       <div class="quiz-grid">
@@ -535,7 +535,7 @@ rate = df["累计死亡"] / df["累计确诊"] * 100</code></pre>
     </section>
 
     <section class="slide">
-      <p class="eyebrow">Quiz 5 / 6</p>
+      <p class="eyebrow">Quiz 5 / 8</p>
       <h2>函数与 if 条件</h2>
       <pre class="quiz-code"><code>def get_level(rate):
     if rate > 5.0:
@@ -566,7 +566,7 @@ print(get_level(4.44))</code></pre>
     </section>
 
     <section class="slide">
-      <p class="eyebrow">Quiz 6 / 6</p>
+      <p class="eyebrow">Quiz 6 / 8</p>
       <h2>多级 JSON 解析</h2>
       <pre class="quiz-code compact"><code>raw_data = {"data": {"otherlist": [{"name": "美国", "conNum": "7602935"}]}}
 countries = raw_data["data"]["otherlist"]
@@ -594,28 +594,99 @@ print(countries[0]["name"])</code></pre>
     </section>
 
     <section class="slide">
+      <p class="eyebrow">Quiz 7 / 8</p>
+      <h2>循环处理一批记录</h2>
+      <pre class="quiz-code"><code>countries = [
+    {"name": "美国", "conNum": "7602935"},
+    {"name": "巴西", "conNum": "4915289"},
+    {"name": "德国", "conNum": "2311669"},
+]
+
+for country in countries:
+    print(country["name"])</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>13. 这段循环会执行几次？</h3>
+          <ul>
+            <li>A. 1 次</li>
+            <li>B. 2 次</li>
+            <li>C. 3 次</li>
+            <li>D. 无限次</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>14. 每一次循环里，<code>country</code> 代表什么？</h3>
+          <ul>
+            <li>A. 当前这一条国家记录</li>
+            <li>B. 整个国家列表</li>
+            <li>C. 字符串 name</li>
+            <li>D. Excel 文件</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">Quiz 8 / 8</p>
+      <h2>整理一条原始记录</h2>
+      <pre class="quiz-code"><code>country = {
+    "name": "美国",
+    "conNum": "7602935",
+    "deathNum": "212500",
+}
+
+row = {
+    "地区": country["name"],
+    "累计确诊": int(country["conNum"]),
+    "累计死亡": int(country["deathNum"]),
+}
+
+print(row["地区"], row["累计死亡"])</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>15. 最后会输出什么？</h3>
+          <ul>
+            <li>A. 美国 212500</li>
+            <li>B. 美国 deathNum</li>
+            <li>C. name 212500</li>
+            <li>D. 地区 累计死亡</li>
+          </ul>
+        </div>
+        <div class="quiz-card">
+          <h3>16. <code>int(country["deathNum"])</code> 在做什么？</h3>
+          <ul>
+            <li>A. 把文本形式的数字转成真正的整数</li>
+            <li>B. 把字段名改成中文</li>
+            <li>C. 删除 deathNum 这个字段</li>
+            <li>D. 把整数转成字符串</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
       <p class="eyebrow">今晚路线</p>
       <h2>从大表里抓取出重点</h2>
       <div class="three-col">
         <div class="card">
           <h3>1. 整理大表</h3>
-          <p class="lead">从 JSON 中取出国家列表，转为规范 DataFrame 并重命名。</p>
+          <p class="lead">把一批国家/地区记录变成能看的表。</p>
         </div>
         <div class="card">
           <h3>2. 计算与排序</h3>
-          <p class="lead">新增死亡/治愈率，按累计确诊排序并用 <code>head(20)</code> 截取。</p>
+          <p class="lead">算出比例，再把最需要先看的行排到前面。</p>
         </div>
         <div class="card dark">
           <h3>3. 筛选导出</h3>
-          <p class="lead">按现存压力条件筛选，生成并导出 Excel 报告。</p>
+          <p class="lead">用条件画一条线，留下符合问题的数据。</p>
         </div>
       </div>
     </section>
 
     <section class="slide center">
       <p class="eyebrow">#1 排序与条件过滤</p>
-      <h2>How to sort and filter a DataFrame?</h2>
-      <p class="lead">当数据行数破百时，人眼查阅会失效，需要程序自动定位重点。</p>
+      <h2>从一堆记录里，先找哪几行？</h2>
+      <p class="lead">数据多起来以后，人工翻表不是办法。今天让 Python 帮我们排序、截取、筛选。</p>
     </section>
 
     <section class="slide">
@@ -634,38 +705,78 @@ print(countries[0]["name"])</code></pre>
           <p><code>name</code> 国家/地区名称，<code>conNum</code> 累计确诊，<code>econNum</code> 现存确诊，<code>cureNum</code> 累计治愈，<code>deathNum</code> 累计死亡。</p>
         </div>
         <div class="card dark">
-          <h3>挑战</h3>
-          <p>JSON 读出的数字依然是带引号的字符串，必须在 Python 里批量转型以供计算。</p>
+          <h3>今天的问题</h3>
+          <p>国家很多，列也很多。先整理成表，再决定按哪一列找重点。</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
+      <p class="eyebrow">阶段 1 目标</p>
+      <h2>先把一堆原始记录变成表</h2>
+      <div class="three-col">
+        <div class="card"><h3>取出列表</h3><p>从 JSON 里找到所有国家/地区记录。</p></div>
+        <div class="card"><h3>保留关键列</h3><p>只留下名称、累计确诊、现存确诊、治愈、死亡。</p></div>
+        <div class="card dark"><h3>能看也能算</h3><p>表头改成中文，数字转成真正可以计算的类型。</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
       <p class="eyebrow">阶段 1 Recap</p>
-      <h2>重组大表的三个积木</h2>
-      <ul>
-        <li><code>pd.DataFrame(countries, columns=[...])</code> 把多层嵌套列表变成格式化行列表格。</li>
-        <li><code>df.rename(columns={...})</code> 把乱糟糟的原文字段一次性重命名为规范中文。</li>
-        <li><code>df.astype({...})</code> 把确诊、死亡、治愈等数字列一键强制转为 <code>int</code> 以供公式运算。</li>
-        <li><code>df.head()</code> 默认打印大表的前 5 行，适合现场确认表格有没有整理对。</li>
-      </ul>
+      <h2>刚才复习了哪些语法？</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>DataFrame</strong><span>把一批字典记录整理成表格。</span></div>
+        <div class="step-row"><strong>columns</strong><span>创建表格时，只选择这一步需要的几列。</span></div>
+        <div class="step-row"><strong>rename</strong><span>把英文字段名改成更容易读的中文列名。</span></div>
+        <div class="step-row"><strong>astype</strong><span>把文本形式的数字转成真正能计算的数字。</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">阶段 2 目标</p>
+      <h2>让表格自己排出重点</h2>
+      <div class="three-col">
+        <div class="card"><h3>新增比例</h3><p>死亡人数、治愈人数都换成比例，方便比较不同规模地区。</p></div>
+        <div class="card"><h3>按累计确诊排序</h3><p>先按累计确诊从大到小排队，得到一张完整排名表。</p></div>
+        <div class="card dark"><h3>导出结果</h3><p>保存成 Excel，下一阶段再把它读回来继续处理。</p></div>
+      </div>
     </section>
 
     <section class="slide">
       <p class="eyebrow">阶段 2 Recap</p>
-      <h2>计算、排序并截取</h2>
-      <ul>
-        <li><code>df["死亡率"] = ...</code> 新增死亡率计算列。</li>
-        <li><code>df.sort_values(by="累计确诊", ascending=False)</code> 按确诊数从大到小对大表进行行重排。</li>
-        <li><code>.head(20)</code> 过滤丢弃长尾行，只截取前 20 行高热度数据。</li>
-        <li><code>to_excel(..., index=False)</code> 交付最核心前 20 名报告。</li>
-      </ul>
+      <h2>再让表格按问题自己排队</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>计算</strong><span>新增死亡率、治愈率，让绝对数变成比例。</span></div>
+        <div class="step-row"><strong>排序</strong><span>按累计确诊从大到小，把大数放到前面。</span></div>
+        <div class="step-row"><strong>导出</strong><span>把排序后的完整表保存成 Excel，后面继续使用。</span></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">阶段 3 目标</p>
+      <h2>找到“有压力”的地区</h2>
+      <div class="three-col">
+        <div class="card"><h3>读回 Excel</h3><p>把阶段 2 生成的文件重新读成 DataFrame。</p></div>
+        <div class="card"><h3>压力的不同解释</h3><p>当前压力、死亡压力、恢复压力，看到的重点不会完全一样。</p></div>
+        <div class="card dark"><h3>交付方式</h3><p>同一个 Excel 文件里，分别保存到不同 sheet。</p></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">阶段 3 Recap</p>
+      <h2>刚才新增了哪些知识点？</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>read_excel</strong><span>把上一阶段导出的 Excel 重新读成 DataFrame。</span></div>
+        <div class="step-row"><strong>sort_values</strong><span>换不同列排序，就会得到不同重点名单。</span></div>
+        <div class="step-row"><strong>ascending</strong><span><code>False</code> 从大到小，<code>True</code> 从小到大。</span></div>
+        <div class="step-row"><strong>sheet_name</strong><span>同一个 Excel 文件里，可以保存到不同 sheet。</span></div>
+      </div>
     </section>
 
     <section class="slide center">
       <p class="eyebrow">后半</p>
       <h1>排名不是答案，只是入口</h1>
-      <p class="lead">大表整理完了，Top 20 也导出了。后半重点看：排名、指标和筛选条件分别能回答什么问题。</p>
+      <p class="lead">Top 20 和重点名单都做出来了。后半重点看：排名、指标和筛选条件分别能回答什么问题。</p>
     </section>
 
     <section class="slide">
@@ -689,32 +800,32 @@ print(countries[0]["name"])</code></pre>
 
     <section class="slide center">
       <p class="eyebrow">案例 1</p>
-      <h1>第一名真的最严重吗？</h1>
+      <h1>第一名说明了什么？</h1>
       <p class="lead">按累计确诊排序，能看到大数；但排名第一不等于所有问题的答案。</p>
     </section>
 
     <section class="slide">
       <p class="eyebrow">案例 1 · 代码与结果</p>
-      <h2>按累计确诊排序并取前列</h2>
+      <h2>按累计确诊排序，先看到大数</h2>
       <pre><code>top20 = df.sort_values(by="累计确诊", ascending=False).head(20)</code></pre>
       <div class="table-card small-table">
         <table>
-          <tr><th>排名</th><th>国家/地区</th><th class="num">累计确诊</th><th class="num">死亡率</th><th>原版判断</th></tr>
-          <tr><td>1</td><td>美国</td><td class="num">7602935</td><td class="num">2.79%</td><td>累计确诊最高</td></tr>
-          <tr><td>...</td><td>...</td><td class="num">...</td><td class="num">...</td><td>...</td></tr>
-          <tr><td>[未上榜]</td><td>梵蒂冈</td><td class="num">500</td><td class="num">4.50%</td><td>数量小，但比例不低</td></tr>
+          <tr><th>排名</th><th>地区</th><th class="num">累计确诊</th><th class="num">人口</th><th class="num">每百万人确诊</th></tr>
+          <tr><td>1</td><td>大国 A</td><td class="num">7600000</td><td class="num">330000000</td><td class="num">23030</td></tr>
+          <tr><td>2</td><td>大国 B</td><td class="num">4900000</td><td class="num">210000000</td><td class="num">23333</td></tr>
+          <tr><td>未进前列</td><td>小地区 C</td><td class="num">120000</td><td class="num">1000000</td><td class="num">120000</td></tr>
         </table>
       </div>
-      <p class="mini-note">美国霸榜第一，梵蒂冈根本排不进前一百。但这样比较真的反映了真实情况吗？</p>
+      <p class="mini-note">按累计确诊看，大国排在前面；换成人口比例看，小地区 C 反而更刺眼。</p>
     </section>
 
     <section class="slide">
       <p class="eyebrow">案例 1 · 讨论</p>
-      <h2>打破大块头霸榜错觉</h2>
+      <h2>排名是入口，不是句号</h2>
       <ul>
-        <li>如果大国因为人口多、检测多而天然排在第一，这能直接说明它“病情最重”吗？</li>
-        <li>如果人口总共只有 1000 人的梵蒂冈确诊了 500 人，它的累计数极低，但严重性是否胜过大国？</li>
-        <li>排名更像一个句号，还是更像你展开下一步数据调查的入口？</li>
+        <li>累计确诊第一，至少说明什么？</li>
+        <li>如果两个地区人口规模差很多，只看累计确诊会漏掉什么？</li>
+        <li>看到排行榜第一名以后，下一步应该补哪类信息？</li>
       </ul>
     </section>
 
@@ -728,37 +839,38 @@ print(countries[0]["name"])</code></pre>
         </div>
         <div class="card dark">
           <h3>还要看比例</h3>
-          <p>如果人口规模不同，只看累计数就容易忽略“比例压力”。排名之后，要继续看人口、检测口径和时间范围。</p>
+          <p>如果人口规模不同，只看累计数就容易忽略比例压力。排名之后，要补人口、时间范围和统计口径。</p>
         </div>
       </div>
-      <p class="lead">常识落脚点：排名只是粗筛工具。看到第一名之后，下一步是追问这个指标有没有被规模影响。</p>
+      <p class="lead">排名适合快速定位“大数”，但它通常只是下一步调查的入口。</p>
     </section>
 
-    <section class="slide photo-slide">
+    <section class="slide">
+      <p class="eyebrow">AI 可选 · 案例 1</p>
+      <h2>拍这页，让 AI 解释排名</h2>
       <div class="ai-photo-grid">
-        <pre class="output ai-stock-data" style="font-size:20px; line-height: 1.05;"><code>Top 20 累计确诊国家/地区数据片段：
-美国, conNum: 7602935, deathNum: 212500
-印度, conNum: 6623815, deathNum: 102685
-巴西, conNum: 4915289, deathNum: 146352
-...
-梵蒂冈, conNum: 500, deathNum: 22</code></pre>
+        <pre class="output ai-stock-data" style="font-size:24px; line-height: 1.12;"><code>按累计确诊排序：
+地区       累计确诊      人口        每百万人确诊
+大国A      7600000     330000000   23030
+大国B      4900000     210000000   23333
+小地区C    120000      1000000     120000</code></pre>
         <pre class="prompt-box small"><code>请用普通话解释这张累计确诊排名表。
 要求：
-1. 只描述表中能看出的绝对信息。
-2. 不要把累计数高直接等同于“治理更差”或“病情最重”。
-3. 提示样本背后可能存在的初始人口规模差异。</code></pre>
+1. 先说明按累计确诊排序能看到什么。
+2. 再说明为什么还要看人口比例。</code></pre>
       </div>
     </section>
 
     <section class="slide">
       <p class="eyebrow">AI 参考输出 · 案例 1</p>
       <h2>可以接受的回答，大概长这样</h2>
-      <pre class="output small"><code>这张表按累计确诊人数从高到低排列。
-从表中可以看到，美国、印度、巴西等国家累计确诊数量靠前。
+      <pre class="output small"><code>这张表先按累计确诊排序，所以大国 A 排在最前面。
+这说明它的累计确诊总量最大。
 
-但这张表只能说明“按累计确诊这个指标，它们排在前面”。
-它不能直接说明治理好坏，也不能预测未来变化。
-如果要进一步比较，还需要人口规模、检测口径、时间范围等材料。</code></pre>
+但如果换成“每百万人确诊”，小地区 C 的比例更高。
+所以累计确诊适合看总量，人口比例更适合做规模不同地区之间的比较。
+
+这张表还不能解释原因，也不能直接评价好坏。</code></pre>
     </section>
 
     <section class="slide center">
@@ -772,21 +884,22 @@ print(countries[0]["name"])</code></pre>
       <h2>同一张表上的四个维度</h2>
       <div class="table-card">
         <table>
-          <tr><th>国家/地区</th><th class="num">累计确诊 (规模)</th><th class="num">现存确诊 (压力)</th><th class="num">死亡率 (致命度)</th><th class="num">治愈率 (希望度)</th></tr>
-          <tr><td>美国</td><td class="num">7602935</td><td class="num">2550339</td><td class="num">2.79%</td><td class="num">63.66%</td></tr>
-          <tr><td>巴西</td><td class="num">4915289</td><td class="num">503289</td><td class="num">2.98%</td><td class="num">86.74%</td></tr>
+          <tr><th>地区</th><th class="num">累计确诊</th><th class="num">现存确诊</th><th class="num">累计死亡</th><th class="num">死亡率</th><th class="num">治愈率</th></tr>
+          <tr><td>A</td><td class="num">7600000</td><td class="num">2550000</td><td class="num">212500</td><td class="num">2.79%</td><td class="num">63.66%</td></tr>
+          <tr><td>B</td><td class="num">4900000</td><td class="num">503000</td><td class="num">146000</td><td class="num">2.98%</td><td class="num">86.74%</td></tr>
+          <tr><td>C</td><td class="num">120000</td><td class="num">78000</td><td class="num">3600</td><td class="num">3.00%</td><td class="num">32.00%</td></tr>
         </table>
       </div>
-      <p class="lead">你关心哪个指标，完全取决于你的实际职业场景与决策立场。</p>
+      <p class="lead">同一张表，不同列回答不同问题。</p>
     </section>
 
     <section class="slide">
       <p class="eyebrow">案例 2 · 讨论</p>
       <h2>指标服务于具体问题</h2>
       <ul>
-        <li>如果你是医疗总指挥，今晚需要紧急加盖多少病床、调多少医生，你应该看哪个字段？</li>
-        <li>如果你是新药开发科学家，要向世人证明你的药真能救命，你应该看哪个字段？</li>
-        <li>如果你是外交舆论发言人，旨在树立国家信心，你更倾向于展示哪一列？</li>
+        <li>想知道历史规模，应该先看哪一列？</li>
+        <li>想知道当前压力，应该先看哪一列？</li>
+        <li>想比较不同地区的严重程度，死亡人数和死亡率哪个更适合？</li>
       </ul>
     </section>
 
@@ -795,19 +908,46 @@ print(countries[0]["name"])</code></pre>
       <h2>不同问题，选不同指标</h2>
       <div class="three-col">
         <div class="card">
-          <h3>总指挥盯“现存”</h3>
-          <p>现存确诊是还没结束的病例，更适合看当前医疗压力。</p>
+          <h3>历史规模</h3>
+          <p>累计确诊告诉你到目前为止一共发生过多少。</p>
         </div>
         <div class="card">
-          <h3>研发科学家盯“变化”</h3>
-          <p>死亡率适合比较不同规模地区的死亡比例，但原因还需要更多材料。</p>
+          <h3>当前压力</h3>
+          <p>现存确诊是还没结束的病例，更适合看当前医疗压力。</p>
         </div>
         <div class="card dark">
-          <h3>发言人讲“治愈率”</h3>
-          <p>治愈率适合看恢复情况，但也要结合统计口径和时间范围。</p>
+          <h3>比例比较</h3>
+          <p>死亡率适合比较不同规模地区的死亡比例；样本很小时，一个病例也会让比例跳很多。</p>
         </div>
       </div>
-      <p class="lead">常识落脚点：同一张表没有万能指标。先把问题说清楚，才知道该拿哪一列说话。</p>
+      <p class="lead">同一张表没有万能指标。先把问题说清楚，才知道该拿哪一列说话。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 可选 · 案例 2</p>
+      <h2>拍这页，让 AI 给指标配问题</h2>
+      <pre class="output small"><code>指标：
+累计确诊、现存确诊、累计死亡、死亡率、治愈率
+
+问题：
+1. 历史规模有多大？
+2. 当前压力有多大？
+3. 不同规模地区之间，哪个死亡比例更高？
+
+请把每个问题对应到最合适的指标，并简单说明理由。</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 参考输出 · 案例 2</p>
+      <h2>可以接受的回答，大概长这样</h2>
+      <pre class="output small"><code>历史规模：看累计确诊。
+它表示到目前为止一共记录了多少确诊。
+
+当前压力：看现存确诊。
+它更接近现在还没有结束的病例规模。
+
+比较死亡比例：看死亡率。
+死亡人数容易受地区规模影响，死亡率更适合做比例比较。</code></pre>
     </section>
 
     <section class="slide center">
@@ -817,26 +957,43 @@ print(countries[0]["name"])</code></pre>
     </section>
 
     <section class="slide">
+      <p class="eyebrow">案例 3 · 原始数据</p>
+      <h2>先看一张小表</h2>
+      <div class="table-card">
+        <table>
+          <tr><th>地区</th><th class="num">现存确诊</th><th class="num">死亡率</th></tr>
+          <tr><td>A</td><td class="num">2550000</td><td class="num">2.79%</td></tr>
+          <tr><td>B</td><td class="num">503000</td><td class="num">2.98%</td></tr>
+          <tr><td>C</td><td class="num">260000</td><td class="num">1.80%</td></tr>
+          <tr><td>D</td><td class="num">120000</td><td class="num">4.20%</td></tr>
+          <tr><td>E</td><td class="num">78000</td><td class="num">3.00%</td></tr>
+          <tr><td>F</td><td class="num">35000</td><td class="num">5.80%</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="slide">
       <p class="eyebrow">案例 3 · 代码与结果</p>
-      <h2>筛选出仍处于高承载压力的国家</h2>
+      <h2>同一张表，换一条筛选线</h2>
       <pre><code>high_pressure = df[df["现存确诊"] > 100000]</code></pre>
       <div class="table-card small-table">
         <table>
-          <tr><th>国家/地区</th><th class="num">现存确诊 (床位压力)</th><th>筛选阈值</th><th>结果数</th></tr>
-          <tr><td>美国</td><td class="num">2550339</td><td>> 100,000</td><td>筛出 12 个国家/地区</td></tr>
-          <tr><td>巴西</td><td class="num">503289</td><td>改为 > 500,000</td><td>只剩 3 个国家/地区</td></tr>
+          <tr><th>问题</th><th>筛选条件</th><th>留下哪些地区</th></tr>
+          <tr><td>先看当前压力</td><td>现存确诊 &gt; 100000</td><td>A、B、C、D</td></tr>
+          <tr><td>资源只够看两个地区</td><td>现存确诊 &gt; 500000</td><td>A、B</td></tr>
+          <tr><td>先看比例异常</td><td>死亡率 &gt; 5%</td><td>F</td></tr>
         </table>
       </div>
-      <p class="mini-note">代码只是把阈值改了一下，但留下来的对象会明显变化。</p>
+      <p class="mini-note">筛选线一变，留下来的对象就变了；问题也跟着变了。</p>
     </section>
 
     <section class="slide">
       <p class="eyebrow">案例 3 · 讨论</p>
       <h2>阈值线划在哪里？</h2>
       <ul>
-        <li>如果阈值从 10 万改到 50 万，筛出对象大量变少，这仅仅是数学数字的变化吗？</li>
-        <li>如果支援医疗队只有 5 支，你的代码阈值应该怎么划定？</li>
-        <li>在公司制定考核指标时，“优秀”的合格线划在哪里，是如何左右员工行为的？</li>
+        <li>如果要看“当前压力”，应该用哪条线？</li>
+        <li>如果今天只来得及重点分析两个地区，筛选线应该收紧还是放宽？</li>
+        <li>如果问题从“人数多”换成“比例高”，留下来的对象为什么会变？</li>
       </ul>
     </section>
 
@@ -845,15 +1002,47 @@ print(countries[0]["name"])</code></pre>
       <h2>阈值决定你先看哪一批对象</h2>
       <div class="two-col">
         <div class="card">
-          <h3>资源有限时</h3>
-          <p>如果人手、床位、预算有限，阈值通常会拉高，先看压力最大的对象。</p>
+          <h3>问题</h3>
+          <p>筛选条件不是随便写数字，而是在回答一个具体问题。</p>
         </div>
         <div class="card dark">
-          <h3>覆盖面更重要时</h3>
-          <p>如果目标是覆盖更多对象，阈值就会降低，留下来的地区也会更多。</p>
+          <h3>资源</h3>
+          <p>时间、人手、预算越少，线通常要画得越高，留下来的对象越少。</p>
         </div>
       </div>
-      <p class="lead">常识落脚点：筛选真正难的不是代码，而是解释清楚为什么把线画在这里。</p>
+      <p class="lead">真正难的不是代码，而是说清楚为什么用这条线看这个问题。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 可选 · 案例 3</p>
+      <h2>拍这页，让 AI 解释筛选结果</h2>
+      <pre class="output small"><code>原始数据：
+地区  现存确诊  死亡率
+A     2550000   2.79%
+B     503000    2.98%
+C     260000    1.80%
+D     120000    4.20%
+E     78000     3.00%
+F     35000     5.80%
+
+筛选条件一：现存确诊 > 100000，结果：A、B、C、D
+筛选条件二：死亡率 > 5%，结果：F
+
+请解释为什么两个筛选条件会留下不同地区。</code></pre>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">AI 参考输出 · 案例 3</p>
+      <h2>可以接受的回答，大概长这样</h2>
+      <pre class="output small"><code>两个筛选条件关注的问题不同。
+
+现存确诊 > 100000，是在找当前病例数量较多、压力较大的地区，
+所以留下 A、B、C、D。
+
+死亡率 > 5%，是在找死亡比例较高的地区，
+所以留下 F。
+
+同一张表换一个筛选条件，重点对象就会改变。</code></pre>
     </section>
 
     <section class="slide">
@@ -864,7 +1053,7 @@ print(countries[0]["name"])</code></pre>
         <li><code>head()</code> 帮我们锁定极少数关键大数，但这只是下一步调查的开始。</li>
         <li>总量看规模，比例看严重程度，现存看当前压力。</li>
         <li>条件筛选语法很简单，但阈值线划在哪里，需要现实理由。</li>
-        <li>AI 可以帮你把表格翻译成人话，但要防止它把“过去排名”说成“未来预测”。</li>
+        <li>同一份数据，换排序列或筛选线，看到的重点就会变。</li>
       </ul>
     </section>
   </main>
