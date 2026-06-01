@@ -387,351 +387,698 @@
       font-size: 36px;
       font-weight: 800;
     }
+
+    .code-output-pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 34px;
+    }
+
+    .code-output-pair pre {
+      margin-top: 0;
+    }
+
+    .code-output-pair .output {
+      margin-top: 0;
+      font-size: 40px;
+      line-height: 1.18;
+    }
+
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-top: 42px;
+    }
+
+    .insight-grid.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .mini-table table { font-size: 32px; }
+    .mini-table th, .mini-table td { padding: 18px 22px; }
+
+    .chart-card {
+      margin-top: 36px;
+      padding: 30px 36px;
+      border-radius: 34px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 3px solid rgba(29, 111, 77, 0.14);
+      box-shadow: 0 24px 60px rgba(22, 33, 23, 0.14);
+    }
+
+    .trend-svg {
+      width: 100%;
+      height: 360px;
+      display: block;
+    }
+
+    .axis-label {
+      fill: #66705e;
+      font: 24px "Songti SC", serif;
+    }
+
+    .line-new { fill: none; stroke: #d9972f; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+    .line-avg { fill: none; stroke: #1d6f4d; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+    .line-soft { fill: none; stroke: rgba(29,111,77,.28); stroke-width: 5; stroke-dasharray: 12 12; }
+
+    .legend-row {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      margin-top: 16px;
+      font-size: 34px;
+      color: #293527;
+    }
+
+    .legend-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+
+    .dot-gold { background: #d9972f; }
+    .dot-green { background: #1d6f4d; }
+
+    .formula-card {
+      margin-top: 42px;
+      padding: 42px 48px;
+      border-radius: 34px;
+      background: var(--green-dark);
+      color: #fff1ca;
+      box-shadow: 0 26px 70px rgba(0,0,0,.22);
+      font-size: 48px;
+      line-height: 1.28;
+      font-weight: 800;
+    }
+
+    .formula-card code {
+      color: #fff1ca;
+      font-size: 44px;
+    }
+
+    .photo-slide .prompt-box,
+    .photo-slide .output {
+      margin-top: 24px;
+    }
+
+    .compact-list ul {
+      font-size: 38px;
+      line-height: 1.24;
+    }
+
+    .big-question {
+      margin-top: 40px;
+      font-size: 58px;
+      line-height: 1.18;
+      color: var(--green-dark);
+      font-weight: 900;
+    }
+
   </style>
 </head>
 <body class="l8">
   <main class="deck">
     <section class="slide active center" data-first="true">
-      <p class="eyebrow">L8 · 收官课</p>
-      <h1>把结果说清楚</h1>
-      <p class="lead">综合运用 pandas 进行日内振幅波动分析，并合并事件生成一份可交付的专业数据报告。</p>
+      <p class="eyebrow">L8</p>
+      <h1>从城市到省份</h1>
+      <p class="lead">把嵌套数据整理成明细表，再用分组统计看结构差异。</p>
       <div class="badge-row">
-        <span class="badge">日内振幅</span>
-        <span class="badge">pd.merge</span>
-        <span class="badge">因果边界</span>
-        <span class="badge">AI 审查</span>
+        <span class="badge">嵌套数据</span>
+        <span class="badge">groupby</span>
+        <span class="badge">平均数 / 中位数</span>
+        <span class="badge">集中度</span>
       </div>
     </section>
-
     <section class="slide center">
       <p class="eyebrow">课前热身</p>
-      <h2>最后一次热身，拉出全部能力</h2>
-      <p class="lead">复习 shift 错格对齐、重排 sort、截取 head 与条件筛选过滤。</p>
+      <h2>最后一节，先把工具箱打开</h2>
+      <p class="lead">复习函数、字典/list、DataFrame、新增列、筛选、排序和多 sheet。今天的新主角是分组统计。</p>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">Quiz 1 / 4</p>
-      <h2>错格对齐与新增确诊</h2>
-      <pre class="quiz-code"><code>df["昨日确诊"] = df["累计确诊"].shift(1)
-df["新增确诊"] = df["累计确诊"] - df["昨日确诊"]</code></pre>
+      <p class="eyebrow">Quiz 1 / 8</p>
+      <h2>字典和列表</h2>
+      <pre class="quiz-code"><code>data = {&quot;list&quot;: [{&quot;name&quot;: &quot;北京&quot;}, {&quot;name&quot;: &quot;广东&quot;}]}
+provinces = data[&quot;list&quot;]
+print(provinces[0][&quot;name&quot;])</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
-          <h3>1. <code>shift(1)</code> 对数据做了何种物理调整？</h3>
-          <ul>
-            <li>A. 删掉最后一行，原位往上平移</li>
-            <li>B. 整体往下挪动一格，头部产生 NaN</li>
-            <li>C. 随机抽取一行数据进行对齐</li>
-            <li>D. 将列的数据格式改为字符串</li>
-          </ul>
+          <h3>1. 最后一行输出什么？</h3>
+          <ul><li>A. 北京</li><li>B. 广东</li><li>C. list</li><li>D. name</li></ul>
         </div>
         <div class="quiz-card">
-          <h3>2. 重组后计算新增确诊，第一行结果是？</h3>
-          <ul>
-            <li>A. 0</li>
-            <li>B. 正常的今日新增数字</li>
-            <li>C. <code>NaN</code>（因为第一天没有昨日确诊）</li>
-            <li>D. 报错跳出</li>
-          </ul>
+          <h3>2. <code>provinces</code> 是什么类型？</h3>
+          <ul><li>A. list</li><li>B. dict</li><li>C. str</li><li>D. int</li></ul>
         </div>
       </div>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">Quiz 2 / 4</p>
-      <h2>重排与 head 过滤</h2>
-      <pre class="quiz-code"><code>top10 = df.sort_values(by="新增确诊", ascending=False).head(10)</code></pre>
+      <p class="eyebrow">Quiz 2 / 8</p>
+      <h2>循环收集数据</h2>
+      <pre class="quiz-code"><code>rows = []
+for name in [&quot;北京&quot;, &quot;广东&quot;, &quot;湖北&quot;]:
+    rows.append({&quot;省份&quot;: name})
+print(len(rows))</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
-          <h3>3. <code>sort_values</code> 执行的是哪种策略？</h3>
-          <ul>
-            <li>A. 按列名英文字母排序</li>
-            <li>B. 按指定列的数据大小进行降序或升序重排</li>
-            <li>C. 只挑选大于 0 的行</li>
-            <li>D. 清空除新增确诊外的其他列</li>
-          </ul>
+          <h3>3. 循环结束后 rows 有几行？</h3>
+          <ul><li>A. 1</li><li>B. 2</li><li>C. 3</li><li>D. 0</li></ul>
         </div>
         <div class="quiz-card">
-          <h3>4. <code>head(10)</code> 的过滤机制是？</h3>
-          <ul>
-            <li>A. 随机拿走 10 行</li>
-            <li>B. 只保留倒数 10 行</li>
-            <li>C. 截取并保留重排后的前 10 行高优先级数据</li>
-            <li>D. 对前 10 行再次求和</li>
-          </ul>
+          <h3>4. <code>rows.append(...)</code> 在做什么？</h3>
+          <ul><li>A. 往列表里加一行</li><li>B. 删除一行</li><li>C. 保存 Excel</li><li>D. 读取 JSON</li></ul>
         </div>
       </div>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">Quiz 3 / 4</p>
-      <h2>表格导出与索引配置</h2>
-      <pre class="quiz-code"><code>top10.to_excel("report.xlsx", index=False)</code></pre>
+      <p class="eyebrow">Quiz 3 / 8</p>
+      <h2>DataFrame</h2>
+      <pre class="quiz-code"><code>rows = [{&quot;地区&quot;: &quot;A区&quot;, &quot;累计确诊&quot;: 10}, {&quot;地区&quot;: &quot;B区&quot;, &quot;累计确诊&quot;: 20}]
+df = pd.DataFrame(rows)</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
-          <h3>5. <code>index=False</code> 在导出时会？</h3>
-          <ul>
-            <li>A. 删掉第一行的列名</li>
-            <li>B. 剔除 pandas 自动生成并附带的隐藏数字行号</li>
-            <li>C. 禁止任何人打开该 Excel</li>
-            <li>D. 把 Excel 的列号隐藏</li>
-          </ul>
+          <h3>5. <code>pd.DataFrame(rows)</code> 会得到？</h3>
+          <ul><li>A. 一张表</li><li>B. 一个列表</li><li>C. 一个字典</li><li>D. 一段文字</li></ul>
         </div>
         <div class="quiz-card">
-          <h3>6. 如果未加该参数，导出的 Excel 会多出？</h3>
-          <ul>
-            <li>A. 一个隐藏的空工作表</li>
-            <li>B. 最左侧多出一列无实质含义的 0, 1, 2... 数字行号</li>
-            <li>C. 最后一列多出求和值</li>
-            <li>D. 多出一个空白的行</li>
-          </ul>
+          <h3>6. 每个字典大致对应表格里的？</h3>
+          <ul><li>A. 一行</li><li>B. 一列</li><li>C. 一个单元格</li><li>D. 整张表</li></ul>
         </div>
       </div>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">Quiz 4 / 4</p>
-      <h2>绝对指标 vs 相对比例</h2>
-      <pre class="quiz-code"><code># A 地区：100000 确诊，3000 死亡
-# B 地区：10000 确诊，500 死亡
-rate_a = 3000 / 100000 * 100
-rate_b = 500 / 10000 * 100</code></pre>
+      <p class="eyebrow">Quiz 4 / 8</p>
+      <h2>排序和取前几行</h2>
+      <pre class="quiz-code compact"><code>top10 = df.sort_values(
+    by=&quot;累计确诊&quot;,
+    ascending=False,
+).head(10)</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
-          <h3>7. 从死亡率（相对比例）看，哪里形势更严峻？</h3>
-          <ul>
-            <li>A. A 地区 (3%)</li>
-            <li>B. B 地区 (5%)</li>
-            <li>C. 两个地区严重程度一模一样</li>
-            <li>D. 无法判断</li>
-          </ul>
+          <h3>7. 这段代码按哪一列排序？</h3>
+          <ul><li>A. 累计确诊</li><li>B. 省份</li><li>C. 地区数量</li><li>D. 现存确诊</li></ul>
         </div>
         <div class="quiz-card">
-          <h3>8. 只调配物资看总量，应该优先支援哪里？</h3>
-          <ul>
-            <li>A. A 地区 (死亡 3000 人)</li>
-            <li>B. B 地区 (死亡 500 人)</li>
-            <li>C. 平均分配</li>
-            <li>D. 梵蒂冈</li>
-          </ul>
+          <h3>8. <code>head(10)</code> 会保留什么？</h3>
+          <ul><li>A. 排序后的前 10 行</li><li>B. 所有行</li><li>C. 排序后的最后 10 行</li><li>D. 只保留累计确诊列</li></ul>
         </div>
       </div>
     </section>
-
+    <section class="slide">
+      <p class="eyebrow">Quiz 5 / 8</p>
+      <h2>新增计算列</h2>
+      <pre class="quiz-code compact"><code>df[&quot;治愈率&quot;] = (
+    df[&quot;累计治愈&quot;] / df[&quot;累计确诊&quot;] * 100
+).round(2)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>9. 这句新增了哪一列？</h3>
+          <ul><li>A. 治愈率</li><li>B. 累计治愈</li><li>C. 累计确诊</li><li>D. 省份</li></ul>
+        </div>
+        <div class="quiz-card">
+          <h3>10. 乘以 100 是为了得到什么？</h3>
+          <ul><li>A. 百分比</li><li>B. 小数位数</li><li>C. 排序方向</li><li>D. 筛选条件</li></ul>
+        </div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">Quiz 6 / 8</p>
+      <h2>条件筛选</h2>
+      <pre class="quiz-code compact"><code>has_current = df[&quot;现存确诊&quot;] &gt; 0
+result = df[has_current]</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>11. <code>has_current</code> 记录的是？</h3>
+          <ul><li>A. 每一行是否现存确诊大于 0</li><li>B. 每一行是否累计确诊最大</li><li>C. 每一行是否属于同一省份</li><li>D. 每一行是否已经排序</li></ul>
+        </div>
+        <div class="quiz-card">
+          <h3>12. <code>result</code> 会保留哪类行？</h3>
+          <ul><li>A. 现存确诊大于 0 的行</li><li>B. 现存确诊等于 0 的行</li><li>C. 累计确诊最高的 10 行</li><li>D. 所有省份汇总后的行</li></ul>
+        </div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">Quiz 7 / 8</p>
+      <h2>多 sheet 导出</h2>
+      <pre class="quiz-code compact"><code>with pd.ExcelWriter(&quot;l8_province_report.xlsx&quot;) as writer:
+    city_df.to_excel(writer, sheet_name=&quot;城市明细&quot;, index=False)
+    province_df.to_excel(writer, sheet_name=&quot;省份汇总&quot;, index=False)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>13. 这段会生成什么？</h3>
+          <ul><li>A. 一个含多个 sheet 的 Excel</li><li>B. 只包含城市明细的 Excel</li><li>C. 只包含省份汇总的 Excel</li><li>D. 两个互相独立的 Excel</li></ul>
+        </div>
+        <div class="quiz-card">
+          <h3>14. <code>sheet_name</code> 的作用是？</h3>
+          <ul><li>A. 给工作表命名</li><li>B. 决定写入哪个 DataFrame</li><li>C. 决定是否保留 index</li><li>D. 决定文件扩展名</li></ul>
+        </div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">Quiz 8 / 8</p>
+      <h2>排序角度</h2>
+      <pre class="quiz-code compact"><code>total_top = df.sort_values(by=&quot;累计确诊&quot;, ascending=False).head(10)
+current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(10)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>15. 这两句排序的列一样吗？</h3>
+          <ul><li>A. 不一样，一个按累计，一个按现存</li><li>B. 一样，都按累计确诊</li><li>C. 一样，都按现存确诊</li><li>D. 不一样，一个排序，一个筛选</li></ul>
+        </div>
+        <div class="quiz-card">
+          <h3>16. 如果关心当前压力，更该看哪张表？</h3>
+          <ul><li>A. current_top</li><li>B. total_top</li><li>C. city_df</li><li>D. province_df</li></ul>
+        </div>
+      </div>
+    </section>
     <section class="slide">
       <p class="eyebrow">今晚路线</p>
-      <h2>打通最后一公里的完整交付</h2>
+      <h2>从明细，到结构</h2>
       <div class="three-col">
-        <div class="card">
-          <h3>1. 算日内振幅</h3>
-          <p class="lead">用 <code>最高 - 最低</code> 差值，除以昨日收盘对齐，计算振幅。</p>
-        </div>
-        <div class="card">
-          <h3>2. 抓 Top 10</h3>
-          <p class="lead">对大表依振幅重排，截取前 10 名波动最剧烈的交易日。</p>
-        </div>
-        <div class="card dark">
-          <h3>3. 关联事件报告</h3>
-          <p class="lead">使用 <code>pd.merge</code> 将波动日与大事记对齐，生成图文终板报告。</p>
-        </div>
+        <div class="card"><h3>1. 展开城市明细</h3><p>把省份下面套城市的数据整理成一张长表。</p></div>
+        <div class="card"><h3>2. 按省份汇总</h3><p>用 groupby 计算总数、数量、平均数、中位数。</p></div>
+        <div class="card dark"><h3>3. 比较结构</h3><p>比较总量、典型水平和集中度的差异。</p></div>
       </div>
     </section>
-
     <section class="slide center">
-      <p class="eyebrow">#1 找出最值得看的几天</p>
-      <h2>Find the days that deserve attention</h2>
-      <p class="lead">波动是商机与危机的结合点。我们用程序把海量交易日自动重排，定位重点。</p>
+      <p class="eyebrow">#1 从城市到省份</p>
+      <h1>生成城市明细和省份结构报告</h1>
+      <p class="lead">前半在 IDE 里完成一个函数：从嵌套数据生成明细表，再按省份分组统计。</p>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">振幅公式</p>
-      <h2>振幅：摆动的能量比例</h2>
-      <div class="formula">
-        日内振幅 = (最高价 - 最低价) / 昨日收盘价 × 100%
-      </div>
-      <ul>
-        <li><code>最高 - 最低</code>：当天价格上下震荡摆动的最大空间。</li>
-        <li>除以昨日收盘：把摆动空间折算为相对昨日基数的百分比，消除身价高低的影响。</li>
-        <li>此处复用了 L7 的 <code>shift(1)</code> 错格昨日对齐技术。</li>
-      </ul>
+      <p class="eyebrow">原始结构</p>
+      <h2>数据不是一开始就长成表格</h2>
+      <pre class="output compact"><code>省份
+  城市 1
+  城市 2
+  城市 3</code></pre>
+      <p class="lead">第一步不是算，而是把“省份下面套城市”的结构整理成一张明细表。</p>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">阶段 2 Recap</p>
-      <h2>排序、截取并导出 Excel 终板</h2>
-      <ul>
-        <li><code>df.sort_values(by="日内振幅", ascending=False)</code> 把最值得看的高震荡交易日排到前面。</li>
-        <li><code>.head(10)</code> 过滤丢弃大部分常态交易日，只截取前 10 行极端日。</li>
-        <li><code>to_excel("l8_final_report.xlsx", index=False)</code> 交付最终报告。</li>
-      </ul>
-    </section>
-
-    <section class="slide center">
-      <p class="eyebrow">后半</p>
-      <h1>把结果说清楚</h1>
-      <p class="lead">代码写完了，Top 10 Excel 也导出了。结课最后一程，我们把结果讲清楚。</p>
-    </section>
-
-    <section class="slide">
-      <p class="eyebrow">后半路线</p>
-      <h2>数据交付的三个常见问题</h2>
-      <div class="three-col">
-        <div class="card">
-          <h3>1. 平均值</h3>
-          <p>平均值看整体，Top 10 帮我们找异常入口。</p>
-        </div>
-        <div class="card">
-          <h3>2. 因果边界</h3>
-          <p><code>pd.merge</code> 帮你对齐现实事件，但关联不等于因果。</p>
-        </div>
-        <div class="card dark">
-          <h3>3. AI 总结</h3>
-          <p>AI 可以写初稿，但人要检查数据边界。</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="slide center">
-      <p class="eyebrow">案例 1</p>
-      <h1>为什么 Top 10 比平均值更能讲故事？</h1>
-      <p class="lead">平均值能看整体，但容易把极端日期压平。</p>
-    </section>
-
-    <section class="slide">
-      <p class="eyebrow">案例 1 · 讨论</p>
-      <h2>平均值可能会漏掉什么？</h2>
-      <ul>
-        <li>如果某家连锁店铺全年平均日流水 10 万元，你觉得这生意稳健吗？</li>
-        <li>如果流水排名前 10 的高峰日（双11和店庆）总共赚走了几百万，而剩下 350 天每天流水仅有 3 万亏本线徘徊，这生意健康吗？</li>
-        <li>为什么只盯平均值，可能会漏掉最值得解释的日期？</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <p class="eyebrow">案例 1 · 所以呢</p>
-      <h2>平均值看整体，Top 10 找异常</h2>
-      <div class="two-col">
-        <div class="card">
-          <h3>均值适合算总账</h3>
-          <p>均值适合看常态，但它会把极端日期压平。</p>
-        </div>
-        <div class="card dark">
-          <h3>Top 10 找异常</h3>
-          <p><strong>Top 10 波动日</strong>适合作为故事入口：哪些日子明显不同？它们是否集中在某类事件附近？</p>
-        </div>
-      </div>
-      <p class="lead">常识落脚点：平均值看整体，Top N 找异常。两者放在一起，报告才不会只剩一个平淡数字。</p>
-    </section>
-
-    <section class="slide center">
-      <p class="eyebrow">案例 2</p>
-      <h1>把数字和现实连起来</h1>
-      <p class="lead"><code>pd.merge</code> 可以把日期和事件对齐，但对齐不等于证明原因。</p>
-    </section>
-
-    <section class="slide">
-      <p class="eyebrow">案例 2 · 数据</p>
-      <h2>用 pd.merge 合并日期与大事记</h2>
-      <div class="table-card">
+      <p class="eyebrow">目标表</p>
+      <h2>整理后，一行就是一个地区</h2>
+      <div class="table-card small-table mini-table">
         <table>
-          <tr><th>日期</th><th class="num">日内振幅</th><th>大事记</th><th>稳妥写法</th></tr>
-          <tr><td>2024-03-15</td><td class="num">8.22%</td><td>某行业利好政策发布日</td><td>当日波动较大，同时有政策事件，值得继续查看。</td></tr>
-          <tr><td>2024-09-24</td><td class="num">9.54%</td><td>市场成交额明显放大</td><td>振幅和成交额同时较高，可能相关，但还需更多证据。</td></tr>
+          <thead><tr>
+            <th>省份</th>
+            <th>地区</th>
+            <th>累计确诊</th>
+            <th>现存确诊</th>
+            <th>累计治愈</th>
+            <th>累计死亡</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td>北京</td>
+              <td>朝阳区</td>
+              <td class="num">77</td>
+              <td class="num">0</td>
+              <td class="num">77</td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td>北京</td>
+              <td>海淀区</td>
+              <td class="num">82</td>
+              <td class="num">0</td>
+              <td class="num">82</td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td>广东</td>
+              <td>广州</td>
+              <td class="num">377</td>
+              <td class="num">8</td>
+              <td class="num">368</td>
+              <td class="num">1</td>
+            </tr>
+          </tbody>
         </table>
       </div>
-      <p class="lead">日期是两张表之间的桥梁。合并以后，数字旁边多了现实背景。</p>
     </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 1 目标</p>
+      <h2>展开城市明细</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>读 JSON</strong><span>取出 <code>data["list"]</code> 里的省份数据。</span></div>
+        <div class="step-row"><strong>外层循环</strong><span>逐个省份处理。</span></div>
+        <div class="step-row"><strong>内层循环</strong><span>逐个城市/地区整理成一行。</span></div>
+        <div class="step-row"><strong>导出明细</strong><span>保存为 <code>l8_city_detail.xlsx</code>。</span></div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 1 Recap</p>
+      <h2>嵌套数据要先摊平成表</h2>
+      <div class="three-col">
+        <div class="card"><h3>rows = []</h3><p>先准备空列表，收集每一行。</p></div>
+        <div class="card"><h3>双层 for</h3><p>省份里套城市，就需要先省份、再城市。</p></div>
+        <div class="card dark"><h3>特殊地区</h3><p>香港、澳门、台湾没有城市列表，用本身补成一行。</p></div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 2 目标</p>
+      <h2>按省份分组汇总</h2>
+      <p class="lead">同一张城市明细表，可以换成省份视角。</p>
+      <div class="table-card small-table mini-table">
+        <table>
+          <thead><tr>
+            <th>统计动作</th>
+            <th>回答的问题</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td>sum</td>
+              <td>这个省总量有多大？</td>
+            </tr>
+            <tr>
+              <td>count</td>
+              <td>这个省有多少个地区？</td>
+            </tr>
+            <tr>
+              <td>mean</td>
+              <td>平均每地是多少？</td>
+            </tr>
+            <tr>
+              <td>median</td>
+              <td>典型地区大概是多少？</td>
+            </tr>
+            <tr>
+              <td>max</td>
+              <td>最大地区是多少？</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">分组是什么</p>
+      <h2>把同一个省份的地区放到一组</h2>
+<div class="insight-grid">
+      <pre class="output compact"><code>北京：朝阳区、海淀区、西城区...
+广东：广州、深圳、佛山...
+湖北：武汉、黄石、襄阳...</code></pre>
+<div class="formula-card"><code>city_df.groupby("省份")</code><br>先分组，再统计</div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 2 Recap</p>
+      <h2>groupby 的关键不是语法，是问题</h2>
+      <div class="three-col">
+        <div class="card"><h3>总量</h3><p><code>sum</code> 看全省规模。</p></div>
+        <div class="card"><h3>典型水平</h3><p><code>median</code> 看中间位置，不容易被极端值带偏。</p></div>
+        <div class="card dark"><h3>最大值</h3><p><code>max</code> 看是否有一个地区特别突出。</p></div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">真实输出预览</p>
+      <h2>分组之后，问题变成省份结构</h2>
+      <div class="table-card small-table mini-table">
+        <table>
+          <thead><tr>
+            <th>省份</th>
+            <th>累计确诊总数</th>
+            <th>地区数量</th>
+            <th>平均每地确诊</th>
+            <th>中位数每地确诊</th>
+            <th>最大地区占比</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td>湖北</td>
+              <td class="num">68139</td>
+              <td class="num">17</td>
+              <td class="num">4008.18</td>
+              <td class="num">931.0</td>
+              <td class="num">73.88%</td>
+            </tr>
+            <tr>
+              <td>香港</td>
+              <td class="num">5113</td>
+              <td class="num">1</td>
+              <td class="num">5113.00</td>
+              <td class="num">5113.0</td>
+              <td class="num">100.00%</td>
+            </tr>
+            <tr>
+              <td>广东</td>
+              <td class="num">1835</td>
+              <td class="num">20</td>
+              <td class="num">91.75</td>
+              <td class="num">22.0</td>
+              <td class="num">39.56%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mini-note">同一张城市明细表，被按省份重新组织以后，能回答的问题就变了。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 3 目标</p>
+      <h2>比较省份结构</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>最大地区占比</strong><span>最大地区确诊 / 全省确诊总数 × 100。</span></div>
+        <div class="step-row"><strong>总数 Top10</strong><span>看规模。</span></div>
+        <div class="step-row"><strong>中位数 Top10</strong><span>看典型地区水平。</span></div>
+        <div class="step-row"><strong>集中度 Top10</strong><span>看数据主要压在哪一个地区。</span></div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">结构预览</p>
+      <h2>同一张表，可以按不同指标重排</h2>
+      <div class="table-card small-table mini-table">
+        <table>
+          <thead><tr>
+            <th>省份</th>
+            <th>累计确诊总数</th>
+            <th>最大地区确诊</th>
+            <th>最大地区占比</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td>广东</td>
+              <td class="num">1835</td>
+              <td class="num">726</td>
+              <td class="num">39.56%</td>
+            </tr>
+            <tr>
+              <td>上海</td>
+              <td class="num">1022</td>
+              <td class="num">680</td>
+              <td class="num">66.54%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="mini-note">按总量看，广东更靠前；按集中度看，上海更突出。排序列一换，课堂上要讨论的问题也跟着换。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 3 Recap</p>
+      <h2>同一份数据，导出多个观察角度</h2>
+      <div class="three-col">
+        <div class="card"><h3>城市明细</h3><p>最完整，适合追溯每一行。</p></div>
+        <div class="card"><h3>省份汇总</h3><p>适合看整体结构。</p></div>
+        <div class="card dark"><h3>多个 Top10</h3><p>换排序列，就是换问题。</p></div>
+      </div>
+    </section>
+    <section class="slide center">
+      <p class="eyebrow">后半</p>
+      <h1>同一份数据，不止一个答案</h1>
+      <p class="lead">换一个统计口径，问题就变了。后半重点看平均数、中位数、总量和集中度。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">后半路线</p>
+      <h2>三个收官问题</h2>
+      <div class="three-col">
+        <div class="card"><h3>1. 平均数 vs 中位数</h3><p>极端值会把平均数拉歪。</p></div>
+        <div class="card"><h3>2. 总量 vs 集中度</h3><p>规模和分布结构不是一回事。</p></div>
+        <div class="card dark"><h3>3. AI 写报告</h3><p>输入给完整，人负责检查问题边界。</p></div>
+      </div>
+    </section>
+    <section class="slide center">
+      <p class="eyebrow">案例 1</p>
+      <h1>平均数 91.75，为什么中位数只有 22？</h1>
+      <p class="lead">同一组广东数据，两个数字差很多。先看数据，再判断该相信哪个数字。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 数据</p>
+      <h2>平均数 91.75，中位数 22.0</h2>
+      <p class="mini-note">广东 20 个地区参与计算；下面只列几个代表值，先看差异有多大。</p>
+      <div class="table-card small-table mini-table">
+        <table>
+          <thead><tr>
+            <th>地区</th>
+            <th>累计确诊</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td>河源</td>
+              <td class="num">5</td>
+            </tr>
+            <tr>
+              <td>汕尾</td>
+              <td class="num">6</td>
+            </tr>
+            <tr>
+              <td>潮州</td>
+              <td class="num">7</td>
+            </tr>
+            <tr>
+              <td>韶关</td>
+              <td class="num">10</td>
+            </tr>
+            <tr>
+              <td>清远</td>
+              <td class="num">12</td>
+            </tr>
+            <tr>
+              <td>深圳</td>
+              <td class="num">471</td>
+            </tr>
+            <tr>
+              <td>广州</td>
+              <td class="num">726</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 讨论</p>
+      <h2>这两个数字各自在讲什么？</h2>
+      <ul>
+        <li>如果报告里只写“平均每地 91.75”，读者可能形成什么印象？</li>
+        <li>中位数 22 更接近哪一类地区的状态？</li>
+        <li>广州、深圳这种高值应该混进一句平均数里，还是单独拿出来解释？</li>
+      </ul>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">案例 1 · 所以呢</p>
+      <h2>先看极端值，再选指标</h2>
+      <div class="three-col">
+        <div class="card"><h3>平均数</h3><p>适合回答“整体摊下来是多少”。</p></div>
+        <div class="card"><h3>中位数</h3><p>适合回答“多数地区大概什么水平”。</p></div>
+        <div class="card dark"><h3>写报告</h3><p>高值单独讲，典型水平单独讲。</p></div>
+      </div>
+    </section>
+    <section class="slide photo-slide">
+      <p class="eyebrow">AI 可选 · 案例 1</p>
+      <h2>拍这页，让 AI 解释平均数和中位数</h2>
+<div class="ai-photo-grid">
+      <pre class="output small"><code>广东部分地区累计确诊：
+河源 5，汕尾 6，潮州 7，韶关 10，
+清远 12，深圳 471，广州 726。
 
+广东 20 个地区：
+平均每地确诊 91.75
+中位数每地确诊 22.0</code></pre>
+<div class="prompt-box small">请解释：为什么平均数和中位数会讲出不同故事？
+用普通人能听懂的话回答。</div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">AI 参考输出 · 案例 1</p>
+      <h2>关键是少数高值地区</h2>
+      <pre class="output answer-output"><code>广东多数地区的确诊数并不高，但广州和深圳明显高很多。
+
+平均数会把广州、深圳一起算进去，所以被拉高到 91.75。
+中位数是 22，更接近多数地区的典型水平。
+
+所以这两个数字回答的是不同问题：平均数看整体摊下来，
+中位数看典型地区。</code></pre>
+    </section>
+    <section class="slide center">
+      <p class="eyebrow">案例 2</p>
+      <h1>同一张表，先看哪一列？</h1>
+      <p class="lead">广东和上海放在一起，答案会随着指标变化。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 数据</p>
+      <h2>两个省，两个问题</h2>
+      <div class="table-card small-table mini-table">
+        <table>
+          <thead><tr>
+            <th>省份</th>
+            <th>累计确诊总数</th>
+            <th>最大地区确诊</th>
+            <th>最大地区占比</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td>广东</td>
+              <td class="num">1835</td>
+              <td class="num">726</td>
+              <td class="num">39.56%</td>
+            </tr>
+            <tr>
+              <td>上海</td>
+              <td class="num">1022</td>
+              <td class="num">680</td>
+              <td class="num">66.54%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
     <section class="slide">
       <p class="eyebrow">案例 2 · 讨论</p>
-      <h2>关联不等于因果</h2>
+      <h2>排序背后的问题是什么？</h2>
       <ul>
-        <li>如果某只股票在发布利好政策的当天大涨，能不能直接说“就是政策导致的”？</li>
-        <li>如果不看成交量、行业表现和更多资料，直接写因果，会有什么风险？</li>
-        <li>“可能相关”和“就是因为它”有什么区别？</li>
+        <li>如果你关心整体规模，应该优先解释哪一个省？</li>
+        <li>如果你关心压力集中到单个地区，应该优先追问哪一个省？</li>
+        <li>这两种排序，分别会引导你去看“全省问题”还是“单点问题”？</li>
       </ul>
     </section>
-
     <section class="slide">
       <p class="eyebrow">案例 2 · 所以呢</p>
-      <h2>把数据和现实连起来，但守住边界</h2>
-      <div class="two-col">
-        <div class="card">
-          <h3>时间重合</h3>
-          <p>同一天出现，只能说明时间上重合。它是线索，不是因果证明。</p>
-        </div>
-        <div class="card dark">
-          <h3>稳妥表达</h3>
-          <p><strong>“可能相关”“值得继续查看”</strong> 比直接写成原因更稳。</p>
-        </div>
-      </div>
-      <p class="lead">常识落脚点：关联看重合，因果需要更多证据。报告可以提出线索，但不要替证据下结论。</p>
-    </section>
-
-    <section class="slide photo-slide">
-      <div class="ai-photo-grid">
-        <pre class="output ai-stock-data" style="font-size:22px; line-height: 1.1;"><code>波动 Top 10 日期与大事记合并表：
-2024-03-15, 振幅 8.22%, 利好政策出台
-2024-09-24, 振幅 9.54%, 成交额集中放大
-...</code></pre>
-        <pre class="prompt-box small"><code>请根据这张波动 Top 10 合并表写一段 120 字以内的总结报告。
-要求：
-1. 文字大方通顺，可直接发群。
-2. 守住因果边界，使用“可能相关”等客观措辞，不脑补主观结论。
-3. 不写买卖建议，不预测未来。</code></pre>
+      <h2>排名之前，先说清楚问题</h2>
+      <div class="three-col">
+        <div class="card"><h3>总量</h3><p>回答“盘子有多大”。</p></div>
+        <div class="card"><h3>集中度</h3><p>回答“压力压在少数地区，还是分散在多地”。</p></div>
+        <div class="card dark"><h3>判断</h3><p>先定问题，再决定按哪一列排序。</p></div>
       </div>
     </section>
-
     <section class="slide center">
       <p class="eyebrow">案例 3</p>
-      <h1>AI 可以写总结，但人要看边界</h1>
-      <p class="lead">AI 很适合把表格变成文字，但流畅不等于正确。</p>
+      <h1>AI 可以写报告，但输入要给够</h1>
+      <p class="lead">最后一次演示：让 AI 把表格写成普通人能读的说明。</p>
     </section>
-
-    <section class="slide">
-      <p class="eyebrow">案例 3 · 讨论</p>
-      <h2>AI 总结最容易出哪些问题？</h2>
-      <ul>
-        <li>AI 写得流畅，是否代表它说得对？</li>
-        <li>哪些词听起来很专业，但其实可能过度断言？</li>
-        <li>如果要发到群里，哪一句最需要删掉或改弱？</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <p class="eyebrow">案例 3 · 所以呢</p>
-      <h2>AI 写初稿，人检查边界</h2>
-      <div class="three-col">
-        <div class="card">
-          <h3>雷区 1：脑补因果</h3>
-          <p>AI 为了让文章顺畅，可能把时间重合写成必然原因。</p>
-        </div>
-        <div class="card">
-          <h3>雷区 2：幻觉编造</h3>
-          <p>AI 可能补出表格里没有的新闻、字段或背景。</p>
-        </div>
-        <div class="card dark">
-          <h3>雷区 3：过度自信预测</h3>
-          <p>AI 可能把过去数据写成未来判断。</p>
-        </div>
+    <section class="slide photo-slide">
+      <p class="eyebrow">AI 可选 · 案例 3</p>
+      <h2>拍这页，让 AI 写数据说明</h2>
+<div class="ai-photo-grid">
+      <pre class="output small"><code>省份    累计确诊总数    中位数每地确诊    最大地区占比
+湖北    68139           931.0             73.88%
+广东    1835            22.0              39.56%
+上海    1022            12.0              66.54%</code></pre>
+<div class="prompt-box small">请写一段给普通同事看的数据说明：
+1. 分别说明总量、典型水平、集中度。
+2. 说明为什么不能只看第一列。
+3. 结尾给一句最值得继续追问的问题。</div>
       </div>
-      <p class="lead">常识落脚点：AI 适合写初稿，人负责检查有没有编原因、预测过头、把小样本说成大结论。</p>
     </section>
-
-    <section class="slide center">
-      <p class="eyebrow">课程收官</p>
-      <h1>一条主线，从代码走向商业大局</h1>
-      <p class="lead">学完这门课，你不需要马上成为程序员。能看懂基础逻辑，能提出更好的数据问题，知道什么时候让 AI 帮忙，已经很值。</p>
-    </section>
-
     <section class="slide">
-      <p class="eyebrow">收官 Recap</p>
-      <h2>我们这 8 晚真正学会了什么？</h2>
+      <p class="eyebrow">AI 参考输出 · 案例 3</p>
+      <h2>好的输出会区分三个角度</h2>
+      <pre class="output answer-output"><code>湖北累计确诊总数最高，说明整体规模最大；
+湖北的中位数每地确诊也最高，说明典型地区水平也更突出；
+上海最大地区占比达到 66.54%，说明它比广东更集中在少数地区。
+
+只看累计确诊总数会漏掉结构差异。下一步值得追问的是：
+湖北为什么总量和典型水平都高，上海为什么集中度这么高。</code></pre>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">收官回顾</p>
+      <h2>这门课最后想留下什么</h2>
       <ul>
-        <li>让 Python 帮我们重复计算。</li>
-        <li>让 pandas 帮我们把数据整理成表。</li>
-        <li>用 <code>shift(1)</code> 把今天和昨天放在一起比较。</li>
-        <li>根据问题选择指标：总量、增量、比例、回撤。</li>
-        <li>让 AI 帮忙解释、检查、改写，但标准答案仍然要回到数据。</li>
+        <li>原始 JSON 可以整理成表格。</li>
+        <li>表格可以按地区、按省份、按时间重新组织。</li>
+        <li>排序、筛选、分组、导出 Excel，是数据分析最常见的几步。</li>
+        <li>计算结果不是终点，真正有价值的是：用哪个指标回答哪个问题。</li>
+        <li>AI 能帮忙解释和改写，但标准答案要回到数据。</li>
       </ul>
     </section>
   </main>
@@ -787,6 +1134,7 @@ rate_b = 500 / 10000 * 100</code></pre>
 
     window.addEventListener("hashchange", fromHash);
     fromHash();
+
   </script>
 </body>
 </html>

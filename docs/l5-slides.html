@@ -349,6 +349,22 @@
       stroke-linejoin: round;
     }
 
+    .moving-line {
+      fill: none;
+      stroke: var(--gold);
+      stroke-width: 7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .bar {
+      fill: var(--gold);
+    }
+
+    .bar-muted {
+      fill: rgba(217, 151, 47, 0.42);
+    }
+
     .dot {
       fill: var(--gold);
       stroke: #fff8dd;
@@ -454,59 +470,71 @@ print(history[0]["date"])</code></pre>
 
     <section class="slide">
       <p class="eyebrow">Quiz 5 / 8</p>
-      <h2>DataFrame 是一张表</h2>
-      <pre class="quiz-code compact"><code>import pandas as pd
-
-history = [
-    {"date": "10.04", "certain": "35151050", "die": "1034410"},
-    {"date": "10.05", "certain": "35270206", "die": "1036359"},
+      <h2>循环处理多天记录</h2>
+      <pre class="quiz-code compact"><code>history = [
+    {"date": "10.04", "certain": "35151050"},
+    {"date": "10.05", "certain": "35270206"},
+    {"date": "10.06", "certain": "35301200"},
 ]
 
-df = pd.DataFrame(history, columns=["date", "certain", "die"])
-print(df)</code></pre>
+for day in history:
+    print(day["date"], day["certain"])</code></pre>
       <div class="quiz-grid">
-        <div class="quiz-card"><h3>9. <code>pd.DataFrame(...)</code> 主要是在做什么？</h3><ul><li>A. 把 Excel 文件读进来</li><li>B. 把历史记录整理成表，并指定列</li><li>C. 把图片画出来</li><li>D. 把所有数字相加</li></ul></div>
-        <div class="quiz-card"><h3>10. <code>columns=[...]</code> 的作用是什么？</h3><ul><li>A. 指定文件名</li><li>B. 指定图片大小</li><li>C. 指定循环次数</li><li>D. 指定保留哪些列和顺序</li></ul></div>
+        <div class="quiz-card"><h3>9. <code>for day in history:</code> 会执行几次？</h3><ul><li>A. 1 次</li><li>B. 2 次</li><li>C. 3 次</li><li>D. 无限次</li></ul></div>
+        <div class="quiz-card"><h3>10. 每一次循环里，<code>day</code> 代表什么？</h3><ul><li>A. 整个 history</li><li>B. 当前这一条日期记录</li><li>C. 字符串 "date"</li><li>D. 数字 35151050</li></ul></div>
       </div>
     </section>
 
     <section class="slide">
       <p class="eyebrow">Quiz 6 / 8</p>
-      <h2>重命名列</h2>
-      <pre class="quiz-code"><code>df = df.rename(columns={
-    "date": "日期",
-    "certain": "累计确诊",
-    "die": "累计死亡",
-})</code></pre>
+      <h2>把一行文字拆开</h2>
+      <pre class="quiz-code"><code>line = "贵州茅台, 1709, 1705"
+
+parts = line.split(", ")
+name = parts[0]
+open_price = float(parts[1])
+close_price = float(parts[2])
+
+change = close_price - open_price
+print(name, change)</code></pre>
       <div class="quiz-grid">
-        <div class="quiz-card"><h3>11. 这段代码主要解决什么问题？</h3><ul><li>A. 删除所有数据</li><li>B. 把字符串转成数字</li><li>C. 把英文字段名改成中文列名</li><li>D. 把表格保存成 Excel</li></ul></div>
-        <div class="quiz-card"><h3>12. 改名后，取累计确诊列应该写哪一个？</h3><ul><li>A. df["certain"]</li><li>B. df["累计确诊"]</li><li>C. df[累计确诊]</li><li>D. df.certain()</li></ul></div>
+        <div class="quiz-card"><h3>11. <code>parts[0]</code> 取到的是什么？</h3><ul><li>A. 贵州茅台</li><li>B. 1709</li><li>C. 1705</li><li>D. parts</li></ul></div>
+        <div class="quiz-card"><h3>12. 最后一行会输出什么？</h3><ul><li>A. 贵州茅台 4.0</li><li>B. 贵州茅台 -4.0</li><li>C. 1709 1705</li><li>D. name change</li></ul></div>
       </div>
     </section>
 
     <section class="slide">
       <p class="eyebrow">Quiz 7 / 8</p>
-      <h2>转换数据类型</h2>
-      <pre class="quiz-code"><code>df = df.astype({
-    "累计确诊": int,
-    "累计死亡": int,
-    "累计治愈": int,
-})</code></pre>
+      <h2>文字数字和真正数字</h2>
+      <pre class="quiz-code"><code>death_text = "1036359"
+certain_text = "35270206"
+
+death = int(death_text)
+certain = int(certain_text)
+
+rate = round(death / certain * 100, 2)
+print(rate)</code></pre>
       <div class="quiz-grid">
-        <div class="quiz-card"><h3>13. 这段代码为什么重要？</h3><ul><li>A. 因为 Excel 只能保存整数</li><li>B. 因为 DataFrame 不能保存字符串</li><li>C. 因为中文列名不能计算</li><li>D. JSON 读出来的数字可能还是文字</li></ul></div>
-        <div class="quiz-card"><h3>14. 如果还是字符串，哪个计算最容易出问题？</h3><ul><li>A. df["累计死亡"] / df["累计确诊"]</li><li>B. df["日期"]</li><li>C. print(df)</li><li>D. df.to_excel("report.xlsx")</li></ul></div>
+        <div class="quiz-card"><h3>13. <code>int(death_text)</code> 的作用是什么？</h3><ul><li>A. 打印文字</li><li>B. 把文字变成可以计算的整数</li><li>C. 保存到 Excel</li><li>D. 删除小数点</li></ul></div>
+        <div class="quiz-card"><h3>14. <code>death / certain * 100</code> 这段在算什么？</h3><ul><li>A. 死亡人数占累计确诊的百分比</li><li>B. 累计确诊减去死亡人数</li><li>C. 把结果保存到 Excel</li><li>D. 比较两天的数据变化</li></ul></div>
       </div>
     </section>
 
     <section class="slide">
       <p class="eyebrow">Quiz 8 / 8</p>
-      <h2>新增列和导出</h2>
-      <pre class="quiz-code"><code>df["死亡率"] = (df["累计死亡"] / df["累计确诊"] * 100).round(2)
+      <h2>DataFrame 初印象</h2>
+      <pre class="quiz-code"><code>import pandas as pd
 
-df.to_excel("l5_report.xlsx", index=False)</code></pre>
+rows = [
+    {"项目": "累计确诊", "数字": 35270206},
+    {"项目": "累计死亡", "数字": 1036359},
+]
+
+df = pd.DataFrame(rows)
+print(df)</code></pre>
       <div class="quiz-grid">
-        <div class="quiz-card"><h3>15. 第一行代码在做什么？</h3><ul><li>A. 删除累计死亡</li><li>B. 读取 JSON 文件</li><li>C. 计算新数据，并保存到死亡率列</li><li>D. 打开图片</li></ul></div>
-        <div class="quiz-card"><h3>16. <code>index=False</code> 的作用是什么？</h3><ul><li>A. 不保存任何列名</li><li>B. 不把自动行号写进 Excel</li><li>C. 导出后只能用 Python 打开</li><li>D. 只保存第一行</li></ul></div>
+        <div class="quiz-card"><h3>15. <code>pd.DataFrame(rows)</code> 主要是在做什么？</h3><ul><li>A. 把两条记录整理成一张表</li><li>B. 把图片画出来</li><li>C. 把文件删除</li><li>D. 把所有数字相加</li></ul></div>
+        <div class="quiz-card"><h3>16. <code>rows</code> 是什么结构？</h3><ul><li>A. 一个字符串</li><li>B. 一个数字</li><li>C. 一个 list，里面放着两个 dict</li><li>D. 一个函数</li></ul></div>
       </div>
     </section>
 
@@ -760,7 +788,7 @@ df.to_excel("l5_report.xlsx", index=False)</code></pre>
         </div>
         <div class="card dark">
           <h3>给 AI 的问题</h3>
-          <p>请用普通人听得懂的话解释这张累计确诊趋势图。只描述图里能看出的变化，原因部分先留空。</p>
+          <p>请用普通人听得懂的话解释这张累计确诊趋势图。重点说明图里能看出的变化。</p>
         </div>
       </div>
     </section>
@@ -818,65 +846,149 @@ df.to_excel("l5_report.xlsx", index=False)</code></pre>
 
     <section class="slide center">
       <p class="eyebrow">案例 3</p>
-      <h1>累计一直上升，不等于速度一直变快</h1>
-      <p class="lead">累计图很重要，但它不是全部答案。要看速度，就要引入“新增”。</p>
+      <h1>累计还在涨，速度可能已经慢了</h1>
+      <p class="lead">一条往上的线，不一定表示越来越快。先把“总量”和“新增”分开看。</p>
     </section>
 
     <section class="slide">
-      <p class="eyebrow">案例 3 · 概念</p>
-      <h2>累计数像总收入，新增数像今天收入</h2>
-      <div class="step-ladder">
-        <div class="step-row"><strong>今天</strong><span>收入 10 万，累计收入上升。</span></div>
-        <div class="step-row"><strong>明天</strong><span>只收入 2 万，累计收入还是上升。</span></div>
-        <div class="step-row"><strong>变化</strong><span>总收入继续增加，但增长速度已经变慢。</span></div>
+      <p class="eyebrow">案例 3 · 图表冲突</p>
+      <h2>左边一直涨，右边一直降</h2>
+      <div class="two-col">
+        <div class="chart-card">
+          <svg class="trend-svg" viewBox="0 0 760 360" role="img" aria-label="累计确诊仍然上升">
+            <line class="grid-line" x1="70" y1="82" x2="710" y2="82"></line>
+            <line class="grid-line" x1="70" y1="170" x2="710" y2="170"></line>
+            <line class="grid-line" x1="70" y1="258" x2="710" y2="258"></line>
+            <line class="axis" x1="70" y1="310" x2="710" y2="310"></line>
+            <line class="axis" x1="70" y1="50" x2="70" y2="310"></line>
+            <path class="trend-line" d="M90 288 C180 230, 260 188, 350 150 S540 100, 690 88"></path>
+            <circle class="dot" cx="90" cy="288" r="10"></circle>
+            <circle class="dot" cx="350" cy="150" r="10"></circle>
+            <circle class="dot" cx="690" cy="88" r="10"></circle>
+          </svg>
+          <p class="caption">累计确诊：总量还在增加，曲线自然继续往上。</p>
+        </div>
+        <div class="chart-card">
+          <svg class="trend-svg" viewBox="0 0 760 360" role="img" aria-label="每日新增逐步下降">
+            <line class="grid-line" x1="70" y1="82" x2="710" y2="82"></line>
+            <line class="grid-line" x1="70" y1="170" x2="710" y2="170"></line>
+            <line class="grid-line" x1="70" y1="258" x2="710" y2="258"></line>
+            <line class="axis" x1="70" y1="310" x2="710" y2="310"></line>
+            <line class="axis" x1="70" y1="50" x2="70" y2="310"></line>
+            <rect class="bar" x="110" y="92" width="58" height="218" rx="10"></rect>
+            <rect class="bar" x="210" y="122" width="58" height="188" rx="10"></rect>
+            <rect class="bar" x="310" y="154" width="58" height="156" rx="10"></rect>
+            <rect class="bar" x="410" y="190" width="58" height="120" rx="10"></rect>
+            <rect class="bar" x="510" y="226" width="58" height="84" rx="10"></rect>
+            <rect class="bar" x="610" y="252" width="58" height="58" rx="10"></rect>
+          </svg>
+          <p class="caption">每日新增：每天新增加的人数变少，速度在降。</p>
+        </div>
       </div>
     </section>
 
     <section class="slide">
       <p class="eyebrow">案例 3 · 问题</p>
-      <h2>看累计图时，容易错过什么？</h2>
+      <h2>两张图放一起，信息变了</h2>
       <ul>
-        <li>如果累计确诊还在上升，新增速度可能已经变慢吗？</li>
-        <li>如果每日新增开始下降，累计确诊会不会马上下降？</li>
-        <li>为什么只看累计图，可能错过变化速度？</li>
+        <li>只看累计曲线，会不会觉得情况一直在加速变严重？</li>
+        <li>看每日新增柱以后，多看到了什么？</li>
+        <li>“越来越多”和“越来越快”是不是一回事？</li>
       </ul>
     </section>
 
     <section class="slide">
-      <p class="eyebrow">案例 3 · 所以呢</p>
-      <h2>总量和速度，要分开看</h2>
+      <p class="eyebrow">案例 3 · 现实类比</p>
+      <h2>总销售额创新高，生意一定更好吗？</h2>
+      <div class="table-card">
+        <table>
+          <tr><th>日期</th><th class="num">累计销售额</th><th class="num">当天销售额</th></tr>
+          <tr><td>周一</td><td class="num">10000</td><td class="num">10000</td></tr>
+          <tr><td>周二</td><td class="num">16000</td><td class="num">6000</td></tr>
+          <tr><td>周三</td><td class="num">19000</td><td class="num">3000</td></tr>
+          <tr><td>周四</td><td class="num">20500</td><td class="num">1500</td></tr>
+        </table>
+      </div>
+      <p class="lead">累计销售额每天都在创新高，但当天生意正在降温。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 均线</p>
+      <h2>每天的柱子太吵，就看一条更平滑的线</h2>
       <div class="two-col">
-        <div class="card">
-          <h3>累计数</h3>
-          <p>告诉你现在一共累积到多少。只要还有新增，它通常就会继续往上。</p>
+        <div class="chart-card">
+          <svg class="trend-svg" viewBox="0 0 760 360" role="img" aria-label="每日新增和均线">
+            <line class="grid-line" x1="70" y1="82" x2="710" y2="82"></line>
+            <line class="grid-line" x1="70" y1="170" x2="710" y2="170"></line>
+            <line class="grid-line" x1="70" y1="258" x2="710" y2="258"></line>
+            <line class="axis" x1="70" y1="310" x2="710" y2="310"></line>
+            <line class="axis" x1="70" y1="50" x2="70" y2="310"></line>
+            <rect class="bar-muted" x="106" y="132" width="46" height="178" rx="8"></rect>
+            <rect class="bar-muted" x="184" y="92" width="46" height="218" rx="8"></rect>
+            <rect class="bar-muted" x="262" y="154" width="46" height="156" rx="8"></rect>
+            <rect class="bar-muted" x="340" y="122" width="46" height="188" rx="8"></rect>
+            <rect class="bar-muted" x="418" y="184" width="46" height="126" rx="8"></rect>
+            <rect class="bar-muted" x="496" y="210" width="46" height="100" rx="8"></rect>
+            <rect class="bar-muted" x="574" y="236" width="46" height="74" rx="8"></rect>
+            <rect class="bar-muted" x="652" y="252" width="46" height="58" rx="8"></rect>
+            <path class="moving-line" d="M128 118 C220 128, 310 142, 400 168 S560 218, 674 248"></path>
+          </svg>
+          <p class="caption">柱子每天抖动，均线帮我们看大方向。</p>
         </div>
         <div class="card dark">
-          <h3>新增数</h3>
-          <p>告诉你变化速度是在加快还是放慢。它比累计数更敏感。</p>
+          <h3>均线</h3>
+          <p>把最近几天平均一下，让趋势更平滑。股票里的 5 日、10 日均线，和这里看每日新增的思路是一类东西。</p>
         </div>
       </div>
-      <p class="lead">L7 会正式解决：怎么把今天和昨天放到一起比较。</p>
+    </section>
+
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 所以呢</p>
+      <h2>三个视角，回答三个问题</h2>
+      <div class="three-col">
+        <div class="card">
+          <h3>累计数</h3>
+          <p>现在一共累积到多少。</p>
+        </div>
+        <div class="card">
+          <h3>新增数</h3>
+          <p>今天增加多少，速度有没有变。</p>
+        </div>
+        <div class="card dark">
+          <h3>均线</h3>
+          <p>把短期波动压下去，看趋势方向。</p>
+        </div>
+      </div>
+      <p class="lead">一条上升曲线不一定代表情况越来越糟；它可能只是总量还在累积，速度已经放慢。</p>
     </section>
 
     <section class="slide">
       <p class="eyebrow">AI 可选 · 案例 3</p>
-      <h2>拍这页，让 AI 解释一句话</h2>
-      <pre class="output small"><code>“累计确诊还在上升，但每日新增下降了”
-这句话怎么用普通人能听懂的方式解释？</code></pre>
-      <p class="lead">要求：不要解释原因，只解释“累计”和“新增”的区别。</p>
+      <h2>拍这页，让 AI 解释两组数据</h2>
+      <pre class="output small"><code>日期    累计确诊    每日新增
+10.01   1000       300
+10.02   1260       260
+10.03   1480       220
+10.04   1660       180
+10.05   1800       140
+10.06   1900       100
+
+请解释：为什么累计确诊还在上升，但每日新增在下降？
+重点说明累计数和每日新增分别在看什么。</code></pre>
     </section>
 
     <section class="slide">
       <p class="eyebrow">AI 参考输出 · 案例 3</p>
       <h2>可以接受的回答，大概长这样</h2>
-      <pre class="output small"><code>这句话的意思是：
-总量还在增加，但增加速度变慢了。
+      <pre class="output small"><code>这组数据里，累计确诊从 1000 增加到 1900，
+所以总量仍然在上升。
 
-比如累计收入还在上涨，
-但今天新增收入比昨天少，
-说明业务还在增长，只是增长没那么快了。
+但每日新增从 300 降到 100，
+说明每天新增加的数量在变少。
 
-所以“累计上升”和“新增下降”并不矛盾。</code></pre>
+所以这不是矛盾：
+累计看“总量”，每日新增看“速度”。
+总量还在增加，但增加速度已经放慢。</code></pre>
     </section>
 
     <section class="slide">
@@ -885,7 +997,7 @@ df.to_excel("l5_report.xlsx", index=False)</code></pre>
       <ul>
         <li><code>DataFrame</code> 可以把一批 JSON 记录整理成一张表。</li>
         <li><code>rename()</code> 改表头，<code>astype()</code> 确认类型，计算才稳定。</li>
-        <li>Excel、图、比例、累计数、新增数，回答的是不同问题。</li>
+        <li>Excel、图、比例、累计数、新增数、均线，回答的是不同问题。</li>
         <li>L5 先做出第一份报告；后面再继续学排序、筛选、合并和更复杂的图表。</li>
       </ul>
     </section>

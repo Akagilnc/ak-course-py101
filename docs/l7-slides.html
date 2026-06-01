@@ -356,6 +356,44 @@
 
     .num { text-align: right; font-family: "SF Mono", "Menlo", monospace; }
 
+    .table-card.align-right th,
+    .table-card.align-right td {
+      text-align: right;
+    }
+
+    .table-card.mixed-table th:first-child,
+    .table-card.mixed-table td:first-child {
+      text-align: left;
+    }
+
+    .table-card.mixed-table th:not(:first-child),
+    .table-card.mixed-table td:not(:first-child) {
+      text-align: right;
+    }
+
+    .table-card.two-left th:nth-child(-n + 2),
+    .table-card.two-left td:nth-child(-n + 2) {
+      text-align: left;
+    }
+
+    .table-card.two-left th:nth-child(n + 3),
+    .table-card.two-left td:nth-child(n + 3) {
+      text-align: right;
+    }
+
+    .ai-photo-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 30px;
+      margin-top: 28px;
+      align-items: start;
+    }
+
+    .ai-photo-grid .output,
+    .ai-photo-grid .prompt-box {
+      margin-top: 0;
+    }
+
     .badge-row {
       display: flex;
       flex-wrap: wrap;
@@ -375,12 +413,45 @@
       font-weight: 800;
     }
 
-    .chart-card {
+    .code-output-pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
       margin-top: 34px;
-      padding: 34px 38px;
+    }
+
+    .code-output-pair pre {
+      margin-top: 0;
+    }
+
+    .code-output-pair .output {
+      margin-top: 0;
+      font-size: 40px;
+      line-height: 1.18;
+    }
+
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 28px;
+      margin-top: 42px;
+    }
+
+    .insight-grid.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .mini-table table { font-size: 32px; }
+    .mini-table th, .mini-table td { padding: 18px 22px; }
+
+    .chart-card {
+      margin-top: 36px;
+      padding: 30px 36px;
       border-radius: 34px;
-      background: rgba(255, 255, 255, 0.78);
-      box-shadow: 0 24px 64px rgba(22, 33, 23, 0.16);
+      background: rgba(255, 255, 255, 0.72);
+      border: 3px solid rgba(29, 111, 77, 0.14);
+      box-shadow: 0 24px 60px rgba(22, 33, 23, 0.14);
     }
 
     .trend-svg {
@@ -389,35 +460,71 @@
       display: block;
     }
 
-    .axis {
-      stroke: rgba(22, 33, 23, 0.4);
-      stroke-width: 3;
+    .axis-label {
+      fill: #66705e;
+      font: 24px "Songti SC", serif;
     }
 
-    .grid-line {
-      stroke: rgba(22, 33, 23, 0.12);
-      stroke-width: 2;
+    .line-new { fill: none; stroke: #d9972f; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+    .line-avg { fill: none; stroke: #1d6f4d; stroke-width: 8; stroke-linecap: round; stroke-linejoin: round; }
+    .line-soft { fill: none; stroke: rgba(29,111,77,.28); stroke-width: 5; stroke-dasharray: 12 12; }
+
+    .legend-row {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      margin-top: 16px;
+      font-size: 34px;
+      color: #293527;
     }
 
-    .trend-line {
-      fill: none;
-      stroke: var(--green);
-      stroke-width: 7;
-      stroke-linecap: round;
-      stroke-linejoin: round;
+    .legend-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 10px;
+      vertical-align: middle;
     }
 
-    .dot {
-      fill: var(--gold);
-      stroke: #fff8dd;
-      stroke-width: 4;
+    .dot-gold { background: #d9972f; }
+    .dot-green { background: #1d6f4d; }
+
+    .formula-card {
+      margin-top: 42px;
+      padding: 42px 48px;
+      border-radius: 34px;
+      background: var(--green-dark);
+      color: #fff1ca;
+      box-shadow: 0 26px 70px rgba(0,0,0,.22);
+      font-size: 48px;
+      line-height: 1.28;
+      font-weight: 800;
     }
 
-    .caption {
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 30px;
+    .formula-card code {
+      color: #fff1ca;
+      font-size: 44px;
     }
+
+    .photo-slide .prompt-box,
+    .photo-slide .output {
+      margin-top: 24px;
+    }
+
+    .compact-list ul {
+      font-size: 38px;
+      line-height: 1.24;
+    }
+
+    .big-question {
+      margin-top: 40px;
+      font-size: 58px;
+      line-height: 1.18;
+      color: var(--green-dark);
+      font-weight: 900;
+    }
+
   </style>
 </head>
 <body class="l7">
@@ -425,344 +532,526 @@
     <section class="slide active center" data-first="true">
       <p class="eyebrow">L7</p>
       <h1>今天和昨天差多少</h1>
-      <p class="lead">掌握时间序列的昨日对比 shift(1)，学会分析数据变化的敏感速度。</p>
+      <p class="lead">从累计数走到每日变化，再用 7 日平均看趋势。</p>
       <div class="badge-row">
         <span class="badge">shift(1)</span>
-        <span class="badge">昨日对比</span>
         <span class="badge">每日新增</span>
-        <span class="badge">最大回撤</span>
+        <span class="badge">7 日平均</span>
+        <span class="badge">趋势图</span>
       </div>
     </section>
-
     <section class="slide center">
       <p class="eyebrow">课前热身</p>
-      <h2>唤醒 L6 与大表过滤</h2>
-      <p class="lead">复习 DataFrame 列重命名、类型转型、排序 values 以及条件筛选。</p>
+      <h2>先把前几节课叫醒</h2>
+      <p class="lead">复习 DataFrame、新增列、排序、多 sheet 和百分比。今天新增两个动作：昨天的数据、最近 7 天的平均。</p>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">Quiz 1 / 4</p>
-      <h2>排序与取首行</h2>
-      <pre class="quiz-code"><code>import pandas as pd
-df = pd.DataFrame({"国家": ["A", "B"], "conNum": [100000, 10000]})
-top_one = df.sort_values(by="conNum", ascending=False).head(1)
-print(top_one["国家"])</code></pre>
+      <p class="eyebrow">Quiz 1 / 8</p>
+      <h2>函数调用：定义了，不等于运行了</h2>
+      <pre class="quiz-code"><code>def make_report(file_name):
+    print("正在处理：", file_name)
+    return "完成"
+
+status = make_report("lesson4.json")
+print(status)</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
-          <h3>1. <code>ascending=False</code> 作用是？</h3>
-          <ul>
-            <li>A. 从小到大升序重排</li>
-            <li>B. 从大到小降序重排</li>
-            <li>C. 只保留前 10 行</li>
-            <li>D. 将列名重命名</li>
-          </ul>
+          <h3>1. 真正触发函数运行的是哪一行？</h3>
+          <ul><li>A. <code>def make_report(file_name):</code></li><li>B. <code>print("正在处理：", file_name)</code></li><li>C. <code>status = make_report("lesson4.json")</code></li><li>D. <code>print(status)</code></li></ul>
         </div>
         <div class="quiz-card">
-          <h3>2. 最后一行 <code>print</code> 输出的国家是？</h3>
-          <ul>
-            <li>A. A</li>
-            <li>B. B</li>
-            <li>C. 国家</li>
-            <li>D. conNum</li>
-          </ul>
+          <h3>2. 变量 <code>status</code> 最后保存的是什么？</h3>
+          <ul><li>A. lesson4.json</li><li>B. 正在处理</li><li>C. 完成</li><li>D. file_name</li></ul>
         </div>
       </div>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">Quiz 2 / 4</p>
-      <h2>布尔条件筛选</h2>
-      <pre class="quiz-code"><code>high_risk = df[df["deathRate"] > 4.0]
-high_risk.to_excel("high_risk.xlsx", index=False)</code></pre>
+      <p class="eyebrow">Quiz 2 / 8</p>
+      <h2>嵌套数据：先找到那一层</h2>
+      <pre class="quiz-code compact"><code>raw_data = {
+    "data": {
+        "history": [
+            {"date": "10.01", "certain": "1000"},
+            {"date": "10.02", "certain": "1260"},
+        ]
+    }
+}
+
+history = raw_data["data"]["history"]
+first_day = history[0]</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
-          <h3>3. <code>df[df["deathRate"] > 4.0]</code> 作用是？</h3>
-          <ul>
-            <li>A. 统计所有大于 4.0 的行数</li>
-            <li>B. 删掉 deathRate 大于 4.0 的行</li>
-            <li>C. 条件筛选出 deathRate 列数值大于 4.0 的行</li>
-            <li>D. 把 deathRate 列的值全部改为 4.0</li>
-          </ul>
+          <h3>3. <code>history</code> 更像什么？</h3>
+          <ul><li>A. 一批按日期排列的记录</li><li>B. 一个 Excel 文件名</li><li>C. 一张已经画好的图</li><li>D. 一个单独的数字</li></ul>
         </div>
         <div class="quiz-card">
-          <h3>4. 筛选后的 <code>high_risk</code> 表格行数？</h3>
-          <ul>
-            <li>A. 和原始 df 的行数一模一样</li>
-            <li>B. 取决于原表中有多少行的值满足条件</li>
-            <li>C. 永远只有 1 行</li>
-            <li>D. 一定是 0 行</li>
-          </ul>
+          <h3>4. <code>first_day["certain"]</code> 取到的是？</h3>
+          <ul><li>A. 10.01</li><li>B. 1000</li><li>C. history</li><li>D. data</li></ul>
         </div>
       </div>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">Quiz 3 / 4</p>
-      <h2>新增计算列与精度</h2>
-      <pre class="quiz-code"><code>df["CureRate"] = (df["Cure"] / df["Certain"] * 100).round(2)</code></pre>
+      <p class="eyebrow">Quiz 3 / 8</p>
+      <h2>DataFrame：只拿这次要分析的列</h2>
+      <pre class="quiz-code"><code>df = pd.DataFrame(
+    history,
+    columns=["date", "certain", "die", "recure"],
+)</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
-          <h3>5. 这一行代表的运算含义是？</h3>
-          <ul>
-            <li>A. 累计治愈除以累计确诊并转百分比保留两位小数</li>
-            <li>B. 累计确诊除以累计治愈保留两位小数</li>
-            <li>C. 将治愈率一列清空</li>
-            <li>D. 绘制治愈人数的百分比柱状图</li>
-          </ul>
+          <h3>5. <code>columns=[...]</code> 在这里更像什么动作？</h3>
+          <ul><li>A. 只挑出本次报告要用的字段</li><li>B. 把所有数字加起来</li><li>C. 按日期从大到小排序</li><li>D. 把表格保存成 Excel</li></ul>
         </div>
         <div class="quiz-card">
-          <h3>6. 如果 <code>Certain</code> 有 0，除法会？</h3>
-          <ul>
-            <li>A. 自动跳过输出 0</li>
-            <li>B. 将 0 变成 1 计算</li>
-            <li>C. 报错 ZeroDivisionError</li>
-            <li>D. 直接跳出函数</li>
-          </ul>
+          <h3>6. 如果原始记录里还有很多字段，会怎样？</h3>
+          <ul><li>A. 没写进 columns 的字段不会进入这张表</li><li>B. pandas 会自动全部保留</li><li>C. 程序一定报错</li><li>D. 字段会变成 sheet 名</li></ul>
         </div>
       </div>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">Quiz 4 / 4</p>
-      <h2>函数定义与局部变量</h2>
-      <pre class="quiz-code"><code>def adjust_price(price):
-    new_price = price * 1.1
-    return round(new_price, 1)
-ans = adjust_price(10.0)
-print(ans)</code></pre>
+      <p class="eyebrow">Quiz 4 / 8</p>
+      <h2>字段名和数据类型</h2>
+      <pre class="quiz-code"><code>df = df.rename(columns={"certain": "累计确诊"})
+df = df.astype({"累计确诊": int})
+
+df["累计确诊"] = df["累计确诊"] + 100</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
-          <h3>7. 最后一行 <code>print(ans)</code> 会打印？</h3>
-          <ul>
-            <li>A. 10.0</li>
-            <li>B. 11.0</li>
-            <li>C. 1.1</li>
-            <li>D. new_price</li>
-          </ul>
+          <h3>7. 哪一行让后面的列名变成中文？</h3>
+          <ul><li>A. <code>rename(...)</code></li><li>B. <code>astype(...)</code></li><li>C. <code>+ 100</code></li><li>D. 这三行都不是</li></ul>
         </div>
         <div class="quiz-card">
-          <h3>8. 若在函数外直接 <code>print(new_price)</code> 会？</h3>
-          <ul>
-            <li>A. 成功打印出 11.0</li>
-            <li>B. 报错 NameError，因为是局部变量</li>
-            <li>C. 打印出 None</li>
-            <li>D. 自动调用该函数</li>
-          </ul>
+          <h3>8. 为什么加 100 前要先 <code>astype</code>？</h3>
+          <ul><li>A. 原始数字可能是文本，直接计算会出问题</li><li>B. 中文列名必须转成整数</li><li>C. Excel 只能保存整数列</li><li>D. 排序之前必须加 100</li></ul>
         </div>
       </div>
     </section>
-
+    <section class="slide">
+      <p class="eyebrow">Quiz 5 / 8</p>
+      <h2>新增列：把原始数字变成指标</h2>
+      <pre class="quiz-code"><code>df["死亡率"] = (
+    df["累计死亡"] / df["累计确诊"] * 100
+).round(2)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>9. 这句代码生成的不是原始数据，而是？</h3>
+          <ul><li>A. 一个计算出来的比例指标</li><li>B. 一个新的 JSON 文件</li><li>C. 一个排序规则</li><li>D. 一个函数参数</li></ul>
+        </div>
+        <div class="quiz-card">
+          <h3>10. 为什么报告里常常需要比例，而不只看人数？</h3>
+          <ul><li>A. 比例更适合比较规模不同的对象</li><li>B. 比例一定比人数更真实</li><li>C. 人数不能保存到 Excel</li><li>D. pandas 只能计算比例</li></ul>
+        </div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">Quiz 6 / 8</p>
+      <h2>排序：先看哪个问题</h2>
+      <pre class="quiz-code"><code>current_top = df.sort_values(
+    by="现存确诊",
+    ascending=False,
+).head(10)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>11. 多选：如果想改成“按累计确诊从高到低排”，哪些改动合理？</h3>
+          <ul><li>A. 把 <code>by="现存确诊"</code> 改成 <code>by="累计确诊"</code></li><li>B. 把 <code>ascending=False</code> 改成 <code>ascending=True</code></li><li>C. 把 <code>head(10)</code> 改成 <code>head("累计确诊")</code></li><li>D. 把变量名 <code>current_top</code> 改成 <code>total_top</code></li></ul>
+        </div>
+        <div class="quiz-card">
+          <h3>12. 这段代码执行后，<code>current_top</code> 里最多有几行？</h3>
+          <ul><li>A. 10 行</li><li>B. 100000 行</li><li>C. 和 df 一样多</li><li>D. 0 行</li></ul>
+        </div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">Quiz 7 / 8</p>
+      <h2>筛选：条件写在中括号里</h2>
+      <pre class="quiz-code"><code>serious = df[df["死亡率"] > 5]
+active = df[df["现存确诊"] > 100000]</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>13. 如果口径改成“死亡率大于等于 5”，第一行条件应该怎么写？</h3>
+          <ul><li>A. <code>df["死亡率"] &gt;= 5</code></li><li>B. <code>df["死亡率"] &lt;= 5</code></li><li>C. <code>df["现存确诊"] &gt;= 5</code></li><li>D. <code>df["死亡率"] = 5</code></li></ul>
+        </div>
+        <div class="quiz-card">
+          <h3>14. 如果要筛出“现存确诊超过 50 万”的地区，哪种写法是对的？</h3>
+          <ul><li>A. <code>df[df["现存确诊"] &gt; 500000]</code></li><li>B. <code>df["现存确诊" &gt; 500000]</code></li><li>C. <code>df[df["死亡率"] &gt; 500000]</code></li><li>D. <code>df[df["现存确诊"] = 500000]</code></li></ul>
+        </div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">Quiz 8 / 8</p>
+      <h2>多 sheet：写入同一个 Excel</h2>
+      <pre class="quiz-code"><code>with pd.ExcelWriter("report.xlsx") as writer:
+    df.to_excel(writer, sheet_name="完整明细", index=False)
+    current_top.to_excel(writer, sheet_name="当前压力Top10", index=False)</code></pre>
+      <div class="quiz-grid">
+        <div class="quiz-card">
+          <h3>15. 这段代码里，哪个对象负责写 Excel 文件？</h3>
+          <ul><li>A. writer</li><li>B. index</li><li>C. sheet_name</li><li>D. current_top</li></ul>
+        </div>
+        <div class="quiz-card">
+          <h3>16. <code>sheet_name="当前压力Top10"</code> 在设置什么？</h3>
+          <ul><li>A. 工作表名字</li><li>B. Excel 文件名</li><li>C. DataFrame 变量名</li><li>D. 行号是否导出</li></ul>
+        </div>
+      </div>
+    </section>
     <section class="slide">
       <p class="eyebrow">今晚路线</p>
-      <h2>挂上昨日红外警报器</h2>
+      <h2>从原始历史，到趋势图</h2>
       <div class="three-col">
-        <div class="card">
-          <h3>1. 整理历史表</h3>
-          <p class="lead">读入疫情历史 JSON，整理出日期和确诊大表。</p>
-        </div>
-        <div class="card">
-          <h3>2. 对齐昨天</h3>
-          <p class="lead">用 <code>shift(1)</code> 产生昨日确诊，与今天对齐于同行。</p>
-        </div>
-        <div class="card dark">
-          <h3>3. 计算新增</h3>
-          <p class="lead">用今天累计减昨天，计算出敏感度最高的新增量并导出。</p>
-        </div>
+        <div class="card"><h3>1. 整理历史数据</h3><p>从 JSON 取出日期、累计确诊、累计死亡、累计治愈。</p></div>
+        <div class="card"><h3>2. 计算每日新增</h3><p>用今天累计减昨天累计，看变化速度。</p></div>
+        <div class="card dark"><h3>3. 输出报告和图</h3><p>导出多 sheet Excel，再保存一张趋势图。</p></div>
       </div>
     </section>
-
     <section class="slide center">
       <p class="eyebrow">#1 今天和昨天差多少</p>
-      <h2>Use yesterday to understand today</h2>
-      <p class="lead">累计大数具有欺骗性，我们要计算速率，先学会把今天与昨天放同行。</p>
+      <h1>生成全球疫情历史变化报告</h1>
+      <p class="lead">前半在 IDE 里完成一个函数：读历史数据、计算新增、导出 Excel 和图片。</p>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">数据对齐</p>
-      <h2>如何让昨天的数据，出现在今天同行？</h2>
-      <pre><code>df["昨日确诊"] = df["累计确诊"].shift(1)</code></pre>
-      <div class="two-col">
-        <div class="card">
-          <h3>shift(1) 原理</h3>
-          <p>把一列数据整体往下挪动一格，原第 0 行往下跑，头部产生空值 <code>NaN</code>。</p>
-        </div>
-        <div class="card dark">
-          <h3>行对齐</h3>
-          <p>挪动一格后，原本属于昨天的数字，刚好对齐在今天的 `昨日确诊` 列同行。</p>
-        </div>
+      <p class="eyebrow">原始数据</p>
+      <h2>一行代表一天</h2>
+      <div class="table-card small-table mini-table align-right">
+        <table>
+          <thead><tr>
+            <th>日期</th>
+            <th>累计确诊</th>
+            <th>累计死亡</th>
+            <th>累计治愈</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td class="num">01.22</td>
+              <td class="num">5</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td class="num">01.23</td>
+              <td class="num">7</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+            </tr>
+            <tr>
+              <td class="num">10.04</td>
+              <td class="num">35151050</td>
+              <td class="num">1034383</td>
+              <td class="num">24494422</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lead">这节课的问题不是“总数是多少”，而是“每天增加了多少，趋势有没有变化”。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 1 目标</p>
+      <h2>先把历史数据整理成 Excel</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>读取 JSON</strong><span>取出 <code>otherhistorylist</code> 这段历史数据。</span></div>
+        <div class="step-row"><strong>保留字段</strong><span>只留下日期、累计确诊、累计死亡、累计治愈。</span></div>
+        <div class="step-row"><strong>按日期排序</strong><span>用 <code>sort_values(by="日期")</code> 让旧日期排前面。</span></div>
+        <div class="step-row"><strong>导出文件</strong><span>保存为 <code>l7_history.xlsx</code>。</span></div>
       </div>
     </section>
-
+    <section class="slide">
+      <p class="eyebrow">阶段 1 Recap</p>
+      <h2>这一步复习旧知识，加一个排序</h2>
+      <div class="three-col">
+        <div class="card"><h3>columns</h3><p>只保留本节课要用的列。</p></div>
+        <div class="card"><h3>rename / astype</h3><p>字段名改中文，文本数字转整数。</p></div>
+        <div class="card dark"><h3>sort_values</h3><p>按日期重新排序，让旧日期在前、新日期在后。</p></div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">读 Excel 前先想一件事</p>
+      <h2>pandas 会猜每一列是什么类型</h2>
+      <div class="three-col">
+        <div class="card"><h3>看起来像数字</h3><p><code>09.26</code> 这种日期，pandas 可能会当成小数。</p></div>
+        <div class="card"><h3>格式可能变形</h3><p>一旦按数字读，前面的 <code>0</code> 就可能消失，变成 <code>9.26</code>。</p></div>
+        <div class="card dark"><h3>明确告诉它</h3><p><code>dtype={"日期": str}</code><br>这列按文字读。</p></div>
+      </div>
+      <p class="lead">读数据时，第一步不是计算，而是先确认数据有没有被读成正确的样子。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 2 目标</p>
+      <h2>用昨天的数据解释今天</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>读回 Excel</strong><span>用 <code>dtype={"日期": str}</code> 保住日期文字格式。</span></div>
+        <div class="step-row"><strong>shift(1)</strong><span>把累计确诊整体往下挪一格，得到昨日确诊。</span></div>
+        <div class="step-row"><strong>新增确诊</strong><span>今天累计确诊 - 昨日确诊。</span></div>
+        <div class="step-row"><strong>导出文件</strong><span>保存为 <code>l7_change_report.xlsx</code>。</span></div>
+      </div>
+    </section>
     <section class="slide">
       <p class="eyebrow">阶段 2 Recap</p>
-      <h2>新增确诊 = 今天累计 - 昨天累计</h2>
-      <ul>
-        <li><code>df["昨日确诊"] = df["累计确诊"].shift(1)</code> 负责完成时间序列的物理重构对齐。</li>
-        <li>第一天没有昨天的数据，对齐产生的昨日确诊列会显示为 <code>NaN</code>（空值）。</li>
-        <li><code>df["新增确诊"] = df["累计确诊"] - df["昨日确诊"]</code> 获得当日精确增量变化。</li>
-        <li><code>to_excel("l7_change_report.xlsx", index=False)</code> 交付增量变化明细。</li>
-      </ul>
+      <h2>数据分析里，读错类型也会出错</h2>
+      <div class="three-col">
+        <div class="card"><h3>shift(1)</h3><p>一列往下挪一格，让同一行同时有今天和昨天。</p></div>
+        <div class="card"><h3>dropna()</h3><p>第一行没有昨天，计算后会空出来。</p></div>
+        <div class="card dark"><h3>dtype</h3><p>pandas 读 Excel 会猜类型，日期像小数就可能变成小数。</p></div>
+      </div>
     </section>
-
+    <section class="slide">
+      <p class="eyebrow">阶段 3 预览</p>
+      <h2>两条线回答两个问题</h2>
+      <div class="chart-card">
+        <svg class="trend-svg" viewBox="0 0 1500 360" role="img" aria-label="新增确诊和七日平均趋势示意图">
+          <line x1="80" y1="305" x2="1440" y2="305" stroke="rgba(22,33,23,.22)" stroke-width="4" />
+          <line x1="80" y1="45" x2="80" y2="305" stroke="rgba(22,33,23,.22)" stroke-width="4" />
+          <path class="line-new" d="M90 255 C190 210 250 250 340 170 S520 80 620 155 S790 275 910 180 S1120 110 1240 150 S1350 225 1430 120" />
+          <path class="line-avg" d="M90 245 C240 225 340 210 470 190 S700 170 860 168 S1090 155 1240 145 S1360 135 1430 130" />
+          <text class="axis-label" x="82" y="340">最近 30 天</text>
+          <text class="axis-label" x="1260" y="340">日期</text>
+        </svg>
+        <div class="legend-row">
+          <span><i class="legend-dot dot-gold"></i>每日新增：抖动更明显</span>
+          <span><i class="legend-dot dot-green"></i>7 日平均：趋势更平滑</span>
+        </div>
+      </div>
+      <p class="mini-note">黄色线看每天的波动，绿色线看更平滑的趋势。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 3 目标</p>
+      <h2>异常日和趋势一起看</h2>
+      <div class="step-ladder">
+        <div class="step-row"><strong>增长率</strong><span>新增确诊 / 昨日累计 × 100。</span></div>
+        <div class="step-row"><strong>7 日平均</strong><span>用最近一周平均，削弱单日波动。</span></div>
+        <div class="step-row"><strong>Top 10</strong><span>找新增最高的日期。</span></div>
+        <div class="step-row"><strong>趋势图</strong><span>保存 <code>l7_new_cases.png</code>，直接看线条变化。</span></div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 3 Recap</p>
+      <h2>这一步把结果变成可看的报告</h2>
+      <div class="three-col">
+        <div class="card"><h3>rolling(7).mean()</h3><p>最近 7 天平均；前 6 天不够 7 天，会先空着。</p></div>
+        <div class="card"><h3>ExcelWriter</h3><p>一个文件里放每日变化和新增 Top10。</p></div>
+        <div class="card dark"><h3>plot + savefig</h3><p>把计算结果保存成图片，方便讲给别人听。</p></div>
+      </div>
+    </section>
     <section class="slide center">
       <p class="eyebrow">后半</p>
       <h1>不是只看总数</h1>
-      <p class="lead">有了 shift，我们能算速度了。接下来我们揭开“总量庞大”和“增长速率”之间的商业博弈密码。</p>
+      <p class="lead">总数告诉你规模，变化告诉你速度。后半看三个例子，把图和表讲成人话。</p>
     </section>
-
     <section class="slide">
       <p class="eyebrow">后半路线</p>
-      <h2>看懂变化速度的三个实战秘密</h2>
+      <h2>三个问题</h2>
       <div class="three-col">
-        <div class="card">
-          <h3>1. 警报器敏感度</h3>
-          <p>累计大数永远是上升的。要看刹车皮和危机爆发，盯死新增。</p>
-        </div>
-        <div class="card">
-          <h3>2. 异常线索</h3>
-          <p>新增最高的一天往往藏着统计噪音、延迟补录或口径更迭。</p>
-        </div>
-        <div class="card dark">
-          <h3>3. 中途回撤</h3>
-          <p>最终赚 35% 却中途跌掉 40%，你的理财账户能否扛到终点？</p>
-        </div>
+        <div class="card"><h3>1. 同类日期</h3><p>周几不同，直接和昨天比可能误判。</p></div>
+        <div class="card"><h3>2. Top10 vs 7日平均</h3><p>异常日和趋势不是同一个问题。</p></div>
+        <div class="card dark"><h3>3. 最大回撤</h3><p>最终赚了，不代表过程好拿。</p></div>
       </div>
     </section>
-
     <section class="slide center">
       <p class="eyebrow">案例 1</p>
-      <h1>累计数还在涨，情况变糟了吗？</h1>
-      <p class="lead">别被“永远攀升的存钱罐”蒙蔽：用新增确诊抓住刹车信号。</p>
+      <h1>先看周期，再谈变化</h1>
+      <p class="lead">时间数据里，周几、节假日、发薪日都会影响数字。</p>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">案例 1 · 原理</p>
-      <h2>存钱罐的丢钱游戏</h2>
-      <div class="two-col">
-        <div class="card">
-          <h3>累计总量 (存钱罐)</h3>
-          <p>第一天丢 10 元，总额 10 元；第二天丢 1 元，总额 11 元。**累计金额一直在爬升**，似乎形势一片大好。</p>
-        </div>
-        <div class="card dark">
-          <h3>新增速度 (增量速度)</h3>
-          <p>但从速度看：投币速度从 10 元暴跌到了 1 元，**速度事实上崩塌了 90%**！</p>
-        </div>
-      </div>
-      <p class="lead">如果你的公关或业务出现危机，你只看累计客户投诉，就会被永远上升的数字累死。看新增，才能知道你的危机治理是否见效。</p>
-    </section>
-
-    <section class="slide">
-      <p class="eyebrow">案例 1 · 讨论</p>
-      <h2>速度与体量的博弈</h2>
-      <ul>
-        <li>如果新增销售额连续半个月腰斩，但累计总销售额依然在上升，能说明公司业务极其健康吗？</li>
-        <li>如果本周新增客诉掉头向下接近零，但累计客诉总量极高，此时紧急公关警报解除了吗？</li>
-        <li>看累计大数和看新增变化速率，分别在指导哪一层面的经营？</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <p class="eyebrow">案例 1 · 所以呢</p>
-      <h2>新增数更接近变化速度</h2>
-      <div class="two-col">
-        <div class="card">
-          <h3>累计大数看规模</h3>
-          <p>累计数适合看规模。只要还有新增，它通常就会继续上升。</p>
-        </div>
-        <div class="card dark">
-          <h3>新增数看速度</h3>
-          <p><strong>每日新增（今天累计 - 昨天累计）</strong> 更适合观察变化是在加快还是放慢。</p>
-        </div>
-      </div>
-      <p class="lead">常识落脚点：累计数看规模，新增数看速度。两个指标回答的是不同问题。</p>
-    </section>
-
-    <section class="slide center">
-      <p class="eyebrow">案例 2</p>
-      <h1>找新增最高的一天</h1>
-      <p class="lead">新增最高的一天很值得看，但它首先是线索，不是结论。</p>
-    </section>
-
-    <section class="slide">
-      <p class="eyebrow">案例 2 · 讨论</p>
-      <h2>异常日期，先查口径和噪音</h2>
-      <ul>
-        <li>如果新增最高的一天刚好是周一，能不能直接说那天疫情最严重？</li>
-        <li>有没有可能是周末延迟上报，集中补录到周一？</li>
-        <li>如果当天统计口径变化，数字会不会突然变大？</li>
-      </ul>
-    </section>
-
-    <section class="slide">
-      <p class="eyebrow">案例 2 · 所以呢</p>
-      <h2>异常值是线索，不是铁证</h2>
-      <div class="two-col">
-        <div class="card">
-          <h3>先排除数据噪音</h3>
-          <p>看到异常大数，不要立刻推导原因。延迟上报、集中补录都可能让某一天突然变高。</p>
-        </div>
-        <div class="card dark">
-          <h3>口径变更常有发生</h3>
-          <p>统计口径变化也会让数据突然变大。异常日值得追问，但需要更多材料解释。</p>
-        </div>
-      </div>
-      <p class="lead">常识落脚点：异常只是线索，不是铁证。先查补录、延迟、口径变化，再谈原因。</p>
-    </section>
-
-    <section class="slide center">
-      <p class="eyebrow">案例 3</p>
-      <h1>最大回撤：收益之外的痛感</h1>
-      <p class="lead">只看“最终赚了多少”不够。中途跌多深，决定很多人能不能拿得住。</p>
-    </section>
-
-    <section class="slide">
-      <p class="eyebrow">案例 3 · 数据</p>
-      <h2>两只理财产品，怎么选？</h2>
-      <div class="table-card">
+      <p class="eyebrow">案例 1 · 数据</p>
+      <h2>同一家奶茶店，跨一周订单</h2>
+      <div class="table-card small-table mini-table two-left">
         <table>
-          <tr><th>理财产品</th><th class="num">最终年化收益率</th><th class="num">中途最惨本金缩水 (最大回撤)</th><th>真实持仓体验</th></tr>
-          <tr><td>产品 A</td><td class="num">20%</td><td class="num">-5%</td><td>稳健前行，基本不慌</td></tr>
-          <tr><td>产品 B</td><td class="num">35%</td><td class="num">-40%</td><td>收益更高，但过程波动更大</td></tr>
+          <thead><tr>
+            <th>日期</th>
+            <th>星期</th>
+            <th>订单数</th>
+          </tr></thead>
+          <tbody>
+            <tr><td>5.10</td><td>周日</td><td class="num">230</td></tr>
+            <tr><td>5.11</td><td>周一</td><td class="num">132</td></tr>
+            <tr><td>5.12</td><td>周二</td><td class="num">148</td></tr>
+            <tr><td>5.13</td><td>周三</td><td class="num">158</td></tr>
+            <tr><td>5.14</td><td>周四</td><td class="num">165</td></tr>
+            <tr><td>5.15</td><td>周五</td><td class="num">205</td></tr>
+            <tr><td>5.16</td><td>周六</td><td class="num">275</td></tr>
+            <tr><td>5.17</td><td>周日</td><td class="num">248</td></tr>
+          </tbody>
         </table>
       </div>
-      <p class="lead">从最终收益看，B 赚得最多。但如果中途 100 万缩水到 60 万，你能不能拿得住？</p>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">案例 3 · 讨论</p>
-      <h2>最后赚多少 vs 中途跌多深</h2>
+      <p class="eyebrow">案例 1 · 问题</p>
+      <h2>这组订单该怎么看？</h2>
       <ul>
-        <li>如果中途账户跌了 40%，你真的能坚持到最后吗？</li>
-        <li>如果中途已经卖出，最后收益再高，对你还有意义吗？</li>
-        <li>为什么回测结果要同时看收益率和最大回撤？</li>
+        <li>周日比周六少，是不是说明生意变差了？</li>
+        <li>平日和周末的订单节奏有什么差别？</li>
+        <li>如果你是店长，排班和备货会怎么调整？</li>
       </ul>
     </section>
-
     <section class="slide">
-      <p class="eyebrow">案例 3 · 所以呢</p>
-      <h2>收益率看终点，回撤看过程</h2>
-      <div class="two-col">
-        <div class="card">
-          <h3>收益率看结果</h3>
-          <p>收益率回答“最后赚了多少”。但它不告诉你中途经历了多大的下跌。</p>
-        </div>
-        <div class="card dark">
-          <h3>最大回撤是安全红线</h3>
-          <p>最大回撤回答“从最高点往下，最深跌过多少”。这个指标能提醒过程风险。</p>
+      <p class="eyebrow">案例 1 · 所以呢</p>
+      <h2>先选比较口径，再谈好坏</h2>
+      <div class="three-col">
+        <div class="card"><h3>经营动作</h3><p>排班和备货看星期规律，不看某一天的孤立升降。</p></div>
+        <div class="card"><h3>趋势判断</h3><p>同类日期连续变差，才更像真实下滑。</p></div>
+        <div class="card dark"><h3>判断口径</h3><p>结论要带比较对象：比昨天、比上周，含义不一样。</p></div>
+      </div>
+    </section>
+    <section class="slide photo-slide">
+      <p class="eyebrow">AI 可选 · 案例 1</p>
+      <h2>拍这页，让 AI 帮你判断比较口径</h2>
+<div class="ai-photo-grid">
+      <pre class="output small"><code>奶茶店订单：
+5.10 周日 230
+5.11 周一 132
+5.12 周二 148
+5.13 周三 158
+5.14 周四 165
+5.15 周五 205
+5.16 周六 275
+5.17 周日 248</code></pre>
+<div class="prompt-box small">5.17 比 5.16 少 27 单，
+但比上周日 5.10 多 18 单。
+请分析：
+1. 订单数有什么周期规律？
+2. 能不能直接说生意变差？
+3. 店长排班和备货要注意什么？</div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">AI 参考输出 · 案例 1</p>
+      <h2>关键是“同类日期”</h2>
+      <pre class="output answer-output"><code>这组数据里，周末订单明显高于工作日，周六最高，周日也高于多数平日。
+
+5.17 比 5.16 少，不能直接说明生意变差，因为周六和周日的消费节奏不同。
+
+如果要判断周日表现，应该继续看更多周日数据；如果做排班备货，周五到周日更需要准备人手和库存。
+
+结论：时间数据要先看周期，再谈趋势和动作。</code></pre>
+    </section>
+    <section class="slide center">
+      <p class="eyebrow">案例 2</p>
+      <h1>Top 10 找异常，7 日平均看趋势</h1>
+      <p class="lead">同一份每日新增数据，可以问两个完全不同的问题。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 轻代码</p>
+      <h2>两句代码，两种用途</h2>
+      <pre class="quiz-code"><code>top10 = df.sort_values(by=&quot;新增确诊&quot;, ascending=False).head(10)
+df[&quot;7日平均新增&quot;] = df[&quot;新增确诊&quot;].rolling(7).mean().round(0)</code></pre>
+      <ul>
+        <li>Top 10：找新增最高的日期。</li>
+        <li>7 日平均：看趋势有没有持续变化。</li>
+      </ul>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 效果</p>
+      <h2>单日新增会抖，7 日平均更稳</h2>
+      <div class="chart-card">
+        <svg class="trend-svg" viewBox="0 0 1500 360" role="img" aria-label="单日新增和七日平均趋势示意图">
+          <line x1="80" y1="305" x2="1440" y2="305" stroke="rgba(22,33,23,.22)" stroke-width="4" />
+          <line x1="80" y1="45" x2="80" y2="305" stroke="rgba(22,33,23,.22)" stroke-width="4" />
+          <path class="line-new" d="M90 250 C180 230 240 245 320 225 S470 205 560 215 S690 60 780 185 S930 230 1040 198 S1190 175 1300 190 S1390 160 1430 150" />
+          <path class="line-avg" d="M90 246 C240 238 370 226 520 218 S740 210 900 202 S1110 190 1260 180 S1370 168 1430 160" />
+          <line x1="690" y1="78" x2="690" y2="305" stroke="#d9972f" stroke-width="5" stroke-linecap="round" stroke-dasharray="12 14" opacity=".78" />
+          <text class="axis-label" x="640" y="55">单日冲高</text>
+          <text class="axis-label" x="82" y="340">日期</text>
+          <text class="axis-label" x="1260" y="340">最近 30 天</text>
+        </svg>
+        <div class="legend-row">
+          <span><i class="legend-dot dot-gold"></i>每日新增：容易被某一天拉高</span>
+          <span><i class="legend-dot dot-green"></i>7 日平均：看连续方向</span>
         </div>
       </div>
-      <p class="lead">常识落脚点：评估真实投资风险时，收益率和最大回撤要一起看。终点重要，过程也重要。</p>
+      <p class="mini-note">一个高点先当线索，不急着当结论。</p>
     </section>
-
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 问题</p>
+      <h2>尖峰和均线，要分开读</h2>
+      <ul>
+        <li>黄色线那个单日冲高，适合写成“趋势变坏”吗？</li>
+        <li>绿色线缓慢上行，说明它不是完全偶发；还需要看什么？</li>
+        <li>如果要安排下一步，是先查冲高那一天，还是继续观察后面几天？</li>
+      </ul>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">案例 2 · 所以呢</p>
+      <h2>先定位异常，再验证趋势</h2>
+      <div class="three-col">
+        <div class="card"><h3>尖峰</h3><p>是调查入口，不是原因本身。</p></div>
+        <div class="card"><h3>均线</h3><p>看尖峰背后有没有连续抬升。</p></div>
+        <div class="card dark"><h3>行动</h3><p>一边查异常日，一边盯后续均线有没有继续走高。</p></div>
+      </div>
+    </section>
+    <section class="slide center">
+      <p class="eyebrow">案例 3</p>
+      <h1>最大回撤：过程里的痛感</h1>
+      <p class="lead">换成股票例子：最后赚了，不代表中途好拿。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 冲突</p>
+      <h2>收益更高，就一定更好吗？</h2>
+      <div class="table-card small-table mini-table mixed-table">
+        <table>
+          <thead><tr>
+            <th>股票</th>
+            <th>最终收益</th>
+            <th>中途最大下跌</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td>A</td>
+              <td class="num">20%</td>
+              <td class="num">8%</td>
+            </tr>
+            <tr>
+              <td>B</td>
+              <td class="num">35%</td>
+              <td class="num">40%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="compact-list">
+        <ul>
+          <li>如果你是保守型，A 和 B 哪个更容易拿住？</li>
+          <li>如果你追求高收益，B 的 -40% 需要提前接受什么代价？</li>
+          <li>比较两个方案时，只看收益率还缺哪一项？</li>
+        </ul>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 图解</p>
+      <h2>回撤看的是：从最高点跌下去多少</h2>
+      <div class="chart-card">
+        <svg class="trend-svg" viewBox="0 0 1500 360" role="img" aria-label="最大回撤示意图">
+          <line x1="80" y1="305" x2="1440" y2="305" stroke="rgba(22,33,23,.22)" stroke-width="4" />
+          <line x1="80" y1="45" x2="80" y2="305" stroke="rgba(22,33,23,.22)" stroke-width="4" />
+          <path class="line-avg" d="M90 235 C180 210 260 160 360 118 S540 84 650 105 S800 210 910 238 C1040 230 1190 104 1330 74 C1370 74 1410 86 1430 92" />
+          <line x1="910" y1="74" x2="1330" y2="74" stroke="#d9972f" stroke-width="6" stroke-linecap="round" />
+          <line x1="910" y1="74" x2="910" y2="238" stroke="#d9972f" stroke-width="6" stroke-linecap="round" stroke-dasharray="14 14" />
+          <circle cx="1330" cy="74" r="13" fill="#d9972f" />
+          <circle cx="910" cy="238" r="13" fill="#d9972f" />
+          <text class="axis-label" x="1258" y="46">最高点</text>
+          <text class="axis-label" x="940" y="54">这段跌幅，就是回撤</text>
+          <text class="axis-label" x="942" y="286">最大回撤点</text>
+        </svg>
+        <div class="legend-row">
+          <span><i class="legend-dot dot-green"></i>价格曲线</span>
+          <span><i class="legend-dot dot-gold"></i>从高点到低点的跌幅</span>
+        </div>
+      </div>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">案例 3 · 所以呢</p>
+      <h2>不是收益越高越适合</h2>
+      <div class="three-col">
+        <div class="card"><h3>结果</h3><p>收益高，只说明终点诱人。</p></div>
+        <div class="card"><h3>过程</h3><p>最大回撤是在问：最难受的时候，你还拿不拿得住。</p></div>
+        <div class="card dark"><h3>选择</h3><p>如果中途会被迫退出，最后的收益率就是纸面数字。</p></div>
+      </div>
+    </section>
     <section class="slide">
       <p class="eyebrow">今晚记住这几句</p>
-      <h2>从时间挪格，到速度觉察</h2>
+      <h2>从今天和昨天，到趋势</h2>
       <ul>
-        <li><code>shift(1)</code> 把数据下挪一格，把“今天”和“昨天”奇妙地对齐在同行，为增量计算打下地基。</li>
-        <li>累计总量看财富规模；新增确诊变化速率（今天累计 - 昨天累计）才代表实时的“油门与刹车”。</li>
-        <li>异常高增长日不一定代表真实爆发，先查补录、延迟和统计口径。</li>
-        <li>收益率看终点；最大回撤看中途最难熬的那段。</li>
-        <li>AI 能帮你把趋势图说成人话，但要防止它把“时间相关”写成“必然因果”。</li>
+        <li>比较之前先确认口径：昨天、同类日期、平均线，回答的是不同问题。</li>
+        <li><code>shift(1)</code> 让今天和昨天出现在同一行。</li>
+        <li>Top 10 找调查入口，7 日平均看方向是否持续。</li>
+        <li>图表不是装饰，它能让变化一眼看出来。</li>
+        <li>最大回撤不是看最后赚多少，而是看中途会不会把你逼到提前退出。</li>
       </ul>
     </section>
   </main>
@@ -818,6 +1107,7 @@ print(ans)</code></pre>
 
     window.addEventListener("hashchange", fromHash);
     fromHash();
+
   </script>
 </body>
 </html>
