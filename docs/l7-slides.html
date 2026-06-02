@@ -557,11 +557,11 @@ print(status)</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>1. 真正触发函数运行的是哪一行？</h3>
-          <ul><li>A. <code>def make_report(file_name):</code></li><li>B. <code>print("正在处理：", file_name)</code></li><li>C. <code>status = make_report("lesson4.json")</code></li><li>D. <code>print(status)</code></li></ul>
+          <ul><li>A. <code>print(status)</code></li><li>B. <code>def make_report(file_name):</code></li><li>C. <code>status = make_report("lesson4.json")</code></li><li>D. <code>print("正在处理：", file_name)</code></li></ul>
         </div>
         <div class="quiz-card">
           <h3>2. 变量 <code>status</code> 最后保存的是什么？</h3>
-          <ul><li>A. lesson4.json</li><li>B. 正在处理</li><li>C. 完成</li><li>D. file_name</li></ul>
+          <ul><li>A. 完成</li><li>B. file_name</li><li>C. lesson4.json</li><li>D. 正在处理</li></ul>
         </div>
       </div>
     </section>
@@ -582,11 +582,11 @@ first_day = history[0]</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>3. <code>history</code> 更像什么？</h3>
-          <ul><li>A. 一批按日期排列的记录</li><li>B. 一个 Excel 文件名</li><li>C. 一张已经画好的图</li><li>D. 一个单独的数字</li></ul>
+          <ul><li>A. 一个单独的数字</li><li>B. 一批按日期排列的记录</li><li>C. 一个 Excel 文件名</li><li>D. 一张已经画好的图</li></ul>
         </div>
         <div class="quiz-card">
           <h3>4. <code>first_day["certain"]</code> 取到的是？</h3>
-          <ul><li>A. 10.01</li><li>B. 1000</li><li>C. history</li><li>D. data</li></ul>
+          <ul><li>A. data</li><li>B. 10.01</li><li>C. 1000</li><li>D. history</li></ul>
         </div>
       </div>
     </section>
@@ -600,11 +600,11 @@ first_day = history[0]</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>5. <code>columns=[...]</code> 在这里更像什么动作？</h3>
-          <ul><li>A. 只挑出本次报告要用的字段</li><li>B. 把所有数字加起来</li><li>C. 按日期从大到小排序</li><li>D. 把表格保存成 Excel</li></ul>
+          <ul><li>A. 按日期从大到小排序</li><li>B. 把表格保存成 Excel</li><li>C. 把所有数字加起来</li><li>D. 只挑出本次报告要用的字段</li></ul>
         </div>
         <div class="quiz-card">
           <h3>6. 如果原始记录里还有很多字段，会怎样？</h3>
-          <ul><li>A. 没写进 columns 的字段不会进入这张表</li><li>B. pandas 会自动全部保留</li><li>C. 程序一定报错</li><li>D. 字段会变成 sheet 名</li></ul>
+          <ul><li>A. 没写进 columns 的字段不会进入这张表</li><li>B. pandas 会自动全部保留</li><li>C. 字段会变成 sheet 名</li><li>D. 程序一定报错</li></ul>
         </div>
       </div>
     </section>
@@ -618,11 +618,11 @@ df["累计确诊"] = df["累计确诊"] + 100</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>7. 哪一行让后面的列名变成中文？</h3>
-          <ul><li>A. <code>rename(...)</code></li><li>B. <code>astype(...)</code></li><li>C. <code>+ 100</code></li><li>D. 这三行都不是</li></ul>
+          <ul><li>A. <code>astype(...)</code></li><li>B. <code>rename(...)</code></li><li>C. <code>+ 100</code></li><li>D. 这三行都不是</li></ul>
         </div>
         <div class="quiz-card">
           <h3>8. 为什么加 100 前要先 <code>astype</code>？</h3>
-          <ul><li>A. 原始数字可能是文本，直接计算会出问题</li><li>B. 中文列名必须转成整数</li><li>C. Excel 只能保存整数列</li><li>D. 排序之前必须加 100</li></ul>
+          <ul><li>A. Excel 只能保存整数列</li><li>B. 中文列名必须转成整数</li><li>C. 原始数字可能是文本，直接计算会出问题</li><li>D. 排序之前必须加 100</li></ul>
         </div>
       </div>
     </section>
@@ -635,11 +635,11 @@ df["累计确诊"] = df["累计确诊"] + 100</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>9. 这句代码生成的不是原始数据，而是？</h3>
-          <ul><li>A. 一个计算出来的比例指标</li><li>B. 一个新的 JSON 文件</li><li>C. 一个排序规则</li><li>D. 一个函数参数</li></ul>
+          <ul><li>A. 一个新的 JSON 文件</li><li>B. 一个排序规则</li><li>C. 一个函数参数</li><li>D. 一个计算出来的比例指标</li></ul>
         </div>
         <div class="quiz-card">
           <h3>10. 为什么报告里常常需要比例，而不只看人数？</h3>
-          <ul><li>A. 比例更适合比较规模不同的对象</li><li>B. 比例一定比人数更真实</li><li>C. 人数不能保存到 Excel</li><li>D. pandas 只能计算比例</li></ul>
+          <ul><li>A. 比例更适合比较规模不同的对象</li><li>B. 人数不能保存到 Excel</li><li>C. 比例一定比人数更真实</li><li>D. pandas 只能计算比例</li></ul>
         </div>
       </div>
     </section>
@@ -653,11 +653,11 @@ df["累计确诊"] = df["累计确诊"] + 100</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>11. 多选：如果想改成“按累计确诊从高到低排”，哪些改动合理？</h3>
-          <ul><li>A. 把 <code>by="现存确诊"</code> 改成 <code>by="累计确诊"</code></li><li>B. 把 <code>ascending=False</code> 改成 <code>ascending=True</code></li><li>C. 把 <code>head(10)</code> 改成 <code>head("累计确诊")</code></li><li>D. 把变量名 <code>current_top</code> 改成 <code>total_top</code></li></ul>
+          <ul><li>A. 把 <code>head(10)</code> 改成 <code>head("累计确诊")</code></li><li>B. 把 <code>ascending=False</code> 改成 <code>ascending=True</code></li><li>C. 把 <code>by="现存确诊"</code> 改成 <code>by="累计确诊"</code></li><li>D. 把变量名 <code>current_top</code> 改成 <code>total_top</code></li></ul>
         </div>
         <div class="quiz-card">
           <h3>12. 这段代码执行后，<code>current_top</code> 里最多有几行？</h3>
-          <ul><li>A. 10 行</li><li>B. 100000 行</li><li>C. 和 df 一样多</li><li>D. 0 行</li></ul>
+          <ul><li>A. 0 行</li><li>B. 和 df 一样多</li><li>C. 10 行</li><li>D. 100000 行</li></ul>
         </div>
       </div>
     </section>
@@ -669,11 +669,11 @@ active = df[df["现存确诊"] > 100000]</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>13. 如果口径改成“死亡率大于等于 5”，第一行条件应该怎么写？</h3>
-          <ul><li>A. <code>df["死亡率"] &gt;= 5</code></li><li>B. <code>df["死亡率"] &lt;= 5</code></li><li>C. <code>df["现存确诊"] &gt;= 5</code></li><li>D. <code>df["死亡率"] = 5</code></li></ul>
+          <ul><li>A. <code>df["死亡率"] &lt;= 5</code></li><li>B. <code>df["现存确诊"] &gt;= 5</code></li><li>C. <code>df["死亡率"] = 5</code></li><li>D. <code>df["死亡率"] &gt;= 5</code></li></ul>
         </div>
         <div class="quiz-card">
           <h3>14. 如果要筛出“现存确诊超过 50 万”的地区，哪种写法是对的？</h3>
-          <ul><li>A. <code>df[df["现存确诊"] &gt; 500000]</code></li><li>B. <code>df["现存确诊" &gt; 500000]</code></li><li>C. <code>df[df["死亡率"] &gt; 500000]</code></li><li>D. <code>df[df["现存确诊"] = 500000]</code></li></ul>
+          <ul><li>A. <code>df["现存确诊" &gt; 500000]</code></li><li>B. <code>df[df["现存确诊"] &gt; 500000]</code></li><li>C. <code>df[df["死亡率"] &gt; 500000]</code></li><li>D. <code>df[df["现存确诊"] = 500000]</code></li></ul>
         </div>
       </div>
     </section>
@@ -686,11 +686,11 @@ active = df[df["现存确诊"] > 100000]</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>15. 这段代码里，哪个对象负责写 Excel 文件？</h3>
-          <ul><li>A. writer</li><li>B. index</li><li>C. sheet_name</li><li>D. current_top</li></ul>
+          <ul><li>A. writer</li><li>B. current_top</li><li>C. sheet_name</li><li>D. index</li></ul>
         </div>
         <div class="quiz-card">
           <h3>16. <code>sheet_name="当前压力Top10"</code> 在设置什么？</h3>
-          <ul><li>A. 工作表名字</li><li>B. Excel 文件名</li><li>C. DataFrame 变量名</li><li>D. 行号是否导出</li></ul>
+          <ul><li>A. DataFrame 变量名</li><li>B. 工作表名字</li><li>C. Excel 文件名</li><li>D. 行号是否导出</li></ul>
         </div>
       </div>
     </section>
@@ -923,22 +923,22 @@ active = df[df["现存确诊"] > 100000]</code></pre>
     </section>
     <section class="slide center">
       <p class="eyebrow">案例 2</p>
-      <h1>Top 10 找异常，7 日平均看趋势</h1>
-      <p class="lead">同一份每日新增数据，可以问两个完全不同的问题。</p>
+      <h1>一个尖峰，和一段趋势</h1>
+      <p class="lead">单日冲高像警报，7 日平均才更像方向。</p>
     </section>
     <section class="slide">
       <p class="eyebrow">案例 2 · 轻代码</p>
-      <h2>两句代码，两种用途</h2>
+      <h2>同一张表，两个观察口径</h2>
       <pre class="quiz-code"><code>top10 = df.sort_values(by=&quot;新增确诊&quot;, ascending=False).head(10)
 df[&quot;7日平均新增&quot;] = df[&quot;新增确诊&quot;].rolling(7).mean().round(0)</code></pre>
       <ul>
-        <li>Top 10：找新增最高的日期。</li>
-        <li>7 日平均：看趋势有没有持续变化。</li>
+        <li>Top 10：先把最异常的日期找出来。</li>
+        <li>7 日平均：再看异常是否延续成方向。</li>
       </ul>
     </section>
     <section class="slide">
       <p class="eyebrow">案例 2 · 效果</p>
-      <h2>单日新增会抖，7 日平均更稳</h2>
+      <h2>尖峰是事件，均线是方向</h2>
       <div class="chart-card">
         <svg class="trend-svg" viewBox="0 0 1500 360" role="img" aria-label="单日新增和七日平均趋势示意图">
           <line x1="80" y1="305" x2="1440" y2="305" stroke="rgba(22,33,23,.22)" stroke-width="4" />
@@ -955,34 +955,34 @@ df[&quot;7日平均新增&quot;] = df[&quot;新增确诊&quot;].rolling(7).mean(
           <span><i class="legend-dot dot-green"></i>7 日平均：看连续方向</span>
         </div>
       </div>
-      <p class="mini-note">一个高点先当线索，不急着当结论。</p>
+      <p class="mini-note">单日最高那天要查原因；均线连续抬头，才说明后面几天也在变。</p>
     </section>
     <section class="slide">
       <p class="eyebrow">案例 2 · 问题</p>
       <h2>尖峰和均线，要分开读</h2>
       <ul>
-        <li>黄色线那个单日冲高，适合写成“趋势变坏”吗？</li>
-        <li>绿色线缓慢上行，说明它不是完全偶发；还需要看什么？</li>
-        <li>如果要安排下一步，是先查冲高那一天，还是继续观察后面几天？</li>
+        <li>只看到 Top 10 里的最高日，下一步应该先查什么？</li>
+        <li>如果 7 日平均也持续抬升，报告口吻应该怎么变化？</li>
+        <li>给别人汇报时，怎样避免把“某一天异常”说成“趋势已经变坏”？</li>
       </ul>
     </section>
     <section class="slide">
       <p class="eyebrow">案例 2 · 所以呢</p>
-      <h2>先定位异常，再验证趋势</h2>
+      <h2>先查异常日，再看是否持续</h2>
       <div class="three-col">
-        <div class="card"><h3>尖峰</h3><p>是调查入口，不是原因本身。</p></div>
-        <div class="card"><h3>均线</h3><p>看尖峰背后有没有连续抬升。</p></div>
-        <div class="card dark"><h3>行动</h3><p>一边查异常日，一边盯后续均线有没有继续走高。</p></div>
+        <div class="card"><h3>尖峰</h3><p>适合追问：那天发生了什么。</p></div>
+        <div class="card"><h3>均线</h3><p>适合判断：变化是否延续。</p></div>
+        <div class="card dark"><h3>写报告</h3><p>把“异常日”和“持续趋势”分开说。</p></div>
       </div>
     </section>
     <section class="slide center">
       <p class="eyebrow">案例 3</p>
-      <h1>最大回撤：过程里的痛感</h1>
-      <p class="lead">换成股票例子：最后赚了，不代表中途好拿。</p>
+      <h1>只看终点，会漏掉路上的风险</h1>
+      <p class="lead">换成股票例子：最后赚了，不代表中途拿得住。</p>
     </section>
     <section class="slide">
       <p class="eyebrow">案例 3 · 冲突</p>
-      <h2>收益更高，就一定更好吗？</h2>
+      <h2>B 赚更多，但过程更难扛</h2>
       <div class="table-card small-table mini-table mixed-table">
         <table>
           <thead><tr>
@@ -1006,41 +1006,42 @@ df[&quot;7日平均新增&quot;] = df[&quot;新增确诊&quot;].rolling(7).mean(
       </div>
       <div class="compact-list">
         <ul>
-          <li>如果你是保守型，A 和 B 哪个更容易拿住？</li>
-          <li>如果你追求高收益，B 的 -40% 需要提前接受什么代价？</li>
-          <li>比较两个方案时，只看收益率还缺哪一项？</li>
+          <li>如果中途跌 40%，你还会继续拿着吗？</li>
+          <li>如果会提前卖掉，最后的 35% 还和你有关系吗？</li>
+          <li>比较两个方案时，除了收益率，还要看哪条路更能承受？</li>
         </ul>
       </div>
     </section>
     <section class="slide">
       <p class="eyebrow">案例 3 · 图解</p>
-      <h2>回撤看的是：从最高点跌下去多少</h2>
+      <h2>终点高，不代表过程好拿</h2>
       <div class="chart-card">
-        <svg class="trend-svg" viewBox="0 0 1500 360" role="img" aria-label="最大回撤示意图">
+        <svg class="trend-svg" viewBox="0 0 1500 360" role="img" aria-label="两条股票路径对比图">
           <line x1="80" y1="305" x2="1440" y2="305" stroke="rgba(22,33,23,.22)" stroke-width="4" />
           <line x1="80" y1="45" x2="80" y2="305" stroke="rgba(22,33,23,.22)" stroke-width="4" />
-          <path class="line-avg" d="M90 235 C180 210 260 160 360 118 S540 84 650 105 S800 210 910 238 C1040 230 1190 104 1330 74 C1370 74 1410 86 1430 92" />
-          <line x1="910" y1="74" x2="1330" y2="74" stroke="#d9972f" stroke-width="6" stroke-linecap="round" />
-          <line x1="910" y1="74" x2="910" y2="238" stroke="#d9972f" stroke-width="6" stroke-linecap="round" stroke-dasharray="14 14" />
-          <circle cx="1330" cy="74" r="13" fill="#d9972f" />
-          <circle cx="910" cy="238" r="13" fill="#d9972f" />
-          <text class="axis-label" x="1258" y="46">最高点</text>
-          <text class="axis-label" x="940" y="54">这段跌幅，就是回撤</text>
-          <text class="axis-label" x="942" y="286">最大回撤点</text>
+          <path class="line-avg" d="M90 245 C210 238 330 230 460 218 S710 202 860 192 S1130 170 1430 154" />
+          <path class="line-new" d="M90 250 C210 210 330 150 470 94 S660 118 760 258 S980 250 1120 190 S1290 125 1430 116" />
+          <line x1="470" y1="94" x2="760" y2="258" stroke="#d9972f" stroke-width="6" stroke-linecap="round" stroke-dasharray="14 14" opacity=".85" />
+          <circle cx="470" cy="94" r="13" fill="#d9972f" />
+          <circle cx="760" cy="258" r="13" fill="#d9972f" />
+          <text class="axis-label" x="500" y="82">B 的阶段高点</text>
+          <text class="axis-label" x="786" y="286">中途最大下跌</text>
+          <text class="axis-label" x="1280" y="104">B 终点更高</text>
+          <text class="axis-label" x="1210" y="160">A 更平稳</text>
         </svg>
         <div class="legend-row">
-          <span><i class="legend-dot dot-green"></i>价格曲线</span>
-          <span><i class="legend-dot dot-gold"></i>从高点到低点的跌幅</span>
+          <span><i class="legend-dot dot-green"></i>A：收益低一些，但路更平</span>
+          <span><i class="legend-dot dot-gold"></i>B：终点更高，但中途更痛</span>
         </div>
       </div>
     </section>
     <section class="slide">
       <p class="eyebrow">案例 3 · 所以呢</p>
-      <h2>不是收益越高越适合</h2>
+      <h2>收益高，也要拿得住</h2>
       <div class="three-col">
-        <div class="card"><h3>结果</h3><p>收益高，只说明终点诱人。</p></div>
-        <div class="card"><h3>过程</h3><p>最大回撤是在问：最难受的时候，你还拿不拿得住。</p></div>
-        <div class="card dark"><h3>选择</h3><p>如果中途会被迫退出，最后的收益率就是纸面数字。</p></div>
+        <div class="card"><h3>终点</h3><p>收益率只告诉你最后到了哪里。</p></div>
+        <div class="card"><h3>路上</h3><p>最大回撤告诉你中途会有多难受。</p></div>
+        <div class="card dark"><h3>选择</h3><p>拿不住的收益，最后只是纸面数字。</p></div>
       </div>
     </section>
     <section class="slide">

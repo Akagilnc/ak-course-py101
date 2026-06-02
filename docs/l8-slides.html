@@ -354,7 +354,7 @@
       font-weight: 900;
     }
 
-    .num { text-align: right; font-family: "SF Mono", "Menlo", monospace; }
+    .num { text-align: left; font-family: "SF Mono", "Menlo", monospace; }
 
     .ai-photo-grid {
       display: grid;
@@ -386,6 +386,35 @@
       color: var(--green-dark);
       font-size: 36px;
       font-weight: 800;
+    }
+
+    .graduation-layout {
+      display: grid;
+      grid-template-columns: 1fr 460px;
+      gap: 76px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .qr-card {
+      padding: 26px;
+      border-radius: 36px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 30px 88px rgba(22, 33, 23, 0.2);
+      text-align: center;
+    }
+
+    .qr-card img {
+      display: block;
+      width: 100%;
+      border-radius: 24px;
+    }
+
+    .qr-card p {
+      margin: 22px 0 0;
+      color: var(--green-dark);
+      font-size: 34px;
+      font-weight: 900;
     }
 
     .code-output-pair {
@@ -529,11 +558,11 @@ print(provinces[0][&quot;name&quot;])</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>1. 最后一行输出什么？</h3>
-          <ul><li>A. 北京</li><li>B. 广东</li><li>C. list</li><li>D. name</li></ul>
+          <ul><li>A. list</li><li>B. 广东</li><li>C. 北京</li><li>D. name</li></ul>
         </div>
         <div class="quiz-card">
           <h3>2. <code>provinces</code> 是什么类型？</h3>
-          <ul><li>A. list</li><li>B. dict</li><li>C. str</li><li>D. int</li></ul>
+          <ul><li>A. str</li><li>B. dict</li><li>C. int</li><li>D. list</li></ul>
         </div>
       </div>
     </section>
@@ -547,11 +576,11 @@ print(len(rows))</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>3. 循环结束后 rows 有几行？</h3>
-          <ul><li>A. 1</li><li>B. 2</li><li>C. 3</li><li>D. 0</li></ul>
+          <ul><li>A. 2</li><li>B. 3</li><li>C. 1</li><li>D. 0</li></ul>
         </div>
         <div class="quiz-card">
           <h3>4. <code>rows.append(...)</code> 在做什么？</h3>
-          <ul><li>A. 往列表里加一行</li><li>B. 删除一行</li><li>C. 保存 Excel</li><li>D. 读取 JSON</li></ul>
+          <ul><li>A. 保存 Excel</li><li>B. 删除一行</li><li>C. 往列表里加一行</li><li>D. 读取 JSON</li></ul>
         </div>
       </div>
     </section>
@@ -563,29 +592,27 @@ df = pd.DataFrame(rows)</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>5. <code>pd.DataFrame(rows)</code> 会得到？</h3>
-          <ul><li>A. 一张表</li><li>B. 一个列表</li><li>C. 一个字典</li><li>D. 一段文字</li></ul>
+          <ul><li>A. 一个字典</li><li>B. 一个列表</li><li>C. 一段文字</li><li>D. 一张表</li></ul>
         </div>
         <div class="quiz-card">
           <h3>6. 每个字典大致对应表格里的？</h3>
-          <ul><li>A. 一行</li><li>B. 一列</li><li>C. 一个单元格</li><li>D. 整张表</li></ul>
+          <ul><li>A. 一行</li><li>B. 一个单元格</li><li>C. 一列</li><li>D. 整张表</li></ul>
         </div>
       </div>
     </section>
     <section class="slide">
       <p class="eyebrow">Quiz 4 / 8</p>
-      <h2>排序和取前几行</h2>
-      <pre class="quiz-code compact"><code>top10 = df.sort_values(
-    by=&quot;累计确诊&quot;,
-    ascending=False,
-).head(10)</code></pre>
+      <h2>选择列和看前几行</h2>
+      <pre class="quiz-code compact"><code>small = df[[&quot;地区&quot;, &quot;累计确诊&quot;]]
+preview = small.head(3)</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
-          <h3>7. 这段代码按哪一列排序？</h3>
-          <ul><li>A. 累计确诊</li><li>B. 省份</li><li>C. 地区数量</li><li>D. 现存确诊</li></ul>
+          <h3>7. <code>small</code> 保留了哪些列？</h3>
+          <ul><li>A. 所有列</li><li>B. 地区和累计确诊</li><li>C. 省份和地区数量</li><li>D. 只有累计确诊</li></ul>
         </div>
         <div class="quiz-card">
-          <h3>8. <code>head(10)</code> 会保留什么？</h3>
-          <ul><li>A. 排序后的前 10 行</li><li>B. 所有行</li><li>C. 排序后的最后 10 行</li><li>D. 只保留累计确诊列</li></ul>
+          <h3>8. <code>head(3)</code> 会保留什么？</h3>
+          <ul><li>A. 所有行</li><li>B. 后 3 行</li><li>C. 前 3 行</li><li>D. 前 3 列</li></ul>
         </div>
       </div>
     </section>
@@ -598,11 +625,11 @@ df = pd.DataFrame(rows)</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>9. 这句新增了哪一列？</h3>
-          <ul><li>A. 治愈率</li><li>B. 累计治愈</li><li>C. 累计确诊</li><li>D. 省份</li></ul>
+          <ul><li>A. 累计治愈</li><li>B. 省份</li><li>C. 治愈率</li><li>D. 累计确诊</li></ul>
         </div>
         <div class="quiz-card">
           <h3>10. 乘以 100 是为了得到什么？</h3>
-          <ul><li>A. 百分比</li><li>B. 小数位数</li><li>C. 排序方向</li><li>D. 筛选条件</li></ul>
+          <ul><li>A. 小数位数</li><li>B. 排序方向</li><li>C. 筛选条件</li><li>D. 百分比</li></ul>
         </div>
       </div>
     </section>
@@ -614,11 +641,11 @@ result = df[has_current]</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>11. <code>has_current</code> 记录的是？</h3>
-          <ul><li>A. 每一行是否现存确诊大于 0</li><li>B. 每一行是否累计确诊最大</li><li>C. 每一行是否属于同一省份</li><li>D. 每一行是否已经排序</li></ul>
+          <ul><li>A. 每一行是否现存确诊大于 0</li><li>B. 每一行是否已经排序</li><li>C. 每一行是否属于同一省份</li><li>D. 每一行是否累计确诊最大</li></ul>
         </div>
         <div class="quiz-card">
           <h3>12. <code>result</code> 会保留哪类行？</h3>
-          <ul><li>A. 现存确诊大于 0 的行</li><li>B. 现存确诊等于 0 的行</li><li>C. 累计确诊最高的 10 行</li><li>D. 所有省份汇总后的行</li></ul>
+          <ul><li>A. 累计确诊最高的 10 行</li><li>B. 现存确诊大于 0 的行</li><li>C. 现存确诊等于 0 的行</li><li>D. 所有省份汇总后的行</li></ul>
         </div>
       </div>
     </section>
@@ -631,11 +658,11 @@ result = df[has_current]</code></pre>
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>13. 这段会生成什么？</h3>
-          <ul><li>A. 一个含多个 sheet 的 Excel</li><li>B. 只包含城市明细的 Excel</li><li>C. 只包含省份汇总的 Excel</li><li>D. 两个互相独立的 Excel</li></ul>
+          <ul><li>A. 只包含城市明细的 Excel</li><li>B. 只包含省份汇总的 Excel</li><li>C. 两个互相独立的 Excel</li><li>D. 一个含多个 sheet 的 Excel</li></ul>
         </div>
         <div class="quiz-card">
           <h3>14. <code>sheet_name</code> 的作用是？</h3>
-          <ul><li>A. 给工作表命名</li><li>B. 决定写入哪个 DataFrame</li><li>C. 决定是否保留 index</li><li>D. 决定文件扩展名</li></ul>
+          <ul><li>A. 给工作表命名</li><li>B. 决定文件扩展名</li><li>C. 决定是否保留 index</li><li>D. 决定写入哪个 DataFrame</li></ul>
         </div>
       </div>
     </section>
@@ -647,11 +674,11 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
       <div class="quiz-grid">
         <div class="quiz-card">
           <h3>15. 这两句排序的列一样吗？</h3>
-          <ul><li>A. 不一样，一个按累计，一个按现存</li><li>B. 一样，都按累计确诊</li><li>C. 一样，都按现存确诊</li><li>D. 不一样，一个排序，一个筛选</li></ul>
+          <ul><li>A. 一样，都按累计确诊</li><li>B. 不一样，一个按累计，一个按现存</li><li>C. 一样，都按现存确诊</li><li>D. 不一样，一个排序，一个筛选</li></ul>
         </div>
         <div class="quiz-card">
           <h3>16. 如果关心当前压力，更该看哪张表？</h3>
-          <ul><li>A. current_top</li><li>B. total_top</li><li>C. city_df</li><li>D. province_df</li></ul>
+          <ul><li>A. province_df</li><li>B. total_top</li><li>C. current_top</li><li>D. city_df</li></ul>
         </div>
       </div>
     </section>
@@ -725,8 +752,8 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
       <h2>展开城市明细</h2>
       <div class="step-ladder">
         <div class="step-row"><strong>读 JSON</strong><span>取出 <code>data["list"]</code> 里的省份数据。</span></div>
-        <div class="step-row"><strong>外层循环</strong><span>逐个省份处理。</span></div>
-        <div class="step-row"><strong>内层循环</strong><span>逐个城市/地区整理成一行。</span></div>
+        <div class="step-row"><strong>摊平成表</strong><span>用 <code>json_normalize</code> 展开每个省份下面的城市列表。</span></div>
+        <div class="step-row"><strong>整理字段</strong><span>改中文列名，保留本节课要分析的几列。</span></div>
         <div class="step-row"><strong>导出明细</strong><span>保存为 <code>l8_city_detail.xlsx</code>。</span></div>
       </div>
     </section>
@@ -734,9 +761,9 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
       <p class="eyebrow">阶段 1 Recap</p>
       <h2>嵌套数据要先摊平成表</h2>
       <div class="three-col">
-        <div class="card"><h3>rows = []</h3><p>先准备空列表，收集每一行。</p></div>
-        <div class="card"><h3>双层 for</h3><p>省份里套城市，就需要先省份、再城市。</p></div>
-        <div class="card dark"><h3>特殊地区</h3><p>香港、澳门、台湾没有城市列表，用本身补成一行。</p></div>
+        <div class="card"><h3>json_normalize</h3><p>pandas 可以直接把嵌套 JSON 摊平成表。</p></div>
+        <div class="card"><h3>record_path</h3><p>告诉 pandas：这次要展开的是 <code>city</code> 这层。</p></div>
+        <div class="card dark"><h3>astype</h3><p>原始数字是文字，转成整数后才能继续统计。</p></div>
       </div>
     </section>
     <section class="slide">
@@ -785,15 +812,6 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
       </div>
     </section>
     <section class="slide">
-      <p class="eyebrow">阶段 2 Recap</p>
-      <h2>groupby 的关键不是语法，是问题</h2>
-      <div class="three-col">
-        <div class="card"><h3>总量</h3><p><code>sum</code> 看全省规模。</p></div>
-        <div class="card"><h3>典型水平</h3><p><code>median</code> 看中间位置，不容易被极端值带偏。</p></div>
-        <div class="card dark"><h3>最大值</h3><p><code>max</code> 看是否有一个地区特别突出。</p></div>
-      </div>
-    </section>
-    <section class="slide">
       <p class="eyebrow">真实输出预览</p>
       <h2>分组之后，问题变成省份结构</h2>
       <div class="table-card small-table mini-table">
@@ -804,7 +822,7 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
             <th>地区数量</th>
             <th>平均每地确诊</th>
             <th>中位数每地确诊</th>
-            <th>最大地区占比</th>
+            <th>最大地区确诊</th>
           </tr></thead>
           <tbody>
             <tr>
@@ -813,15 +831,7 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
               <td class="num">17</td>
               <td class="num">4008.18</td>
               <td class="num">931.0</td>
-              <td class="num">73.88%</td>
-            </tr>
-            <tr>
-              <td>香港</td>
-              <td class="num">5113</td>
-              <td class="num">1</td>
-              <td class="num">5113.00</td>
-              <td class="num">5113.0</td>
-              <td class="num">100.00%</td>
+              <td class="num">50344</td>
             </tr>
             <tr>
               <td>广东</td>
@@ -829,51 +839,39 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
               <td class="num">20</td>
               <td class="num">91.75</td>
               <td class="num">22.0</td>
-              <td class="num">39.56%</td>
+              <td class="num">726</td>
+            </tr>
+            <tr>
+              <td>浙江</td>
+              <td class="num">1282</td>
+              <td class="num">13</td>
+              <td class="num">98.62</td>
+              <td class="num">46.0</td>
+              <td class="num">504</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <p class="mini-note">同一张城市明细表，被按省份重新组织以后，能回答的问题就变了。</p>
+      <p class="mini-note">这一步只做分组汇总：总量、地区数量、平均数、中位数、最大值。</p>
+    </section>
+    <section class="slide">
+      <p class="eyebrow">阶段 2 Recap</p>
+      <h2>groupby 的关键不是语法，是问题</h2>
+      <div class="three-col">
+        <div class="card"><h3>groupby</h3><p>先把同一个省份的地区放到一组。</p></div>
+        <div class="card"><h3>agg</h3><p>对每一组一次性做多种统计。</p></div>
+        <div class="card dark"><h3>命名统计列</h3><p><code>累计确诊总数=("累计确诊", "sum")</code></p></div>
+      </div>
     </section>
     <section class="slide">
       <p class="eyebrow">阶段 3 目标</p>
       <h2>比较省份结构</h2>
       <div class="step-ladder">
-        <div class="step-row"><strong>最大地区占比</strong><span>最大地区确诊 / 全省确诊总数 × 100。</span></div>
+        <div class="step-row"><strong>最大地区占比</strong><span>看数据主要压在一个地区，还是分散在多个地区。</span></div>
+        <div class="step-row"><strong>计算方式</strong><span>最大地区确诊 / 全省确诊总数 × 100。</span></div>
         <div class="step-row"><strong>总数 Top10</strong><span>看规模。</span></div>
         <div class="step-row"><strong>中位数 Top10</strong><span>看典型地区水平。</span></div>
-        <div class="step-row"><strong>集中度 Top10</strong><span>看数据主要压在哪一个地区。</span></div>
       </div>
-    </section>
-    <section class="slide">
-      <p class="eyebrow">结构预览</p>
-      <h2>同一张表，可以按不同指标重排</h2>
-      <div class="table-card small-table mini-table">
-        <table>
-          <thead><tr>
-            <th>省份</th>
-            <th>累计确诊总数</th>
-            <th>最大地区确诊</th>
-            <th>最大地区占比</th>
-          </tr></thead>
-          <tbody>
-            <tr>
-              <td>广东</td>
-              <td class="num">1835</td>
-              <td class="num">726</td>
-              <td class="num">39.56%</td>
-            </tr>
-            <tr>
-              <td>上海</td>
-              <td class="num">1022</td>
-              <td class="num">680</td>
-              <td class="num">66.54%</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="mini-note">按总量看，广东更靠前；按集中度看，上海更突出。排序列一换，课堂上要讨论的问题也跟着换。</p>
     </section>
     <section class="slide">
       <p class="eyebrow">阶段 3 Recap</p>
@@ -900,7 +898,7 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
     </section>
     <section class="slide center">
       <p class="eyebrow">案例 1</p>
-      <h1>平均数 91.75，为什么中位数只有 22？</h1>
+      <h1>平均数 vs 中位数</h1>
       <p class="lead">同一组广东数据，两个数字差很多。先看数据，再判断该相信哪个数字。</p>
     </section>
     <section class="slide">
@@ -916,31 +914,31 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
           <tbody>
             <tr>
               <td>河源</td>
-              <td class="num">5</td>
+              <td>5</td>
             </tr>
             <tr>
               <td>汕尾</td>
-              <td class="num">6</td>
+              <td>6</td>
             </tr>
             <tr>
               <td>潮州</td>
-              <td class="num">7</td>
+              <td>7</td>
             </tr>
             <tr>
               <td>韶关</td>
-              <td class="num">10</td>
+              <td>10</td>
             </tr>
             <tr>
               <td>清远</td>
-              <td class="num">12</td>
+              <td>12</td>
             </tr>
             <tr>
               <td>深圳</td>
-              <td class="num">471</td>
+              <td>471</td>
             </tr>
             <tr>
               <td>广州</td>
-              <td class="num">726</td>
+              <td>726</td>
             </tr>
           </tbody>
         </table>
@@ -975,8 +973,7 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
 广东 20 个地区：
 平均每地确诊 91.75
 中位数每地确诊 22.0</code></pre>
-<div class="prompt-box small">请解释：为什么平均数和中位数会讲出不同故事？
-用普通人能听懂的话回答。</div>
+<div class="prompt-box small">请解释：为什么平均数和中位数会讲出不同故事？</div>
       </div>
     </section>
     <section class="slide">
@@ -993,30 +990,36 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
     <section class="slide center">
       <p class="eyebrow">案例 2</p>
       <h1>同一张表，先看哪一列？</h1>
-      <p class="lead">广东和上海放在一起，答案会随着指标变化。</p>
+      <p class="lead">湖北、广东、上海放在一起，答案会随着指标变化。</p>
     </section>
     <section class="slide">
       <p class="eyebrow">案例 2 · 数据</p>
-      <h2>两个省，两个问题</h2>
+      <h2>三个省，三种读法</h2>
       <div class="table-card small-table mini-table">
         <table>
           <thead><tr>
             <th>省份</th>
             <th>累计确诊总数</th>
-            <th>最大地区确诊</th>
+            <th>中位数每地确诊</th>
             <th>最大地区占比</th>
           </tr></thead>
           <tbody>
             <tr>
+              <td>湖北</td>
+              <td class="num">68139</td>
+              <td class="num">931.0</td>
+              <td class="num">73.88%</td>
+            </tr>
+            <tr>
               <td>广东</td>
               <td class="num">1835</td>
-              <td class="num">726</td>
+              <td class="num">22.0</td>
               <td class="num">39.56%</td>
             </tr>
             <tr>
               <td>上海</td>
               <td class="num">1022</td>
-              <td class="num">680</td>
+              <td class="num">12.0</td>
               <td class="num">66.54%</td>
             </tr>
           </tbody>
@@ -1027,33 +1030,33 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
       <p class="eyebrow">案例 2 · 讨论</p>
       <h2>排序背后的问题是什么？</h2>
       <ul>
-        <li>如果你关心整体规模，应该优先解释哪一个省？</li>
-        <li>如果你关心压力集中到单个地区，应该优先追问哪一个省？</li>
-        <li>这两种排序，分别会引导你去看“全省问题”还是“单点问题”？</li>
+        <li>关心整体规模，第一眼应该看哪一列？</li>
+        <li>关心多数地区的大致水平，哪一列比平均数更稳？</li>
+        <li>关心压力压在少数地区，上海和广东谁更值得追问？</li>
       </ul>
     </section>
     <section class="slide">
       <p class="eyebrow">案例 2 · 所以呢</p>
-      <h2>排名之前，先说清楚问题</h2>
+      <h2>同一张表，三种读法</h2>
       <div class="three-col">
-        <div class="card"><h3>总量</h3><p>回答“盘子有多大”。</p></div>
-        <div class="card"><h3>集中度</h3><p>回答“压力压在少数地区，还是分散在多地”。</p></div>
-        <div class="card dark"><h3>判断</h3><p>先定问题，再决定按哪一列排序。</p></div>
+        <div class="card"><h3>总量</h3><p>回答整体规模。</p></div>
+        <div class="card"><h3>中位数</h3><p>回答多数地区的典型水平。</p></div>
+        <div class="card dark"><h3>集中度</h3><p>回答数字压在一个地方，还是分散在多个地方。</p></div>
       </div>
     </section>
     <section class="slide center">
       <p class="eyebrow">案例 3</p>
       <h1>AI 可以写报告，但输入要给够</h1>
-      <p class="lead">最后一次演示：让 AI 把表格写成普通人能读的说明。</p>
+      <p class="lead">让 AI 把表格写成普通人能读的说明。</p>
     </section>
     <section class="slide photo-slide">
       <p class="eyebrow">AI 可选 · 案例 3</p>
       <h2>拍这页，让 AI 写数据说明</h2>
 <div class="ai-photo-grid">
-      <pre class="output small"><code>省份    累计确诊总数    中位数每地确诊    最大地区占比
-湖北    68139           931.0             73.88%
-广东    1835            22.0              39.56%
-上海    1022            12.0              66.54%</code></pre>
+      <pre class="output small"><code>省份    累计确诊    中位数    最大地区占比
+湖北    68139       931.0     73.88%
+广东    1835        22.0      39.56%
+上海    1022        12.0      66.54%</code></pre>
 <div class="prompt-box small">请写一段给普通同事看的数据说明：
 1. 分别说明总量、典型水平、集中度。
 2. 说明为什么不能只看第一列。
@@ -1062,24 +1065,42 @@ current_top = df.sort_values(by=&quot;现存确诊&quot;, ascending=False).head(
     </section>
     <section class="slide">
       <p class="eyebrow">AI 参考输出 · 案例 3</p>
-      <h2>好的输出会区分三个角度</h2>
-      <pre class="output answer-output"><code>湖北累计确诊总数最高，说明整体规模最大；
-湖北的中位数每地确诊也最高，说明典型地区水平也更突出；
-上海最大地区占比达到 66.54%，说明它比广东更集中在少数地区。
+      <h2>总量只说多大，不说长什么样</h2>
+      <pre class="output answer-output"><code>湖北总量最大，但不能简单写成“全省都一样严重”。中位数 931 说明普通地市也不轻；最大地区占比 73.88%，又说明压力高度集中。
 
-只看累计确诊总数会漏掉结构差异。下一步值得追问的是：
-湖北为什么总量和典型水平都高，上海为什么集中度这么高。</code></pre>
+广东和上海总量接近，但结构不同：广东更分散，上海更集中。资源怎么调，不能只看第一列。
+
+最值得追问：把武汉单独拎出去，湖北其余地区还比广东、上海高多少？</code></pre>
     </section>
     <section class="slide">
       <p class="eyebrow">收官回顾</p>
-      <h2>这门课最后想留下什么</h2>
+      <h2>最后留下的，不只是代码</h2>
       <ul>
-        <li>原始 JSON 可以整理成表格。</li>
-        <li>表格可以按地区、按省份、按时间重新组织。</li>
-        <li>排序、筛选、分组、导出 Excel，是数据分析最常见的几步。</li>
-        <li>计算结果不是终点，真正有价值的是：用哪个指标回答哪个问题。</li>
-        <li>AI 能帮忙解释和改写，但标准答案要回到数据。</li>
+        <li>原始 JSON 经过整理，可以变成能讨论的表格。</li>
+        <li>同一张表换层级：地区、省份、时间，问题就换了。</li>
+        <li>排序、筛选、分组、导出 Excel，是把数据变成判断的工具。</li>
+        <li>先问清楚问题，再选择指标：总量、典型水平、集中度，答案会不同。</li>
+        <li>AI 可以帮忙解释，但你要负责给数据、定问题、查结论。</li>
       </ul>
+    </section>
+    <section class="slide center">
+      <div class="graduation-layout">
+        <div>
+          <p class="eyebrow">结业</p>
+          <h1>谢谢大家坚持到最后</h1>
+          <p class="lead">恭喜完成 8 个晚上的 Python 数据分析课程。</p>
+          <div class="badge-row">
+            <span class="badge">写代码</span>
+            <span class="badge">看数据</span>
+            <span class="badge">问问题</span>
+            <span class="badge">做判断</span>
+          </div>
+        </div>
+        <div class="qr-card">
+          <img src="assets/l8-group-qr.png" alt="Python 课程群二维码">
+          <p>扫码进群</p>
+        </div>
+      </div>
     </section>
   </main>
 
